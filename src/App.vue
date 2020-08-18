@@ -5,6 +5,9 @@
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
+    <font-awesome-icon icon="spinner" />
+    <i class="fas fa-coffee"></i>
+    <font-awesome-icon icon="coffee" />
   </div>
 </template>
 
