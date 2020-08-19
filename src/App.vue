@@ -1,5 +1,20 @@
+<script>
+import HeaderBar from '@/components/header-bar.vue';
+
+export default {
+  name: 'App',
+  data() {
+    return {};
+  },
+  components: {
+    HeaderBar,
+  },
+};
+</script>
+
 <template>
   <div id="app">
+    <HeaderBar />
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
