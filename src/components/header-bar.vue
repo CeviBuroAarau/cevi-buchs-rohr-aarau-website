@@ -1,75 +1,88 @@
 <script>
-
 export default {
-  name: 'HeaderBar',
-  components: {  },
-    data() {
+  name: "HeaderBar",
+  components: {},
+  data() {
     return {
       showNav: false
     };
-  },
+  }
 };
 </script>
 
 <template>
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a class="navbar-item" href="https://bulma.io">
-      <img src="@/assets/logo.svg">
-    </a>
-
-    <a role="button" @click="showNav = !showNav" :class="{ 'is-active': showNav }" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-
-  <div id="navbarBasicExample" class="navbar-menu" :class="{ 'is-active': showNav }">
-    <div class="navbar-start">
-      <a class="navbar-item">
-        Home
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://bulma.io">
+        <img src="@/assets/logo.svg" />
       </a>
 
-      <a class="navbar-item">
-        Documentation
+      <a
+        role="button"
+        @click="showNav = !showNav"
+        :class="{ 'is-active': showNav }"
+        class="navbar-burger burger"
+        aria-label="menu"
+        aria-expanded="false"
+        data-target="navbar"
+      >
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
       </a>
-
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More
-        </a>
-
-        <div class="navbar-dropdown">
-          <a class="navbar-item">
-            About
-          </a>
-          <a class="navbar-item">
-            Jobs
-          </a>
-          <a class="navbar-item">
-            Contact
-          </a>
-          <hr class="navbar-divider">
-          <a class="navbar-item">
-            Report an issue
-          </a>
-        </div>
-      </div>
     </div>
 
-    <div class="navbar-end">
-      <div class="navbar-item">
-        <div class="buttons">
-          <a class="button is-primary">
-            <strong>Sign up</strong>
-          </a>
-          <a class="button is-light">
-            Log in
-          </a>
+    <div id="navbar" class="navbar-menu" :class="{ 'is-active': showNav }">
+      <div class="navbar-start">
+        <router-link class="navbar-item" to="/">Home</router-link>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <router-link class="navbar-link" to="/interessierte"
+            >Interessierte</router-link
+          >
+
+          <div class="navbar-dropdown">
+            <router-link class="navbar-item" to="/interessierte/schnuppern"
+              >Schnuppern</router-link
+            >
+            <router-link class="navbar-item" to="/interessierte/aktivitaeten"
+              >Aktivitäten</router-link
+            >
+            <router-link class="navbar-item" to="/interessierte/cevi_schweiz"
+              >Cevi Schweiz</router-link
+            >
+            <router-link class="navbar-item" to="/interessierte/standort"
+              >Standort</router-link
+            >
+          </div>
         </div>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <router-link class="navbar-link" to="/mitglieder"
+            >Mitglieder</router-link
+          >
+
+          <div class="navbar-dropdown">
+            <router-link class="navbar-item" to="/mitglieder/agenda"
+              >Agenda</router-link
+            >
+            <router-link class="navbar-item" to="/mitglieder/album"
+              >Album</router-link
+            >
+            <router-link class="navbar-item" to="/mitglieder/laedeli"
+              >Lädeli</router-link
+            >
+            <router-link class="navbar-item" to="/mitglieder/ausbildung"
+              >Ausbildung</router-link
+            >
+            <router-link class="navbar-item" to="/mitglieder/leiterteam"
+              >Leiterteam</router-link
+            >
+          </div>
+        </div>
+
+        <router-link class="navbar-item" to="/kontakt">Kontakt</router-link>
       </div>
     </div>
-  </div>
-</nav>
+  </nav>
 </template>
