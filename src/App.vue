@@ -1,14 +1,14 @@
 <script>
-import HeaderBar from '@/components/header-bar.vue';
+import HeaderBar from "@/components/header-bar.vue";
 
 export default {
-  name: 'App',
+  name: "App",
   data() {
     return {};
   },
   components: {
-    HeaderBar,
-  },
+    HeaderBar
+  }
 };
 </script>
 
