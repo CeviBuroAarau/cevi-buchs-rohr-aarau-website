@@ -1,19 +1,18 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
-    <button class="button is-primary">This is a button</button>
-  </div>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Herzlich Willkommen</h1>
+        <h2 class="subtitle">bei der Cevi Jungschar Buchs-Rohr Aarau</h2>
+        <p>Wir erleben <router-link to="/mitglieder/agenda">jeden zweiten Samstag Nachmittag</router-link> gemeinsam <router-link to="/interessierte/aktivitaeten">spannende Erlebnisse in der Natur</router-link>. Alle Kinder ab 5 Jahren sind herzlich eingeladen jederzeit kostenlos und unverbindlich <router-link to="/interessierte/schnuppern">reinschnuppern</router-link>.</p>
+      </div>
+    </section>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HelloWorld from "@/components/HelloWorld.vue"; // @ is an alias to /src
 
 @Component({
-  components: {
-    HelloWorld
-  }
+  components: {}
 })
 export default class Home extends Vue {}
 </script>
