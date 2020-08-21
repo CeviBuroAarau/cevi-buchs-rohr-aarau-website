@@ -19,5 +19,4 @@ export default {
   </div>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss"></style>
