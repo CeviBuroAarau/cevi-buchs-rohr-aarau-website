@@ -1,3 +1,7 @@
 <template>
-  <p>Lädeli</p>
+    <section class="section">
+      <div class="container">
+        <h1 class="title">Lädeli</h1>
+     </div>
+    </section>
 </template>
