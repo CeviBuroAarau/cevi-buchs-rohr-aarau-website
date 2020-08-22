@@ -1,9 +1,9 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Herzlich Willkommen</h1>
-      <h2 class="subtitle">bei der Cevi Jungschar Buchs-Rohr Aarau</h2>
-      <p>
+      <h1 class="title is-1">Herzlich Willkommen</h1>
+      <h2 class="subtitle is-2">bei der Cevi Jungschar Buchs-Rohr Aarau</h2>
+      <p class="content">
         Wir erleben
         <router-link to="/mitglieder/agenda"
           >jeden zweiten Samstag Nachmittag</router-link
