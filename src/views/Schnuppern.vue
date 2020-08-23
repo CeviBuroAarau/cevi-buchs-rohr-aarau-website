@@ -40,6 +40,70 @@
       <p class="content">
         Wir freuen uns über eine kurze Anmeldung
       </p>
+      <div class="content">
+        <div class="field">
+          <label class="label">Name</label>
+          <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-user"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Email</label>
+          <div class="control has-icons-left">
+            <input class="input" type="email" placeholder="" value="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-envelope"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Telefonnummer</label>
+          <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="" value="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-phone"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Geburtsdatum des Kindes</label>
+          <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="" value="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-birthday-cake"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Gewünschtes Schnupperdatum</label>
+          <div class="control has-icons-left">
+            <input class="input" type="text" placeholder="" value="">
+            <span class="icon is-small is-left">
+              <i class="fas fa-calendar"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="label">Nachricht</label>
+          <div class="control">
+            <textarea class="textarea" placeholder=""></textarea>
+          </div>
+        </div>
+
+        <div class="field is-grouped">
+          <div class="control">
+            <button class="button is-link">Anmelden</button>
+          </div>
+        </div>
+    </div>
     </div>
   </section>
 </template>
