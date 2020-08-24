@@ -11,8 +11,13 @@
         <router-link to="/interessierte/schnuppern"
           >Anmeldung und weitere Informationen</router-link
         >. In diesem Bereich finden Sie auch Informationen zu unseren
-        <router-link to="/interessierte/aktivitaeten">Aktivitäten</router-link
-        >, dem <router-link to="/interessierte/cevi_schweiz">Cevi Schweiz</router-link> oder <router-link to="/interessierte/standort">wo Sie uns finden</router-link>
+        <router-link to="/interessierte/aktivitaeten">Aktivitäten</router-link>,
+        dem
+        <router-link to="/interessierte/cevi_schweiz">Cevi Schweiz</router-link>
+        oder
+        <router-link to="/interessierte/standort"
+          >wo Sie uns finden</router-link
+        >
       </p>
     </div>
   </section>
