@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Standort</h1>
+      <h1 class="title is-1">Standort</h1>
       <p class="content">
         Wir werden von der 
         <a href="https://www.ref-kirche-buchs-rohr.ch/">reformierten Kirchgemeinde Buchs-Rohr</a> 
