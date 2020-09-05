@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Mitglieder</h1>
+      <h1 class="title is-1">Mitglieder</h1>
       <p class="content">
         Unser Mitgliederbereich bietet Dir in der
         <router-link to="/mitglieder/agenda">Agenda</router-link>
