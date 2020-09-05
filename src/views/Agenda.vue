@@ -51,7 +51,7 @@ export default {
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Agenda</h1>
+      <h1 class="title is-1">Agenda</h1>
       <p class="content">
         Die Anlässe werden jeweils Semesterweise publiziert. Im ersten Semester
         2020 erwarten uns die untenstehenden Aktivitäten. Wenn Sie mit der Maus

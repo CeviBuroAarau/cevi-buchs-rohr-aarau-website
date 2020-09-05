@@ -1,7 +1,7 @@
 <template>
   <section class="section">
     <div class="container">
-      <h1 class="title">Aktivitäten</h1>
+      <h1 class="title is-1">Aktivitäten</h1>
       <p class="content">
         Unsere Programme sind sehr vielfältig. Neben praktischen Fertigkeiten
         wie Karten lesen, Feuer entfachen oder Pionierbauten kommt auch Spiel
