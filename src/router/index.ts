@@ -13,7 +13,7 @@ import Laedeli from "../views/Laedeli.vue";
 import Ausbildung from "../views/Ausbildung.vue";
 import Leiterteam from "../views/Leiterteam.vue";
 import Kontakt from "../views/Kontakt.vue";
-import NotFound from '../views/NotFound.vue';
+import NotFound from "../views/NotFound.vue";
 
 Vue.use(VueRouter);
 
@@ -83,7 +83,7 @@ const routes: Array<RouteConfig> = [
     name: "Kontakt",
     component: Kontakt
   },
-  { path: '*', component: NotFound }
+  { path: "*", component: NotFound }
 ];
 
 const router = new VueRouter({
