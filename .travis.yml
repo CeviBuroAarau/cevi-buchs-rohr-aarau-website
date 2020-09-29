@@ -3,5 +3,5 @@ node_js:
   - 14
 script:
   - rm yarn.lock
-  - yarn install --check-files --frozen-lockfile
+  - yarn install
   - yarn build
