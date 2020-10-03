@@ -10,7 +10,7 @@
         Wir möchten Kindern
         <router-link to="/interessierte/aktivitaeten"
           >spannende Erlebnisse in der Natur ermöglichen</router-link
-        >>, beibringen sorgsam mit der Umwelt umzugehen. Ausserdem unterstützen
+        >, beibringen sorgsam mit der Umwelt umzugehen. Ausserdem unterstützen
         wir Kinder und Jugendliche dabei, ihr Leben sinnvoll zu gestalten und in
         der Gesellschaft Verantwortung zu übernehmen.
       </p>
