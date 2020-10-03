@@ -1,22 +1,32 @@
 <script>
-import HeaderBar from "@/components/header-bar.vue";
-
 export default {
   name: "App",
   data() {
     return {};
   },
-  components: {
-    HeaderBar
-  }
+  components: {}
 };
 </script>
 
 <template>
   <div id="app">
-    <HeaderBar />
     <router-view />
   </div>
 </template>
 
-<style lang="scss"></style>
+<style lang="scss">
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+</style>
+
+<style scoped lang="scss">
+#app {
+  display: flex;
+  flex-flow: column;
+  height: 100%;
+}
+</style>
