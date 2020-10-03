@@ -2,6 +2,8 @@ import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import Home from "../views/Home.vue";
 import Interessierte from "../views/Interessierte.vue";
+import FrontLayout from "../layouts/Front.vue";
+import RegularLayout from "../layouts/Regular.vue";
 import Schnuppern from "../views/Schnuppern.vue";
 import Aktivitaeten from "../views/Aktivitaeten.vue";
 import CeviSchweiz from "../views/CeviSchweiz.vue";
@@ -20,68 +22,146 @@ Vue.use(VueRouter);
 const routes: Array<RouteConfig> = [
   {
     path: "/",
-    name: "Home",
-    component: Home
+    component: FrontLayout,
+    children: [
+      {
+        name: "Home",
+        path: "",
+        component: Home
+      }
+    ]
   },
   {
     path: "/interessierte",
-    name: "Interessierte",
-    component: Interessierte
+    component: RegularLayout,
+    children: [
+      {
+        name: "Interessierte",
+        path: "",
+        component: Interessierte
+      }
+    ]
   },
   {
     path: "/interessierte/schnuppern",
-    name: "Schnuppern",
-    component: Schnuppern
+    component: RegularLayout,
+    children: [
+      {
+        name: "Schnuppern",
+        path: "",
+        component: Schnuppern
+      }
+    ]
   },
   {
     path: "/interessierte/aktivitaeten",
-    name: "Aktivitäten",
-    component: Aktivitaeten
+    component: RegularLayout,
+    children: [
+      {
+        name: "Aktivitäten",
+        path: "",
+        component: Aktivitaeten
+      }
+    ]
   },
   {
     path: "/interessierte/cevi_schweiz",
-    name: "Cevi Schweiz",
-    component: CeviSchweiz
+    component: RegularLayout,
+    children: [
+      {
+        name: "Cevi Schweiz",
+        path: "",
+        component: CeviSchweiz
+      }
+    ]
   },
   {
     path: "/interessierte/standort",
-    name: "Standort",
-    component: Standort
+    component: RegularLayout,
+    children: [
+      {
+        name: "Standort",
+        path: "",
+        component: Standort
+      }
+    ]
   },
   {
     path: "/mitglieder",
-    name: "Mitglieder",
-    component: Mitglieder
+    component: RegularLayout,
+    children: [
+      {
+        name: "Mitglieder",
+        path: "",
+        component: Mitglieder
+      }
+    ]
   },
   {
     path: "/mitglieder/agenda",
-    name: "Agenda",
-    component: Agenda
+    component: RegularLayout,
+    children: [
+      {
+        name: "Agenda",
+        path: "",
+        component: Agenda
+      }
+    ]
   },
   {
     path: "/mitglieder/album",
-    name: "Album",
-    component: Album
+    component: RegularLayout,
+    children: [
+      {
+        name: "Album",
+        path: "",
+        component: Album
+      }
+    ]
   },
   {
     path: "/mitglieder/laedeli",
-    name: "Lädeli",
-    component: Laedeli
+    component: RegularLayout,
+    children: [
+      {
+        name: "Lädeli",
+        path: "",
+        component: Laedeli
+      }
+    ]
   },
   {
     path: "/mitglieder/ausbildung",
-    name: "Ausbildung",
-    component: Ausbildung
+    component: RegularLayout,
+    children: [
+      {
+        name: "Ausbildung",
+        path: "",
+        component: Ausbildung
+      }
+    ]
   },
   {
     path: "/mitglieder/leiterteam",
-    name: "Leiterteam",
-    component: Leiterteam
+    component: RegularLayout,
+    children: [
+      {
+        name: "Leiterteam",
+        path: "",
+        component: Leiterteam
+      }
+    ]
   },
   {
     path: "/kontakt",
-    name: "Kontakt",
-    component: Kontakt
+    component: RegularLayout,
+    children: [
+      {
+        name: "Kontakt",
+        path: "",
+        component: Kontakt
+      }
+    ]
   },
   { path: "*", component: NotFound }
 ];
