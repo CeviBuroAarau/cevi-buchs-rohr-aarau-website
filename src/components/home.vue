@@ -9,9 +9,13 @@
       <img src="@/assets/home/claim.svg" class="claim" />
     </div>
     <div class="nav">
-      <div class="nav-level1" :class="{ 
-        'close-mobile-menu': !isMobileMenuOpen,
-        'open-mobile-menu': isMobileMenuOpen }">
+      <div
+        class="nav-level1"
+        :class="{
+          'close-mobile-menu': !isMobileMenuOpen,
+          'open-mobile-menu': isMobileMenuOpen
+        }"
+      >
         <a href="index.html">Hauptmenü</a>
         <ul class="main-menu">
           <li>
@@ -123,15 +127,15 @@ import { Component, Vue } from "vue-property-decorator";
     return {
       activeBackgroundImage: require("../assets/home/background" +
         Math.floor(Math.random() * (10 - 1 + 1) + 1) +
-        ".jpg"),
+        ".jpg")
     };
   },
   props: {
-    isMobileMenuOpen : {
+    isMobileMenuOpen: {
       type: Boolean,
       default: false
     }
-  },
+  }
 })
 export default class Home extends Vue {}
 </script>
