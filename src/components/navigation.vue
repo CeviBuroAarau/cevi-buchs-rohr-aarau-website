@@ -6,12 +6,24 @@ export default {
     return {
       activeBackgroundImage: require("../assets/home/background8.jpg")
     };
+  },
+  props: {
+    isMobileMenuOpen: {
+      type: Boolean,
+      default: false
+    }
   }
 };
 </script>
 
 <template>
-  <ul class="main-menu">
+  <ul
+    class="main-menu"
+    :class="{
+      'close-mobile-menu': !isMobileMenuOpen,
+      'open-mobile-menu': isMobileMenuOpen
+    }"
+  >
     <li>
       <router-link to="/">Home</router-link>
     </li>
@@ -128,6 +140,14 @@ export default {
     position: absolute;
     background: white;
     z-index: 1;
+  }
+
+  .close-mobile-menu {
+    display: none;
+  }
+
+  .open-mobile-menu {
+    display: block;
   }
 }
 </style>
