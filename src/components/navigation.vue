@@ -4,7 +4,8 @@ export default {
   components: {},
   data() {
     return {
-      activeBackgroundImage: (process.env.VUE_APP_EXTERNAL_ASSETS_URI + "/home/background8.jpg")
+      activeBackgroundImage:
+        process.env.VUE_APP_EXTERNAL_ASSETS_URI + "/home/background8.jpg"
     };
   },
   props: {
