@@ -3,14 +3,22 @@ export default {
   name: "HeaderBar",
   components: {},
   data() {
-    return {};
+    return {
+      mobileOpen: false
+    };
+  },
+  methods: {
+    onMobileOpenChanged () {
+      this.$emit('mobileOpenChanged', this.mobileOpen);
+    }
   }
 };
 </script>
 
 <template>
   <div class="header">
-    <div class="mobile-menu"><font-awesome-icon icon="bars" /></div>
+    <div @click="mobileOpen = !mobileOpen;
+    onMobileOpenChanged();" class="mobile-menu"><font-awesome-icon icon="bars" /></div>
     <router-link to="/"
       ><img class="logo" src="@/assets/logo.svg"
     /></router-link>

@@ -1,6 +1,5 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Home from "../views/Home.vue";
 import Interessierte from "../views/Interessierte.vue";
 import FrontLayout from "../layouts/Front.vue";
 import RegularLayout from "../layouts/Regular.vue";
@@ -23,13 +22,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     component: FrontLayout,
-    children: [
-      {
-        name: "Home",
-        path: "",
-        component: Home
-      }
-    ]
+    name: "Home"
   },
   {
     path: "/interessierte",
