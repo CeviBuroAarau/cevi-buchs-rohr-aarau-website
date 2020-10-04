@@ -1,20 +1,29 @@
 <template>
   <div class="wrapper">
-    <HeaderBar />
-    <router-view></router-view>
+    <HeaderBar @mobileOpenChanged="onMobileOpenChanged" />
+    <Home :isMobileMenuOpen="mobileOpen" />
   </div>
 </template>
 
 <script>
 import HeaderBar from "@/components/header-bar.vue";
+import Home from "@/components/home.vue";
 
 export default {
   name: "FrontLayout",
   data() {
-    return {};
+    return {
+      mobileOpen: false
+    };
   },
   components: {
-    HeaderBar
+    HeaderBar,
+    Home
+  },
+  methods: {
+    onMobileOpenChanged(value) {
+      this.mobileOpen = value;
+    }
   }
 };
 </script>
