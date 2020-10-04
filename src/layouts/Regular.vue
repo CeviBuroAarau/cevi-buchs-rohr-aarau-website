@@ -43,6 +43,7 @@ export default {
 .flex-row-wrapper {
   display: flex;
   flex-flow: row;
-  height: 100%;
+  min-height: 100%;
+  flex-shrink: 0;
 }
 </style>
