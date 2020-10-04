@@ -1,8 +1,8 @@
 <template>
   <div class="flex-column-wrapper">
-    <HeaderBar />
+    <HeaderBar @mobileOpenChanged="onMobileOpenChanged" />
     <div class="flex-row-wrapper">
-      <Navigation />
+      <Navigation :isMobileMenuOpen="mobileOpen" />
       <div class="content">
         <router-view />
       </div>
@@ -17,11 +17,18 @@ import Navigation from "@/components/navigation.vue";
 export default {
   name: "RegularLayout",
   data() {
-    return {};
+    return {
+      mobileOpen: false
+    };
   },
   components: {
     HeaderBar,
     Navigation
+  },
+  methods: {
+    onMobileOpenChanged(value) {
+      this.mobileOpen = value;
+    }
   }
 };
 </script>
