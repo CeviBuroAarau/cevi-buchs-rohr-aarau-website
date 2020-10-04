@@ -4,7 +4,8 @@ export default {
   components: {},
   data() {
     return {
-      activeBackgroundImage: require("../assets/home/background8.jpg")
+      activeBackgroundImage:
+        process.env.VUE_APP_EXTERNAL_ASSETS_URI + "/home/background8.jpg"
     };
   },
   props: {
@@ -88,7 +89,7 @@ export default {
 
 .main-menu::after {
   content: "";
-  background: url("../assets/home/background8.jpg");
+  background: url("../assets/navigation/background.jpg");
   background-size: cover;
   background-position: center;
   position: absolute;

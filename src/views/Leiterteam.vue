@@ -14,7 +14,9 @@
           v-for="(items, itemIndex) in [
             {
               alt: 'Luna',
-              file: require('../assets/leiterteam/thumb/01 2017-12 Luna.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/01 2017-12 Luna.jpg.webp',
               abteilungsfunktion: 'al',
               gruppe: 'spartacus',
               gruppenfunktion: 'leiter',
@@ -33,7 +35,9 @@
             },
             {
               alt: 'Luchs',
-              file: require('../assets/leiterteam/thumb/02 2015-06 Luchs.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/02 2015-06 Luchs.jpg.webp',
               abteilungsfunktion: 'al',
               gruppe: 'spartacus',
               gruppenfunktion: 'leiter',
@@ -52,7 +56,8 @@
             },
             {
               alt: 'Jarne',
-              file: require('../assets/leiterteam/thumb/03 2019 Jarne.jpg.webp'),
+              file:
+                externalAssetsUri + '/leiterteam/thumb/03 2019 Jarne.jpg.webp',
               abteilungsfunktion: 'al',
               gruppe: 'celebrations',
               gruppenfunktion: 'leiter',
@@ -135,7 +140,9 @@
           v-for="(items, itemIndex) in [
             {
               alt: 'Würfel',
-              file: require('../assets/leiterteam/thumb/07 2017-12 Würfel.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/07 2017-12 Würfel.jpg.webp',
               abteilungsfunktion: '',
               gruppe: 'spartacus',
               gruppenfunktion: 'gruppenleiter',
@@ -153,7 +160,9 @@
             },
             {
               alt: 'Koffein',
-              file: require('../assets/leiterteam/thumb/08 2017-12 Koffein.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/08 2017-12 Koffein.jpg.webp',
               abteilungsfunktion: '',
               gruppe: 'spartacus',
               gruppenfunktion: 'gruppenleiter',
@@ -171,7 +180,9 @@
             },
             {
               alt: 'Luna',
-              file: require('../assets/leiterteam/thumb/01 2017-12 Luna.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/01 2017-12 Luna.jpg.webp',
               abteilungsfunktion: 'al',
               gruppe: 'spartacus',
               gruppenfunktion: 'leiter',
@@ -190,7 +201,9 @@
             },
             {
               alt: 'Luchs',
-              file: require('../assets/leiterteam/thumb/02 2015-06 Luchs.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/02 2015-06 Luchs.jpg.webp',
               abteilungsfunktion: 'al',
               gruppe: 'spartacus',
               gruppenfunktion: 'leiter',
@@ -209,7 +222,9 @@
             },
             {
               alt: 'Indi',
-              file: require('../assets/leiterteam/thumb/09 2015-06 Indi.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/09 2015-06 Indi.jpg.webp',
               abteilungsfunktion: '',
               gruppe: 'spartacus',
               gruppenfunktion: 'leiter',
@@ -231,7 +246,9 @@
             },
             {
               alt: 'Wiesel',
-              file: require('../assets/leiterteam/thumb/11 2017-12 Wiesel.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/11 2017-12 Wiesel.jpg.webp',
               abteilungsfunktion: '',
               gruppe: 'spartacus',
               gruppenfunktion: 'hilfsleiter',
@@ -249,7 +266,8 @@
             },
             {
               alt: 'Ayal',
-              file: require('../assets/leiterteam/thumb/10 2018 Ayal.jpg.webp'),
+              file:
+                externalAssetsUri + '/leiterteam/thumb/10 2018 Ayal.jpg.webp',
               abteilungsfunktion: 'material',
               gruppe: 'spartacus',
               gruppenfunktion: 'hilfsleiter',
@@ -331,7 +349,9 @@
           v-for="(items, itemIndex) in [
             {
               alt: 'Floh',
-              file: require('../assets/leiterteam/thumb/04 2015-12 Floh.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/04 2015-12 Floh.jpg.webp',
               abteilungsfunktion: 'lädeli',
               gruppe: 'celebrations',
               gruppenfunktion: 'gruppenleiter',
@@ -349,7 +369,8 @@
             },
             {
               alt: 'Jarne',
-              file: require('../assets/leiterteam/thumb/03 2019 Jarne.jpg.webp'),
+              file:
+                externalAssetsUri + '/leiterteam/thumb/03 2019 Jarne.jpg.webp',
               abteilungsfunktion: 'al',
               gruppe: 'celebrations',
               gruppenfunktion: 'leiter',
@@ -368,7 +389,9 @@
             },
             {
               alt: 'Elias',
-              file: require('../assets/leiterteam/thumb/05 2018-04 Elias.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/05 2018-04 Elias.jpg.webp',
               abteilungsfunktion: '',
               gruppe: 'celebrations',
               gruppenfunktion: 'hilfsleiter',
@@ -386,7 +409,9 @@
             },
             {
               alt: 'Zippora',
-              file: require('../assets/leiterteam/thumb/06 2019 Zippora.jpg.webp'),
+              file:
+                externalAssetsUri +
+                '/leiterteam/thumb/06 2019 Zippora.jpg.webp',
               abteilungsfunktion: '',
               gruppe: 'celebrations',
               gruppenfunktion: 'hilfsleiter',
@@ -462,3 +487,14 @@
     </div>
   </section>
 </template>
+
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI
+    };
+  }
+};
+</script>

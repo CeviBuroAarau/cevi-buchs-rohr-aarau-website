@@ -125,9 +125,11 @@ import { Component, Vue } from "vue-property-decorator";
   components: {},
   data() {
     return {
-      activeBackgroundImage: require("../assets/home/background" +
+      activeBackgroundImage:
+        process.env.VUE_APP_EXTERNAL_ASSETS_URI +
+        "/home/background" +
         Math.floor(Math.random() * (10 - 1 + 1) + 1) +
-        ".jpg")
+        ".jpg"
     };
   },
   props: {
