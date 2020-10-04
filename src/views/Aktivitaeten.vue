@@ -109,7 +109,7 @@
   </section>
 </template>
 
-<style lang="scss">
+<style scoped lang="scss">
 .vue-light-gallery-thumb {
   display: inline-block;
   margin: 10px;
