@@ -407,6 +407,17 @@
   </section>
 </template>
 
+<style scoped lang="scss">
+.vue-light-gallery-thumb {
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 3px;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
+}
+</style>
+
 <script>
 import { LightGallery } from "vue-light-gallery";
 
