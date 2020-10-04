@@ -8,8 +8,8 @@ export default {
     };
   },
   methods: {
-    onMobileOpenChanged () {
-      this.$emit('mobileOpenChanged', this.mobileOpen);
+    onMobileOpenChanged() {
+      this.$emit("mobileOpenChanged", this.mobileOpen);
     }
   }
 };
@@ -17,8 +17,15 @@ export default {
 
 <template>
   <div class="header">
-    <div @click="mobileOpen = !mobileOpen;
-    onMobileOpenChanged();" class="mobile-menu"><font-awesome-icon icon="bars" /></div>
+    <div
+      @click="
+        mobileOpen = !mobileOpen;
+        onMobileOpenChanged();
+      "
+      class="mobile-menu"
+    >
+      <font-awesome-icon icon="bars" />
+    </div>
     <router-link to="/"
       ><img class="logo" src="@/assets/logo.svg"
     /></router-link>

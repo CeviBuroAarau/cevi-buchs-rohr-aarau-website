@@ -21,7 +21,7 @@ export default {
     Home
   },
   methods: {
-    onMobileOpenChanged (value) {
+    onMobileOpenChanged(value) {
       this.mobileOpen = value;
     }
   }
