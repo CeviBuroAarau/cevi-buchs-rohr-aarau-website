@@ -6,7 +6,7 @@ import listPlugin from "@fullcalendar/list";
 
 export default {
   components: {
-    FullCalendar // make the <FullCalendar> tag available
+    FullCalendar, // make the <FullCalendar> tag available
   },
   data() {
     return {
@@ -16,7 +16,7 @@ export default {
         headerToolbar: {
           left: "prev,next today",
           center: "title",
-          right: "dayGridMonth,listMonth"
+          right: "dayGridMonth,listMonth",
         },
         //eventMouseEnter: this.handleEventMouseEnter,
         events: [
@@ -27,7 +27,7 @@ export default {
           {
             title: "Pfila Ersatzlager",
             start: "2020-09-19",
-            end: "2020-09-20"
+            end: "2020-09-20",
           },
           { title: "Herbstferien", start: "2020-09-26", end: "2020-10-11" },
           { title: "Jungschinachmittag", start: "2020-10-17" },
@@ -35,17 +35,17 @@ export default {
           { title: "Jungschinachmittag", start: "2020-11-14" },
           { title: "Adventswerkstatt", start: "2020-12-05" },
           { title: "Waldweihnacht", start: "2020-12-12" },
-          { title: "Winterferien", start: "2020-12-19" }
-        ]
+          { title: "Winterferien", start: "2020-12-19" },
+        ],
       },
-      publicPath: process.env.BASE_URL
+      publicPath: process.env.BASE_URL,
     };
   },
   methods: {
     //handleEventMouseEnter: function(mouseEnterInfo) {
     //  alert('event mouse enter! ' + mouseEnterInfo.event.title)
     //}
-  }
+  },
 };
 </script>
 <template>

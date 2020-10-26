@@ -22,7 +22,7 @@ const routes: Array<RouteConfig> = [
   {
     path: "/",
     component: FrontLayout,
-    name: "Home"
+    name: "Home",
   },
   {
     path: "/interessierte",
@@ -31,9 +31,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Interessierte",
         path: "",
-        component: Interessierte
-      }
-    ]
+        component: Interessierte,
+      },
+    ],
   },
   {
     path: "/interessierte/schnuppern",
@@ -42,9 +42,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Schnuppern",
         path: "",
-        component: Schnuppern
-      }
-    ]
+        component: Schnuppern,
+      },
+    ],
   },
   {
     path: "/interessierte/aktivitaeten",
@@ -53,9 +53,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Aktivitäten",
         path: "",
-        component: Aktivitaeten
-      }
-    ]
+        component: Aktivitaeten,
+      },
+    ],
   },
   {
     path: "/interessierte/cevi_schweiz",
@@ -64,9 +64,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Cevi Schweiz",
         path: "",
-        component: CeviSchweiz
-      }
-    ]
+        component: CeviSchweiz,
+      },
+    ],
   },
   {
     path: "/interessierte/standort",
@@ -75,9 +75,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Standort",
         path: "",
-        component: Standort
-      }
-    ]
+        component: Standort,
+      },
+    ],
   },
   {
     path: "/mitglieder",
@@ -86,9 +86,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Mitglieder",
         path: "",
-        component: Mitglieder
-      }
-    ]
+        component: Mitglieder,
+      },
+    ],
   },
   {
     path: "/mitglieder/agenda",
@@ -97,9 +97,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Agenda",
         path: "",
-        component: Agenda
-      }
-    ]
+        component: Agenda,
+      },
+    ],
   },
   {
     path: "/mitglieder/album",
@@ -108,9 +108,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Album",
         path: "",
-        component: Album
-      }
-    ]
+        component: Album,
+      },
+    ],
   },
   {
     path: "/mitglieder/laedeli",
@@ -119,9 +119,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Lädeli",
         path: "",
-        component: Laedeli
-      }
-    ]
+        component: Laedeli,
+      },
+    ],
   },
   {
     path: "/mitglieder/ausbildung",
@@ -130,9 +130,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Ausbildung",
         path: "",
-        component: Ausbildung
-      }
-    ]
+        component: Ausbildung,
+      },
+    ],
   },
   {
     path: "/mitglieder/leiterteam",
@@ -141,9 +141,9 @@ const routes: Array<RouteConfig> = [
       {
         name: "Leiterteam",
         path: "",
-        component: Leiterteam
-      }
-    ]
+        component: Leiterteam,
+      },
+    ],
   },
   {
     path: "/kontakt",
@@ -152,17 +152,17 @@ const routes: Array<RouteConfig> = [
       {
         name: "Kontakt",
         path: "",
-        component: Kontakt
-      }
-    ]
+        component: Kontakt,
+      },
+    ],
   },
-  { path: "*", component: NotFound }
+  { path: "*", component: NotFound },
 ];
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
-  routes
+  routes,
 });
 
 export default router;

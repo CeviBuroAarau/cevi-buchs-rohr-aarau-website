@@ -49,7 +49,7 @@ export default {
     LMap,
     LTileLayer,
     LMarker,
-    LTooltip
+    LTooltip,
   },
   data() {
     return {
@@ -58,8 +58,8 @@ export default {
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
         '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      pfarrhaus: latLng(47.39246, 8.084986)
+      pfarrhaus: latLng(47.39246, 8.084986),
     };
-  }
+  },
 };
 </script>

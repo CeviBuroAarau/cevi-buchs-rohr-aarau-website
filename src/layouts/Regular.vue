@@ -18,18 +18,18 @@ export default {
   name: "RegularLayout",
   data() {
     return {
-      mobileOpen: false
+      mobileOpen: false,
     };
   },
   components: {
     HeaderBar,
-    Navigation
+    Navigation,
   },
   methods: {
     onMobileOpenChanged(value) {
       this.mobileOpen = value;
-    }
-  }
+    },
+  },
 };
 </script>
 

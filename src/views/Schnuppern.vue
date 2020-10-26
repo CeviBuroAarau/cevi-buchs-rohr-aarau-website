@@ -61,9 +61,7 @@
         Schweiz betreibt ein Krisen-Telefon bei Notfällen.
       </p>
       <h2 class="title is-2">Anmeldung</h2>
-      <p class="content">
-        Wir freuen uns über eine kurze Anmeldung
-      </p>
+      <p class="content">Wir freuen uns über eine kurze Anmeldung</p>
       <div class="content">
         <div class="field">
           <label class="label">Name</label>

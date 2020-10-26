@@ -13,18 +13,18 @@ export default {
   name: "FrontLayout",
   data() {
     return {
-      mobileOpen: false
+      mobileOpen: false,
     };
   },
   components: {
     HeaderBar,
-    Home
+    Home,
   },
   methods: {
     onMobileOpenChanged(value) {
       this.mobileOpen = value;
-    }
-  }
+    },
+  },
 };
 </script>
 
