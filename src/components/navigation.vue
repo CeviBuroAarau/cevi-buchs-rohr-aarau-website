@@ -149,6 +149,8 @@ export default {
 
   .open-mobile-menu {
     display: block;
+    /* otherwise it is partially overlapped by the agenda and the map */
+    z-index: 999;
   }
 }
 </style>
