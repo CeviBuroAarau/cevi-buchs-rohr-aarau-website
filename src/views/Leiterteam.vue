@@ -10,7 +10,7 @@
 
       <ul>
         <li
-          class=""
+          class="leiterlist"
           v-for="(items, itemIndex) in [
             {
               alt: 'Luna',
@@ -136,7 +136,7 @@
 
       <ul>
         <li
-          class=""
+          class="leiterlist"
           v-for="(items, itemIndex) in [
             {
               alt: 'Würfel',
@@ -345,7 +345,7 @@
 
       <ul>
         <li
-          class=""
+          class="leiterlist"
           v-for="(items, itemIndex) in [
             {
               alt: 'Floh',
@@ -498,3 +498,9 @@ export default {
   },
 };
 </script>
+
+<style scoped lang="scss">
+.leiterlist {
+  list-style-type: none;
+}
+</style>
