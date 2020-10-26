@@ -7,7 +7,7 @@ import Schnuppern from "../views/Schnuppern.vue";
 import Aktivitaeten from "../views/Aktivitaeten.vue";
 import CeviSchweiz from "../views/CeviSchweiz.vue";
 import Standort from "../views/Standort.vue";
-import Mitglieder from "../views/Mitglieder.vue";
+import Cevianer from "../views/Cevianer.vue";
 import Agenda from "../views/Agenda.vue";
 import Album from "../views/Album.vue";
 import Laedeli from "../views/Laedeli.vue";
@@ -80,18 +80,18 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/mitglieder",
+    path: "/cevianer",
     component: RegularLayout,
     children: [
       {
-        name: "Mitglieder",
+        name: "Cevianer",
         path: "",
-        component: Mitglieder,
+        component: Cevianer,
       },
     ],
   },
   {
-    path: "/mitglieder/agenda",
+    path: "/cevianer/agenda",
     component: RegularLayout,
     children: [
       {
@@ -102,7 +102,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/mitglieder/album",
+    path: "/cevianer/album",
     component: RegularLayout,
     children: [
       {
@@ -113,7 +113,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/mitglieder/laedeli",
+    path: "/cevianer/laedeli",
     component: RegularLayout,
     children: [
       {
@@ -124,7 +124,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/mitglieder/ausbildung",
+    path: "/cevianer/ausbildung",
     component: RegularLayout,
     children: [
       {
@@ -135,7 +135,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "/mitglieder/leiterteam",
+    path: "/cevianer/leiterteam",
     component: RegularLayout,
     children: [
       {

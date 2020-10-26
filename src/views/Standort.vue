@@ -11,7 +11,7 @@
         Regel starten und enden unsere Nachmittage im Pfarrhaus Ausserdorf.
         Ausnahmsweise kann sich der Besammlungsort ändern. Dies wird jeweils in
         der
-        <router-link to="/mitglieder/agenda">Agenda</router-link> kommuniziert.
+        <router-link to="/cevianer/agenda">Agenda</router-link> kommuniziert.
       </p>
       <h2 class="title is-2">Pfarrhaus Ausserdorf</h2>
 

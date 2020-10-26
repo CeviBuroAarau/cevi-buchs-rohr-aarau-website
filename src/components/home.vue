@@ -48,23 +48,19 @@
             <router-link to="/interessierte">Cevianer/in</router-link>
             <ul>
               <li>
-                <router-link to="/mitglieder/agenda">Agenda</router-link>
+                <router-link to="/cevianer/agenda">Agenda</router-link>
               </li>
               <li>
-                <router-link to="/mitglieder/album">Album</router-link>
+                <router-link to="/cevianer/album">Album</router-link>
               </li>
               <li>
-                <router-link to="/mitglieder/laedeli">Lädeli</router-link>
+                <router-link to="/cevianer/laedeli">Lädeli</router-link>
               </li>
               <li>
-                <router-link to="/mitglieder/ausbildung"
-                  >Ausbildung</router-link
-                >
+                <router-link to="/cevianer/ausbildung">Ausbildung</router-link>
               </li>
               <li>
-                <router-link to="/mitglieder/leiterteam"
-                  >Leiterteam</router-link
-                >
+                <router-link to="/cevianer/leiterteam">Leiterteam</router-link>
               </li>
             </ul>
           </li>
@@ -95,22 +91,22 @@
         </ul>
       </div>
       <div class="nav-level1">
-        <router-link to="/mitglieder">Cevianer/in</router-link>
+        <router-link to="/cevianer">Cevianer/in</router-link>
         <ul class="table-menu">
           <li>
-            <router-link to="/mitglieder/agenda">Agenda</router-link>
+            <router-link to="/cevianer/agenda">Agenda</router-link>
           </li>
           <li>
-            <router-link to="/mitglieder/album">Album</router-link>
+            <router-link to="/cevianer/album">Album</router-link>
           </li>
           <li>
-            <router-link to="/mitglieder/laedeli">Lädeli</router-link>
+            <router-link to="/cevianer/laedeli">Lädeli</router-link>
           </li>
           <li>
-            <router-link to="/mitglieder/ausbildung">Ausbildung</router-link>
+            <router-link to="/cevianer/ausbildung">Ausbildung</router-link>
           </li>
           <li>
-            <router-link to="/mitglieder/leiterteam">Leiterteam</router-link>
+            <router-link to="/cevianer/leiterteam">Leiterteam</router-link>
           </li>
         </ul>
       </div>

@@ -34,8 +34,8 @@
         >. Von dort aus gehen wir in der Regel in den nahe gelegenen Buchser
         Wald. Ausnahmsweise kann sich der Besammlungsort ändern. Dies ist
         jeweils in der
-        <router-link to="/mitglieder/agenda">Agenda</router-link> ersichtlich
-        und wird kommuniziert.
+        <router-link to="/cevianer/agenda">Agenda</router-link> ersichtlich und
+        wird kommuniziert.
       </p>
       <h2 class="title is-2">Was muss ich mitnehmen?</h2>
       <p class="content">
