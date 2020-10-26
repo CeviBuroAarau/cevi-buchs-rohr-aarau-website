@@ -4,7 +4,7 @@
       <h1 class="title is-1">Möchten Sie uns kennenlernen?</h1>
       <p class="content">
         Gerne können Kinder kostenlos und unverbindlich an
-        <router-link to="/mitglieder/agenda"
+        <router-link to="/cevianer/agenda"
           >jedem regulären Nachmittag</router-link
         >
         reinschnuppern.
