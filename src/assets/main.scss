@@ -1,3 +1,13 @@
 @import '~bulma/bulma';
 @import '~leaflet/dist/leaflet.css';
 @import '~leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses 
+
+// "disable" animations for people that wish this
+@media screen and (prefers-reduced-motion: reduce) {  
+  * {
+    /* Very short durations means JavaScript that relies on events still works */
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
