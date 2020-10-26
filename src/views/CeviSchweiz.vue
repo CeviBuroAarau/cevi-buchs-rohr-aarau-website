@@ -6,7 +6,7 @@
       <p class="content">
         Der <a href="https://www.cevi.ch/portrait/">Cevi</a> ist der
         drittgrösste Jugendverband in der Schweiz. Er umfasst rund 13 000
-        Mitglieder in über 200 lokalen Vereinen, führt jährlich über 80
+        Cevianer/innen in über 200 lokalen Vereinen, führt jährlich über 80
         Ausbildungskurse und gegen 300 Lager durch. Als christlich und
         international ausgerichtete Jugendbewegung stehen Leiterschaft und das
         Befähigen von Menschen im Zentrum aller Tätigkeiten. Der Cevi Schweiz
@@ -35,12 +35,13 @@
         Der Cevi ist in 7 Regionalverbände unterteilt. Wir sind Mitglied des
         Verbands
         <a href="https://cevi-agsoluzg.ch/portrait/">AG-SO-LU-ZG</a> (Abkürzung
-        der Kantone). Dieser besteht aus 30 Vereinen und ca. 1'500 Mitgliedern.
-        Er ist unsere Verbindung zum Dachverband. Wir können darüber unsere
-        Anliegen einbringen und erhalten Informationen. Zudem organisiert der
-        Regionalverband <a href="https://www.jugendundsport.ch/">J+S</a> (Jugend
-        und Sport) Ausbildungskurse, welche vom Bundesamt für Sport anerkannt
-        sind und unsere Leiter befähigen Gruppen zu führen.
+        der Kantone). Dieser besteht aus 30 Vereinen und ca. 1'500
+        Cevianer/innen. Er ist unsere Verbindung zum Dachverband. Wir können
+        darüber unsere Anliegen einbringen und erhalten Informationen. Zudem
+        organisiert der Regionalverband
+        <a href="https://www.jugendundsport.ch/">J+S</a> (Jugend und Sport)
+        Ausbildungskurse, welche vom Bundesamt für Sport anerkannt sind und
+        unsere Leiter befähigen Gruppen zu führen.
       </p>
     </div>
   </section>
