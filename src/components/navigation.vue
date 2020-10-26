@@ -5,15 +5,15 @@ export default {
   data() {
     return {
       activeBackgroundImage:
-        process.env.VUE_APP_EXTERNAL_ASSETS_URI + "/home/background8.jpg"
+        process.env.VUE_APP_EXTERNAL_ASSETS_URI + "/home/background8.jpg",
     };
   },
   props: {
     isMobileMenuOpen: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 };
 </script>
 
@@ -22,7 +22,7 @@ export default {
     class="main-menu"
     :class="{
       'close-mobile-menu': !isMobileMenuOpen,
-      'open-mobile-menu': isMobileMenuOpen
+      'open-mobile-menu': isMobileMenuOpen,
     }"
   >
     <li>

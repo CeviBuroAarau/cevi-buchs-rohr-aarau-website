@@ -3,7 +3,7 @@
     <div
       class="background"
       v-bind:style="{
-        'background-image': 'url(' + activeBackgroundImage + ')'
+        'background-image': 'url(' + activeBackgroundImage + ')',
       }"
     >
       <img src="@/assets/home/claim.svg" class="claim" />
@@ -13,7 +13,7 @@
         class="nav-level1"
         :class="{
           'close-mobile-menu': !isMobileMenuOpen,
-          'open-mobile-menu': isMobileMenuOpen
+          'open-mobile-menu': isMobileMenuOpen,
         }"
       >
         <a href="index.html">Hauptmenü</a>
@@ -129,15 +129,15 @@ import { Component, Vue } from "vue-property-decorator";
         process.env.VUE_APP_EXTERNAL_ASSETS_URI +
         "/home/background" +
         Math.floor(Math.random() * (10 - 1 + 1) + 1) +
-        ".jpg"
+        ".jpg",
     };
   },
   props: {
     isMobileMenuOpen: {
       type: Boolean,
-      default: false
-    }
-  }
+      default: false,
+    },
+  },
 })
 export default class Home extends Vue {}
 </script>

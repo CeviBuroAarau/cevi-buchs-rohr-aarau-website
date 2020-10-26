@@ -31,7 +31,7 @@
               inscoutsbecause:
                 'es lustig ist mit Gleichgesinnten etwas zu machen',
               bestexperience: 'Pfila 2007, Leiteranlässe',
-              contact: 'luna@cevimail.ch'
+              contact: 'luna@cevimail.ch',
             },
             {
               alt: 'Luchs',
@@ -52,7 +52,7 @@
               inscoutsbecause:
                 'es ein guter Ausgleich zum Alltag ist und die Arbeit mit Kindern Spass macht.',
               bestexperience: 'Diverse Ausbildungskurse und Geländespiele',
-              contact: 'luchs@cevimail.ch'
+              contact: 'luchs@cevimail.ch',
             },
             {
               alt: 'Jarne',
@@ -72,8 +72,8 @@
               inscoutssince: 'ungefähr 2. Klasse',
               inscoutsbecause: 'Es Spass macht und geil ist.',
               bestexperience: 'Hilfs- Gruppen- und Lagerleiterkurs',
-              contact: 'jarne@cevimail.ch'
-            }
+              contact: 'jarne@cevimail.ch',
+            },
           ]"
           :key="itemIndex"
         >
@@ -156,7 +156,7 @@
               inscoutssince: '2008',
               inscoutsbecause: 'Es Spass macht ;)',
               bestexperience: 'Pfingstlager, Adventslager, Heku',
-              contact: 'wuerfel@cevimail.ch'
+              contact: 'wuerfel@cevimail.ch',
             },
             {
               alt: 'Koffein',
@@ -176,7 +176,7 @@
               inscoutssince: '39722',
               inscoutsbecause: 'Es Fun macht.',
               bestexperience: 'Pfila 2011',
-              contact: 'koffein@cevimail.ch'
+              contact: 'koffein@cevimail.ch',
             },
             {
               alt: 'Luna',
@@ -197,7 +197,7 @@
               inscoutsbecause:
                 'es lustig ist mit Gleichgesinnten etwas zu machen',
               bestexperience: 'Pfila 2007, Leiteranlässe',
-              contact: 'luna@cevimail.ch'
+              contact: 'luna@cevimail.ch',
             },
             {
               alt: 'Luchs',
@@ -218,7 +218,7 @@
               inscoutsbecause:
                 'es ein guter Ausgleich zum Alltag ist und die Arbeit mit Kindern Spass macht.',
               bestexperience: 'Diverse Ausbildungskurse und Geländespiele',
-              contact: 'luchs@cevimail.ch'
+              contact: 'luchs@cevimail.ch',
             },
             {
               alt: 'Indi',
@@ -242,7 +242,7 @@
                 '... es schön ist, Zeit mit Kindern zu verbringen, und dabei Wissen und Können weiterzugeben. Vor allem auch weil die Welt mehr verantwortungsbewusste junge Leute braucht.',
               bestexperience:
                 'Lager, Ausbildungskurse, gute Programme mit frohen Kindern, z. B. Adventslager 2014',
-              contact: 'indi@cevimail.ch'
+              contact: 'indi@cevimail.ch',
             },
             {
               alt: 'Wiesel',
@@ -262,7 +262,7 @@
               inscoutssince: '2003',
               inscoutsbecause: 'mich mein bester Kolleg dazu begeistert hat',
               bestexperience: 'Die jährlichen Pfilas',
-              contact: 'wiesel@cevimail.ch'
+              contact: 'wiesel@cevimail.ch',
             },
             {
               alt: 'Ayal',
@@ -281,8 +281,8 @@
               inscoutssince: '2011',
               inscoutsbecause: '...',
               bestexperience: 'Alle Lager',
-              contact: 'ayal@cevimail.ch'
-            }
+              contact: 'ayal@cevimail.ch',
+            },
           ]"
           :key="itemIndex"
         >
@@ -365,7 +365,7 @@
               inscoutssince: 'Kindergarten',
               inscoutsbecause: 'es immer ein tolles Erlebnis ist',
               bestexperience: 'Pfila\'s',
-              contact: 'floh@cevimail.ch'
+              contact: 'floh@cevimail.ch',
             },
             {
               alt: 'Jarne',
@@ -385,7 +385,7 @@
               inscoutssince: 'ungefähr 2. Klasse',
               inscoutsbecause: 'Es Spass macht und geil ist.',
               bestexperience: 'Hilfs- Gruppen- und Lagerleiterkurs',
-              contact: 'jarne@cevimail.ch'
+              contact: 'jarne@cevimail.ch',
             },
             {
               alt: 'Elias',
@@ -405,7 +405,7 @@
               inscoutssince: 'ich denken kann',
               inscoutsbecause: 'Es Spass macht und man zudem etwas lernt ;D',
               bestexperience: 'Alle Lager und Leiterkurse',
-              contact: 'elias@cevimail.ch'
+              contact: 'elias@cevimail.ch',
             },
             {
               alt: 'Zippora',
@@ -425,8 +425,8 @@
               inscoutssince: '…',
               inscoutsbecause: 'es richtig viel Spass macht',
               bestexperience: 'Alle Cevilager',
-              contact: 'zippora@cevimail.ch'
-            }
+              contact: 'zippora@cevimail.ch',
+            },
           ]"
           :key="itemIndex"
         >
@@ -493,8 +493,8 @@ export default {
   components: {},
   data() {
     return {
-      externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI
+      externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI,
     };
-  }
+  },
 };
 </script>
