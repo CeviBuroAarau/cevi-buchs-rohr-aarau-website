@@ -4,14 +4,14 @@ export default {
   components: {},
   data() {
     return {
-      mobileOpen: false
+      mobileOpen: false,
     };
   },
   methods: {
     onMobileOpenChanged() {
       this.$emit("mobileOpenChanged", this.mobileOpen);
-    }
-  }
+    },
+  },
 };
 </script>
 
