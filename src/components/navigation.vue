@@ -137,12 +137,15 @@ export default {
   .main-menu {
     flex-shrink: 0;
     width: 50%;
+    height: 100%;
     margin: 0;
     padding: 2em;
     font-weight: bold;
     text-align: left;
     box-sizing: border-box;
-    position: absolute;
+    position: fixed;
+    top: 50px;
+    bottom: 0;
     background: white;
     z-index: 1;
   }
