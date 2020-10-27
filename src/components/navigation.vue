@@ -128,6 +128,10 @@ export default {
   color: #c41333;
 }
 
+.main-menu a.router-link-exact-active {
+  color: #c41333;
+}
+
 /* mobile */
 @media only screen and (max-width: 768px) {
   .main-menu {
