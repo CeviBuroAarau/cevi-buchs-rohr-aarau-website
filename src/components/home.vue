@@ -16,7 +16,7 @@
           'open-mobile-menu': isMobileMenuOpen,
         }"
       >
-        <a href="index.html">Hauptmenü</a>
+        <a href="/">Hauptmenü</a>
         <ul class="main-menu">
           <li>
             <router-link to="/">Home</router-link>
