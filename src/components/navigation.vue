@@ -138,6 +138,7 @@ export default {
     flex-shrink: 0;
     width: 50%;
     height: 100%;
+    width: 100%;
     margin: 0;
     padding: 2em;
     font-weight: bold;
