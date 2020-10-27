@@ -51,7 +51,11 @@ export default {
 /* mobile */
 @media only screen and (max-width: 768px) {
   .header {
+    background: white;
     text-align: right;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
   }
 
   .header .mobile-menu {
