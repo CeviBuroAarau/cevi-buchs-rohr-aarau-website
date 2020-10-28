@@ -1,3 +1,26 @@
+<script>
+export default {
+  components: {},
+  data() {
+    return {
+      displayForm: false,
+      displaySuccess: false,
+      errormessage: "",
+      name: "",
+      email: "",
+      phonenumber: "",
+      message: "",
+    };
+  },
+  methods: {
+    subscribe() {
+      this.displayForm = false;
+      this.displaySuccess = true;
+    },
+  },
+};
+</script>
+
 <template>
   <section class="section">
     <div class="container">
@@ -62,68 +85,132 @@
       </p>
       <h2 class="title is-2">Anmeldung</h2>
       <p class="content">Wir freuen uns über eine kurze Anmeldung</p>
-      <div class="content">
-        <div class="field">
-          <label class="label">Name</label>
-          <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-user"></i>
-            </span>
-          </div>
-        </div>
+      <button v-on:click="displayForm = true" class="button is-link">
+        Anmeldeformular öffnen
+      </button>
 
-        <div class="field">
-          <label class="label">Email</label>
-          <div class="control has-icons-left">
-            <input class="input" type="email" placeholder="" value="" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-envelope"></i>
-            </span>
-          </div>
-        </div>
+      <div
+        class="modal"
+        :class="{
+          'is-active': displayForm,
+        }"
+      >
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Anmelden zum Schnuppern</p>
+            <button
+              class="delete"
+              aria-label="close"
+              v-on:click="displayForm = false"
+            ></button>
+          </header>
+          <section class="modal-card-body">
+            <div class="notification is-info">
+              Bitte füllen Sie alle Felder des Formulars aus.
+            </div>
+            <div class="field">
+              <label class="label">Name</label>
+              <div class="control has-icons-left">
+                <input
+                  class="input"
+                  type="text"
+                  v-model="name"
+                  placeholder=""
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label">Telefonnummer</label>
-          <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="" value="" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-phone"></i>
-            </span>
-          </div>
-        </div>
+            <div class="field">
+              <label class="label">Email</label>
+              <div class="control has-icons-left">
+                <input
+                  class="input"
+                  type="email"
+                  v-model="email"
+                  placeholder=""
+                  value=""
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label">Geburtsdatum des Kindes</label>
-          <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="" value="" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-birthday-cake"></i>
-            </span>
-          </div>
-        </div>
+            <div class="field">
+              <label class="label">Telefonnummer</label>
+              <div class="control has-icons-left">
+                <input
+                  class="input"
+                  type="text"
+                  v-model="phonenumber"
+                  placeholder=""
+                  value=""
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-phone"></i>
+                </span>
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label">Gewünschtes Schnupperdatum</label>
-          <div class="control has-icons-left">
-            <input class="input" type="text" placeholder="" value="" />
-            <span class="icon is-small is-left">
-              <i class="fas fa-calendar"></i>
-            </span>
-          </div>
-        </div>
+            <div class="field">
+              <label class="label"
+                >Nachricht (z. B. Alter des Kindes, gewünschtes
+                Schnupperdatum)</label
+              >
+              <div class="control">
+                <textarea
+                  class="textarea"
+                  v-model="message"
+                  placeholder=""
+                ></textarea>
+              </div>
+            </div>
 
-        <div class="field">
-          <label class="label">Nachricht</label>
-          <div class="control">
-            <textarea class="textarea" placeholder=""></textarea>
-          </div>
+            <div v-if="this.errormessage" class="notification is-danger">
+              {{ errormessage }}
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <button
+              class="button is-success"
+              :disabled="!name || !email || !phonenumber || !message"
+              v-on:click="subscribe()"
+            >
+              Anmeldung senden
+            </button>
+            <button class="button" v-on:click="displayForm = false">
+              Abbrechen
+            </button>
+          </footer>
         </div>
+      </div>
 
-        <div class="field is-grouped">
-          <div class="control">
-            <button class="button is-link">Anmelden</button>
-          </div>
+      <div
+        class="modal"
+        :class="{
+          'is-active': displaySuccess,
+        }"
+      >
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Danke für die Anfrage</p>
+          </header>
+          <section class="modal-card-body">
+            Wir beantworten Ihre Anfrage in der Regel innert 2 Arbeitstagen.
+          </section>
+          <footer class="modal-card-foot">
+            <button
+              class="button is-success"
+              v-on:click="displaySuccess = false"
+            >
+              OK
+            </button>
+          </footer>
         </div>
       </div>
     </div>
