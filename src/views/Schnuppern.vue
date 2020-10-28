@@ -84,9 +84,9 @@ export default {
         Schweiz betreibt ein Krisen-Telefon bei Notfällen.
       </p>
       <h2 class="title is-2">Anmeldung</h2>
-      <p class="content">Wir freuen uns über eine kurze Anmeldung</p>
+      <p class="content">Hast Du Lust vorbeizuschauen? Die ersten zwei Schnuppernachmittage sind kostenlos und unverbindlich. Danach kannst Du Dich entscheiden ob Du dabei sein möchtest oder nicht.</p>
       <button v-on:click="displayForm = true" class="button is-link">
-        Anmeldeformular öffnen
+        Anmelden zum Schnuppern
       </button>
 
       <div
