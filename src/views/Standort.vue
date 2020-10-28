@@ -33,7 +33,7 @@
       </p>
       <p class="content">
         Das Lokal sieht wie folgt aus:<br />
-        <img src="@/assets/standort/lokal.jpg" width="800" />
+        <img src="@/assets/standort/lokal.webp" width="800" />
       </p>
     </div>
   </section>

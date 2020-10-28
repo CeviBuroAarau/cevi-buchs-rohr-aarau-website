@@ -125,7 +125,7 @@ import { Component, Vue } from "vue-property-decorator";
         process.env.VUE_APP_EXTERNAL_ASSETS_URI +
         "/home/background" +
         Math.floor(Math.random() * (10 - 1 + 1) + 1) +
-        ".jpg",
+        ".webp",
     };
   },
   props: {
