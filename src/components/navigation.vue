@@ -28,51 +28,89 @@ export default {
     }"
   >
     <li>
-      <router-link to="/" >Home</router-link>
+      <router-link to="/">Home</router-link>
     </li>
     <li>
-      <router-link to="/interessierte" v-on:click.native="onMobileNaviagation()">Interessierte</router-link>
+      <router-link to="/interessierte" v-on:click.native="onMobileNaviagation()"
+        >Interessierte</router-link
+      >
       <ul>
         <li>
-          <router-link to="/interessierte/schnuppern" v-on:click.native="onMobileNaviagation()">Schnuppern</router-link>
+          <router-link
+            to="/interessierte/schnuppern"
+            v-on:click.native="onMobileNaviagation()"
+            >Schnuppern</router-link
+          >
         </li>
         <li>
-          <router-link to="/interessierte/aktivitaeten" v-on:click.native="onMobileNaviagation()"
+          <router-link
+            to="/interessierte/aktivitaeten"
+            v-on:click.native="onMobileNaviagation()"
             >Aktivitäten</router-link
           >
         </li>
         <li>
-          <router-link to="/interessierte/cevi_schweiz" v-on:click.native="onMobileNaviagation()"
+          <router-link
+            to="/interessierte/cevi_schweiz"
+            v-on:click.native="onMobileNaviagation()"
             >Cevi Schweiz</router-link
           >
         </li>
         <li>
-          <router-link to="/interessierte/standort" v-on:click.native="onMobileNaviagation()">Standort</router-link>
+          <router-link
+            to="/interessierte/standort"
+            v-on:click.native="onMobileNaviagation()"
+            >Standort</router-link
+          >
         </li>
       </ul>
     </li>
     <li>
-      <router-link to="/cevianer" v-on:click.native="onMobileNaviagation()">Cevianer/in</router-link>
+      <router-link to="/cevianer" v-on:click.native="onMobileNaviagation()"
+        >Cevianer/in</router-link
+      >
       <ul>
         <li>
-          <router-link to="/cevianer/agenda" v-on:click.native="onMobileNaviagation()">Agenda</router-link>
+          <router-link
+            to="/cevianer/agenda"
+            v-on:click.native="onMobileNaviagation()"
+            >Agenda</router-link
+          >
         </li>
         <li>
-          <router-link to="/cevianer/album" v-on:click.native="onMobileNaviagation()">Album</router-link>
+          <router-link
+            to="/cevianer/album"
+            v-on:click.native="onMobileNaviagation()"
+            >Album</router-link
+          >
         </li>
         <li>
-          <router-link to="/cevianer/laedeli" v-on:click.native="onMobileNaviagation()">Lädeli</router-link>
+          <router-link
+            to="/cevianer/laedeli"
+            v-on:click.native="onMobileNaviagation()"
+            >Lädeli</router-link
+          >
         </li>
         <li>
-          <router-link to="/cevianer/ausbildung" v-on:click.native="onMobileNaviagation()">Ausbildung</router-link>
+          <router-link
+            to="/cevianer/ausbildung"
+            v-on:click.native="onMobileNaviagation()"
+            >Ausbildung</router-link
+          >
         </li>
         <li>
-          <router-link to="/cevianer/leiterteam" v-on:click.native="onMobileNaviagation()">Leiterteam</router-link>
+          <router-link
+            to="/cevianer/leiterteam"
+            v-on:click.native="onMobileNaviagation()"
+            >Leiterteam</router-link
+          >
         </li>
       </ul>
     </li>
     <li>
-      <router-link to="/kontakt" v-on:click.native="onMobileNaviagation()">Kontakt</router-link>
+      <router-link to="/kontakt" v-on:click.native="onMobileNaviagation()"
+        >Kontakt</router-link
+      >
     </li>
   </ul>
 </template>
