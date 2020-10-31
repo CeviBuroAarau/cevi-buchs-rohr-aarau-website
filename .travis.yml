@@ -9,5 +9,6 @@ script:
 deploy:
   provider: heroku
   app: cevi-buchs-rohr-aarau-webpage
+  api_key: $HEROKU_AUTH_TOKEN
   on:
     repo: patrickuhlmann/cevi-buchs-rohr-aarau-website
