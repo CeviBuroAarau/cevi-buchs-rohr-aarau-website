@@ -310,7 +310,8 @@ export default class Home extends Vue {}
   }
 
   .nav-level1 ul.table-menu {
-    width: 50%;
+    left: 0;
+    width: 100%;
   }
 }
 </style>
