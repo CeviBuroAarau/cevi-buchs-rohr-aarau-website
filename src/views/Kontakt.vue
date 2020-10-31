@@ -12,9 +12,7 @@ export default {
   methods: {
     send() {
       this.displaySuccess = true;
-      this.name = "",
-      this.email = "",
-      this.message = ""
+      (this.name = ""), (this.email = ""), (this.message = "");
     },
   },
 };
@@ -28,7 +26,13 @@ export default {
         <div class="field">
           <label for="name" class="label">Name</label>
           <div class="control has-icons-left">
-            <input class="input" type="text" id="name" placeholder="" v-model="name" />
+            <input
+              class="input"
+              type="text"
+              id="name"
+              placeholder=""
+              v-model="name"
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-user"></i>
             </span>
@@ -38,7 +42,13 @@ export default {
         <div class="field">
           <label for="email" class="label">Email</label>
           <div class="control has-icons-left">
-            <input class="input" for="email" type="email" placeholder="" v-model="email" />
+            <input
+              class="input"
+              for="email"
+              type="email"
+              placeholder=""
+              v-model="email"
+            />
             <span class="icon is-small is-left">
               <i class="fas fa-envelope"></i>
             </span>
@@ -48,15 +58,24 @@ export default {
         <div class="field">
           <label for="message" class="label">Nachricht</label>
           <div class="control">
-            <textarea for="message" class="textarea" placeholder="" v-model="message"></textarea>
+            <textarea
+              for="message"
+              class="textarea"
+              placeholder=""
+              v-model="message"
+            ></textarea>
           </div>
         </div>
 
         <div class="field is-grouped">
           <div class="control">
-            <button class="button is-link"
-            :disabled="!name || !email || !message"
-            v-on:click="send()">Nachricht senden</button>
+            <button
+              class="button is-link"
+              :disabled="!name || !email || !message"
+              v-on:click="send()"
+            >
+              Nachricht senden
+            </button>
           </div>
         </div>
       </div>
