@@ -282,7 +282,7 @@ export default class Home extends Vue {}
     position: absolute;
     top: 50px;
     bottom: 40px;
-    width: 70%;
+    width: 100%;
   }
 
   .close-mobile-menu {
@@ -310,7 +310,8 @@ export default class Home extends Vue {}
   }
 
   .nav-level1 ul.table-menu {
-    width: 50%;
+    left: 0;
+    width: 100%;
   }
 }
 </style>
