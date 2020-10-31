@@ -282,7 +282,7 @@ export default class Home extends Vue {}
     position: absolute;
     top: 50px;
     bottom: 40px;
-    width: 70%;
+    width: 100%;
   }
 
   .close-mobile-menu {
