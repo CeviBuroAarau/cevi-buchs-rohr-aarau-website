@@ -3,8 +3,7 @@ export default {
   name: "Navigation",
   components: {},
   data() {
-    return {
-    };
+    return {};
   },
   props: {
     isMobileMenuOpen: {

@@ -610,8 +610,7 @@
           'is-active': displayForm,
         }"
       >
-
-<div class="modal-background"></div>
+        <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Bestellformular</p>
@@ -626,65 +625,107 @@
               Bitte füllen Sie alle Felder des Formulars aus.
             </div>
 
-          <div class="field">
-            <label for="name" class="label">Name</label>
-            <div class="control has-icons-left">
-              <input class="input" id="name" type="text" v-model="name" placeholder="" />
-              <span class="icon is-small is-left">
-                <i class="fas fa-user"></i>
-              </span>
+            <div class="field">
+              <label for="name" class="label">Name</label>
+              <div class="control has-icons-left">
+                <input
+                  class="input"
+                  id="name"
+                  type="text"
+                  v-model="name"
+                  placeholder=""
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-user"></i>
+                </span>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label for="articles" class="label">Welche Artikel möchten Sie bestellen?</label>
-            <div class="control">
-              <textarea id="articles" class="textarea" v-model="articles" placeholder=""></textarea>
+            <div class="field">
+              <label for="articles" class="label"
+                >Welche Artikel möchten Sie bestellen?</label
+              >
+              <div class="control">
+                <textarea
+                  id="articles"
+                  class="textarea"
+                  v-model="articles"
+                  placeholder=""
+                ></textarea>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label class="label"
-              >Wünschen Sie eine Lieferung oder Abholung?</label
-            >
+            <div class="field">
+              <label class="label"
+                >Wünschen Sie eine Lieferung oder Abholung?</label
+              >
 
-            <div class="control">
-              <label for="delivery" class="radio">
-                <input type="radio" id="delivery" name="deliveryMethod" value="Lieferung" v-model="deliveryMethod" />
-                Lieferung
-              </label>
-              <br />
-              <label for="abholung" class="radio">
-                <input type="radio" id="abholung" name="deliveryMethod" value="Abholung" v-model="deliveryMethod" />
-                Abholung
-              </label>
+              <div class="control">
+                <label for="delivery" class="radio">
+                  <input
+                    type="radio"
+                    id="delivery"
+                    name="deliveryMethod"
+                    value="Lieferung"
+                    v-model="deliveryMethod"
+                  />
+                  Lieferung
+                </label>
+                <br />
+                <label for="abholung" class="radio">
+                  <input
+                    type="radio"
+                    id="abholung"
+                    name="deliveryMethod"
+                    value="Abholung"
+                    v-model="deliveryMethod"
+                  />
+                  Abholung
+                </label>
+              </div>
             </div>
-          </div>
 
-          <div class="field">
-            <label for="email" class="label">Email</label>
-            <div class="control has-icons-left">
-              <input class="input" id="email" type="email" v-model="email" placeholder="" value="" />
-              <span class="icon is-small is-left">
-                <i class="fas fa-envelope"></i>
-              </span>
+            <div class="field">
+              <label for="email" class="label">Email</label>
+              <div class="control has-icons-left">
+                <input
+                  class="input"
+                  id="email"
+                  type="email"
+                  v-model="email"
+                  placeholder=""
+                  value=""
+                />
+                <span class="icon is-small is-left">
+                  <i class="fas fa-envelope"></i>
+                </span>
+              </div>
             </div>
-          </div>
 
-
-          <div class="field">
-            <label for="adress" class="label"
-              >Wie lautet Ihre Adresse (notwendig bei Lieferung)?</label
-            >
-            <div class="control">
-              <textarea id="adress" class="textarea" v-model="adress" placeholder=""></textarea>
+            <div class="field">
+              <label for="adress" class="label"
+                >Wie lautet Ihre Adresse (notwendig bei Lieferung)?</label
+              >
+              <div class="control">
+                <textarea
+                  id="adress"
+                  class="textarea"
+                  v-model="adress"
+                  placeholder=""
+                ></textarea>
+              </div>
             </div>
-          </div>
           </section>
           <footer class="modal-card-foot">
             <button
               class="button is-success"
-              :disabled="!name || !email || !articles || !deliveryMethod || (deliveryMethod == 'Lieferung' && !adress)"
+              :disabled="
+                !name ||
+                !email ||
+                !articles ||
+                !deliveryMethod ||
+                (deliveryMethod == 'Lieferung' && !adress)
+              "
               v-on:click="order()"
             >
               Bestellung senden
