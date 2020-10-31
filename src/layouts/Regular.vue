@@ -1,8 +1,14 @@
 <template>
   <div class="flex-column-wrapper">
-    <HeaderBar @mobileOpenChanged="onMobileOpenChanged" :isMobileMenuOpen="mobileOpen" />
+    <HeaderBar
+      @mobileOpenChanged="onMobileOpenChanged"
+      :isMobileMenuOpen="mobileOpen"
+    />
     <div class="flex-row-wrapper">
-      <Navigation @mobileOpenChanged="onMobileOpenChanged" :isMobileMenuOpen="mobileOpen" />
+      <Navigation
+        @mobileOpenChanged="onMobileOpenChanged"
+        :isMobileMenuOpen="mobileOpen"
+      />
       <div class="content">
         <router-view />
       </div>

@@ -3,8 +3,7 @@ export default {
   name: "HeaderBar",
   components: {},
   data() {
-    return {
-    };
+    return {};
   },
   props: {
     isMobileMenuOpen: {
@@ -22,10 +21,7 @@ export default {
 
 <template>
   <div class="header">
-    <div
-      @click="onMobileOpenChanged();"
-      class="mobile-menu"
-    >
+    <div @click="onMobileOpenChanged()" class="mobile-menu">
       <font-awesome-icon icon="bars" />
     </div>
     <router-link to="/"
