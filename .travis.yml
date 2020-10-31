@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - 14
+- 14
 before_install:
-  - rm yarn.lock
+- rm yarn.lock
 script:
-  - yarn install
-  - yarn build
+- yarn install
+- yarn build
 deploy:
   provider: heroku
   api_key:
-    secure: "hkfIcGFEsdI4KdeSqY1vw9iXfZakAiOA9AOuWta+SNzu5T8TeShjKSH78wuqwjSRI0ni6kjeJpbL2S4HmbEVxkcz7WeK2SbNc+mGMy1/1EvZKHjVPWPCU+sADWGgCOSHpWF9khGKJSQM0pxmxVbG45WtAwevOKy8GQUNZESjMOL4huNOHVWJTl+N610O0/LJPkS4MW98WxlNldnZoN1o8KEg8K/cBNF1BIxzLZXDldo7Jdo4j6HiAcEMDPgWHWAymqe+8bXgO6CeegGjV9326SxvUthQ1ZBBw/ZnJNGD9kSG7h/uY5dExYhqdjgAeWg76UeSsQ0+J/KCqk8Fgf1tsJSowB58Jc5T5Ax/TRLq6KUpAsXMFN3z+G7f9NXXdRg9Dv1hT/s1/FcnzG8xP2OJnjAxMsSYwJ4Hartwj/0euJCGAwHKoZEMKHl1nwA3II+N1PhTdf9y1YyKLd9ctWXXLptx6kdjB+d+dPMa9BAxYXFAJWIyd7tJ9Q1lFtRTEQevz+jVKqonfBd3NClz3slu5szyQmn7pIkz8yyosuAQQ15mGzn70c1yNRoQsE6ptbL+3hIFuN6uZd2LNblB94FAZdBkRs15eiOx+LBXuqkcpWaYIaZinaxbz5rulhAFXCi+0OOt+H2sKx6vbQGTWfMtCDHNByLxislZT1tJ8mwARls="
+    secure: NCuYkl6nWa/k9A8sX1/np14A+87H3W94MiSCANlkIz4BjzeCItMIFXCVOYr6Xq9Ngy9DokRwK+wdYA2Cf2Su86nphxKyiafP0Q3fsMHZU+Q/gd450uDm3Mugsy7djSRm7RWj99v7MCV+af2iNmK/zJ8yyzKFPQDkm+vyhLkpB5G5dlWCwsNNv667cfihtF9zZGgVr44Gf121Q5WwOpUdDASbPY7Qh1R/yntXA2rZddwLEXWLfQBzqWi3d9G0ul0WNNS2pVo4/EHBbqH/GPZmuUNs+S4SD71lXtVzgLiqveloHBD3bo2mEwS5s0gGhF68O7LKxaKseKA3C6FndBuEWjduu4pwfzlYjR+SZ1gncmdn5wbcdGgkp92/hJpoRcCou4TaiVhX9WwBs9noCjWKjonoxp/FQUCh7RfvyeLnGTydnvx6yomRnkEzRy2aJdfHsGPROzmGDQHdj4VOBk15xYRTu1X/iqdlpLRqBN4CluOHHEBSDZOWubBP0xQ9yxOE8ho0m6U+P6uXY4WaxzZ2ZlAxso9kLGe3LSW9/n6sF0a1VbNdNap68o9IxVZUqXk0V8p2ei2U+N2QqE3d1gVRtq81JXy7OiiKOiEusVkVQxT3nNG9gfdczhGXFW7I2fY3G9IsU1eQhcmhhKajCgVqgx3B54FfD9weW4srDNZrtDc=
   app: cevi-buchs-rohr-aarau-webpage
   on:
-    repo:  patrickuhlmann/cevi-buchs-rohr-aarau-website 
+    repo: patrickuhlmann/cevi-buchs-rohr-aarau-website
