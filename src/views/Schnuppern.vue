@@ -5,7 +5,6 @@ export default {
     return {
       displayForm: false,
       displaySuccess: false,
-      errormessage: "",
       name: "",
       email: "",
       phonenumber: "",
@@ -110,11 +109,12 @@ export default {
               Bitte füllen Sie alle Felder des Formulars aus.
             </div>
             <div class="field">
-              <label class="label">Name</label>
+              <label for="name" class="label">Name</label>
               <div class="control has-icons-left">
                 <input
                   class="input"
                   type="text"
+                  id="name"
                   v-model="name"
                   placeholder=""
                 />
@@ -125,11 +125,12 @@ export default {
             </div>
 
             <div class="field">
-              <label class="label">Email</label>
+              <label for="email" class="label">Email</label>
               <div class="control has-icons-left">
                 <input
                   class="input"
                   type="email"
+                  id="email"
                   v-model="email"
                   placeholder=""
                   value=""
@@ -141,11 +142,12 @@ export default {
             </div>
 
             <div class="field">
-              <label class="label">Telefonnummer</label>
+              <label for="phonenumber" class="label">Telefonnummer</label>
               <div class="control has-icons-left">
                 <input
                   class="input"
                   type="text"
+                  id="phonenumer"
                   v-model="phonenumber"
                   placeholder=""
                   value=""
@@ -157,21 +159,18 @@ export default {
             </div>
 
             <div class="field">
-              <label class="label"
+              <label for="message" class="label"
                 >Nachricht (z. B. Alter des Kindes, gewünschtes
                 Schnupperdatum)</label
               >
               <div class="control">
                 <textarea
                   class="textarea"
+                  id="message"
                   v-model="message"
                   placeholder=""
                 ></textarea>
               </div>
-            </div>
-
-            <div v-if="this.errormessage" class="notification is-danger">
-              {{ errormessage }}
             </div>
           </section>
           <footer class="modal-card-foot">
