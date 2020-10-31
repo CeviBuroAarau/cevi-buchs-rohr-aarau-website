@@ -4,12 +4,17 @@ export default {
   components: {},
   data() {
     return {
-      mobileOpen: false,
     };
+  },
+  props: {
+    isMobileMenuOpen: {
+      type: Boolean,
+      default: false,
+    },
   },
   methods: {
     onMobileOpenChanged() {
-      this.$emit("mobileOpenChanged", this.mobileOpen);
+      this.$emit("mobileOpenChanged", !this.isMobileMenuOpen);
     },
   },
 };
@@ -18,10 +23,7 @@ export default {
 <template>
   <div class="header">
     <div
-      @click="
-        mobileOpen = !mobileOpen;
-        onMobileOpenChanged();
-      "
+      @click="onMobileOpenChanged();"
       class="mobile-menu"
     >
       <font-awesome-icon icon="bars" />
