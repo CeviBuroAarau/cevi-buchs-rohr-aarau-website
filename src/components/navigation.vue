@@ -198,7 +198,7 @@ export default {
   .open-mobile-menu {
     display: block;
     /* otherwise it is partially overlapped by the agenda and the map */
-    z-index: 999;
+    z-index: 1001; /* leaflet has a z-index of 1000 */
   }
 }
 </style>
