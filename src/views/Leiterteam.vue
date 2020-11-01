@@ -19,7 +19,7 @@
             <button
               class="delete"
               aria-label="close"
-              v-on:click="displayForm = false"
+              v-on:click="showModal = false"
             ></button>
           </header>
           <section class="modal-card-body">
@@ -183,7 +183,7 @@ export default {
       externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI,
       activeLeiter: {
         alt: "Luna",
-        file: "",
+        file: "/leiterteam/thumb/06 2019 Zippora.jpg.webp",
         abteilungsfunktion: "al",
         gruppe: "spartacus",
         gruppenfunktion: "leiter",
