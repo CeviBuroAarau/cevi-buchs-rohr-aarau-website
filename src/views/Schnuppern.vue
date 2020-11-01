@@ -42,9 +42,9 @@ export default {
         .then(() => {
           this.displayForm = false;
           this.displaySuccess = true;
-          this.name = '';
-          this.email = '';
-          this.message = '';
+          this.name = "";
+          this.email = "";
+          this.message = "";
         })
         .catch((err) => {
           console.log(err);

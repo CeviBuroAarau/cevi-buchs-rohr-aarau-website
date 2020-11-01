@@ -761,11 +761,11 @@ export default {
         .then(() => {
           this.displayForm = false;
           this.displaySuccess = true;
-          this.name = '';
-          this.email = '';
-          this.articles = '';
-          this.deliveryMethod = '';
-          this.adress = '';
+          this.name = "";
+          this.email = "";
+          this.articles = "";
+          this.deliveryMethod = "";
+          this.adress = "";
         })
         .catch((err) => {
           console.log(err);

@@ -6,7 +6,8 @@
     />
     <Home
       @mobileOpenChanged="onMobileOpenChanged"
-      :isMobileMenuOpen="mobileOpen" />
+      :isMobileMenuOpen="mobileOpen"
+    />
   </div>
 </template>
 
