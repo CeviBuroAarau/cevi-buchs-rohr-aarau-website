@@ -19,89 +19,11 @@
         <ul>
           <li
             class="vue-light-gallery-thumb"
-            v-for="(thumb, thumbIndex) in [
-              externalAssetsUri + '/aktivitaeten/thumb/01Kochen.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/02Brennesseltee.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/02Kaempfen.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/03Kissenschlacht.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/04Zelt.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/05Bauen.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/06Wasserschlacht.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/07Seilbruecke.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/08Fallschirmtuch.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/09EssenvomSeil.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/10AufBaeumeklettern.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/10Feuer.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/11Baumhaus.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/12Schoggibananen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/13Huckepack.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/15VerbundeneAugen.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/16Blachentennis.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/17Menschenpyramide.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/18Morsen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/19Gefesselt.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/20Hindernislauf.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/21Leiter.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/23Lagerfeuer.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/25Kartenlesen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/27Tisch.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/28Blind.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/30Harassenklettern.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/30Pfeilbogen.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/30Schlangenbrot.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/31Saegen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/31Schlauch.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/32Baumklettern.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/32Kaempfen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/33Logo.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/34Festessen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/35Cevibild.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/40Kerzenziehen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/41Lagerbauten.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/42Lagerbauten.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/43Seilbruecke.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/44Abseilen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/45Aufseilen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/50Schneesport.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/60Hamburger.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/61Bauen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/62Schatzsuche.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/63Zeltbau.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/64Seilziehen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/65Flucht.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/66Abwasch.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/67Ballonesteigen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/68Steine.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/70Leiterspiel.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/71Nomad.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/72SchlafenimStroh.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/73SpielenimHeu.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/74Basteln.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/75Schiff.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/76Gefesselt.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/77Hochziehen.jpg.webp',
-              externalAssetsUri + '/aktivitaeten/thumb/78Berliner.jpg.webp',
-              externalAssetsUri +
-                '/aktivitaeten/thumb/79Blachenschlauch.jpg.webp',
-            ]"
+            v-for="(thumb, thumbIndex) in thumblist"
             :key="thumbIndex"
             @click="index = thumbIndex"
           >
-            <img :src="thumb" />
+            <img :src="externalAssetsUri + thumb" />
           </li>
         </ul>
       </div>
@@ -502,6 +424,70 @@ export default {
             process.env.VUE_APP_EXTERNAL_ASSETS_URI +
             "/aktivitaeten/79Blachenschlauch.jpg.webp",
         },
+      ],
+      thumblist: [
+        "/aktivitaeten/thumb/01Kochen.jpg.webp",
+        "/aktivitaeten/thumb/02Brennesseltee.jpg.webp",
+        "/aktivitaeten/thumb/02Kaempfen.jpg.webp",
+        "/aktivitaeten/thumb/03Kissenschlacht.jpg.webp",
+        "/aktivitaeten/thumb/04Zelt.jpg.webp",
+        "/aktivitaeten/thumb/05Bauen.jpg.webp",
+        "/aktivitaeten/thumb/06Wasserschlacht.jpg.webp",
+        "/aktivitaeten/thumb/07Seilbruecke.jpg.webp",
+        "/aktivitaeten/thumb/08Fallschirmtuch.jpg.webp",
+        "/aktivitaeten/thumb/09EssenvomSeil.jpg.webp",
+        "/aktivitaeten/thumb/10AufBaeumeklettern.jpg.webp",
+        "/aktivitaeten/thumb/10Feuer.jpg.webp",
+        "/aktivitaeten/thumb/11Baumhaus.jpg.webp",
+        "/aktivitaeten/thumb/12Schoggibananen.jpg.webp",
+        "/aktivitaeten/thumb/13Huckepack.jpg.webp",
+        "/aktivitaeten/thumb/15VerbundeneAugen.jpg.webp",
+        "/aktivitaeten/thumb/16Blachentennis.jpg.webp",
+        "/aktivitaeten/thumb/17Menschenpyramide.jpg.webp",
+        "/aktivitaeten/thumb/18Morsen.jpg.webp",
+        "/aktivitaeten/thumb/19Gefesselt.jpg.webp",
+        "/aktivitaeten/thumb/20Hindernislauf.jpg.webp",
+        "/aktivitaeten/thumb/21Leiter.jpg.webp",
+        "/aktivitaeten/thumb/23Lagerfeuer.jpg.webp",
+        "/aktivitaeten/thumb/25Kartenlesen.jpg.webp",
+        "/aktivitaeten/thumb/27Tisch.jpg.webp",
+        "/aktivitaeten/thumb/28Blind.jpg.webp",
+        "/aktivitaeten/thumb/30Harassenklettern.jpg.webp",
+        "/aktivitaeten/thumb/30Pfeilbogen.jpg.webp",
+        "/aktivitaeten/thumb/30Schlangenbrot.jpg.webp",
+        "/aktivitaeten/thumb/31Saegen.jpg.webp",
+        "/aktivitaeten/thumb/31Schlauch.jpg.webp",
+        "/aktivitaeten/thumb/32Baumklettern.jpg.webp",
+        "/aktivitaeten/thumb/32Kaempfen.jpg.webp",
+        "/aktivitaeten/thumb/33Logo.jpg.webp",
+        "/aktivitaeten/thumb/34Festessen.jpg.webp",
+        "/aktivitaeten/thumb/35Cevibild.jpg.webp",
+        "/aktivitaeten/thumb/40Kerzenziehen.jpg.webp",
+        "/aktivitaeten/thumb/41Lagerbauten.jpg.webp",
+        "/aktivitaeten/thumb/42Lagerbauten.jpg.webp",
+        "/aktivitaeten/thumb/43Seilbruecke.jpg.webp",
+        "/aktivitaeten/thumb/44Abseilen.jpg.webp",
+        "/aktivitaeten/thumb/45Aufseilen.jpg.webp",
+        "/aktivitaeten/thumb/50Schneesport.jpg.webp",
+        "/aktivitaeten/thumb/60Hamburger.jpg.webp",
+        "/aktivitaeten/thumb/61Bauen.jpg.webp",
+        "/aktivitaeten/thumb/62Schatzsuche.jpg.webp",
+        "/aktivitaeten/thumb/63Zeltbau.jpg.webp",
+        "/aktivitaeten/thumb/64Seilziehen.jpg.webp",
+        "/aktivitaeten/thumb/65Flucht.jpg.webp",
+        "/aktivitaeten/thumb/66Abwasch.jpg.webp",
+        "/aktivitaeten/thumb/67Ballonesteigen.jpg.webp",
+        "/aktivitaeten/thumb/68Steine.jpg.webp",
+        "/aktivitaeten/thumb/70Leiterspiel.jpg.webp",
+        "/aktivitaeten/thumb/71Nomad.jpg.webp",
+        "/aktivitaeten/thumb/72SchlafenimStroh.jpg.webp",
+        "/aktivitaeten/thumb/73SpielenimHeu.jpg.webp",
+        "/aktivitaeten/thumb/74Basteln.jpg.webp",
+        "/aktivitaeten/thumb/75Schiff.jpg.webp",
+        "/aktivitaeten/thumb/76Gefesselt.jpg.webp",
+        "/aktivitaeten/thumb/77Hochziehen.jpg.webp",
+        "/aktivitaeten/thumb/78Berliner.jpg.webp",
+        "/aktivitaeten/thumb/79Blachenschlauch.jpg.webp",
       ],
       index: null,
       externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI,
