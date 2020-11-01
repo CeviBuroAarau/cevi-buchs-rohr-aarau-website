@@ -7,9 +7,7 @@
         Jungschärler. Einen Teil der Artikel haben wir auf Lager. Andere
         bestellen wir bei Bedarf. Mit dem untenstehenden Formular können Sie
         Bestellungen übers Internet tätigen. Sie können aber natürlich auch nach
-        einem Jungschinachmittag direkt bei uns vorbeikommen. Bei einigen
-        Artikeln werden weitere Informationen angezeigt wenn sich der Mauszeiger
-        über dem Bild befindet.
+        einem Jungschinachmittag direkt bei uns vorbeikommen.
       </p>
       <h2 class="subtitle is-2">Reguläre Artikel</h2>
       <ul>
