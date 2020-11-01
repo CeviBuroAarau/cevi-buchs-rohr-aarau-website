@@ -1,6 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import FrontLayout from "../layouts/Regular.vue";
+import FrontLayout from "../layouts/Front.vue";
 import RegularLayout from "../layouts/Regular.vue";
 
 const LazyInteressierte = () => import('../views/Interessierte.vue');
