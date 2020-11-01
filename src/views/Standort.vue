@@ -38,6 +38,12 @@
     </div>
   </section>
 </template>
+
+<style lang="scss">
+@import '~leaflet/dist/leaflet.css';
+@import '~leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses 
+</style>
+
 <script>
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
