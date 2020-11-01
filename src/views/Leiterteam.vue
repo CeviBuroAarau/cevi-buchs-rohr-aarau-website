@@ -476,4 +476,8 @@ export default {
   list-style-type: none;
   margin-right: 1em;
 }
+
+.modal {
+  z-index: 1050; /* headerbar has a z-index of 1001 */
+}
 </style>
