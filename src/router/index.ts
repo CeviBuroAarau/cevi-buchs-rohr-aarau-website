@@ -1,8 +1,8 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import FrontLayout from "../layouts/Front.vue";
-import RegularLayout from "../layouts/Regular.vue";
 
+const LazyRegularLayout = () => import('../layouts/Regular.vue');
 const LazyInteressierte = () => import('../views/Interessierte.vue');
 const LazySchnuppern = () => import('../views/Schnuppern.vue');
 const LazyAktivitaeten = () => import('../views/Aktivitaeten.vue');
@@ -27,7 +27,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/interessierte",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Interessierte",
@@ -38,7 +38,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/interessierte/schnuppern",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Schnuppern",
@@ -49,7 +49,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/interessierte/aktivitaeten",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Aktivitäten",
@@ -60,7 +60,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/interessierte/cevi_schweiz",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Cevi Schweiz",
@@ -71,7 +71,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/interessierte/standort",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Standort",
@@ -82,7 +82,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/cevianer",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Cevianer",
@@ -93,7 +93,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/cevianer/agenda",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Agenda",
@@ -104,7 +104,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/cevianer/album",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Album",
@@ -115,7 +115,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/cevianer/laedeli",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Lädeli",
@@ -126,7 +126,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/cevianer/ausbildung",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Ausbildung",
@@ -137,7 +137,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/cevianer/leiterteam",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Leiterteam",
@@ -148,7 +148,7 @@ const routes: Array<RouteConfig> = [
   },
   {
     path: "/kontakt",
-    component: RegularLayout,
+    component: LazyRegularLayout,
     children: [
       {
         name: "Kontakt",
