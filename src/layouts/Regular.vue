@@ -53,6 +53,7 @@ export default {
 @import '~bulma/sass/elements/form.sass';
 @import '~bulma/sass/elements/icon.sass';
 @import '~bulma/sass/elements/notification.sass';
+@import '~bulma/sass/elements/other.sass'; // close cross of the modal
 @import '~bulma/sass/elements/table.sass';
 @import '~bulma/sass/elements/title.sass';
 
