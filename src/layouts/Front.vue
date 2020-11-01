@@ -1,6 +1,8 @@
 <template>
   <div class="wrapper">
-    <HeaderBar @mobileOpenChanged="onMobileOpenChanged" />
+    <HeaderBar
+      @mobileOpenChanged="onMobileOpenChanged"
+      :isMobileMenuOpen="mobileOpen" />
     <Home :isMobileMenuOpen="mobileOpen" />
   </div>
 </template>
