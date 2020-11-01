@@ -70,7 +70,7 @@
         </ul>
       </div>
       <div class="nav-level1">
-        <router-link to="#">Interessierte</router-link>
+        <router-link to="#" @mouseover.native="onMobileNaviagation()" v-on:click.native="onMobileNaviagation()">Interessierte</router-link>
         <ul class="table-menu">
           <li>
             <router-link to="/interessierte/schnuppern">Schnuppern</router-link>
@@ -91,7 +91,7 @@
         </ul>
       </div>
       <div class="nav-level1">
-        <router-link to="#">Cevianer/in</router-link>
+        <router-link to="#" @mouseover.native="onMobileNaviagation()" v-on:click.native="onMobileNaviagation()">Cevianer/in</router-link>
         <ul class="table-menu">
           <li>
             <router-link to="/cevianer/agenda">Agenda</router-link>
@@ -132,6 +132,11 @@ import { Component, Vue } from "vue-property-decorator";
     isMobileMenuOpen: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    onMobileNaviagation() {
+      this.$emit("mobileOpenChanged", false);
     },
   },
 })
