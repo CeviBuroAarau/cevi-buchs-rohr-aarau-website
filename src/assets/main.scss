@@ -3,9 +3,6 @@
 @import '~bulma/sass/utilities/_all.sass';
 @import '~bulma/sass/base/_all.sass';
 
-@import '~leaflet/dist/leaflet.css';
-@import '~leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css'; // Re-uses 
-
 // "disable" animations for people that wish this
 @media screen and (prefers-reduced-motion: reduce) {  
   * {
