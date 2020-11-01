@@ -200,9 +200,10 @@ export default class Home extends Vue {}
   flex-flow: row wrap;
   position: absolute;
   background: rgba(255, 255, 255, 0.8);
-  width: 33.33%;
+  width: 100%;
   margin: 0;
   padding: 0;
+  left: 0;
 }
 
 .nav-level1 ul.table-menu > li {
@@ -236,7 +237,7 @@ export default class Home extends Vue {}
   bottom: 40px;
   position: absolute;
   background: rgba(255, 255, 255, 0.8);
-  width: 33.33%;
+  width: 100%;
   margin: 0;
   overflow: auto;
   font-weight: bold;
@@ -245,6 +246,7 @@ export default class Home extends Vue {}
   padding-right: 2em;
   box-sizing: border-box;
   padding-top: 1em;
+  left: 0;
 }
 
 .nav-level1 .main-menu li {
