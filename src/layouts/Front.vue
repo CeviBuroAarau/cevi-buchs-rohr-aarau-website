@@ -4,7 +4,10 @@
       @mobileOpenChanged="onMobileOpenChanged"
       :isMobileMenuOpen="mobileOpen"
     />
-    <Home :isMobileMenuOpen="mobileOpen" />
+    <Home
+      @mobileOpenChanged="onMobileOpenChanged"
+      :isMobileMenuOpen="mobileOpen"
+    />
   </div>
 </template>
 
