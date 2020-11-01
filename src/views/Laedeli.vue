@@ -774,6 +774,10 @@
   border-radius: 3px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.5);
 }
+
+.modal {
+  z-index: 1050; /* headerbar has a z-index of 1001 */
+}
 </style>
 
 <script>
