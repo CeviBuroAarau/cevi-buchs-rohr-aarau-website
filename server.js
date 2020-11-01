@@ -40,7 +40,7 @@ app.use(serveStatic(path.join(__dirname + "/dist"), {
 
         // js, css and images are cached for one year
         // this works because webpack adds a chunk hash in the filename
-        if (path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|webp)$/)) {
+        if (path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|webp|svg)$/)) {
             setLongTermCache(res);
         }
     },
