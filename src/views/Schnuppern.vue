@@ -20,6 +20,12 @@ export default {
 };
 </script>
 
+<style scoped lang="scss">
+.modal {
+  z-index: 1050; /* headerbar has a z-index of 1001 */
+}
+</style>
+
 <template>
   <section class="section">
     <div class="container">
