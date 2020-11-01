@@ -53,7 +53,7 @@ export default {
     text-align: right;
     position: fixed;
     width: 100%;
-    z-index: 1001;  /* leaflet has a z-index of 1000 */
+    z-index: 1001; /* leaflet has a z-index of 1000 */
   }
 
   .header .mobile-menu {
