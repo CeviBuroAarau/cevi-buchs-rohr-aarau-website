@@ -39,6 +39,31 @@ export default {
 };
 </script>
 
+<style lang="scss">
+@import '~bulma/sass/utilities/_all.sass';
+@import '~bulma/sass/helpers/_all.sass';
+@import '~bulma/sass/base/_all.sass';
+
+@import '~bulma/sass/components/card.sass';
+@import '~bulma/sass/components/modal.sass';
+
+@import '~bulma/sass/elements/button.sass';
+@import '~bulma/sass/elements/container.sass';
+@import '~bulma/sass/elements/content.sass';
+@import '~bulma/sass/elements/form.sass';
+@import '~bulma/sass/elements/icon.sass';
+@import '~bulma/sass/elements/notification.sass';
+@import '~bulma/sass/elements/table.sass';
+@import '~bulma/sass/elements/title.sass';
+
+@import '~bulma/sass/form/shared.sass';
+@import '~bulma/sass/form/checkbox-radio.sass';
+@import '~bulma/sass/form/input-textarea.sass';
+@import '~bulma/sass/form/tools.sass';
+
+@import '~bulma/sass/layout/section.sass';
+</style>
+
 <style scoped lang="scss">
 .flex-column-wrapper {
   display: flex;
