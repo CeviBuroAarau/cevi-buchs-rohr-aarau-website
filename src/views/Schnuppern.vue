@@ -1,10 +1,13 @@
 <script>
+import axios from "axios";
+
 export default {
   components: {},
   data() {
     return {
       displayForm: false,
       displaySuccess: false,
+      displayError: false,
       name: "",
       email: "",
       phonenumber: "",
@@ -13,8 +16,40 @@ export default {
   },
   methods: {
     subscribe() {
-      this.displayForm = false;
-      this.displaySuccess = true;
+      const instance = axios.create({
+        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        timeout: 10000,
+        headers: { "Content-Type": "application/json" },
+      });
+
+      instance
+        .post(
+          "/forms/submit/join",
+          {
+            form: {
+              name: this.name,
+              email: this.email,
+              phonenumber: this.phonenumber,
+              message: this.message,
+            },
+          },
+          {
+            headers: {
+              Authorization: "Bearer 1d9b8fc0beb2a3d5ceb254c4b49c02",
+            },
+          }
+        )
+        .then(() => {
+          this.displayForm = false;
+          this.displaySuccess = true;
+          this.name = '';
+          this.email = '';
+          this.message = '';
+        })
+        .catch((err) => {
+          console.log(err);
+          this.displayError = true;
+        });
     },
   },
 };
@@ -217,6 +252,31 @@ export default {
               class="button is-success"
               v-on:click="displaySuccess = false"
             >
+              OK
+            </button>
+          </footer>
+        </div>
+      </div>
+
+      <div
+        class="modal"
+        :class="{
+          'is-active': displayError,
+        }"
+      >
+        <div class="modal-background"></div>
+        <div class="modal-card">
+          <header class="modal-card-head">
+            <p class="modal-card-title">Anfrage fehlgeschlagen</p>
+          </header>
+          <section class="modal-card-body">
+            <div class="notification is-danger">
+              Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
+              nocheinmal.
+            </div>
+          </section>
+          <footer class="modal-card-foot">
+            <button class="button is-success" v-on:click="displayError = false">
               OK
             </button>
           </footer>
