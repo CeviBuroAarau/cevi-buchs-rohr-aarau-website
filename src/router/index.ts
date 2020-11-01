@@ -1,20 +1,21 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import Interessierte from "../views/Interessierte.vue";
-import FrontLayout from "../layouts/Front.vue";
+import FrontLayout from "../layouts/Regular.vue";
 import RegularLayout from "../layouts/Regular.vue";
-import Schnuppern from "../views/Schnuppern.vue";
-import Aktivitaeten from "../views/Aktivitaeten.vue";
-import CeviSchweiz from "../views/CeviSchweiz.vue";
-import Standort from "../views/Standort.vue";
-import Cevianer from "../views/Cevianer.vue";
-import Agenda from "../views/Agenda.vue";
-import Album from "../views/Album.vue";
-import Laedeli from "../views/Laedeli.vue";
-import Ausbildung from "../views/Ausbildung.vue";
-import Leiterteam from "../views/Leiterteam.vue";
-import Kontakt from "../views/Kontakt.vue";
-import NotFound from "../views/NotFound.vue";
+
+const LazyInteressierte = () => import('../views/Interessierte.vue');
+const LazySchnuppern = () => import('../views/Schnuppern.vue');
+const LazyAktivitaeten = () => import('../views/Aktivitaeten.vue');
+const LazyCeviSchweiz = () => import('../views/CeviSchweiz.vue');
+const LazyStandort = () => import('../views/Standort.vue');
+const LazyCevianer = () => import('../views/Cevianer.vue');
+const LazyAgenda = () => import('../views/Agenda.vue');
+const LazyAlbum = () => import('../views/Album.vue');
+const LazyLaedeli = () => import('../views/Laedeli.vue');
+const LazyAusbildung = () => import('../views/Ausbildung.vue');
+const LazyLeiterteam = () => import('../views/Leiterteam.vue');
+const LazyKontakt = () => import('../views/Kontakt.vue');
+const LazyNotFound = () => import('../views/NotFound.vue');
 
 Vue.use(VueRouter);
 
@@ -31,7 +32,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Interessierte",
         path: "",
-        component: Interessierte,
+        component: LazyInteressierte,
       },
     ],
   },
@@ -42,7 +43,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Schnuppern",
         path: "",
-        component: Schnuppern,
+        component: LazySchnuppern,
       },
     ],
   },
@@ -53,7 +54,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Aktivitäten",
         path: "",
-        component: Aktivitaeten,
+        component: LazyAktivitaeten,
       },
     ],
   },
@@ -64,7 +65,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Cevi Schweiz",
         path: "",
-        component: CeviSchweiz,
+        component: LazyCeviSchweiz,
       },
     ],
   },
@@ -75,7 +76,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Standort",
         path: "",
-        component: Standort,
+        component: LazyStandort,
       },
     ],
   },
@@ -86,7 +87,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Cevianer",
         path: "",
-        component: Cevianer,
+        component: LazyCevianer,
       },
     ],
   },
@@ -97,7 +98,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Agenda",
         path: "",
-        component: Agenda,
+        component: LazyAgenda,
       },
     ],
   },
@@ -108,7 +109,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Album",
         path: "",
-        component: Album,
+        component: LazyAlbum,
       },
     ],
   },
@@ -119,7 +120,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Lädeli",
         path: "",
-        component: Laedeli,
+        component: LazyLaedeli,
       },
     ],
   },
@@ -130,7 +131,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Ausbildung",
         path: "",
-        component: Ausbildung,
+        component: LazyAusbildung,
       },
     ],
   },
@@ -141,7 +142,7 @@ const routes: Array<RouteConfig> = [
       {
         name: "Leiterteam",
         path: "",
-        component: Leiterteam,
+        component: LazyLeiterteam,
       },
     ],
   },
@@ -152,11 +153,11 @@ const routes: Array<RouteConfig> = [
       {
         name: "Kontakt",
         path: "",
-        component: Kontakt,
+        component: LazyKontakt,
       },
     ],
   },
-  { path: "*", component: NotFound },
+  { path: "*", component: LazyNotFound },
 ];
 
 const router = new VueRouter({
