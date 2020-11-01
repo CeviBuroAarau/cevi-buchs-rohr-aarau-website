@@ -2,7 +2,8 @@
   <div class="wrapper">
     <HeaderBar
       @mobileOpenChanged="onMobileOpenChanged"
-      :isMobileMenuOpen="mobileOpen" />
+      :isMobileMenuOpen="mobileOpen"
+    />
     <Home :isMobileMenuOpen="mobileOpen" />
   </div>
 </template>
