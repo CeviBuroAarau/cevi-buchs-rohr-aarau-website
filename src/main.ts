@@ -7,6 +7,7 @@ import { library } from "@fortawesome/fontawesome-svg-core";
 import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
+import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { dom } from "@fortawesome/fontawesome-svg-core";
@@ -17,7 +18,7 @@ Vue.config.productionTip = false;
 
 require("./assets/main.scss");
 
-library.add(faPhone, faEnvelope, faUser);
+library.add(faPhone, faEnvelope, faUser, faBars);
 Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 new Vue({
