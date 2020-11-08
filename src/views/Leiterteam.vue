@@ -15,7 +15,9 @@
         <div class="modal-background"></div>
         <div class="modal-card">
           <header class="modal-card-head">
-            <p class="modal-card-title">{{ activeLeiter.name }}</p>
+            <p class="modal-card-title">
+              {{ activeLeiter.name + " v/o " + activeLeiter.jsname }}
+            </p>
             <button
               class="delete"
               aria-label="close"
@@ -88,20 +90,19 @@
             showModal = true;
           "
         >
-          <div class="card" style="width: 160px">
-            <header class="card-header is-centered">
-              <p class="card-header-title">
-                {{ items.name }}
-              </p>
-            </header>
+          <div class="card" style="width: 180px">
             <div class="card-image is-centered">
               <img
-                width="150"
+                width="170"
                 :src="externalAssetsUri + items.file"
                 :alt="items.alt"
               />
             </div>
             <div class="card-content is-centered">
+              <strong
+                >{{ items.name }}<br />
+                v/o {{ items.jsname }}</strong
+              ><br />
               {{ items.function }}
             </div>
           </div>
@@ -120,20 +121,19 @@
             showModal = true;
           "
         >
-          <div class="card" style="width: 160px">
-            <header class="card-header is-centered">
-              <p class="card-header-title">
-                {{ items.name }}
-              </p>
-            </header>
+          <div class="card" style="width: 180px">
             <div class="card-image is-centered">
               <img
-                width="150"
+                width="170"
                 :src="externalAssetsUri + items.file"
                 :alt="items.alt"
               />
             </div>
             <div class="card-content is-centered">
+              <strong
+                >{{ items.name }}<br />
+                v/o {{ items.jsname }}</strong
+              ><br />
               {{ items.function }}
             </div>
           </div>
@@ -152,20 +152,19 @@
             showModal = true;
           "
         >
-          <div class="card" style="width: 160px">
-            <header class="card-header is-centered">
-              <p class="card-header-title">
-                {{ items.name }}
-              </p>
-            </header>
+          <div class="card" style="width: 180px">
             <div class="card-image is-centered">
               <img
-                width="150"
+                width="170"
                 :src="externalAssetsUri + items.file"
                 :alt="items.alt"
               />
             </div>
             <div class="card-content is-centered">
+              <strong
+                >{{ items.name }}<br />
+                v/o {{ items.jsname }}</strong
+              ><br />
               {{ items.function }}
             </div>
           </div>
@@ -188,7 +187,8 @@ export default {
         gruppe: "spartacus",
         gruppenfunktion: "leiter",
         function: "Abteilungsleiterin",
-        name: "Leah Dellenbach v/o Luna",
+        name: "Leah Dellenbach",
+        jsname: "Luna",
         group: "Spartacus",
         year: "1998",
         place: "Aarau",
@@ -208,7 +208,8 @@ export default {
           gruppe: "spartacus",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiterin",
-          name: "Leah Dellenbach v/o Luna",
+          name: "Leah Dellenbach",
+          jsname: "Luna",
           group: "Spartacus",
           year: "1998",
           place: "Aarau",
@@ -226,7 +227,8 @@ export default {
           gruppe: "spartacus",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiter, Betreuung der Homepage",
-          name: "Patrick Uhlmann v/o Luchs",
+          name: "Patrick Uhlmann",
+          jsname: "Luchs",
           group: "Spartacus",
           year: "1987",
           place: "Aarau",
@@ -245,7 +247,8 @@ export default {
           gruppe: "celebrations",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiter",
-          name: "Michael Frei v/o Jarne",
+          name: "Michael Frei",
+          jsname: "Jarne",
           group: "Celebrations",
           year: "1997",
           place: "Buchs",
@@ -266,7 +269,8 @@ export default {
           gruppe: "spartacus",
           gruppenfunktion: "gruppenleiter",
           function: "Gruppenleiter",
-          name: "David Scheidegger v/o Würfel",
+          name: "David Scheidegger",
+          jsname: "Würfel",
           group: "Spartacus",
           year: "2000",
           place: "Gipf-Oberfrick",
@@ -285,6 +289,7 @@ export default {
           gruppenfunktion: "gruppenleiter",
           function: "Gruppenleiter",
           name: "Elias Mejica",
+          jsname: "Koffein",
           group: "Spartacus",
           year: "1996",
           place: "Aarau Rohr",
@@ -302,7 +307,8 @@ export default {
           gruppe: "spartacus",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiterin",
-          name: "Leah Dellenbach v/o Luna",
+          name: "Leah Dellenbach",
+          jsname: "Luna",
           group: "Spartacus",
           year: "1998",
           place: "Aarau",
@@ -320,7 +326,8 @@ export default {
           gruppe: "spartacus",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiter, Betreuung der Homepage",
-          name: "Patrick Uhlmann v/o Luchs",
+          name: "Patrick Uhlmann",
+          jsname: "Luchs",
           group: "Spartacus",
           year: "1987",
           place: "Aarau",
@@ -340,6 +347,7 @@ export default {
           gruppenfunktion: "leiter",
           function: "Lagerleitung, Kontakt YMCA International",
           name: "Jonas Haller",
+          jsname: "Indi",
           group: "Spartacus",
           year: "1987",
           place: "Fribourg",
@@ -355,24 +363,6 @@ export default {
           contact: "indi@cevimail.ch",
         },
         {
-          alt: "Wiesel",
-          file: "/leiterteam/thumb/11 2017-12 Wiesel.jpg.webp",
-          abteilungsfunktion: "",
-          gruppe: "spartacus",
-          gruppenfunktion: "hilfsleiter",
-          function: "Hilfsleiter",
-          name: "Lukas Lichter v/o Wiesel",
-          group: "Spartacus",
-          year: "1996",
-          place: "Biberstein",
-          profession: "Gelernter Matros der Binnenschifffahrt",
-          hobby: "Schwimmen, Unternehmungen mit Freunden und Cevi",
-          inscoutssince: "2003",
-          inscoutsbecause: "mich mein bester Kolleg dazu begeistert hat",
-          bestexperience: "Die jährlichen Pfilas",
-          contact: "wiesel@cevimail.ch",
-        },
-        {
           alt: "Ayal",
           file: "/leiterteam/thumb/10 2018 Ayal.jpg.webp",
           abteilungsfunktion: "material",
@@ -380,6 +370,7 @@ export default {
           gruppenfunktion: "hilfsleiter",
           function: "Hilfsleiter",
           name: "Yannis Bontempi",
+          jsname: "Ayal",
           group: "Spartacus",
           year: "2004",
           place: "Aarau-Rohr",
@@ -399,7 +390,8 @@ export default {
           gruppe: "celebrations",
           gruppenfunktion: "gruppenleiter",
           function: "Gruppenleiterin",
-          name: "Seraina Frei v/o Floh",
+          name: "Seraina Frei",
+          jsname: "Floh",
           group: "Celebrations",
           year: "1999",
           place: "Buchs",
@@ -417,7 +409,8 @@ export default {
           gruppe: "celebrations",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiter",
-          name: "Michael Frei v/o Jarne",
+          name: "Michael Frei",
+          jsname: "Jarne",
           group: "Celebrations",
           year: "1997",
           place: "Buchs",
@@ -430,6 +423,25 @@ export default {
           contact: "jarne@cevimail.ch",
         },
         {
+          alt: "Wiesel",
+          file: "/leiterteam/thumb/11 2017-12 Wiesel.jpg.webp",
+          abteilungsfunktion: "",
+          gruppe: "celebrations",
+          gruppenfunktion: "hilfsleiter",
+          function: "Hilfsleiter",
+          name: "Lukas Lichter",
+          jsname: "Wiesel",
+          group: "Celebrations",
+          year: "1996",
+          place: "Biberstein",
+          profession: "Gelernter Matros der Binnenschifffahrt",
+          hobby: "Schwimmen, Unternehmungen mit Freunden und Cevi",
+          inscoutssince: "2003",
+          inscoutsbecause: "mich mein bester Kolleg dazu begeistert hat",
+          bestexperience: "Die jährlichen Pfilas",
+          contact: "wiesel@cevimail.ch",
+        },
+        {
           alt: "Elias",
           file: "/leiterteam/thumb/05 2018-04 Elias.jpg.webp",
           abteilungsfunktion: "",
@@ -437,6 +449,7 @@ export default {
           gruppenfunktion: "hilfsleiter",
           function: "Hilfsleiter",
           name: "Elias Scheidegger",
+          jsname: "",
           group: "Celebrations",
           year: "2004",
           place: "Gipf-Oberfrick",
@@ -455,6 +468,7 @@ export default {
           gruppenfunktion: "hilfsleiter",
           function: "Hilfsleiterin",
           name: "Sira Hächler",
+          jsname: "Zippora",
           group: "Celebrations",
           year: "2003",
           place: "Aarau-Rohr",
