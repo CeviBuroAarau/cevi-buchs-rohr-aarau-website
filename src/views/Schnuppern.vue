@@ -116,12 +116,18 @@ export default {
       <p class="content">
         Jede Gruppe wird von mindestens einem in einem Leiter, welcher in einem
         J+S anerkannten Gruppenleiterkurs ausgebildet wurde geleitet. Zusätzlich
-        wird dieser durch einen oder mehrere Leiter unterstützt, welche
-        ebenfalls den Gruppenleiterkurs oder den Hilfsleiterkurs absolviert
-        haben. Wir berücksichtigen bei unseren Aktivitäten Wettervorhersagen (z.
-        B. Sturmwarnungen) aber auch Verordnungen der Behörden (z. B.
-        Feuerverbot). Alle Leiter verfügen über Mobiltelefone und der Cevi
-        Schweiz betreibt ein Krisen-Telefon bei Notfällen.
+        wird dieser durch mind. einen in der Regel aber mehreren weiteren Leiter
+        unterstützt, welche ebenfalls den Gruppenleiterkurs oder den
+        Hilfsleiterkurs absolviert haben. Wir berücksichtigen bei unseren
+        Aktivitäten Wettervorhersagen (z. B. Sturmwarnungen) aber auch
+        Verordnungen der Behörden (z. B. Feuerverbot). Alle Leiter verfügen über
+        Mobiltelefone und der Cevi Schweiz betreibt ein Krisen-Telefon bei
+        Notfällen.
+      </p>
+      <h2 class="title is-2">Wieviel beträgt der Jahresbeitrag?</h2>
+      <p class="content">
+        Der Jahresbeitrag beträgt 80 Fr. pro Kind. Bei einem Eintritt im
+        laufenden Jahr wird der Beitrag anteilsmässig gekürzt.
       </p>
       <h2 class="title is-2">Anmeldung</h2>
       <p class="content">
