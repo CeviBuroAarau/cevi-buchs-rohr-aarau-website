@@ -14,5 +14,6 @@ module.exports = {
         openAnalyzer: false,
       }),
     ],
+    devtool: "source-map",
   },
 };
