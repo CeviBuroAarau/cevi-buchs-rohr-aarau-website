@@ -16,10 +16,10 @@
           'open-mobile-menu': isMobileMenuOpen,
         }"
       >
-        <a href="/">Hauptmenü</a>
+        <a href="#" class="main_menu_link">Hauptmenü</a>
         <ul class="main-menu">
           <li>
-            <router-link to="/">Home</router-link>
+            <router-link to="#">Home</router-link>
           </li>
           <li>
             <router-link to="/interessierte">Interessierte</router-link>
@@ -75,7 +75,7 @@
         </p>
         <router-link
           class="interessierte_link"
-          to="/interessierte"
+          :to="interessierteLinkTo"
           @mouseover.native="onMobileNaviagation()"
           v-on:click.native="onMobileNaviagation()"
           >{{ interessierteLinkText }}</router-link
@@ -103,7 +103,7 @@
         <p class="cevianer_info">Ich bin schon dabei</p>
         <router-link
           class="cevianer_link"
-          to="/cevianer"
+          :to="cevianerLinkTo"
           @mouseover.native="onMobileNaviagation()"
           v-on:click.native="onMobileNaviagation()"
           >{{ cevianerLinkText }}</router-link
@@ -144,6 +144,8 @@ export default Vue.extend({
         ".webp",
       cevianerLinkText: "Cevianer/In",
       interessierteLinkText: "Interessierte",
+      cevianerLinkTo: "/cevianer",
+      interessierteLinkTo: "/interessierte",
     };
   },
   props: {
@@ -166,9 +168,13 @@ export default Vue.extend({
       if (window.innerWidth <= 768) {
         this.cevianerLinkText = "Mehr Info";
         this.interessierteLinkText = "Mehr Info";
+        this.cevianerLinkTo = '/cevianer';
+        this.interessierteLinkTo = '/interessierte';
       } else {
-        (this.cevianerLinkText = "Cevianer/In"),
-          (this.interessierteLinkText = "Interessierte");
+        this.cevianerLinkText = "Cevianer/In";
+        this.interessierteLinkText = "Interessierte";
+        this.cevianerLinkTo = '#';
+        this.interessierteLinkTo = '#';
       }
     },
   },
@@ -180,11 +186,6 @@ export default Vue.extend({
   display: flex;
   flex-flow: column;
   height: 100%;
-}
-
-.cevianer_info,
-.interessierte_info {
-  display: none;
 }
 
 .background {
@@ -207,26 +208,45 @@ export default Vue.extend({
 
 /* buttons at the bottom of the screen */
 .nav-level1 {
-  background: #323394;
+  background: rgba(0, 0, 0, 0.3);
   width: 33.33%;
   text-align: center;
   cursor: pointer;
+}
+
+/* hide the text for the regular view */
+.nav-level1 > p {
+  display: none;
 }
 
 .nav-level1:hover {
   background: #fff;
 }
 
+/* menu buttons and link in menu */
 .nav-level1 a {
   color: #fff;
   text-transform: uppercase;
-  line-height: 40px;
-  font-size: 22px;
+  line-height: 36px;
+  font-size: 20px;
   text-decoration: none;
 }
 
-.nav-level1:hover a {
-  color: #141412;
+/* menu buttons  */
+.nav-level1 > a {
+  background: #323394;
+  color: white;
+  border: 1px solid darken(#323394, 50%);
+  box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
+  display: block;
+  text-decoration: underline;
+  margin: 2px;
+}
+
+.nav-level1 > a:hover {
+  background: white;
+  color: black;
+  border: 1px solid darken(#323394, 50%);
 }
 
 /* tabulated menu behind interessierte and cevianer/in */
@@ -265,6 +285,7 @@ export default Vue.extend({
   justify-content: center;
   text-align: center;
   height: 100%;
+  color: black;
 }
 
 .nav-level1 ul.table-menu li a:hover {
@@ -349,18 +370,19 @@ export default Vue.extend({
     margin-bottom: 1em;
   }
 
-  .nav-level1 a.cevianer_link,
-  .nav-level1 a.interessierte_link {
-    background: white;
-    color: black;
+  .nav-level1 > a {
+    background: #323394;
+    color: white;
     border: 1px solid darken(#323394, 50%);
     padding: 0.5rem;
+    display: inline;
+    text-decoration: none;
     box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
   }
 
   .nav-level1 a:hover {
-    background: #323394;
-    color: white;
+    background: white;
+    color: black;
     border: 1px solid darken(#323394, 50%);
   }
 
@@ -396,10 +418,9 @@ export default Vue.extend({
     display: none;
   }
 
-  .cevianer_info,
-  .interessierte_info {
-    display: block;
-    color: white;
+  .nav-level1 > p {
+      display: block;
+      color: white;
   }
 
   .nav {
