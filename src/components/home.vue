@@ -168,13 +168,13 @@ export default Vue.extend({
       if (window.innerWidth <= 768) {
         this.cevianerLinkText = "Mehr Info";
         this.interessierteLinkText = "Mehr Info";
-        this.cevianerLinkTo = '/cevianer';
-        this.interessierteLinkTo = '/interessierte';
+        this.cevianerLinkTo = "/cevianer";
+        this.interessierteLinkTo = "/interessierte";
       } else {
         this.cevianerLinkText = "Cevianer/In";
         this.interessierteLinkText = "Interessierte";
-        this.cevianerLinkTo = '#';
-        this.interessierteLinkTo = '#';
+        this.cevianerLinkTo = "#";
+        this.interessierteLinkTo = "#";
       }
     },
   },
@@ -380,7 +380,7 @@ export default Vue.extend({
     box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
   }
 
-  .nav-level1 a:hover {
+  .nav-level1 > a:hover {
     background: white;
     color: black;
     border: 1px solid darken(#323394, 50%);
@@ -419,8 +419,8 @@ export default Vue.extend({
   }
 
   .nav-level1 > p {
-      display: block;
-      color: white;
+    display: block;
+    color: white;
   }
 
   .nav {
