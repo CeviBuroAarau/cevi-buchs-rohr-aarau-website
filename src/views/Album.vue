@@ -9,6 +9,7 @@
         Deshalb untenstehend eine Zusammenstellung verschiedener Fotos unserer
         Nachmittage.
       </p>
+
       <div>
         <LightGallery
           :images="activeAlbum"
@@ -16,92 +17,12 @@
           :disable-scroll="true"
           @close="index = null"
         />
-        <h2 class="subtitle is-2">2015</h2>
-        <ul>
-          <li
-            class="vue-light-gallery-thumb"
-            v-for="(albums, albumIndex) in album2015"
-            :key="albumIndex"
-            @click="
-              activeAlbum = albums.images;
-              index = 0;
-            "
-          >
-            <div class="card">
-              <div class="card-image">
-                <img :src="albums.preview" />
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{{ albums.title }}</p>
-                    <p class="subtitle is-6">{{ albums.dateString }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
 
-        <h2 class="subtitle is-2">2016</h2>
+        <h2 class="subtitle is-2">2020</h2>
         <ul>
           <li
             class="vue-light-gallery-thumb"
-            v-for="(albums, albumIndex) in album2016"
-            :key="albumIndex"
-            @click="
-              activeAlbum = albums.images;
-              index = 0;
-            "
-          >
-            <div class="card">
-              <div class="card-image">
-                <img :src="albums.preview" />
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{{ albums.title }}</p>
-                    <p class="subtitle is-6">{{ albums.dateString }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <h2 class="subtitle is-2">2017</h2>
-        <ul>
-          <li
-            class="vue-light-gallery-thumb"
-            v-for="(albums, albumIndex) in album2017"
-            :key="albumIndex"
-            @click="
-              activeAlbum = albums.images;
-              index = 0;
-            "
-          >
-            <div class="card">
-              <div class="card-image">
-                <img :src="albums.preview" />
-              </div>
-              <div class="card-content">
-                <div class="media">
-                  <div class="media-content">
-                    <p class="title is-4">{{ albums.title }}</p>
-                    <p class="subtitle is-6">{{ albums.dateString }}</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </li>
-        </ul>
-
-        <h2 class="subtitle is-2">2018</h2>
-        <ul>
-          <li
-            class="vue-light-gallery-thumb"
-            v-for="(albums, albumIndex) in album2018"
+            v-for="(albums, albumIndex) in album2020"
             :key="albumIndex"
             @click="
               activeAlbum = albums.images;
@@ -151,11 +72,92 @@
           </li>
         </ul>
 
-        <h2 class="subtitle is-2">2020</h2>
+        <h2 class="subtitle is-2">2018</h2>
         <ul>
           <li
             class="vue-light-gallery-thumb"
-            v-for="(albums, albumIndex) in album2020"
+            v-for="(albums, albumIndex) in album2018"
+            :key="albumIndex"
+            @click="
+              activeAlbum = albums.images;
+              index = 0;
+            "
+          >
+            <div class="card">
+              <div class="card-image">
+                <img :src="albums.preview" />
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ albums.title }}</p>
+                    <p class="subtitle is-6">{{ albums.dateString }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <h2 class="subtitle is-2">2017</h2>
+        <ul>
+          <li
+            class="vue-light-gallery-thumb"
+            v-for="(albums, albumIndex) in album2017"
+            :key="albumIndex"
+            @click="
+              activeAlbum = albums.images;
+              index = 0;
+            "
+          >
+            <div class="card">
+              <div class="card-image">
+                <img :src="albums.preview" />
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ albums.title }}</p>
+                    <p class="subtitle is-6">{{ albums.dateString }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <h2 class="subtitle is-2">2016</h2>
+        <ul>
+          <li
+            class="vue-light-gallery-thumb"
+            v-for="(albums, albumIndex) in album2016"
+            :key="albumIndex"
+            @click="
+              activeAlbum = albums.images;
+              index = 0;
+            "
+          >
+            <div class="card">
+              <div class="card-image">
+                <img :src="albums.preview" />
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content">
+                    <p class="title is-4">{{ albums.title }}</p>
+                    <p class="subtitle is-6">{{ albums.dateString }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+
+        <h2 class="subtitle is-2">2015</h2>
+        <ul>
+          <li
+            class="vue-light-gallery-thumb"
+            v-for="(albums, albumIndex) in album2015"
             :key="albumIndex"
             @click="
               activeAlbum = albums.images;
