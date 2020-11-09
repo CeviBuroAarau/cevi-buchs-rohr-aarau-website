@@ -70,11 +70,15 @@
         </ul>
       </div>
       <div class="nav-level1">
+        <p class="interessierte_info">
+          Ich habe Interesse in den Cevi zu kommen
+        </p>
         <router-link
-          to="#"
+          class="interessierte_link"
+          to="/interessierte"
           @mouseover.native="onMobileNaviagation()"
           v-on:click.native="onMobileNaviagation()"
-          >Interessierte</router-link
+          >{{ interessierteLinkText }}</router-link
         >
         <ul class="table-menu">
           <li>
@@ -96,11 +100,13 @@
         </ul>
       </div>
       <div class="nav-level1">
+        <p class="cevianer_info">Ich bin schon dabei</p>
         <router-link
-          to="#"
+          class="cevianer_link"
+          to="/cevianer"
           @mouseover.native="onMobileNaviagation()"
           v-on:click.native="onMobileNaviagation()"
-          >Cevianer/in</router-link
+          >{{ cevianerLinkText }}</router-link
         >
         <ul class="table-menu">
           <li>
@@ -125,10 +131,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Vue } from "vue-property-decorator";
 
-@Component({
-  components: {},
+export default Vue.extend({
+  name: "Home",
   data() {
     return {
       activeBackgroundImage:
@@ -136,6 +142,8 @@ import { Component, Vue } from "vue-property-decorator";
         "/home/background" +
         Math.floor(Math.random() * (10 - 1 + 1) + 1) +
         ".webp",
+      cevianerLinkText: "Cevianer/In",
+      interessierteLinkText: "Interessierte",
     };
   },
   props: {
@@ -144,13 +152,27 @@ import { Component, Vue } from "vue-property-decorator";
       default: false,
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener("resize", this.onResize);
+      this.onResize();
+    });
+  },
   methods: {
     onMobileNaviagation() {
       this.$emit("mobileOpenChanged", false);
     },
+    onResize() {
+      if (window.innerWidth <= 768) {
+        this.cevianerLinkText = "Mehr Info";
+        this.interessierteLinkText = "Mehr Info";
+      } else {
+        (this.cevianerLinkText = "Cevianer/In"),
+          (this.interessierteLinkText = "Interessierte");
+      }
+    },
   },
-})
-export default class Home extends Vue {}
+});
 </script>
 
 <style scoped lang="scss">
@@ -158,6 +180,11 @@ export default class Home extends Vue {}
   display: flex;
   flex-flow: column;
   height: 100%;
+}
+
+.cevianer_info,
+.interessierte_info {
+  display: none;
 }
 
 .background {
@@ -297,9 +324,52 @@ export default class Home extends Vue {}
 @media only screen and (max-width: 768px) {
   .nav-level1:first-child {
     position: absolute;
-    top: 50px;
-    bottom: 40px;
+    top: 0px;
+    bottom: 0px;
     width: 100%;
+  }
+
+  .nav-level1 {
+    background: rgba(0, 0, 0, 0.5);
+    width: 80%;
+    text-align: center;
+    cursor: pointer;
+    padding: 1rem;
+  }
+
+  .nav-level1:hover {
+    background: rgba(0, 0, 0, 0.5);
+    cursor: auto;
+  }
+
+  .nav-level1 p {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 1em;
+  }
+
+  .nav-level1 a.cevianer_link,
+  .nav-level1 a.interessierte_link {
+    background: white;
+    color: black;
+    border: 1px solid darken(#323394, 50%);
+    padding: 0.5rem;
+    box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .nav-level1 a:hover {
+    background: #323394;
+    color: white;
+    border: 1px solid darken(#323394, 50%);
+  }
+
+  .nav-level1:hover a {
+    cursor: pointer;
+  }
+
+  .nav-level1:hover ul.table-menu {
+    display: none;
   }
 
   .close-mobile-menu {
@@ -322,13 +392,30 @@ export default class Home extends Vue {}
     bottom: 0px;
   }
 
-  .nav-level1 {
-    width: 50%;
+  .claim {
+    display: none;
   }
 
-  .nav-level1 ul.table-menu {
-    left: 0;
+  .cevianer_info,
+  .interessierte_info {
+    display: block;
+    color: white;
+  }
+
+  .nav {
+    position: absolute;
+    top: 0px;
+    padding-top: 50px;
     width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .nav-level1 .main-menu {
+    padding-top: 60px;
   }
 }
 </style>
