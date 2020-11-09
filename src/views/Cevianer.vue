@@ -3,21 +3,33 @@
     <div class="container">
       <h1 class="title is-1">Cevianer/in</h1>
       <p class="content">
-        Unser Cevianerbereich bietet Dir in der
-        <router-link to="/cevianer/agenda">Agenda</router-link>
-        Informationen zu aktuellen Anlässen. Im
-        <router-link to="/cevianer/album">Album</router-link>
-        findest du Impressionen vergangener Anlässe. Wenn Du dich ausrüsten
-        möchtest gibt es verschiedene Artikel in unserem
-        <router-link to="/cevianer/laedeli">Cevi-Lädeli</router-link>. Gerne
-        zeigen wir Dir auch die
-        <router-link to="/cevianer/ausbildung"
-          >Ausbildungsmöglichkeiten</router-link
-        >
-        und stellen das
-        <router-link to="/cevianer/leiterteam">Leiterteam</router-link>
-        vor.
+        Hier findest du alles was das Cevianer/in Herz begehrt:
       </p>
+      <ul>
+        <li>
+          In der <router-link to="/cevianer/agenda">Agenda</router-link> findest
+          du die nächsten anstehenden Anlässe
+        </li>
+        <li>
+          Das <router-link to="/cevianer/album">Fotoalbum</router-link> wird
+          regelmässig mit Impressionen von den vergangenen Anlässen nachgeführt.
+        </li>
+        <li>
+          Fehlende Ausrüstung kannst du im
+          <router-link to="/cevianer/laedeli">Cevi-Lädeli</router-link>
+          besorgen.
+        </li>
+        <li>
+          Im Bereich
+          <router-link to="/cevianer/ausbildung">Ausbildung</router-link>
+          erfährst du wann welche Kurse absolviert werden können.
+        </li>
+        <li>
+          In der Sektion
+          <router-link to="/cevianer/leiterteam">Leiterteam</router-link>
+          stellen sich alle Leiter kurz vor.
+        </li>
+      </ul>
     </div>
   </section>
 </template>
