@@ -114,14 +114,18 @@ export default {
       </div>
       <h2 class="title is-2">Wie gewährleisten wir die Sicherheit?</h2>
       <p class="content">
-        Jede Gruppe wird von mindestens einem in einem Leiter, welcher in einem
-        J+S anerkannten Gruppenleiterkurs ausgebildet wurde geleitet. Zusätzlich
-        wird dieser durch mind. einen in der Regel aber mehreren weiteren Leiter
+        Undere Gruppenleiter werden in einem von J+S (Jugend und Sport,
+        Bundesamt für Sport) anerkannten Kurs ausgebildet. Zusätzlich wird
+        dieser durch mind. einen in der Regel aber mehreren weiteren Leiter
         unterstützt, welche ebenfalls den Gruppenleiterkurs oder den
-        Hilfsleiterkurs absolviert haben. Wir berücksichtigen bei unseren
-        Aktivitäten Wettervorhersagen (z. B. Sturmwarnungen) aber auch
-        Verordnungen der Behörden (z. B. Feuerverbot). Alle Leiter verfügen über
-        Mobiltelefone und der Cevi Schweiz betreibt ein Krisen-Telefon bei
+        Hilfsleiterkurs absolviert haben.
+      </p>
+      <p class="content">
+        Wir berücksichtigen bei unseren Aktivitäten Wettervorhersagen (z. B.
+        Sturmwarnungen) aber auch Verordnungen der Behörden (z. B. Feuerverbot).
+        Die Abteilung verfügt über ein Notfallkonzept und für kleine Notfälle
+        ist immer eine Apotheke dabei. Alle Leiter verfügen über Mobiltelefone
+        und der Cevi Schweiz betreibt ein Krisen-Telefon zur Unterstützung bei
         Notfällen.
       </p>
       <h2 class="title is-2">Wieviel beträgt der Jahresbeitrag?</h2>
