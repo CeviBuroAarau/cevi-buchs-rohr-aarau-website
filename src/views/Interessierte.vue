@@ -2,23 +2,21 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-1">Möchten Sie uns kennenlernen?</h1>
-      <p class="content">Gerne</p>
+      <p class="content">Gerne erklären wir</p>
       <ul>
         <li>
-          ... erklären wir
-          <router-link to="/interessierte/cevi_schweiz"
-            >was der Cevi ist</router-link
-          >
+          ... was der <router-link to="/interessierte/cevi_schweiz"
+            >Cevi </router-link> ist
         </li>
         <li>
-          ... wo wir
-          <router-link to="/interessierte/standort">uns treffen</router-link>
+          ... wo wir uns
+          <router-link to="/interessierte/standort">treffen</router-link>
         </li>
         <li>
           ... was wir an einem Jungschinachmittag für
           <router-link to="/interessierte/standort"
-            >Aktivitäten durchführen</router-link
-          >
+            >Aktivitäten</router-link
+          > durchführen
         </li>
       </ul>
 
