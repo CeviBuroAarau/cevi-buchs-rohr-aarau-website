@@ -55,16 +55,6 @@ export default {
           text: "Regulärer Jungschinachmittag. Weitere Informationen folgen",
           date: new Date("2020-12-05"),
         },
-        {
-          title: "12. Dezember 2020 14:00 - 17:00",
-          text: "Waldweihnacht. Weitere Informationen folgen",
-          date: new Date("2020-12-12"),
-        },
-        {
-          title: "19. Dezember 2020 14:00 - 17:00",
-          text: "Winterferien. Weitere Informationen folgen",
-          date: new Date("2020-12-19"),
-        },
       ],
     };
   },
