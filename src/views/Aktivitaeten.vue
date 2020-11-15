@@ -4,10 +4,10 @@
       <h1 class="title is-1">Aktivitäten</h1>
       <p class="content">
         Unsere Programme sind sehr vielfältig. Neben praktischen Fertigkeiten
-        wie Karten lesen, Feuer entfachen oder Pionierbauten kommt auch Spiel
-        und Spass nicht zu kurz. Bekanntlich sagt ein Bild mehr als 1000 Worte.
-        Deshalb untenstehend eine Zusammenstellung verschiedener Fotos unserer
-        Nachmittage.
+        wie Zelte bauen, Feuer entfachen oder der Umgang mit Karte und Kompass
+        kommen auch auch Spiel und Spass nicht zu kurz. Bekanntlich sagt ein
+        Bild mehr als 1000 Worte. Deshalb untenstehend eine Zusammenstellung
+        typischer Aktivitäten unserer Nachmittage.
       </p>
       <div>
         <LightGallery
@@ -191,7 +191,7 @@ export default {
             "/aktivitaeten/23Lagerfeuer.jpg.webp",
         },
         {
-          title: "Kartenlesen",
+          title: "Kartenkunde",
           url:
             process.env.VUE_APP_EXTERNAL_ASSETS_URI +
             "/aktivitaeten/25Kartenlesen.jpg.webp",
