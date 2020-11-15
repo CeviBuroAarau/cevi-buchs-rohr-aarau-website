@@ -8,7 +8,8 @@
       <ul>
         <li>
           In der <router-link to="/cevianer/agenda">Agenda</router-link> findest
-          du die nächsten anstehenden Anlässe
+          du Informationen zu anstehenden Jungschinachmittagen und anderen
+          Vereinsanlässen
         </li>
         <li>
           Das <router-link to="/cevianer/album">Fotoalbum</router-link> wird
