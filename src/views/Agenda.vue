@@ -1,66 +1,53 @@
 <script>
+import axios from "axios";
+
 export default {
   components: {},
   data() {
     return {
+      loading: false,
+      error: false,
+      events: null,
       publicPath: process.env.BASE_URL,
-      events: [
-        {
-          title: "04. Juli 2020 - 09. August 2020",
-          text: "Sommerferien",
-          date: new Date("2020-07-04"),
-        },
-        {
-          title: "15. August 2020 14:00 - 17:00",
-          text: "Regulärer Jungschinachmittag. Weitere Informationen folgen",
-          date: new Date("2020-08-15"),
-        },
-        {
-          title: "29. August 2020 14:00 - 17:00",
-          text: "Regulärer Jungschinachmittag. Weitere Informationen folgen",
-          date: new Date("2020-08-29"),
-        },
-        {
-          title: "12. September 2020 14:00 - 17:00",
-          text: "Cevitag. Weitere Informationen folgen",
-          date: new Date("2020-09-12"),
-        },
-        {
-          title: "19. September 2020 - 20. September 2020",
-          text: "Pfila Ersatzlager",
-          date: new Date("2020-09-19"),
-        },
-        {
-          title: "26. September 2020 - 11. Oktober 2020",
-          text: "Herbstferien",
-          date: new Date("2020-09-26"),
-        },
-        {
-          title: "17. Oktober 2020 14:00 - 17:00",
-          text: "Regulärer Jungschinachmittag. Weitere Informationen folgen",
-          date: new Date("2020-10-17"),
-        },
-        {
-          title: "24. Oktober 2020 14:00 - 17:00",
-          text: "Regulärer Jungschinachmittag. Weitere Informationen folgen",
-          date: new Date("2020-10-24"),
-        },
-        {
-          title: "14. November 2020 14:00 - 17:00",
-          text: "Adventswerkstatt. Weitere Informationen folgen",
-          date: new Date("2020-11-14"),
-        },
-        {
-          title: "05. Dezember 2020 14:00 - 17:00",
-          text: "Regulärer Jungschinachmittag. Weitere Informationen folgen",
-          date: new Date("2020-12-05"),
-        },
-      ],
     };
+  },
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    $route: "fetchData",
   },
   methods: {
     isUpcoming(element) {
-      return element.date >= new Date();
+      return new Date(element.date) >= new Date();
+    },
+    fetchData() {
+      this.events = null;
+      this.loading = true;
+      this.error = false;
+
+      const instance = axios.create({
+        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        timeout: 10000,
+        headers: { "Content-Type": "application/json" },
+      });
+
+      instance
+        .get("/collections/get/Agenda", {
+          headers: {
+            Authorization: "Bearer 486f18ebe895de87c4f35c58d3db0f",
+          },
+        })
+        .then((resp) => {
+          this.error = false;
+          this.loading = false;
+          this.events = resp.data.entries;
+        })
+        .catch((err) => {
+          this.error = true;
+          this.loading = false;
+          console.log(err);
+        });
     },
   },
 };
@@ -69,26 +56,43 @@ export default {
   <section class="section">
     <div class="container">
       <h1 class="title is-1">Agenda</h1>
-      <p class="content">Untenstehend sind die nächsten Anlässe aufgeführt.</p>
-      <p>
-        <a :href="`${publicPath}files/jungschidaten/2020-2Jungschardaten.pdf`"
-          >Semesterplan als PDF-Datei öffnen</a
-        >.
-      </p>
 
-      <div
-        class="card agenda-item"
-        v-for="(items, itemIndex) in events.filter(isUpcoming)"
-        :key="itemIndex"
-      >
-        <header class="card-header">
-          <p class="card-header-title">
-            {{ items.title }}
-          </p>
-        </header>
-        <div class="card-content">
-          <div class="content">
-            {{ items.text }}
+      <div v-if="loading">
+        <p>Daten werden geladen.</p>
+        <progress class="progress is-small is-primary" max="100">15%</progress>
+      </div>
+
+      <div v-if="error">
+        <div class="notification is-danger">
+          Die Agendadaten können monentan nicht abgerufen werden. Bitte
+          versuchen Sie es später noch einmal.
+        </div>
+      </div>
+
+      <div v-if="events">
+        <p class="content">
+          Untenstehend sind die nächsten Anlässe aufgeführt.
+        </p>
+        <p>
+          <a :href="`${publicPath}files/jungschidaten/2020-2Jungschardaten.pdf`"
+            >Semesterplan als PDF-Datei öffnen</a
+          >.
+        </p>
+
+        <div
+          class="card agenda-item"
+          v-for="(items, itemIndex) in events.filter(isUpcoming)"
+          :key="itemIndex"
+        >
+          <header class="card-header">
+            <p class="card-header-title">
+              {{ items.title }}
+            </p>
+          </header>
+          <div class="card-content">
+            <div class="content">
+              {{ items.text }}
+            </div>
           </div>
         </div>
       </div>
