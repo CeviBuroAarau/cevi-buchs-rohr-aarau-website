@@ -1616,12 +1616,12 @@
     webpack "^4.0.0"
     yorkie "^2.0.0"
 
-"@vue/cli-plugin-pwa@~4.5.8":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-4.5.8.tgz#16dff0256625fce840970e50630c8e472238e742"
-  integrity sha512-B5rFJhwhGLHcPUrAUx185X6jlTUJHgN6FTnU+qKspEoONCtGy09/zIL9ejELRw9jxv5C6x2WKUAkyHhh89RkWw==
+"@vue/cli-plugin-pwa@~4.5.10":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-pwa/-/cli-plugin-pwa-4.5.10.tgz#e415a1ae339bf697b0656e3774dfad031c9564ed"
+  integrity sha512-scYCwOX5A9hkIF9PFkeQQMDcE/OSKDg3BCYrm7TcmRCtmY77jqRNcdX+KoUTPrt8A1b4OHFbzHs95C/r4y9eHw==
   dependencies:
-    "@vue/cli-shared-utils" "^4.5.8"
+    "@vue/cli-shared-utils" "^4.5.10"
     webpack "^4.0.0"
     workbox-webpack-plugin "^4.3.1"
 
@@ -1739,10 +1739,10 @@
   optionalDependencies:
     vue-loader-v16 "npm:vue-loader@^16.0.0-beta.7"
 
-"@vue/cli-shared-utils@^4.5.8":
-  version "4.5.8"
-  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.8.tgz#d454306aaa510e666a34b144afc81830fc23acc9"
-  integrity sha512-pa6oenhBO/5HeDLRSokiwVN01gROACEDy3ESXWuPmragOREGNmmFKtkPHlqeYavGEX6LFp7f0VK3uMX6UYS5mQ==
+"@vue/cli-shared-utils@^4.5.10", "@vue/cli-shared-utils@^4.5.8":
+  version "4.5.10"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.10.tgz#e3b84c38bba19c6d995278b15261da865790561c"
+  integrity sha512-Lid6FflDqcvo/JBIBjUriAQ1RkQaKbBpzXSLEK/JmoKkQRHW/rRhDLGI1dEVyOLYnDEiL1m8o1xPJaplUUiXpA==
   dependencies:
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
