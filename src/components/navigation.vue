@@ -63,6 +63,13 @@ export default {
             >Standort</router-link
           >
         </li>
+        <li>
+          <router-link
+            to="/interessierte/medien"
+            v-on:click.native="onMobileNaviagation()"
+            >Medien</router-link
+          >
+        </li>
       </ul>
     </li>
     <li>

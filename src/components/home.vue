@@ -42,6 +42,9 @@
               <li>
                 <router-link to="/interessierte/standort">Standort</router-link>
               </li>
+              <li>
+                <router-link to="/interessierte/medien">Medien</router-link>
+              </li>
             </ul>
           </li>
           <li>
@@ -96,6 +99,9 @@
           </li>
           <li>
             <router-link to="/interessierte/standort">Standort</router-link>
+          </li>
+          <li>
+            <router-link to="/interessierte/medien">Medien</router-link>
           </li>
         </ul>
       </div>
