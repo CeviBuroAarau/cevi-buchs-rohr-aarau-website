@@ -95,9 +95,9 @@ export default {
       return new Date(element.date) >= new Date();
     },
     formatDate(dateString) {
-      const reggie = /(\d{2}).(\d{2}).(\d{4})/
-        , [, year, month, day] = reggie.exec(dateString);
-      return new Date(year, month-1, day, 0, 0, 0);
+      const reggie = /(\d{2}).(\d{2}).(\d{4})/,
+        [, year, month, day] = reggie.exec(dateString);
+      return new Date(year, month - 1, day, 0, 0, 0);
     },
     fetchData() {
       this.albums = null;
