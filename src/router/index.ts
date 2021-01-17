@@ -8,6 +8,7 @@ const LazySchnuppern = () => import("../views/Schnuppern.vue");
 const LazyAktivitaeten = () => import("../views/Aktivitaeten.vue");
 const LazyCeviSchweiz = () => import("../views/CeviSchweiz.vue");
 const LazyStandort = () => import("../views/Standort.vue");
+const LazyMedien = () => import("../views/Medien.vue");
 const LazyCevianer = () => import("../views/Cevianer.vue");
 const LazyAgenda = () => import("../views/Agenda.vue");
 const LazyAlbum = () => import("../views/Album.vue");
@@ -77,6 +78,17 @@ const routes: Array<RouteConfig> = [
         name: "Standort",
         path: "",
         component: LazyStandort,
+      },
+    ],
+  },
+  {
+    path: "/interessierte/medien",
+    component: LazyRegularLayout,
+    children: [
+      {
+        name: "Medien",
+        path: "",
+        component: LazyMedien,
       },
     ],
   },
