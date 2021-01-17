@@ -71,17 +71,32 @@ export default {
 
       <div v-if="events">
         <p class="content">
-          Untenstehend sind die nächsten Anlässe aufgeführt.
+          Die Semsterpläne werden jeweils zu Beginn des Jahres veröffentlicht
+          und enthalten wenig detaillierte Informationen:
         </p>
-        <p>
-          <a :href="`${publicPath}files/jungschidaten/2020-2Jungschardaten.pdf`"
-            >Semesterplan als PDF-Datei öffnen</a
-          >.
+        <div class="content">
+          <ul>
+            <li>
+              <a
+                :href="`${publicPath}files/jungschidaten/2021-1Jungschardaten.pdf`"
+                >Semesterplan (erstes Semester)</a
+              >
+            </li>
+            <li>
+              <a
+                :href="`${publicPath}files/jungschidaten/2021-2Jungschardaten.pdf`"
+                >Semesterplan (zweites Semester)</a
+              >
+            </li>
+          </ul>
+        </div>
+        <p class="content">
+          Untenstehend sind die nächsten 3 Anlässe mit detaillierten
+          Informationen aufgeführt.
         </p>
-
         <div
           class="card agenda-item"
-          v-for="(items, itemIndex) in events.filter(isUpcoming)"
+          v-for="(items, itemIndex) in events.filter(isUpcoming).slice(0, 3)"
           :key="itemIndex"
         >
           <header class="card-header">
