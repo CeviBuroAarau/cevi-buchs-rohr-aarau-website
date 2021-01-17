@@ -5,8 +5,8 @@
       <p class="content">Gerne erklären wir</p>
       <ul>
         <li>
-          ... was der <router-link to="/interessierte/cevi_schweiz"
-            >Cevi </router-link> ist
+          ... was der
+          <router-link to="/interessierte/cevi_schweiz">Cevi </router-link> ist
         </li>
         <li>
           ... wo wir uns
@@ -14,9 +14,8 @@
         </li>
         <li>
           ... was wir an einem Jungschinachmittag für
-          <router-link to="/interessierte/standort"
-            >Aktivitäten</router-link
-          > durchführen
+          <router-link to="/interessierte/standort">Aktivitäten</router-link>
+          durchführen
         </li>
       </ul>
 
