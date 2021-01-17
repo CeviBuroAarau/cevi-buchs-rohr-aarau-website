@@ -16,7 +16,7 @@
       <h2 class="title is-2">Pfarrhaus Ausserdorf</h2>
 
       <div style="height: 500px; width: 100%">
-        <l-map :zoom="zoom" :center="center">
+        <l-map :zoom="zoom" :minZoom="minZoom" :center="center">
           <l-tile-layer :url="url" :attribution="attribution" />
           <l-marker :lat-lng="pfarrhaus">
             <l-tooltip>
@@ -60,6 +60,7 @@ export default {
   data() {
     return {
       zoom: 16,
+      minZoom: 12,
       center: latLng(47.392085, 8.084783),
       url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
       attribution:
