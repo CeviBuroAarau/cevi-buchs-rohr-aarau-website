@@ -550,7 +550,7 @@ export default {
         {
           category: "remainder",
           file: "/laedeli/thumb/rest_kleber_cevi_coca_cola.jpg.webp",
-          name: "Stocker Coca Cola",
+          name: "Sticker Coca Cola",
           description: "Noch 28 Stück",
           price: "1",
         },
