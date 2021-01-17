@@ -239,7 +239,7 @@ export default {
         },
         {
           alt: "Jarne",
-          file: "/leiterteam/thumb/2019 Jarne.jpg.webp",
+          file: "/leiterteam/thumb/2021-01 Jarne.jpg.webp",
           abteilungsfunktion: "al",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiter",
@@ -393,7 +393,7 @@ export default {
         },
         {
           alt: "Jarne",
-          file: "/leiterteam/thumb/2019 Jarne.jpg.webp",
+          file: "/leiterteam/thumb/2021-01 Jarne.jpg.webp",
           abteilungsfunktion: "al",
           gruppenfunktion: "leiter",
           function: "Abteilungsleiter",
