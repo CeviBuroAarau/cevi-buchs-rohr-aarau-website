@@ -131,7 +131,8 @@ export default {
       <h2 class="title is-2">Wieviel beträgt der Jahresbeitrag?</h2>
       <p class="content">
         Der Jahresbeitrag beträgt 80 Fr. pro Kind. Bei einem Eintritt im
-        laufenden Jahr wird der Beitrag anteilsmässig gekürzt.
+        laufenden Jahr wird der Beitrag anteilsmässig gekürzt. Die ersten zwei
+        Schnuppernachmittage sind kostenlos.
       </p>
       <h2 class="title is-2">Anmeldung</h2>
       <p class="content">
