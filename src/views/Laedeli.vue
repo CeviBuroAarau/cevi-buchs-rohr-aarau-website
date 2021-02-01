@@ -13,7 +13,9 @@
       <ul>
         <li
           class="vue-light-gallery-thumb"
-          v-for="(items, itemIndex) in articleList.filter(item => item.category == 'Reguläre Artikel')"
+          v-for="(items, itemIndex) in articleList.filter(
+            (item) => item.category == 'Reguläre Artikel'
+          )"
           :key="itemIndex"
         >
           <div class="card">
@@ -39,7 +41,9 @@
       <ul>
         <li
           class="vue-light-gallery-thumb"
-          v-for="(items, itemIndex) in articleList.filter(item => item.category == 'Restposten')"
+          v-for="(items, itemIndex) in articleList.filter(
+            (item) => item.category == 'Restposten'
+          )"
           :key="itemIndex"
         >
           <div class="card">
@@ -332,7 +336,7 @@ export default {
           this.displayError = true;
         });
     },
-  fetchData() {
+    fetchData() {
       this.events = null;
       this.loading = true;
       this.error = false;
@@ -359,7 +363,7 @@ export default {
               file: "https://backend.cevi-buro-aarau.ch/" + article.image.path,
               name: article.name,
               description: article.description,
-              price: article.price
+              price: article.price,
             };
           });
         })
