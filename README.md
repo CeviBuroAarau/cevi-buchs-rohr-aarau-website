@@ -1,9 +1,3 @@
-License:
-![GitHub](https://img.shields.io/github/license/patrickuhlmann/cevi-buchs-rohr-aarau-website)
-
-Build: 
-[![Build Status](https://travis-ci.com/patrickuhlmann/cevi-buchs-rohr-aarau-website.svg?branch=master)](https://travis-ci.com/patrickuhlmann/cevi-buchs-rohr-aarau-website)
-
 # cevi-buro-aarau-website
 
 ## Project setup
@@ -38,6 +32,3 @@ yarn lint
 
 ### On Heroku
 https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
