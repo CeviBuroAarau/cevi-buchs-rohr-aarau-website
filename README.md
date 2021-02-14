@@ -1,4 +1,6 @@
-# cevi-buro-aarau-website
+# Webpage of Cevi Buchs-Rohr Aarau
+
+Link: https://www.cevi-buro-aarau.ch
 
 ## Getting started
 ```
@@ -14,6 +16,9 @@ yarn build
 yarn test:unit
 yarn test:e2e
 ```
+
+A coverage report is generated in the folder coverage
+
 
 ### Run with docker
 
