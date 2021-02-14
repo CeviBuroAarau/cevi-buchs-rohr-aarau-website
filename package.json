@@ -12,7 +12,7 @@
     "postinstall": "husky install"
   },
   "lint-staged": {
-    "**/*.js": [
+    "**/*.ts": [
       "eslint --fix",
       "git add"
     ]
