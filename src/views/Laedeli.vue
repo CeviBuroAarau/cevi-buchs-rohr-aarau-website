@@ -10,7 +10,7 @@
         einem Jungschinachmittag direkt bei uns vorbeikommen.
       </p>
       <h2 class="subtitle is-2">Reguläre Artikel</h2>
-      <ul>
+      <ul v-if="this.articleList != null">
         <li
           class="vue-light-gallery-thumb"
           v-for="(items, itemIndex) in articleList.filter(
@@ -38,7 +38,7 @@
       </ul>
 
       <h2 class="subtitle is-2">Restposten</h2>
-      <ul>
+      <ul v-if="this.articleList != null">
         <li
           class="vue-light-gallery-thumb"
           v-for="(items, itemIndex) in articleList.filter(
