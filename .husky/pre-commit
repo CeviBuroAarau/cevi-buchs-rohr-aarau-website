@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn check --integrity && yarn lint-staged && yarn test:unit
+yarn check --integrity && yarn lint-staged && yarn test:unit && sed -i -e "s#https://nexus.uhlme.ch/repository/npm-group#https://registry.yarnpkg.com/#g" yarn.lock && git diff --name-only --cached | xargs -l git add
