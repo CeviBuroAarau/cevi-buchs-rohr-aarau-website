@@ -3,8 +3,6 @@ License:
 
 Build: 
 [![Build Status](https://travis-ci.com/patrickuhlmann/cevi-buchs-rohr-aarau-website.svg?branch=master)](https://travis-ci.com/patrickuhlmann/cevi-buchs-rohr-aarau-website)
-<img src="https://api.dependabot.com/badges/status?host=github&amp;repo=patrickuhlmann/cevi-buchs-rohr-aarau-website" alt="Dependabot Status" />
-
 
 # cevi-buro-aarau-website
 
