@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn check --integrity && yarn lint && yarn test:unit
+yarn check --integrity && yarn lint-staged && yarn test:unit
