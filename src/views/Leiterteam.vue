@@ -78,7 +78,7 @@
 
       <h2 class="title is-2">Abteilungsleitung</h2>
 
-      <ul style="display: flex; flex-wrap: wrap">
+      <ul style="display: flex; flex-wrap: wrap" v-if="this.leiterList != null">
         <li
           class="leiterlist"
           v-for="(items, itemIndex) in leiterList.filter(
@@ -108,7 +108,7 @@
 
       <h2 class="title is-2">Spartacus</h2>
 
-      <ul style="display: flex; flex-wrap: wrap">
+      <ul style="display: flex; flex-wrap: wrap" v-if="this.leiterList != null">
         <li
           class="leiterlist"
           v-for="(items, itemIndex) in leiterList.filter(
@@ -137,7 +137,7 @@
 
       <h2 class="title is-2">Schleckmäuler</h2>
 
-      <ul style="display: flex; flex-wrap: wrap">
+      <ul style="display: flex; flex-wrap: wrap" v-if="this.leiterList != null">
         <li
           class="leiterlist"
           v-for="(items, itemIndex) in leiterList.filter(
@@ -166,7 +166,7 @@
 
       <h2 class="title is-2">Springer</h2>
 
-      <ul style="display: flex; flex-wrap: wrap">
+      <ul style="display: flex; flex-wrap: wrap" v-if="this.leiterList != null">
         <li
           class="leiterlist"
           v-for="(items, itemIndex) in leiterList.filter(
