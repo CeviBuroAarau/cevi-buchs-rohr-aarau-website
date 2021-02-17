@@ -1,34 +1,27 @@
 # cevi-buro-aarau-website
 
-## Project setup
+## Getting started
 ```
 yarn install
-```
-
-### Compiles and hot-reloads for development
-```
 yarn serve
 ```
 
-### Compiles and minifies for production
+The webpage is then available under localhost:8080
+
+### Create the build and run the tests
 ```
 yarn build
-```
-
-### Run your unit tests
-```
 yarn test:unit
-```
-
-### Run your end-to-end tests
-```
 yarn test:e2e
 ```
 
-### Lints and fixes files
-```
-yarn lint
-```
+### Run with docker
 
-### On Heroku
+docker build -t cevi-buchs-rohr/website .
+docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-website cevi-buchs-rohr/website
+
+The webpage is then available under localhost:8080
+
+### Demo (on Heroku)
+
 https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/
