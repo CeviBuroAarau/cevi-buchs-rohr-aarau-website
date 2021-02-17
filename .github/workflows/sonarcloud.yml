@@ -4,6 +4,9 @@ on:
       - main
   pull_request:
       types: [opened, synchronize, reopened]
+  schedule:
+    - cron: '21 18 * * 3'
+    
 name: Sonarcloud
 jobs:
   sonarcloud:
