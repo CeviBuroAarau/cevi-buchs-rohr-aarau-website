@@ -1,13 +1,13 @@
 name: Deploy on Heroku
 
 on:
-  push:
-    branches:
-      - main
+  workflow_run:
+    workflows: ["Build and Test", "CodeQL", "Sonarcloud"]
+    types:
+      - completed
 
 jobs:
   deploy:
-    needs: [build, analyze, sonarcloud ]
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
