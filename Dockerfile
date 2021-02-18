@@ -6,6 +6,7 @@ COPY yarn.lock ./
 RUN yarn install
 COPY . .
 RUN yarn run build
+RUN rm /app/report.html
 
 # production stage
 FROM nginx:stable-alpine as production-stage
