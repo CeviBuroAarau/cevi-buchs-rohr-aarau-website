@@ -106,11 +106,11 @@ jobs:
     runs-on: ubuntu-latest
     needs: buildDockerImage
     steps:
-      uses: smartsquaregmbh/delete-old-packages@v0.2.0
-      with:
-        keep: 10
-        names: |
-          website
+      - uses: smartsquaregmbh/delete-old-packages@v0.2.0
+        with:
+          keep: 10
+          names: |
+            website
 
   deploy:
     name: "Deploy to Heroku"
