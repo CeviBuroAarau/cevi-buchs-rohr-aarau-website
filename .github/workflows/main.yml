@@ -12,8 +12,6 @@ jobs:
 
     strategy:
       fail-fast: false
-      matrix:
-        language: [ 'javascript' ]
 
     steps:
     - name: Checkout repository
@@ -22,7 +20,7 @@ jobs:
     - name: Initialize CodeQL
       uses: github/codeql-action/init@v1
       with:
-        languages: ${{ matrix.language }}
+        languages: [ 'javascript' ]
 
     - name: Perform CodeQL Analysis
       uses: github/codeql-action/analyze@v1
@@ -32,10 +30,6 @@ jobs:
     needs: analyze
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [14.x]
-
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -43,7 +37,7 @@ jobs:
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v1
       with:
-        node-version: ${{ matrix.node-version }}
+        node-version: [14.x]
 
     - name: "Install Dependencies"
       run: yarn --frozen-lockfile
@@ -109,7 +103,7 @@ jobs:
 
   deploy:
     name: "Deploy to Heroku"
-    needs: sonarcloud
+    needs: buildDockerImage
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/main'
     steps:
