@@ -116,7 +116,7 @@ jobs:
       working-directory: ./coverage
       run: |
         sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' lcov.info
-	sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' test-report.xml
+        sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' test-report.xml
 
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
