@@ -21,6 +21,7 @@ function setNoCache(res) {
   }
 
 const app = express();
+app.disable("x-powered-by");
 
 // support non-root url by proxying the request to index.html
 app.use(history({
