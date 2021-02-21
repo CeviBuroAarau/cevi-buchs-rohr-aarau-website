@@ -9,7 +9,8 @@ export default {
       error: false,
       events: null,
       publicPath: process.env.BASE_URL,
-      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
+      dataAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {

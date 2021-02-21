@@ -10,7 +10,8 @@ export default {
       name: "",
       email: "",
       message: "",
-      formAuthorizationToken: process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
+      formAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
     };
   },
   methods: {
