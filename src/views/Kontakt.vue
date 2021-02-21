@@ -10,6 +10,7 @@ export default {
       name: "",
       email: "",
       message: "",
+      formAuthorizationToken: process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
     };
   },
   methods: {
@@ -32,7 +33,7 @@ export default {
           },
           {
             headers: {
-              Authorization: "Bearer 1d9b8fc0beb2a3d5ceb254c4b49c02",
+              Authorization: "Bearer " + this.formAuthorizationToken,
             },
           }
         )
