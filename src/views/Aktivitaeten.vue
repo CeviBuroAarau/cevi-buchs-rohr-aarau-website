@@ -69,7 +69,7 @@ export default {
       error: false,
       activities: null,
       index: null,
-      externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI,
+      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {
@@ -93,7 +93,7 @@ export default {
       instance
         .get("/collections/get/Activities", {
           headers: {
-            Authorization: "Bearer 486f18ebe895de87c4f35c58d3db0f",
+            Authorization: "Bearer " + this.dataAuthorizationToken,
           },
         })
         .then((resp) => {

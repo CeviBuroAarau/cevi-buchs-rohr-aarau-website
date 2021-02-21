@@ -277,7 +277,6 @@ export default {
   components: {},
   data() {
     return {
-      externalAssetsUri: process.env.VUE_APP_EXTERNAL_ASSETS_URI,
       displayForm: false,
       displayError: false,
       displaySuccess: false,
@@ -288,6 +287,8 @@ export default {
       adress: "",
       deliveryMethod: "",
       articleList: null,
+      formAuthorizationToken: process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
+      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {
@@ -318,7 +319,7 @@ export default {
           },
           {
             headers: {
-              Authorization: "Bearer 1d9b8fc0beb2a3d5ceb254c4b49c02",
+              Authorization: "Bearer " + this.formAuthorizationToken,
             },
           }
         )
@@ -350,7 +351,7 @@ export default {
       instance
         .get("/collections/get/Shop", {
           headers: {
-            Authorization: "Bearer 486f18ebe895de87c4f35c58d3db0f",
+            Authorization: "Bearer " + this.dataAuthorizationToken,
           },
         })
         .then((resp) => {
