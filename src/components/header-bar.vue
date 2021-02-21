@@ -25,7 +25,10 @@ export default {
       <font-awesome-icon icon="bars" />
     </div>
     <router-link to="/"
-      ><img class="logo" src="@/assets/logo.svg"
+      ><img
+        class="logo"
+        src="@/assets/logo.svg"
+        alt="Cevi Buchs-Rohr Aarau. Logo: rotes Dreieck von blauem Kreis umwoben"
     /></router-link>
   </div>
 </template>

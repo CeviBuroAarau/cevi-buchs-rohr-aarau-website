@@ -6,7 +6,11 @@
         'background-image': 'url(' + activeBackgroundImage + ')',
       }"
     >
-      <img src="@/assets/home/claim.svg" class="claim" />
+      <img
+        src="@/assets/home/claim.svg"
+        class="claim"
+        alt="Erlebnisse in der Natur by Cevi Buchs-Rohr Aarau"
+      />
     </div>
     <div class="nav">
       <div

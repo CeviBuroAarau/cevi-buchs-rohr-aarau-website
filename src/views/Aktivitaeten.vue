@@ -36,7 +36,7 @@
             :key="activityIndex"
             @click="index = activityIndex"
           >
-            <img :src="activity.thumbUrl" />
+            <img :src="activity.thumbUrl" :alt="activity.title" />
           </li>
         </ul>
       </div>
