@@ -152,16 +152,13 @@ export default {
   list-style: none;
   padding-top: 0.3em;
   padding-bottom: 0.3em;
+  border-bottom: 1px solid black;
 }
 
 .main-menu ul li {
   font-weight: normal;
   border: none;
   padding-left: 40px;
-}
-
-.main-menu li {
-  border-bottom: 1px solid black;
 }
 
 .main-menu a:link,
