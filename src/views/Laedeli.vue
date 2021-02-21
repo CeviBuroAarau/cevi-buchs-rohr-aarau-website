@@ -287,8 +287,10 @@ export default {
       adress: "",
       deliveryMethod: "",
       articleList: null,
-      formAuthorizationToken: process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
-      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
+      formAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
+      dataAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {
