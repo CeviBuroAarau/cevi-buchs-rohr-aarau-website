@@ -21,7 +21,6 @@ The webpage is then available under localhost:8080
 ```
 yarn build
 yarn test:unit
-yarn test:e2e
 ```
 
 A coverage report is generated in the folder coverage
