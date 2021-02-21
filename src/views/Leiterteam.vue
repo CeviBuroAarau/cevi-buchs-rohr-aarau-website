@@ -207,7 +207,8 @@ export default {
       activeLeiter: null,
       showModal: false,
       leiterList: null,
-      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
+      dataAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {

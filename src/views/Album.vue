@@ -82,7 +82,8 @@ export default {
       activeAlbum: [],
       albums: null,
       index: null,
-      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
+      dataAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {
