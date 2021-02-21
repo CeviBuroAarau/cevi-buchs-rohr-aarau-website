@@ -321,6 +321,7 @@ export default Vue.extend({
 .nav-level1 .main-menu li {
   list-style: none;
   padding-left: 40px;
+  border-bottom: 1px solid black;
 }
 
 .nav-level1:hover .main-menu {
@@ -330,10 +331,6 @@ export default Vue.extend({
 .nav-level1 .main-menu ul li {
   font-weight: normal;
   border: none;
-}
-
-.nav-level1 .main-menu li {
-  border-bottom: 1px solid black;
 }
 
 .nav-level1 .main-menu a:link,
@@ -418,6 +415,7 @@ export default Vue.extend({
     background: white;
     top: 0px;
     bottom: 0px;
+    padding-top: 60px;
   }
 
   .claim {
@@ -439,10 +437,6 @@ export default Vue.extend({
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-  }
-
-  .nav-level1 .main-menu {
-    padding-top: 60px;
   }
 }
 </style>
