@@ -180,7 +180,6 @@ export default {
 @media only screen and (max-width: 768px) {
   .main-menu {
     flex-shrink: 0;
-    width: 50%;
     height: 100%;
     width: 100%;
     margin: 0;

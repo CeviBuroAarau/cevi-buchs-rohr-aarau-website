@@ -38,7 +38,7 @@
           >
             <div class="card">
               <div class="card-image">
-                <img :src="albums.preview.url" />
+                <img :src="albums.preview.url" alt="" />
               </div>
               <div class="card-content">
                 <div class="media">

@@ -25,7 +25,7 @@
               </p>
             </header>
             <div class="card-image">
-              <img :src="items.file" />
+              <img :src="items.file" alt="" />
             </div>
             <div class="card-content">
               <div class="content">
@@ -53,7 +53,7 @@
               </p>
             </header>
             <div class="card-image">
-              <img :src="items.file" />
+              <img :src="items.file" alt="" />
             </div>
             <div class="card-content">
               <div class="content">
@@ -101,7 +101,7 @@
                   placeholder=""
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
+                  <span class="fas fa-user"></span>
                 </span>
               </div>
             </div>
@@ -162,7 +162,7 @@
                   value=""
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-envelope"></i>
+                  <span class="fas fa-envelope"></span>
                 </span>
               </div>
             </div>
