@@ -3,9 +3,9 @@
 The official webpage that you find under https://www.cevi-buro-aarau.ch
 
 Metrics: 
-![Buildstatus](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/workflows/Main/badge.svg)
-[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=patrickuhlmann_linedifference)
-[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=patrickuhlmann_linedifference)
+[![Buildstatus](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/workflows/Main/badge.svg)](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/actions/workflows/main.yml)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 
 
 
