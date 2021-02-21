@@ -82,6 +82,7 @@ export default {
       activeAlbum: [],
       albums: null,
       index: null,
+      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
   },
   created() {
@@ -113,7 +114,7 @@ export default {
       instance
         .get("/collections/get/Album", {
           headers: {
-            Authorization: "Bearer 486f18ebe895de87c4f35c58d3db0f",
+            Authorization: "Bearer " + this.dataAuthorizationToken,
           },
         })
         .then((resp) => {
