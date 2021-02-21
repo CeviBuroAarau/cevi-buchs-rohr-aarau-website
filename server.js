@@ -20,7 +20,7 @@ function setNoCache(res) {
     res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
   }
 
-app = express();
+const app = express();
 
 // support non-root url by proxying the request to index.html
 app.use(history({
@@ -31,16 +31,16 @@ app.use(compression());
 
 app.use(serveStatic(path.join(__dirname + "/dist"), {
     extensions: ["html"],
-    setHeaders(res, path) {
+    setHeaders(res, reqpath) {
         // html and service-worker are not cached at all
-        if (path.match(/(\.html|\/service-worker\.js)$/)) {
+        if (reqpath.match(/(\.html|\/service-worker\.js)$/)) {
             setNoCache(res);
             return;
         }
 
         // js, css and images are cached for one year
         // this works because webpack adds a chunk hash in the filename
-        if (path.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|webp|svg)$/)) {
+        if (reqpath.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|webp|svg)$/)) {
             setLongTermCache(res);
         }
     },
