@@ -2,12 +2,17 @@
   <section class="section">
     <div class="container">
       <h1 class="title is-1">Medien</h1>
-      <p class="content">
+      <p class="content" id="medialist">
         Hier finden Sie eine Übersicht von uns veröffentlichter Artikel:
       </p>
       <table
         class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        aria-describedby="medialist"
       >
+        <tr>
+          <th scope="col">Datum</th>
+          <th scope="col">Artikel</th>
+        </tr>
         <tr>
           <td>03. November 2020</td>
           <td>

@@ -33,7 +33,11 @@
       </p>
       <p class="content">
         Das Lokal sieht wie folgt aus:<br />
-        <img src="@/assets/standort/lokal.webp" width="800" />
+        <img
+          src="@/assets/standort/lokal.webp"
+          alt="Pfarrhaus mit Garage mit Cevi Logo auf dem Schild"
+          width="800"
+        />
       </p>
     </div>
   </section>

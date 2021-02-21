@@ -175,7 +175,7 @@ export default {
                   placeholder=""
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-user"></i>
+                  <span class="fas fa-user"></span>
                 </span>
               </div>
             </div>
@@ -192,7 +192,7 @@ export default {
                   value=""
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-envelope"></i>
+                  <span class="fas fa-envelope"></span>
                 </span>
               </div>
             </div>
@@ -209,7 +209,7 @@ export default {
                   value=""
                 />
                 <span class="icon is-small is-left">
-                  <i class="fas fa-phone"></i>
+                  <span class="fas fa-phone"></span>
                 </span>
               </div>
             </div>
