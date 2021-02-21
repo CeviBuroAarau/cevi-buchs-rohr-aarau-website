@@ -112,6 +112,12 @@ jobs:
     - name: "Build"
       run: yarn run test:unit
 
+    - name: fix code coverage paths # see https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/5
+      working-directory: ./coverage
+      run: |
+        sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' lcov.info
+	sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' test-report.xml
+
     - name: SonarCloud Scan
       uses: sonarsource/sonarcloud-github-action@master
       env:
