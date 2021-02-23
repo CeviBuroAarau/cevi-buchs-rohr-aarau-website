@@ -1,5 +1,6 @@
 <script>
 import axios from "axios";
+import * as Sentry from "@sentry/vue";
 
 export default {
   components: {},
@@ -48,8 +49,8 @@ export default {
           this.message = "";
         })
         .catch((err) => {
-          console.log(err);
           this.displayError = true;
+          Sentry.captureException(err);
         });
     },
   },
