@@ -70,6 +70,7 @@
 <script>
 import axios from "axios";
 import { LightGallery } from "vue-light-gallery";
+import * as Sentry from "@sentry/vue";
 
 export default {
   components: {
@@ -141,12 +142,11 @@ export default {
             };
           });
           this.albums.sort((first, second) => first.date < second.date);
-          console.log(this.albums);
         })
         .catch((err) => {
           this.error = true;
           this.loading = false;
-          console.log(err);
+          Sentry.captureException(err);
         });
     },
   },

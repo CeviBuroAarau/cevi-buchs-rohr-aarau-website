@@ -272,6 +272,7 @@
 
 <script>
 import axios from "axios";
+import * as Sentry from "@sentry/vue";
 
 export default {
   components: {},
@@ -335,8 +336,8 @@ export default {
           this.adress = "";
         })
         .catch((err) => {
-          console.log(err);
           this.displayError = true;
+          Sentry.captureException(err);
         });
     },
     fetchData() {
@@ -373,7 +374,7 @@ export default {
         .catch((err) => {
           this.error = true;
           this.loading = false;
-          console.log(err);
+          Sentry.captureException(err);
         });
     },
   },

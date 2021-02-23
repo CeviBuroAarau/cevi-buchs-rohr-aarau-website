@@ -58,6 +58,7 @@
 <script>
 import { LightGallery } from "vue-light-gallery";
 import axios from "axios";
+import * as Sentry from "@sentry/vue";
 
 export default {
   components: {
@@ -112,7 +113,7 @@ export default {
         .catch((err) => {
           this.error = true;
           this.loading = false;
-          console.log(err);
+          Sentry.captureException(err);
         });
     },
   },
