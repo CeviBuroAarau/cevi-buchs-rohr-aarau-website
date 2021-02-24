@@ -1,4 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-yarn lint-staged && yarn yaml-validator .github/workflows/main.yml && yarn test:unit && sed -i -e "s#https://nexus.uhlme.ch/repository/npm-group#https://registry.yarnpkg.com/#g" yarn.lock && git diff --name-only --cached --diff-filter=d | xargs -l git add
+yarn lint-staged && yarn yaml-validator .github/workflows/build.yml && yarn test:unit && sed -i -e "s#https://nexus.uhlme.ch/repository/npm-group#https://registry.yarnpkg.com/#g" yarn.lock && git diff --name-only --cached --diff-filter=d | xargs -l git add

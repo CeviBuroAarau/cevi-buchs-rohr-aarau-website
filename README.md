@@ -3,7 +3,7 @@
 The official webpage that you find under https://www.cevi-buro-aarau.ch
 
 Metrics: 
-[![Buildstatus](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/workflows/Main/badge.svg)](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/actions/workflows/main.yml)
+[![Buildstatus](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/workflows/Build/badge.svg)](https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/actions/workflows/main.yml)
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 
@@ -35,6 +35,6 @@ docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-website cevi-buchs-rohr/we
 
 The webpage is then available under localhost:8080
 
-### Demo (on Heroku)
+### Test (on Heroku)
 
 https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/
