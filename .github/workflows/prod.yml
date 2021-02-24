@@ -2,6 +2,11 @@ name: Deploy on Prod
 
 on:
   workflow_dispatch:
+    inputs:
+      dry-run:
+        description: 'Dry Run'
+        required: false
+        default: false
 
 jobs:      
   build_and_test:
@@ -81,5 +86,5 @@ jobs:
           protocol: ftps
           local-dir: ./
           server-dir: ./
-          dry-run: true
+          dry-run: ${{ github.event.inputs.dry-run }}
           security: loose
