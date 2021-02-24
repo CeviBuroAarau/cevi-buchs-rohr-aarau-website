@@ -176,6 +176,9 @@ jobs:
     name: "Deploy to Heroku"
     needs: buildDockerImage
     runs-on: ubuntu-latest
+    environment:
+      name: test
+      url: "https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/"
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
