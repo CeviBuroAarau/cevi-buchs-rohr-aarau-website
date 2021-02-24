@@ -43,7 +43,7 @@ jobs:
           dist
           !dist/report.html
           
-    - name: Archive report
+    - name: Archive webpack report
       uses: actions/upload-artifact@v2
       with:
         name: webpack report
@@ -52,7 +52,7 @@ jobs:
     - name: "Unit Tests"
       run: yarn test:unit
       
-    - name: Archive report
+    - name: Archive unit test report
       uses: actions/upload-artifact@v2
       with:
         name: unit test coverage report
@@ -79,6 +79,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           protocol: ftps
-          localdir: ./
-          serverdir: ./
+          local-dir: ./
+          server-dir: ./
           dry-run: true
+          security: loose
