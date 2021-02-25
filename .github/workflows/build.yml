@@ -61,7 +61,7 @@ jobs:
         gist_token: ${{ secrets.GIST_TOKEN }}
 
     - name: get date and revision
-      id: date
+      id: date_and_rev
       run: |
         echo ::set-output name=revision::sha-${GITHUB_SHA::8}
         echo ::set-output name=created::$(date -u +'%d.%m.%Y %H:%M:%S')
@@ -69,8 +69,8 @@ jobs:
     - name: set buildnumber, date and revision
       run: |
         sed -i 's/VUE_APP_VERSION=Dev/VUE_APP_VERSION=${{ steps.build_number.outputs.global_build_number }}/g' .env
-        sed -i 's/VUE_APP_DATE=Date/VUE_APP_DATE=${{ steps.prep.outputs.created }} }}/g' .env
-        sed -i 's/VUE_APP_REVISION=Revision/VUE_APP_REVISION=${{ steps.prep.outputs.revision }} }}/g' .env
+        sed -i 's/VUE_APP_DATE=Date/VUE_APP_DATE=${{ steps.date_and_rev.outputs.created }}/g' .env
+        sed -i 's/VUE_APP_REVISION=Revision/VUE_APP_REVISION=${{ steps.date_and_rev.outputs.revision }}/g' .env
 
     - name: "Build"
       run: yarn run build
