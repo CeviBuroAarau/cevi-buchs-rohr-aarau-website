@@ -193,7 +193,7 @@ jobs:
     - name: Build container image
       uses: docker/build-push-action@v2
       with:
-        context: .
+        context: .github/workflows
         file: .github/workflows/Dockerfile
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.prep.outputs.tags }}
@@ -212,12 +212,6 @@ jobs:
     if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.11.10
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "cevi-buchs-rohr-aarau-webpage"
-          heroku_email: "heroku@uhlme.ch"
-          usedocker: true
 
       - name: Download dist
         uses: actions/download-artifact@v2
