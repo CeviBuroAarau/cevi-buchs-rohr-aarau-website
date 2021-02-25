@@ -54,6 +54,24 @@ jobs:
     - name: "Install Dependencies"
       run: yarn --frozen-lockfile
 
+    - name: generate build number
+      id: build_number
+      uses: zyborg/gh-action-buildnum@v1 
+      with:
+        gist_token: ${{ secrets.GIST_TOKEN }}
+
+    - name: get date and revision
+      id: date
+      run: |
+        echo ::set-output name=revision::sha-${GITHUB_SHA::8}
+        echo ::set-output name=created::$(date -u +'%d.%m.%Y %H:%M:%S')
+
+    - name: set buildnumber, date and revision
+      run: |
+        sed -i 's/VUE_APP_VERSION=Dev/VUE_APP_VERSION=${{ steps.build_number.outputs.global_build_number }}/g' .env
+        sed -i 's/VUE_APP_DATE=Date/VUE_APP_DATE=${{ steps.prep.outputs.created }} }}/g' .env
+        sed -i 's/VUE_APP_REVISION=Revision/VUE_APP_REVISION=${{ steps.prep.outputs.revision }} }}/g' .env
+
     - name: "Build"
       run: yarn run build
       

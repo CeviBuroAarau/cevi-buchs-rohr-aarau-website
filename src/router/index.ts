@@ -16,6 +16,7 @@ const LazyLaedeli = () => import("../views/Laedeli.vue");
 const LazyAusbildung = () => import("../views/Ausbildung.vue");
 const LazyLeiterteam = () => import("../views/Leiterteam.vue");
 const LazyKontakt = () => import("../views/Kontakt.vue");
+const LazyVersion = () => import("../views/Version.vue");
 const LazyNotFound = () => import("../views/NotFound.vue");
 
 Vue.use(VueRouter);
@@ -166,6 +167,17 @@ const routes: Array<RouteConfig> = [
         name: "Kontakt",
         path: "",
         component: LazyKontakt,
+      },
+    ],
+  },
+  {
+    path: "/version",
+    component: LazyRegularLayout,
+    children: [
+      {
+        name: "Version",
+        path: "",
+        component: LazyVersion,
       },
     ],
   },
