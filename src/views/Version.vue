@@ -3,7 +3,7 @@
     <div class="container">
       <h1 class="title is-1">Version</h1>
       <p class="content">
-        Version der Seite: {{ this.version }}
+        {{ this.version }} erstellt am {{ this.date }} basierend auf der (Revision {{ this.revision }})
       </p>
     </div>
   </section>
@@ -15,6 +15,8 @@ export default {
     return {
       version:
         process.env.VUE_APP_VERSION,
+      revision: process.env.VUE_APP_REVISION,
+      date: process.env.VUE_APP_DATE
     };
   },
 };
