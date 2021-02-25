@@ -168,17 +168,13 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: dist
-        path: .github/workflows/dist
-
-    - name: copy default.conf
-      run: |
-        cp docker .github/workflows -R
+        path: docker/github/dist
 
     - name: Build container image
       uses: docker/build-push-action@v2
       with:
-        context: .github/workflows
-        file: .github/workflows/Dockerfile
+        context: docker/github
+        file: docker/github/Dockerfile
         push: ${{ github.event_name != 'pull_request' }}
         tags: ${{ steps.prep.outputs.tags }}
         labels: |
@@ -201,11 +197,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
-          path: .github/workflows/dist
-
-      - name: copy default.conf
-        run: |
-          cp docker .github/workflows -R
+          path: docker/heroku/dist
 
       - uses: gonuit/heroku-docker-deploy@v1.3.1
         with:
@@ -213,4 +205,4 @@ jobs:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "cevi-buchs-rohr-aarau-webpage"
           dockerfile_name: Dockerfile
-          dockerfile_directory: .github/workflows
+          dockerfile_directory: docker/heroku
