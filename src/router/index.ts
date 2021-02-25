@@ -169,7 +169,17 @@ const routes: Array<RouteConfig> = [
       },
     ],
   },
-  { path: "*", component: LazyNotFound },
+  {
+    path: "*",
+    component: LazyRegularLayout,
+    children: [
+      {
+        name: "NOt Found",
+        path: "",
+        component: LazyNotFound,
+      },
+    ],
+  },
 ];
 
 const router = new VueRouter({
