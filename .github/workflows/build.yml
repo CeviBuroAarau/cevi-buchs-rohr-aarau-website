@@ -184,7 +184,11 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: dist
-        path: dist
+        path: .github/workflows/dist
+
+    - name: copy default.conf
+      run: |
+        cp docker .github/workflows -R
 
     - name: Build container image
       uses: docker/build-push-action@v2
