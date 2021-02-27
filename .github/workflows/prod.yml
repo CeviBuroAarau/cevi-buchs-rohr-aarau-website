@@ -125,7 +125,7 @@ jobs:
       - name: Download unit test report
         uses: actions/download-artifact@v2
         with:
-          name: coverage
+          name: unit test coverage report
           path: coverage
 
       - name: Zip coverage report
