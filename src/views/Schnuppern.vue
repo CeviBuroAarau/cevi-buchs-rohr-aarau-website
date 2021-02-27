@@ -19,14 +19,14 @@ export default {
   methods: {
     subscribe() {
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
         .post(
-          "/forms/submit/join",
+          "forms/submit/join",
           {
             form: {
               name: this.name,

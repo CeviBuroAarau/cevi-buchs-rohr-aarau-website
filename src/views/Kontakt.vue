@@ -18,14 +18,14 @@ export default {
   methods: {
     send() {
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
         .post(
-          "/forms/submit/contact",
+          "forms/submit/contact",
           {
             form: {
               name: this.name,

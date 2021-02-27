@@ -30,13 +30,13 @@ export default {
       this.error = false;
 
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
-        .get("/collections/get/Agenda", {
+        .get("collections/get/Agenda", {
           headers: {
             Authorization: "Bearer " + this.dataAuthorizationToken,
           },
