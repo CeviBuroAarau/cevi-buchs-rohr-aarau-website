@@ -124,18 +124,6 @@ jobs:
           (cd coverage && zip -r ../unit_test_coverage_report.zip .)
 
       - name: Upload Dist Archive
-        id: upload-release-asset
-        uses: actions/upload-release-asset@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist.zip
-          asset_name: dist.zip
-          asset_content_type: application/zip
-
-      - name: Upload Dist
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -146,7 +134,6 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Unit Test Report
-        id: upload-release-asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -155,7 +142,6 @@ jobs:
           asset_path: ./unit_test_coverage_report.zip
           asset_name: unit_test_coverage_report.zip
           asset_content_type: application/zip
-
 
   deploy:
     name: "Deploy to Cyon"
