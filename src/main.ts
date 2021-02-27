@@ -8,7 +8,7 @@ import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
 import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
 import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
 import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
-import ErrorReportingService from "src/services/ErrorReportingService";
+import ErrorReportingService from "./services/ErrorReportingService";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
