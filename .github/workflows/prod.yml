@@ -81,9 +81,84 @@ jobs:
         name: unit test coverage report
         path: coverage
 
+  release:
+    name: "Create a release"
+    needs: build_and_test
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: get existing build number
+        uses: zyborg/gh-action-buildnum@v1
+        id: lastBuildNum
+        with:
+          gist_token: ${{ secrets.GIST_TOKEN }}
+          skip_bump: true
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v${{ steps.lastBuildNum.outputs.global_buildnum }}
+          release_name: Release v${{ steps.lastBuildNum.outputs.global_buildnum }}
+          draft: false
+          prerelease: false
+
+      - name: Download dist
+        uses: actions/download-artifact@v2
+        with:
+          name: dist
+
+      - name: Zip dist
+        run: |
+          (cd dist && zip -r ../dist.zip .)
+
+      - name: Download unit test report
+        uses: actions/download-artifact@v2
+        with:
+          name: coverage
+
+      - name: Zip coverage report
+        run: |
+          (cd coverage && zip -r ../unit_test_coverage_report.zip .)
+
+      - name: Upload Dist Archive
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist.zip
+          asset_name: dist.zip
+          asset_content_type: application/zip
+
+      - name: Upload Dist
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./dist.zip
+          asset_name: dist.zip
+          asset_content_type: application/zip
+
+      - name: Upload Unit Test Report
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./unit_test_coverage_report.zip
+          asset_name: unit_test_coverage_report.zip
+          asset_content_type: application/zip
+
+
   deploy:
     name: "Deploy to Cyon"
-    needs: build_and_test
+    needs: release
     runs-on: ubuntu-latest
     environment:
       name: prod
