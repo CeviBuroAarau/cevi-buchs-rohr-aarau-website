@@ -10,6 +10,16 @@
     "start": "node server.js",
     "postinstall": "husky install"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website.git"
+  },
+  "author": "Patrick Uhlmann",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/issues"
+  },
+  "homepage": "https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website",
   "lint-staged": {
     "**/*.ts": [
       "eslint --fix",
