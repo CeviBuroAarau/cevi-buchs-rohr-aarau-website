@@ -73,6 +73,12 @@ jobs:
         name: webpack report
         path: dist/report.html
 
+    - name: Archive .htaccess
+      uses: actions/upload-artifact@v2
+      with:
+        name: .htaccess
+        path: .htaccess
+
     - name: "Unit Tests"
       run: yarn test:unit
 
@@ -166,6 +172,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
+
+      - name: Download .htaccess
+        uses: actions/download-artifact@v2
+        with:
+          name: .htaccess
+
       - name: FTP-Deploy-Action
         uses: SamKirkland/FTP-Deploy-Action@4.0.0
         with:
