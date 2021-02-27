@@ -17,7 +17,7 @@ export default class ErrorReportingService {
     }
   }
 
-  // eslint-disable-next-lin
+  // eslint-disable-next-line
   report(err: any) {
     if (process.env.NODE_ENV === "production") {
       Sentry.captureException(err);
