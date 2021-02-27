@@ -145,6 +145,10 @@ import { Vue } from "vue-property-decorator";
 import axios from "axios";
 import ErrorReportingService from "../services/ErrorReportingService";
 
+interface WelcomeImage {
+  url: string;
+}
+
 export default Vue.extend({
   name: "Home",
   data() {
@@ -220,8 +224,9 @@ export default Vue.extend({
             Math.random() * this.welcomeImages.length + 1
           );
           console.info(index);
+          const file: WelcomeImage = this.welcomeImages[index];
           this.activeBackgroundImage =
-            process.env.VUE_APP_COCKPIT_FILES + this.welcomeImages[index].url;
+            process.env.VUE_APP_COCKPIT_FILES + file.url;
         })
         .catch((err) => {
           const errorReportingService = new ErrorReportingService();
