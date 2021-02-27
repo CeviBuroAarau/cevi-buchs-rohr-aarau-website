@@ -94,9 +94,6 @@ export default {
     $route: "fetchData",
   },
   methods: {
-    isUpcoming(element) {
-      return new Date(element.date) >= new Date();
-    },
     formatDate(dateString) {
       const reggie = /(\d{2}).(\d{2}).(\d{4})/,
         [, year, month, day] = reggie.exec(dateString);
