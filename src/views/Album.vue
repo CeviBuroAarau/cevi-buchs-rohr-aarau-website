@@ -108,13 +108,13 @@ export default {
       this.error = false;
 
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
-        .get("/collections/get/Album", {
+        .get("collections/get/Album", {
           headers: {
             Authorization: "Bearer " + this.dataAuthorizationToken,
           },
@@ -131,13 +131,12 @@ export default {
               images: album.images.map((image) => {
                 return {
                   title: image.meta.title,
-                  url: "https://backend.cevi-buro-aarau.ch/" + image.path,
+                  url: process.env.VUE_APP_COCKPIT_FILES + image.path,
                 };
               }),
               preview: {
                 url:
-                  "https://backend.cevi-buro-aarau.ch/" +
-                  album.previewImage.path,
+                  process.env.VUE_APP_COCKPIT_FILES + album.previewImage.path,
               },
             };
           });

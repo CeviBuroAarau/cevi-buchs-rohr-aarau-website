@@ -225,13 +225,13 @@ export default {
       this.error = false;
 
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
-        .get("/collections/get/Leader", {
+        .get("collections/get/Leader", {
           headers: {
             Authorization: "Bearer " + this.dataAuthorizationToken,
           },
@@ -253,7 +253,7 @@ export default {
               inScoutsSince: leiter.in_scounts_since,
               inScoutsBecause: leiter.in_scouts_because,
               bestExperience: leiter.best_experiences,
-              file: "https://backend.cevi-buro-aarau.ch/" + leiter.image.path,
+              file: process.env.VUE_APP_COCKPIT_FILES + leiter.image.path,
             };
           });
         })

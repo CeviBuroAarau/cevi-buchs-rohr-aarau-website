@@ -303,14 +303,14 @@ export default {
   methods: {
     order() {
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
         .post(
-          "/forms/submit/shoporder",
+          "forms/submit/shoporder",
           {
             form: {
               name: this.name,
@@ -347,13 +347,13 @@ export default {
       this.error = false;
 
       const instance = axios.create({
-        baseURL: "https://backend.cevi-buro-aarau.ch/api",
+        baseURL: process.env.VUE_APP_COCKPIT_API,
         timeout: 10000,
         headers: { "Content-Type": "application/json" },
       });
 
       instance
-        .get("/collections/get/Shop", {
+        .get("collections/get/Shop", {
           headers: {
             Authorization: "Bearer " + this.dataAuthorizationToken,
           },
@@ -365,7 +365,7 @@ export default {
           this.articleList = resp.data.entries.map((article) => {
             return {
               category: article.category,
-              file: "https://backend.cevi-buro-aarau.ch/" + article.image.path,
+              file: process.env.VUE_APP_COCKPIT_FILES + article.image.path,
               name: article.name,
               description: article.description,
               price: article.price,
