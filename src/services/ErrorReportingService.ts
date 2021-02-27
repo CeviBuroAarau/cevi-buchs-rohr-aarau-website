@@ -21,6 +21,8 @@ export default class ErrorReportingService {
   report(err: any) {
     if (process.env.NODE_ENV === "production") {
       Sentry.captureException(err);
+    } else {
+      console.error(err);
     }
   }
 }
