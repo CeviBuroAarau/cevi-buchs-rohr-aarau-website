@@ -7,8 +7,7 @@ export default class ErrorReportingService {
     if (process.env.NODE_ENV === "production") {
       Sentry.init({
         Vue: Vue,
-        dsn:
-          "https://c8be78aede154a729e2190299e2588bc@o391315.ingest.sentry.io/5237271",
+        dsn: process.env.VUE_APP_SENTRY_DSN,
         integrations: [
           new CaptureConsole({
             levels: ["error"],
