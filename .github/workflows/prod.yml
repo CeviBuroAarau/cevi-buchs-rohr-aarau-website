@@ -116,6 +116,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: dist
+          path: dist
 
       - name: Zip dist
         run: |
@@ -125,6 +126,7 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: coverage
+          path: coverage
 
       - name: Zip coverage report
         run: |
