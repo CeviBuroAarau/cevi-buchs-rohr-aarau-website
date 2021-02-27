@@ -1,6 +1,6 @@
 <script>
 import axios from "axios";
-import * as Sentry from "@sentry/vue";
+import ErrorReportingService from "../services/ErrorReportingService";
 
 export default {
   components: {},
@@ -49,7 +49,8 @@ export default {
         .catch((err) => {
           this.error = true;
           this.loading = false;
-          Sentry.captureException(err);
+          const errorReportingService = new ErrorReportingService();
+          errorReportingService.report(err);
         });
     },
   },
