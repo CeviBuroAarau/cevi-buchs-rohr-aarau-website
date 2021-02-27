@@ -142,21 +142,28 @@
 
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
+import axios from "axios";
+import ErrorReportingService from "../services/ErrorReportingService";
 
 export default Vue.extend({
   name: "Home",
   data() {
     return {
-      activeBackgroundImage:
-        process.env.VUE_APP_EXTERNAL_ASSETS_URI +
-        "home/background" +
-        Math.floor(Math.random() * (10 - 1 + 1) + 1) +
-        ".webp",
+      activeBackgroundImage: "",
       cevianerLinkText: "Cevianer/In",
       interessierteLinkText: "Interessierte",
       cevianerLinkTo: "/cevianer",
       interessierteLinkTo: "/interessierte",
+      welcomeImages: [],
+      dataAuthorizationToken:
+        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
     };
+  },
+  created() {
+    this.fetchData();
+  },
+  watch: {
+    $route: "fetchData",
   },
   props: {
     isMobileMenuOpen: {
@@ -186,6 +193,40 @@ export default Vue.extend({
         this.cevianerLinkTo = "#";
         this.interessierteLinkTo = "#";
       }
+    },
+    fetchData() {
+      this.welcomeImages = [];
+
+      const instance = axios.create({
+        baseURL: process.env.VUE_APP_COCKPIT_API,
+        timeout: 10000,
+        headers: { "Content-Type": "application/json" },
+      });
+
+      instance
+        .get("collections/get/WelcomeImages", {
+          headers: {
+            Authorization: "Bearer " + this.dataAuthorizationToken,
+          },
+        })
+        .then((resp) => {
+          this.welcomeImages = resp.data.entries.map((entry: any) => {
+            return {
+              url: entry.image.path,
+            };
+          });
+
+          const index = Math.floor(
+            Math.random() * this.welcomeImages.length + 1
+          );
+          console.info(index);
+          this.activeBackgroundImage =
+            process.env.VUE_APP_COCKPIT_FILES + this.welcomeImages[index].url;
+        })
+        .catch((err) => {
+          const errorReportingService = new ErrorReportingService();
+          errorReportingService.report(err);
+        });
     },
   },
 });
