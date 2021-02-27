@@ -18,6 +18,12 @@ yarn serve
 The webpage is then available under localhost:8080
 
 ### Create the build and run the tests
+
+In order to create a production ready build, you need at minimum to specify a valid sentry authentication token. Create a file .env.local and put this line inside:
+SENTRY_AUTH_TOKEN=***
+
+Replace *** with your [token](https://sentry.io/settings/account/api/auth-tokens/) with the scope project:write. 
+
 ```
 yarn build
 yarn test:unit

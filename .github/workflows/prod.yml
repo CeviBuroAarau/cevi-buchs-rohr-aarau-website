@@ -51,9 +51,9 @@ jobs:
 
     - name: set buildnumber, date and revision
       run: |
-        sed -i 's#VUE_APP_VERSION=N/A#VUE_APP_VERSION=${{ steps.build_number.outputs.global_build_number }}#g' .env
-        sed -i 's#VUE_APP_DATE=N/A#VUE_APP_DATE=${{ steps.date_and_rev.outputs.created }}#g' .env
-        sed -i 's#VUE_APP_REVISION=N/A#VUE_APP_REVISION=${{ steps.date_and_rev.outputs.revision }}#g' .env
+        sed -i 's#VUE_APP_VERSION=Not specified#VUE_APP_VERSION=${{ steps.build_number.outputs.global_build_number }}#g' .env
+        sed -i 's#VUE_APP_DATE=Not specified#VUE_APP_DATE=${{ steps.date_and_rev.outputs.created }}#g' .env
+        sed -i 's#VUE_APP_REVISION=Not specified#VUE_APP_REVISION=${{ steps.date_and_rev.outputs.revision }}#g' .env
 
     - name: "Build"
       run: yarn run build
