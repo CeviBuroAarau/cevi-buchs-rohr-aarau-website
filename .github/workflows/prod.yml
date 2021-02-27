@@ -106,8 +106,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ steps.lastBuildNum.outputs.global_buildnum }}
-          release_name: Release v${{ steps.lastBuildNum.outputs.global_buildnum }}
+          tag_name: v${{ steps.lastBuildNum.outputs.global_build_number }}
+          release_name: Release v${{ steps.lastBuildNum.outputs.global_build_number }}
           body: ${{ steps.changelog.outputs.changelog }}
           draft: false
           prerelease: false
