@@ -220,10 +220,7 @@ export default Vue.extend({
             };
           });
 
-          const index = Math.floor(
-            Math.random() * this.welcomeImages.length + 1
-          );
-          console.info(index);
+          const index = Math.floor(Math.random() * this.welcomeImages.length);
           const file: WelcomeImage = this.welcomeImages[index];
           this.activeBackgroundImage =
             process.env.VUE_APP_COCKPIT_FILES + file.url;
