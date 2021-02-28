@@ -192,7 +192,6 @@ export default {
                 >
                   <a
                     v-if="info.scope == 'section'"
-                    style="font-weight: bold"
                     @click="
                       activeEventInfo = info;
                       showModal = true;
@@ -201,7 +200,6 @@ export default {
                   >
                   <a
                     v-if="info.scope == 'group_spartacus'"
-                    style="font-weight: bold"
                     @click="
                       activeEventInfo = info;
                       showModal = true;
@@ -210,7 +208,6 @@ export default {
                   >
                   <a
                     v-if="info.scope == 'group_schleckmaeuler'"
-                    style="font-weight: bold"
                     @click="
                       activeEventInfo = info;
                       showModal = true;
