@@ -1,3 +1,9 @@
+Header always set Content-Security-Policy "default-src https: data: 'unsafe-inline' 'unsafe-eval'"
+Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+Header always set X-Frame-Options "SAMEORIGIN"
+Header always set X-Xss-Protection "1; mode=block"
+Header always set X-Content-Type-Options "nosniff"
+
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTP_HOST} ^www.cevi-buro-aarau.ch [NC]
   RewriteRule ^(.*)$ https://cevi-buro-aarau.ch/$1 [L,R=301,NC]
