@@ -28,7 +28,9 @@ export default {
       return new Date(element.date) >= new Date();
     },
     eventsByDate(date) {
-      return this.eventInfos.filter((event) => event.date === date);
+      return this.eventInfos == null
+        ? []
+        : this.eventInfos.filter((event) => event.date === date);
     },
     fetchData() {
       this.events = null;
