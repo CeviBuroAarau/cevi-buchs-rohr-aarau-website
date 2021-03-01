@@ -3,129 +3,131 @@ Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains
 Header always set X-Frame-Options "SAMEORIGIN"
 Header always set X-Xss-Protection "1; mode=block"
 Header always set X-Content-Type-Options "nosniff"
+Header always set Referrer-Policy "no-referrer"
+Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
 
 <IfModule mod_rewrite.c>
   RewriteCond %{HTTP_HOST} ^www.cevi-buro-aarau.ch [NC]
   RewriteRule ^(.*)$ https://cevi-buro-aarau.ch/$1 [L,R=301,NC]
 
   RewriteEngine On
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
   RewriteCond %{QUERY_STRING} page=jungschidaten
   RewriteRule (.*) /cevianer/agenda? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
   RewriteCond %{QUERY_STRING} page=jungschar
   RewriteRule (.*) /interessierte? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=allgemeine-informationen 
+  RewriteCond %{QUERY_STRING} page=allgemeine-informationen
   RewriteRule (.*) /interessierte? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=spenden 
+  RewriteCond %{QUERY_STRING} page=spenden
   RewriteRule (.*) /kontakt? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=standort 
+  RewriteCond %{QUERY_STRING} page=standort
   RewriteRule (.*) /interessierte/standort? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=leiterteam 
+  RewriteCond %{QUERY_STRING} page=leiterteam
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=luchs 
+  RewriteCond %{QUERY_STRING} page=luchs
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=indi 
+  RewriteCond %{QUERY_STRING} page=indi
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=jarne 
+  RewriteCond %{QUERY_STRING} page=jarne
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=luna 
+  RewriteCond %{QUERY_STRING} page=luna
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=koffein 
+  RewriteCond %{QUERY_STRING} page=koffein
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=wuerfel 
+  RewriteCond %{QUERY_STRING} page=wuerfel
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=wiesel 
+  RewriteCond %{QUERY_STRING} page=wiesel
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=floh 
+  RewriteCond %{QUERY_STRING} page=floh
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=elias 
+  RewriteCond %{QUERY_STRING} page=elias
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=yannis 
+  RewriteCond %{QUERY_STRING} page=yannis
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=sira 
+  RewriteCond %{QUERY_STRING} page=sira
   RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=gruppen 
+  RewriteCond %{QUERY_STRING} page=gruppen
   RewriteRule (.*) /interessierte/schnuppern? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=celebrations 
+  RewriteCond %{QUERY_STRING} page=celebrations
   RewriteRule (.*) /interessierte/schnuppern? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=sternbaerli 
+  RewriteCond %{QUERY_STRING} page=sternbaerli
   RewriteRule (.*) /interessierte/schnuppern? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=medienarchiv 
+  RewriteCond %{QUERY_STRING} page=medienarchiv
   RewriteRule (.*) /interessierte/medien? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=ausbildung 
+  RewriteCond %{QUERY_STRING} page=ausbildung
   RewriteRule (.*) /cevianer/ausbildung? [R=301,L]
-  
+
     RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=chronik 
+  RewriteCond %{QUERY_STRING} page=chronik
   RewriteRule (.*) /interessierte/medien? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=laedeli 
+  RewriteCond %{QUERY_STRING} page=laedeli
   RewriteRule (.*) /cevianer/laedeli? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=fotoalbum 
+  RewriteCond %{QUERY_STRING} page=fotoalbum
   RewriteRule (.*) /cevianer/album? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=kontakt 
+  RewriteCond %{QUERY_STRING} page=kontakt
   RewriteRule (.*) /kontakt? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=materialausleihe 
+  RewriteCond %{QUERY_STRING} page=materialausleihe
   RewriteRule (.*) /kontakt? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
-  RewriteCond %{QUERY_STRING} page=links 
+  RewriteCond %{QUERY_STRING} page=links
   RewriteRule (.*) /? [R=301,L]
-  
+
   RewriteCond %{REQUEST_URI} ^/index.php
   RewriteCond %{QUERY_STRING} mact=News,cntnt01,detail,0&cntnt01articleid=([0-9]+)&cntnt01returnid=([0-9]+)
   RewriteRule (.*) /? [R=301,L]
-    
+
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
