@@ -3,39 +3,126 @@
   RewriteRule ^(.*)$ https://cevi-buro-aarau.ch/$1 [L,R=301,NC]
 
   RewriteEngine On
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=jungschidaten
+  RewriteRule (.*) /cevianer/agenda? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=jungschar
+  RewriteRule (.*) /interessierte? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=allgemeine-informationen 
+  RewriteRule (.*) /interessierte? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=spenden 
+  RewriteRule (.*) /kontakt? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=standort 
+  RewriteRule (.*) /interessierte/standort? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=leiterteam 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=luchs 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=indi 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=jarne 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=luna 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=koffein 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=wuerfel 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=wiesel 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=floh 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=elias 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=yannis 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=sira 
+  RewriteRule (.*) /cevianer/leiterteam? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=gruppen 
+  RewriteRule (.*) /interessierte/schnuppern? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=celebrations 
+  RewriteRule (.*) /interessierte/schnuppern? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=sternbaerli 
+  RewriteRule (.*) /interessierte/schnuppern? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=medienarchiv 
+  RewriteRule (.*) /interessierte/medien? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=ausbildung 
+  RewriteRule (.*) /cevianer/ausbildung? [R=301,L]
+  
+    RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=chronik 
+  RewriteRule (.*) /interessierte/medien? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=laedeli 
+  RewriteRule (.*) /cevianer/laedeli? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=fotoalbum 
+  RewriteRule (.*) /cevianer/album? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=kontakt 
+  RewriteRule (.*) /kontakt? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=materialausleihe 
+  RewriteRule (.*) /kontakt? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} page=links 
+  RewriteRule (.*) /? [R=301,L]
+  
+  RewriteCond %{REQUEST_URI} ^/index.php
+  RewriteCond %{QUERY_STRING} mact=News,cntnt01,detail,0&cntnt01articleid=([0-9]+)&cntnt01returnid=([0-9]+)
+  RewriteRule (.*) /? [R=301,L]
+    
   RewriteBase /
   RewriteRule ^index\.html$ - [L]
   RewriteCond %{REQUEST_FILENAME} !-f
   RewriteCond %{REQUEST_FILENAME} !-d
   RewriteRule . /index.html [L]
 </IfModule>
-
-Redirect 301 /index.php?page=jungschidaten https://cevi-buro-aarau.ch/cevianer/agenda
-Redirect 301 /index.php?page=jungschar https://cevi-buro-aarau.ch/interessierte
-Redirect 301 /index.php?page=allgemeine-informationen https://cevi-buro-aarau.ch/interessierte
-Redirect 301 /index.php?page=spenden https://cevi-buro-aarau.ch/kontakt
-Redirect 301 /index.php?page=standort https://cevi-buro-aarau.ch/interessierte/standort
-Redirect 301 /index.php?page=leiterteam https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=luchs https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=indi https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=jarne https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=luna https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=koffein https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=wuerfel https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=wiesel https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=floh https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=elias https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=yannis https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=sira https://cevi-buro-aarau.ch/cevianer/leiterteam
-Redirect 301 /index.php?page=gruppen https://cevi-buro-aarau.ch/interessierte/schnuppern
-Redirect 301 /index.php?page=celebrations https://cevi-buro-aarau.ch/interessierte/schnuppern
-Redirect 301 /index.php?page=sternbaerli https://cevi-buro-aarau.ch/interessierte/schnuppern
-Redirect 301 /index.php?page=medienarchiv https://cevi-buro-aarau.ch/interessierte/medien
-Redirect 301 /index.php?page=ausbildung https://cevi-buro-aarau.ch/cevianer/ausbildung
-Redirect 301 /index.php?page=chronik https://cevi-buro-aarau.ch/interessierte/medien
-Redirect 301 /index.php?page=laedeli https://cevi-buro-aarau.ch/cevianer/laedeli
-Redirect 301 /index.php?page=fotoalbum https://cevi-buro-aarau.ch/cevianer/album
-Redirect 301 /index.php?page=kontakt https://cevi-buro-aarau.ch/kontakt
-Redirect 301 /index.php?page=materialausleihe https://cevi-buro-aarau.ch/kontakt
-Redirect 301 /index.php?page=links https://cevi-buro-aarau.ch/
-RedirectMatch 301 /index.php?mact=News,cntnt01,detail,0&cntnt01articleid=([0-9]+)&cntnt01returnid=([0-9]+) https://cevi-buro-aarau.ch/
