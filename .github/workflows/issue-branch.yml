@@ -1,3 +1,5 @@
+name: Automatic Issue Branches
+
 on:
     issues:
         types: [assigned]
