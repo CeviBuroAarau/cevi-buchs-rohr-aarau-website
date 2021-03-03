@@ -200,7 +200,7 @@ jobs:
           name: dist
           path: docker/heroku/dist
 
-      - uses: gonuit/heroku-docker-deploy@v1.3.1
+      - uses: gonuit/heroku-docker-deploy@v1.3.2
         with:
           email: "heroku@uhlme.ch"
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
