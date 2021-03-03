@@ -207,3 +207,4 @@ jobs:
           heroku_app_name: "cevi-buchs-rohr-aarau-webpage"
           dockerfile_name: Dockerfile
           dockerfile_directory: docker/heroku
+          process_type: web
