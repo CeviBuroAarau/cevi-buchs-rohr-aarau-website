@@ -17,6 +17,7 @@ const LazyAusbildung = () => import("../views/Ausbildung.vue");
 const LazyLeiterteam = () => import("../views/Leiterteam.vue");
 const LazyKontakt = () => import("../views/Kontakt.vue");
 const LazyVersion = () => import("../views/Version.vue");
+const LazySpenden = () => import("../views/Spenden.vue");
 const LazyNotFound = () => import("../views/NotFound.vue");
 
 Vue.use(VueRouter);
@@ -90,6 +91,17 @@ const routes: Array<RouteConfig> = [
         name: "Medien",
         path: "",
         component: LazyMedien,
+      },
+    ],
+  },
+  {
+    path: "/interessierte/spenden",
+    component: LazyRegularLayout,
+    children: [
+      {
+        name: "Spenden",
+        path: "",
+        component: LazySpenden,
       },
     ],
   },
