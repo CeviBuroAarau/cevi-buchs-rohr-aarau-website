@@ -70,6 +70,13 @@ export default {
             >Medien</router-link
           >
         </li>
+        <li>
+          <router-link
+            to="/interessierte/spenden"
+            v-on:click.native="onMobileNaviagation()"
+            >Spenden</router-link
+          >
+        </li>
       </ul>
     </li>
     <li>
