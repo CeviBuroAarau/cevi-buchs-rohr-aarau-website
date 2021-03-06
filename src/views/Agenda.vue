@@ -25,7 +25,9 @@ export default {
   },
   methods: {
     isUpcoming(element) {
-      return new Date(element.date) >= new Date();
+      const currentDay = new Date();
+      currentDay.setHours(0, 0, 0, 0);
+      return new Date(element.date) >= currentDay;
     },
     eventsByDate(date) {
       return this.eventInfos == null
