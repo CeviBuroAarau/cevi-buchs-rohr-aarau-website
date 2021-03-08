@@ -12,6 +12,7 @@ import ErrorReportingService from "./services/ErrorReportingService";
 import VueMatomo from "vue-matomo";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import formatDateFilter from "@/filters/DateFilter.ts";
 
 dom.watch();
 
@@ -48,5 +49,8 @@ if (process.env.NODE_ENV === "production") {
 new Vue({
   router,
   store,
+  filters: {
+    formatDateFilter,
+  },
   render: (h) => h(App),
 }).$mount("#app");
