@@ -217,6 +217,7 @@ export default Vue.extend({
           },
         })
         .then((resp) => {
+          // eslint-disable-next-line
           this.welcomeImages = resp.data.entries.map((entry: any) => {
             return {
               url: entry.image.path,
