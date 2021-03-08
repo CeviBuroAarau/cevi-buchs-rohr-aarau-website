@@ -1,97 +1,68 @@
-<script>
-import axios from "axios";
-import ErrorReportingService from "../services/ErrorReportingService";
+<script lang="ts">
+import ErrorReportingService from "@/services/ErrorReportingService";
+import { Component, Vue } from "vue-property-decorator";
+import AxiosUtil from "@/utils/AxiosUtil";
+import AgendaService from "@/services/AgendaService";
+import { Agenda, EventInfo } from "@/types/Agenda";
 
-export default {
+@Component({
   components: {},
-  data() {
-    return {
-      loading: false,
-      error: false,
-      events: null,
-      eventInfos: null,
-      publicPath: process.env.BASE_URL,
-      dataAuthorizationToken:
-        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
-      showModal: false,
-      activeEventInfo: null,
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData",
-  },
-  methods: {
-    isUpcoming(element) {
-      const currentDay = new Date();
-      currentDay.setHours(0, 0, 0, 0);
-      return new Date(element.date) >= currentDay;
-    },
-    eventsByDate(date) {
-      return this.eventInfos == null
-        ? []
-        : this.eventInfos.filter((event) => event.date === date);
-    },
-    fetchData() {
-      this.events = null;
-      this.eventInfos = null;
-      this.loading = true;
-      this.error = false;
+})
+export default class AgendaView extends Vue {
+  private loading = false;
+  private error = false;
+  private events: Agenda[] = [];
+  private eventInfos: EventInfo[] = [];
+  private publicPath = process.env.BASE_URL;
+  private dataAuthorizationToken =
+    process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION;
+  private showModal = false;
+  private activeEventInfo = null;
 
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+  mounted() {
+    this.events = [];
+    this.eventInfos = [];
+    this.loading = true;
+    this.error = false;
+
+    const service: AgendaService = new AgendaService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .getAgenda()
+      .then((agenda) => {
+        this.error = false;
+        this.loading = false;
+        this.events = agenda;
+      })
+      .catch((err) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
       });
 
-      instance
-        .get("collections/get/Agenda", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          this.error = false;
-          this.loading = false;
-          this.events = resp.data.entries;
-        })
-        .catch((err) => {
-          this.error = true;
-          this.loading = false;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
+    service
+      .getEventInfo()
+      .then((eventInfo) => {
+        this.error = false;
+        this.loading = false;
+        this.eventInfos = eventInfo;
+      })
+      .catch((err) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
+      });
+  }
 
-      instance
-        .get("collections/get/EventInfo", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          this.error = false;
-          this.loading = false;
-          this.eventInfos = resp.data.entries
-            .map((eventInfo) => {
-              return {
-                date: eventInfo.date,
-                scope: eventInfo.scope,
-                text: eventInfo.text,
-              };
-            })
-            .filter(this.isUpcoming);
-        })
-        .catch((err) => {
-          this.error = true;
-          this.loading = false;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  eventsByDate(date: Date) {
+    return this.eventInfos == null
+      ? []
+      : this.eventInfos.filter((event) => event.date === date);
+  }
+}
 </script>
 <template>
   <section class="section">
@@ -175,7 +146,7 @@ export default {
         </p>
         <div
           class="card agenda-item"
-          v-for="(event, eventIndex) in events.filter(isUpcoming).slice(0, 3)"
+          v-for="(event, eventIndex) in events"
           :key="eventIndex"
         >
           <header class="card-header">
