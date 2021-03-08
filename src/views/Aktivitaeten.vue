@@ -36,7 +36,7 @@
             :key="activityIndex"
             @click="index = activityIndex"
           >
-            <img :src="activity.thumbUrl" :alt="activity.title" />
+            <img :src="activity.thumb" :alt="activity.title" />
           </li>
         </ul>
       </div>
@@ -55,67 +55,52 @@
 }
 </style>
 
-<script>
+<script lang="ts">
 import { LightGallery } from "vue-light-gallery";
-import axios from "axios";
 import ErrorReportingService from "../services/ErrorReportingService";
+import { Component, Vue } from "vue-property-decorator";
+import AxiosUtil from "@/utils/AxiosUtil";
+import ActivitiesService from "@/services/ActivitiesService";
 
-export default {
+interface ActivityView {
+  title: string;
+  url: string;
+  thumb: string;
+}
+
+@Component({
   components: {
     LightGallery,
   },
-  data() {
-    return {
-      loading: false,
-      error: false,
-      activities: null,
-      index: null,
-      dataAuthorizationToken:
-        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData",
-  },
-  methods: {
-    fetchData() {
-      this.events = null;
-      this.loading = true;
-      this.error = false;
+})
+export default class Aktivitaeten extends Vue {
+  private loading = false;
+  private error = false;
+  private activities: ActivityView[] = [];
+  private index: number | null = null;
 
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+  mounted() {
+    this.activities = [];
+    this.loading = true;
+    this.error = false;
+
+    const service: ActivitiesService = new ActivitiesService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .getActivities()
+      .then((activities) => {
+        this.error = false;
+        this.loading = false;
+        this.activities = activities;
+      })
+      .catch((err) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
       });
-
-      instance
-        .get("collections/get/Activities", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          this.error = false;
-          this.loading = false;
-          this.activities = resp.data.entries.map((activity) => {
-            return {
-              title: activity.title,
-              url: process.env.VUE_APP_COCKPIT_FILES + activity.image.path,
-              thumbUrl: process.env.VUE_APP_COCKPIT_FILES + activity.thumb.path,
-            };
-          });
-        })
-        .catch((err) => {
-          this.error = true;
-          this.loading = false;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  }
+}
 </script>
