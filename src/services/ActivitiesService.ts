@@ -1,4 +1,4 @@
-import { CockpitActivities, Activity, ActivityRaw } from "@/types/Activity";
+import { CockpitActivities, Activity } from "@/types/Activity";
 import { AxiosInstance, AxiosResponse } from "axios";
 
 export default class ActivitiesService {

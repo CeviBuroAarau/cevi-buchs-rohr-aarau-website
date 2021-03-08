@@ -14,8 +14,6 @@ export default class AgendaView extends Vue {
   private events: Agenda[] = [];
   private eventInfos: EventInfo[] = [];
   private publicPath = process.env.BASE_URL;
-  private dataAuthorizationToken =
-    process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION;
   private showModal = false;
   private activeEventInfo = null;
 
