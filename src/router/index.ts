@@ -1,24 +1,24 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
-import FrontLayout from "../layouts/Front.vue";
+import FrontLayout from "@/layouts/Front.vue";
 
-const LazyRegularLayout = () => import("../layouts/Regular.vue");
-const LazyInteressierte = () => import("../views/Interessierte.vue");
-const LazySchnuppern = () => import("../views/Schnuppern.vue");
-const LazyAktivitaeten = () => import("../views/Aktivitaeten.vue");
-const LazyCeviSchweiz = () => import("../views/CeviSchweiz.vue");
-const LazyStandort = () => import("../views/Standort.vue");
-const LazyMedien = () => import("../views/Medien.vue");
-const LazyCevianer = () => import("../views/Cevianer.vue");
-const LazyAgenda = () => import("../views/Agenda.vue");
-const LazyAlbum = () => import("../views/Album.vue");
-const LazyLaedeli = () => import("../views/Laedeli.vue");
-const LazyAusbildung = () => import("../views/Ausbildung.vue");
-const LazyLeiterteam = () => import("../views/Leiterteam.vue");
-const LazyKontakt = () => import("../views/Kontakt.vue");
-const LazyVersion = () => import("../views/Version.vue");
-const LazySpenden = () => import("../views/Spenden.vue");
-const LazyNotFound = () => import("../views/NotFound.vue");
+const LazyRegularLayout = () => import("@/layouts/Regular.vue");
+const LazyInteressierte = () => import("@/views/Interessierte.vue");
+const LazySchnuppern = () => import("@/views/Schnuppern.vue");
+const LazyAktivitaeten = () => import("@/views/Aktivitaeten.vue");
+const LazyCeviSchweiz = () => import("@/views/CeviSchweiz.vue");
+const LazyStandort = () => import("@/views/Standort.vue");
+const LazyMedien = () => import("@/views/Medien.vue");
+const LazyCevianer = () => import("@/views/Cevianer.vue");
+const LazyAgenda = () => import("@/views/AgendaView.vue");
+const LazyAlbum = () => import("@/views/Album.vue");
+const LazyLaedeli = () => import("@/views/Laedeli.vue");
+const LazyAusbildung = () => import("@/views/Ausbildung.vue");
+const LazyLeiterteam = () => import("@/views/Leiterteam.vue");
+const LazyKontakt = () => import("@/views/Kontakt.vue");
+const LazyVersion = () => import("@/views/Version.vue");
+const LazySpenden = () => import("@/views/Spenden.vue");
+const LazyNotFound = () => import("@/views/NotFound.vue");
 
 Vue.use(VueRouter);
 

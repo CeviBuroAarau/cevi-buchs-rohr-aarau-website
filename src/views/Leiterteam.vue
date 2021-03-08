@@ -77,6 +77,18 @@
         </div>
       </div>
 
+      <div v-if="loading">
+        <p>Daten werden geladen.</p>
+        <progress class="progress is-small is-primary" max="100">15%</progress>
+      </div>
+
+      <div v-if="error">
+        <div class="notification is-danger">
+          Die Leiterliste können monentan nicht abgerufen werden. Bitte
+          versuchen Sie es später noch einmal.
+        </div>
+      </div>
+
       <h2 class="title is-2">Abteilungsleitung</h2>
 
       <ul style="display: flex; flex-wrap: wrap" v-if="this.leiterList != null">
@@ -197,75 +209,44 @@
   </section>
 </template>
 
-<script>
-import axios from "axios";
-import ErrorReportingService from "../services/ErrorReportingService";
+<script lang="ts">
+import { ErrorReportingService, LeaderService } from "@/services";
+import { Component, Vue } from "vue-property-decorator";
+import { AxiosUtil } from "@/utils";
+import { Leader } from "@/types";
 
-export default {
-  components: {},
-  data() {
-    return {
-      activeLeiter: null,
-      showModal: false,
-      leiterList: null,
-      dataAuthorizationToken:
-        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData",
-  },
-  methods: {
-    fetchData() {
-      this.events = null;
-      this.loading = true;
-      this.error = false;
+@Component({})
+export default class Leiterteam extends Vue {
+  private activeLeiter = null;
+  private showModal = false;
+  private leiterList: Leader[] = [];
+  private loading = false;
+  private error = false;
 
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+  mounted() {
+    this.leiterList = [];
+    this.loading = true;
+    this.error = false;
+
+    const service: LeaderService = new LeaderService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .getLeaders()
+      .then((leaders: Leader[]) => {
+        this.error = false;
+        this.loading = false;
+        this.leiterList = leaders;
+      })
+      .catch((err) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
       });
-
-      instance
-        .get("collections/get/Leader", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          this.error = false;
-          this.loading = false;
-
-          this.leiterList = resp.data.entries.map((leiter) => {
-            return {
-              scoutname: leiter.scoutname,
-              name: leiter.name,
-              function: leiter.function,
-              group: leiter.group,
-              birthyear: leiter.birthyear,
-              place: leiter.place,
-              profession: leiter.profession,
-              recreation: leiter.recreation,
-              inScoutsSince: leiter.in_scounts_since,
-              inScoutsBecause: leiter.in_scouts_because,
-              bestExperience: leiter.best_experiences,
-              file: process.env.VUE_APP_COCKPIT_FILES + leiter.image.path,
-            };
-          });
-        })
-        .catch((err) => {
-          this.error = true;
-          this.loading = false;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  }
+}
 </script>
 
 <style scoped lang="scss">

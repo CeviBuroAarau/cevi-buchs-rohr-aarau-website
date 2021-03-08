@@ -48,29 +48,27 @@
 @import "~leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.webpack.css"; // Re-uses
 </style>
 
-<script>
+<script lang="ts">
 import { latLng } from "leaflet";
 import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility";
+import { Component, Vue } from "vue-property-decorator";
 
-export default {
-  name: "Example",
+@Component({
   components: {
     LMap,
     LTileLayer,
     LMarker,
     LTooltip,
   },
-  data() {
-    return {
-      zoom: 16,
-      minZoom: 12,
-      center: latLng(47.392085, 8.084783),
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
-      pfarrhaus: latLng(47.39246, 8.084986),
-    };
-  },
-};
+})
+export default class Standort extends Vue {
+  private zoom = 16;
+  private minZoom = 12;
+  private center = latLng(47.392085, 8.084783);
+  private url = "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png";
+  private attribution =
+    '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors';
+  private pfarrhaus = latLng(47.39246, 8.084986);
+}
 </script>

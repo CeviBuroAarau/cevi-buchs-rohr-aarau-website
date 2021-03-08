@@ -1,5 +1,5 @@
-import MediaService from "@/services/MediaService";
-import { Media } from "@/types/Media";
+import { MediaService } from "@/services";
+import { Media } from "@/types";
 import axios from "axios";
 
 jest.mock("axios", () => {

@@ -11,27 +11,24 @@
   </div>
 </template>
 
-<script>
-import HeaderBar from "@/components/header-bar.vue";
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import Home from "@/components/home.vue";
+import HeaderBar from "@/components/header-bar.vue";
 
-export default {
-  name: "FrontLayout",
-  data() {
-    return {
-      mobileOpen: false,
-    };
-  },
+@Component({
   components: {
     HeaderBar,
     Home,
   },
-  methods: {
-    onMobileOpenChanged(value) {
-      this.mobileOpen = value;
-    },
-  },
-};
+})
+export default class FrontLayout extends Vue {
+  private mobileOpen = false;
+
+  onMobileOpenChanged(value: boolean) {
+    this.mobileOpen = value;
+  }
+}
 </script>
 
 <style scoped lang="scss">

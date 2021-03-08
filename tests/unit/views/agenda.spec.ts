@@ -1,8 +1,8 @@
 import { mount } from "@vue/test-utils";
-import Agenda from "@/views/Agenda.vue";
+import AgendaView from "@/views/AgendaView.vue";
 
 test("can be instantiated", () => {
-  const wrapper = mount(Agenda, {
+  const wrapper = mount(AgendaView, {
     stubs: ["router-link", "font-awesome-icon"],
   });
 

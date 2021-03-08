@@ -1,6 +1,6 @@
 <script lang="ts">
 import { Component, Prop, Vue } from "vue-property-decorator";
-import { Media } from "@/types/Media";
+import { Media } from "@/types";
 
 @Component
 export default class MediaTable extends Vue {

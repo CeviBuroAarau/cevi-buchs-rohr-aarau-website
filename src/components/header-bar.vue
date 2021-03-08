@@ -1,22 +1,15 @@
-<script>
-export default {
-  name: "HeaderBar",
-  components: {},
-  data() {
-    return {};
-  },
-  props: {
-    isMobileMenuOpen: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    onMobileOpenChanged() {
-      this.$emit("mobileOpenChanged", !this.isMobileMenuOpen);
-    },
-  },
-};
+<script lang="ts">
+import { Component, Prop, Vue, Emit } from "vue-property-decorator";
+
+@Component({})
+export default class HeaderBar extends Vue {
+  @Prop({ default: false }) isMobileMenuOpen!: boolean;
+
+  @Emit("mobileOpenChanged")
+  onMobileOpenChanged() {
+    return !this.isMobileMenuOpen;
+  }
+}
 </script>
 
 <template>

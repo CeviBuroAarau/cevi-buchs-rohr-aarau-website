@@ -1,59 +1,46 @@
-<script>
-import axios from "axios";
-import ErrorReportingService from "../services/ErrorReportingService";
+<script lang="ts">
+import { ErrorReportingService, KontaktService } from "@/services";
+import { AxiosUtil } from "@/utils";
 
-export default {
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({
   components: {},
-  data() {
-    return {
-      displaySuccess: false,
-      displayError: false,
-      name: "",
-      email: "",
-      message: "",
-      formAuthorizationToken:
-        process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
-    };
-  },
-  methods: {
-    send() {
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
-      });
+})
+export default class Kontakt extends Vue {
+  private displaySuccess = false;
+  private displayError = false;
+  private name = "";
+  private email = "";
+  private message = "";
 
-      instance
-        .post(
-          "forms/submit/contact",
-          {
-            form: {
-              name: this.name,
-              email: this.email,
-              message: this.message,
-            },
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + this.formAuthorizationToken,
-            },
-          }
-        )
-        .then(() => {
-          this.displayForm = false;
-          this.displaySuccess = true;
-          this.name = "";
-          this.email = "";
-          this.message = "";
-        })
-        .catch((err) => {
-          this.displayError = true;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  send() {
+    const service: KontaktService = new KontaktService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .submitForm({
+        form: {
+          name: this.name,
+          email: this.email,
+          message: this.message,
+        },
+      })
+      .then(() => {
+        this.displayError = false;
+        this.displaySuccess = true;
+        this.name = "";
+        this.email = "";
+        this.message = "";
+      })
+      .catch((err) => {
+        this.displayError = true;
+        errorService.report(err);
+      });
+  }
+}
 </script>
 
 <template>

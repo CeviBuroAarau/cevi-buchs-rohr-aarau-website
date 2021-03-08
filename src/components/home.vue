@@ -146,7 +146,7 @@
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 import axios from "axios";
-import ErrorReportingService from "../services/ErrorReportingService";
+import { ErrorReportingService } from "@/services";
 
 interface WelcomeImage {
   url: string;
@@ -162,8 +162,7 @@ export default Vue.extend({
       cevianerLinkTo: "/cevianer",
       interessierteLinkTo: "/interessierte",
       welcomeImages: [],
-      dataAuthorizationToken:
-        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
+      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_AUTHORIZATION,
     };
   },
   created() {

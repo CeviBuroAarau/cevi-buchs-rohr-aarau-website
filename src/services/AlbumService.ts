@@ -1,8 +1,8 @@
-import { CockpitMedia, Media } from "@/types";
+import { CockpitAlbum, CockpitAlbumEntry, Album } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 import { SortingUtil } from "@/utils";
 
-export class MediaService {
+export class AlbumService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {
@@ -19,17 +19,31 @@ export class MediaService {
     });
   }
 
-  private async retrieveMedia(): Promise<Media[]> {
-    const resp: AxiosResponse<CockpitMedia> = await this.axios.get<CockpitMedia>(
-      "collections/get/Media"
+  async getAlbums(): Promise<Album[]> {
+    const resp: AxiosResponse<CockpitAlbum> = await this.axios.get<CockpitAlbum>(
+      "collections/get/Album"
     );
 
-    let result: Media[] = resp.data.entries;
-    result.forEach((m) => {
-      m.file = process.env.VUE_APP_COCKPIT_FILES + m.file;
+    const tempResult: CockpitAlbumEntry[] = resp.data.entries;
+    let result: Album[] = tempResult.map((a) => {
+      return {
+        title: a.title,
+        dateString: a.dateString,
+        date: a.date,
+        year: a.year,
+        images: a.images.map((img) => {
+          return {
+            title: img.meta.title,
+            url: process.env.VUE_APP_COCKPIT_FILES + img.path,
+          };
+        }),
+        previewImage: {
+          url: process.env.VUE_APP_COCKPIT_FILES + a.previewImage.path,
+        },
+      };
     });
 
-    result = result.sort((a: Media, b: Media) => {
+    result = result.sort((a: Album, b: Album) => {
       return SortingUtil.sortDescending(a.date, b.date);
     });
 
@@ -47,15 +61,5 @@ export class MediaService {
         body[key] = new Date(value);
       }
     }
-  }
-
-  async getChronic(): Promise<Media[]> {
-    const media: Media[] = await this.retrieveMedia();
-    return media.filter((m) => m.type === "historic");
-  }
-
-  async getNews(): Promise<Media[]> {
-    const media: Media[] = await this.retrieveMedia();
-    return media.filter((m) => m.type !== "historic");
   }
 }

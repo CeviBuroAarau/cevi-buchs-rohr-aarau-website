@@ -1,22 +1,15 @@
-<script>
-export default {
-  name: "Navigation",
-  components: {},
-  data() {
-    return {};
-  },
-  props: {
-    isMobileMenuOpen: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  methods: {
-    onMobileNaviagation() {
-      this.$emit("mobileOpenChanged", false);
-    },
-  },
-};
+<script lang="ts">
+import { Component, Prop, Vue, Emit } from "vue-property-decorator";
+
+@Component({})
+export default class Navigation extends Vue {
+  @Prop({ default: false }) isMobileMenuOpen!: boolean;
+
+  @Emit("mobileOpenChanged")
+  onMobileNaviagation() {
+    return false;
+  }
+}
 </script>
 
 <template>
