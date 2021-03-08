@@ -16,27 +16,24 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
 import HeaderBar from "@/components/header-bar.vue";
 import Navigation from "@/components/navigation.vue";
 
-export default {
-  name: "RegularLayout",
-  data() {
-    return {
-      mobileOpen: false,
-    };
-  },
+@Component({
   components: {
     HeaderBar,
     Navigation,
   },
-  methods: {
-    onMobileOpenChanged(value) {
-      this.mobileOpen = value;
-    },
-  },
-};
+})
+export default class RegularLayout extends Vue {
+  private mobileOpen = false;
+
+  onMobileOpenChanged(value: boolean) {
+    this.mobileOpen = value;
+  }
+}
 </script>
 
 <style lang="scss">
