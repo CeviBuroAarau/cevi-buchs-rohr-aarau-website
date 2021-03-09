@@ -57,10 +57,9 @@
 
 <script lang="ts">
 import { LightGallery } from "vue-light-gallery";
-import ErrorReportingService from "../services/ErrorReportingService";
+import { ActivitiesService, ErrorReportingService } from "@/services";
 import { Component, Vue } from "vue-property-decorator";
-import AxiosUtil from "@/utils/AxiosUtil";
-import ActivitiesService from "@/services/ActivitiesService";
+import { AxiosUtil } from "@/utils";
 
 interface ActivityView {
   title: string;

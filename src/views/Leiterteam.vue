@@ -199,7 +199,7 @@
 
 <script>
 import axios from "axios";
-import ErrorReportingService from "../services/ErrorReportingService";
+import { ErrorReportingService } from "@/services";
 
 export default {
   components: {},

@@ -54,7 +54,7 @@ import { LMap, LTileLayer, LMarker, LTooltip } from "vue2-leaflet";
 import "leaflet-defaulticon-compatibility";
 
 export default {
-  name: "Example",
+  name: "Standort",
   components: {
     LMap,
     LTileLayer,

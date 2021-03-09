@@ -2,7 +2,7 @@ import Vue from "vue";
 import * as Sentry from "@sentry/vue";
 import { CaptureConsole } from "@sentry/integrations";
 
-export default class ErrorReportingService {
+export class ErrorReportingService {
   init() {
     if (process.env.NODE_ENV === "production") {
       Sentry.init({
