@@ -1,11 +1,8 @@
-<script>
-export default {
-  name: "App",
-  data() {
-    return {};
-  },
-  components: {},
-};
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class App extends Vue {}
 </script>
 
 <template>
