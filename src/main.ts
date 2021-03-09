@@ -4,15 +4,13 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
-import { faPhone } from "@fortawesome/free-solid-svg-icons/faPhone";
-import { faEnvelope } from "@fortawesome/free-solid-svg-icons/faEnvelope";
-import { faUser } from "@fortawesome/free-solid-svg-icons/faUser";
-import { faBars } from "@fortawesome/free-solid-svg-icons/faBars";
-import ErrorReportingService from "./services/ErrorReportingService";
+import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
+import { faUser, faBars } from "@fortawesome/free-solid-svg-icons";
+import { ErrorReportingService } from "@/services";
 import VueMatomo from "vue-matomo";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import formatDateFilter from "@/filters/DateFilter.ts";
+import { formatDateFilter } from "@/filters";
 
 dom.watch();
 

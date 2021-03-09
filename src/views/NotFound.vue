@@ -1,3 +1,12 @@
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({
+  components: {},
+})
+export default class NotFound extends Vue {}
+</script>
+
 <template>
   <section class="section">
     <div class="container">
@@ -8,6 +17,3 @@
     </div>
   </section>
 </template>
-<script>
-export default {};
-</script>

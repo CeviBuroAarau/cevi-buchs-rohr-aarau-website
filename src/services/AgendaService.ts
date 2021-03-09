@@ -1,12 +1,7 @@
-import {
-  CockpitAgenda,
-  Agenda,
-  CockpitEventInfo,
-  EventInfo,
-} from "@/types/Agenda";
+import { CockpitAgenda, Agenda, CockpitEventInfo, EventInfo } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 
-export default class AgendaService {
+export class AgendaService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {

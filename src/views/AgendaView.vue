@@ -1,9 +1,8 @@
 <script lang="ts">
-import ErrorReportingService from "@/services/ErrorReportingService";
+import { ErrorReportingService, AgendaService } from "@/services";
 import { Component, Vue } from "vue-property-decorator";
-import AxiosUtil from "@/utils/AxiosUtil";
-import AgendaService from "@/services/AgendaService";
-import { Agenda, EventInfo } from "@/types/Agenda";
+import { AxiosUtil } from "@/utils";
+import { Agenda, EventInfo } from "@/types";
 
 @Component({
   components: {},

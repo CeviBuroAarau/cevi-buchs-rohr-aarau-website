@@ -1,7 +1,7 @@
 import { shallowMount } from "@vue/test-utils";
 import MediaTable from "@/components/media-table.vue";
-import formatDateFilter from "@/filters/DateFilter.ts";
-import { Media } from "@/types/Media";
+import { formatDateFilter } from "@/filters";
+import { Media } from "@/types";
 
 const media: Media[] = [
   {

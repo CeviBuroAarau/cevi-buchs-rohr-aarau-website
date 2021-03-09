@@ -1,7 +1,7 @@
-import { CockpitActivities, Activity } from "@/types/Activity";
+import { CockpitActivities, Activity } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 
-export default class ActivitiesService {
+export class ActivitiesService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {

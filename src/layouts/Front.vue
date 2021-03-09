@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import HeaderBar from "@/components/header-bar.vue";
 import Home from "@/components/home.vue";
+import HeaderBar from "@/components/header-bar.vue";
 
 @Component({
   components: {

@@ -1,6 +1,6 @@
 import axios from "axios";
 
-class AxiosUtil {
+export class AxiosUtil {
   static getCockpitInstance() {
     return axios.create({
       baseURL: process.env.VUE_APP_COCKPIT_API,
@@ -13,5 +13,3 @@ class AxiosUtil {
     });
   }
 }
-
-export default AxiosUtil;

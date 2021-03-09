@@ -1,7 +1,7 @@
-import { CockpitMedia, Media } from "@/types/Media";
+import { CockpitMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 
-export default class MediaService {
+export class MediaService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {

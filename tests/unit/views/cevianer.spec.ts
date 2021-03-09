@@ -1,5 +1,5 @@
 import { mount } from "@vue/test-utils";
-import Cevianer from "@/views/Aktivitaeten.vue";
+import Cevianer from "@/views/Cevianer.vue";
 
 test("can be instantiated", () => {
   const wrapper = mount(Cevianer, {

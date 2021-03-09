@@ -1,13 +1,10 @@
-<script>
-export default {
-  name: "Spenden",
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({
   components: {},
-  data() {
-    return {};
-  },
-  props: {},
-  methods: {},
-};
+})
+export default class Spenden extends Vue {}
 </script>
 
 <template>

@@ -3,24 +3,20 @@
     <div class="container">
       <h1 class="title is-1">Version</h1>
       <p class="content">
-        Modus: {{ this.environment }}<br />
-        Version: {{ this.version }}<br />
-        Erstellungsdatum: {{ this.date }}<br />
-        Git Revision: {{ this.revision }}
+        Modus: {{ process.env.NODE_ENV }}<br />
+        Version: {{ process.env.VUE_APP_VERSION }}<br />
+        Erstellungsdatum: {{ process.env.VUE_APP_DATE }}<br />
+        Git Revision: {{ process.env.VUE_APP_REVISION }}
       </p>
     </div>
   </section>
 </template>
-<script>
-export default {
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component({
   components: {},
-  data() {
-    return {
-      environment: process.env.NODE_ENV,
-      version: process.env.VUE_APP_VERSION,
-      revision: process.env.VUE_APP_REVISION,
-      date: process.env.VUE_APP_DATE,
-    };
-  },
-};
+})
+export default class Version extends Vue {}
 </script>

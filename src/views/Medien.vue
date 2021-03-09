@@ -12,11 +12,10 @@
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import MediaService from "@/services/MediaService";
-import ErrorReportingService from "@/services/ErrorReportingService";
+import { MediaService, ErrorReportingService } from "@/services";
 import { Media } from "@/types/Media";
 import MediaTable from "@/components/media-table.vue";
-import AxiosUtil from "@/utils/AxiosUtil";
+import { AxiosUtil } from "@/utils";
 
 @Component({
   components: {

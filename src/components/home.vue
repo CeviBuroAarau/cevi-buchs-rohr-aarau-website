@@ -146,7 +146,7 @@
 <script lang="ts">
 import { Vue } from "vue-property-decorator";
 import axios from "axios";
-import ErrorReportingService from "../services/ErrorReportingService";
+import { ErrorReportingService } from "@/services";
 
 interface WelcomeImage {
   url: string;

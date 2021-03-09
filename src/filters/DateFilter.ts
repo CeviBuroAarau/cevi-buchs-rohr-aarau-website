@@ -1,6 +1,6 @@
 import Vue from "vue";
 
-const formatDateFilter = Vue.filter("formatDate", (date: Date) => {
+export const formatDateFilter = Vue.filter("formatDate", (date: Date) => {
   if (date === null) {
     return "";
   }
@@ -11,4 +11,3 @@ const formatDateFilter = Vue.filter("formatDate", (date: Date) => {
     year: "numeric",
   });
 });
-export default formatDateFilter;

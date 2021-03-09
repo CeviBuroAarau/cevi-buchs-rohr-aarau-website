@@ -70,7 +70,7 @@
 <script>
 import axios from "axios";
 import { LightGallery } from "vue-light-gallery";
-import ErrorReportingService from "../services/ErrorReportingService";
+import { ErrorReportingService } from "@/services";
 
 export default {
   components: {
