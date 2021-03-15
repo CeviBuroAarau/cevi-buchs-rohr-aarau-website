@@ -6,8 +6,7 @@ export class AxiosUtil {
       baseURL: process.env.VUE_APP_COCKPIT_API,
       timeout: 10000,
       headers: {
-        Authorization:
-          "Bearer " + process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
+        Authorization: "Bearer " + process.env.VUE_APP_COCKPIT_AUTHORIZATION,
         "Content-Type": "application/json",
       },
     });
