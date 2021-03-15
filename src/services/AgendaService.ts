@@ -1,5 +1,6 @@
 import { CockpitAgenda, Agenda, CockpitEventInfo, EventInfo } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
+import { SortingUtil } from "@/utils";
 
 export class AgendaService {
   private axios: AxiosInstance;
@@ -25,9 +26,13 @@ export class AgendaService {
 
     const currentDay = new Date();
     currentDay.setHours(0, 0, 0, 0);
-    const result: Agenda[] = resp.data.entries
+    let result: Agenda[] = resp.data.entries
       .filter((a) => a.date >= currentDay)
       .slice(0, 3);
+
+    result = result.sort((a: Agenda, b: Agenda) => {
+      return SortingUtil.sortAscending(a.date, b.date);
+    });
 
     return result;
   }
