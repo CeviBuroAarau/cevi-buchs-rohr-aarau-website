@@ -29,22 +29,22 @@
         <ul>
           <li
             class="vue-light-gallery-thumb"
-            v-for="(albums, albumIndex) in albums"
+            v-for="(album, albumIndex) in albums"
             :key="albumIndex"
             @click="
-              activeAlbum = albums.images;
+              activeAlbum = album.images;
               index = 0;
             "
           >
             <div class="card">
               <div class="card-image">
-                <img :src="albums.preview.url" alt="" />
+                <img :src="album.previewImage.url" alt="" />
               </div>
               <div class="card-content">
                 <div class="media">
                   <div class="media-content">
-                    <p class="title is-4">{{ albums.title }}</p>
-                    <p class="subtitle is-6">{{ albums.dateString }}</p>
+                    <p class="title is-4">{{ album.title }}</p>
+                    <p class="subtitle is-6">{{ album.dateString }}</p>
                   </div>
                 </div>
               </div>
@@ -67,85 +67,47 @@
 }
 </style>
 
-<script>
-import axios from "axios";
+<script lang="ts">
 import { LightGallery } from "vue-light-gallery";
-import { ErrorReportingService } from "@/services";
+import { AlbumService, ErrorReportingService } from "@/services";
+import { Component, Vue } from "vue-property-decorator";
+import { AxiosUtil } from "@/utils";
+import { Album } from "@/types";
 
-export default {
+@Component({
   components: {
     LightGallery,
   },
-  data() {
-    return {
-      loading: false,
-      error: false,
-      activeAlbum: [],
-      albums: null,
-      index: null,
-      dataAuthorizationToken:
-        process.env.VUE_APP_COCKPIT_DATA_READ_AUTHORIZATION,
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData",
-  },
-  methods: {
-    formatDate(dateString) {
-      const reggie = /(\d{2}).(\d{2}).(\d{4})/,
-        [, day, month, year] = reggie.exec(dateString);
-      return new Date(year, month - 1, day, 0, 0, 0);
-    },
-    fetchData() {
-      this.albums = null;
-      this.loading = true;
-      this.error = false;
+})
+export default class AlbumView extends Vue {
+  private loading = false;
+  private error = false;
+  private activeAlbum: Album | null = null;
+  private albums: Album[] = [];
+  private index: number | null = null;
 
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+  mounted() {
+    this.albums = [];
+    this.loading = true;
+    this.error = false;
+
+    const service: AlbumService = new AlbumService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .getAlbums()
+      .then((albums: Album[]) => {
+        this.error = false;
+        this.loading = false;
+        this.albums = albums;
+      })
+      .catch((err: any) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
       });
-
-      instance
-        .get("collections/get/Album", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          this.error = false;
-          this.loading = false;
-          this.albums = resp.data.entries.map((album) => {
-            return {
-              title: album.title,
-              dateString: album.dateString,
-              date: this.formatDate(album.date),
-              year: album.year,
-              images: album.images.map((image) => {
-                return {
-                  title: image.meta.title,
-                  url: process.env.VUE_APP_COCKPIT_FILES + image.path,
-                };
-              }),
-              preview: {
-                url:
-                  process.env.VUE_APP_COCKPIT_FILES + album.previewImage.path,
-              },
-            };
-          });
-          this.albums.sort((first, second) => first.date < second.date);
-        })
-        .catch((err) => {
-          this.error = true;
-          this.loading = false;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  }
+}
 </script>
