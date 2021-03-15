@@ -13,7 +13,7 @@ export default {
       email: "",
       phonenumber: "",
       message: "",
-      authorizationToken: process.env.VUE_APP_COCKPIT_FORM_SUBMIT_AUTHORIZATION,
+      authorizationToken: process.env.VUE_APP_COCKPIT_AUTHORIZATION,
     };
   },
   methods: {
