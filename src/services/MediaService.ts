@@ -1,5 +1,6 @@
 import { CockpitMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
+import { SortingUtil } from "@/utils";
 
 export class MediaService {
   private axios: AxiosInstance;
@@ -23,9 +24,13 @@ export class MediaService {
       "collections/get/Media"
     );
 
-    const result: Media[] = resp.data.entries;
+    let result: Media[] = resp.data.entries;
     result.forEach((m) => {
       m.file = process.env.VUE_APP_COCKPIT_FILES + m.file;
+    });
+
+    result = result.sort((a: Media, b: Media) => {
+      return SortingUtil.sortDescending(a.date, b.date);
     });
 
     return result;
