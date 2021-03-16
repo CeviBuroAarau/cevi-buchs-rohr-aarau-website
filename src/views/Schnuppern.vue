@@ -1,61 +1,46 @@
-<script>
-import axios from "axios";
-import { ErrorReportingService } from "@/services";
+<script lang="ts">
+import { ErrorReportingService, SchnuppernService } from "@/services";
+import { Component, Vue } from "vue-property-decorator";
+import { AxiosUtil } from "@/utils";
 
-export default {
-  components: {},
-  data() {
-    return {
-      displayForm: false,
-      displaySuccess: false,
-      displayError: false,
-      name: "",
-      email: "",
-      phonenumber: "",
-      message: "",
-      authorizationToken: process.env.VUE_APP_COCKPIT_AUTHORIZATION,
-    };
-  },
-  methods: {
-    subscribe() {
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+@Component({})
+export default class Schnuppern extends Vue {
+  private displayForm = false;
+  private displaySuccess = false;
+  private displayError = false;
+  private name = "";
+  private email = "";
+  private phonenumber = "";
+  private message = "";
+
+  subscribe() {
+    const service: SchnuppernService = new SchnuppernService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .submitForm({
+        form: {
+          name: this.name,
+          email: this.email,
+          phonenumber: this.phonenumber,
+          message: this.message,
+        },
+      })
+      .then(() => {
+        this.displayForm = false;
+        this.displaySuccess = true;
+        this.name = "";
+        this.email = "";
+        this.message = "";
+      })
+      .catch((err) => {
+        this.displayError = true;
+        errorService.report(err);
       });
-
-      instance
-        .post(
-          "forms/submit/join",
-          {
-            form: {
-              name: this.name,
-              email: this.email,
-              phonenumber: this.phonenumber,
-              message: this.message,
-            },
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + this.authorizationToken,
-            },
-          }
-        )
-        .then(() => {
-          this.displayForm = false;
-          this.displaySuccess = true;
-          this.name = "";
-          this.email = "";
-          this.message = "";
-        })
-        .catch((err) => {
-          this.displayError = true;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  }
+}
 </script>
 
 <style scoped lang="scss">
