@@ -1,5 +1,5 @@
 import { KontaktFormRequest, KontaktFormResponse } from "@/types";
-import { AxiosInstance, AxiosResponse } from "axios";
+import { AxiosInstance } from "axios";
 
 export class KontaktService {
   private axios: AxiosInstance;
@@ -9,9 +9,6 @@ export class KontaktService {
   }
 
   async submitForm(data: KontaktFormRequest) {
-    const resp: AxiosResponse<KontaktFormResponse> = await this.axios.post<KontaktFormResponse>(
-      "forms/submit/contact",
-      data
-    );
+    await this.axios.post<KontaktFormResponse>("forms/submit/contact", data);
   }
 }

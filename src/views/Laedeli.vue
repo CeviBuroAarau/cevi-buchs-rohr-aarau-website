@@ -9,6 +9,19 @@
         Bestellungen übers Internet tätigen. Sie können aber natürlich auch nach
         einem Jungschinachmittag direkt bei uns vorbeikommen.
       </p>
+
+      <div v-if="loading">
+        <p>Daten werden geladen.</p>
+        <progress class="progress is-small is-primary" max="100">15%</progress>
+      </div>
+
+      <div v-if="error">
+        <div class="notification is-danger">
+          Die Artikel können monentan nicht abgerufen werden. Bitte versuchen
+          Sie es später noch einmal.
+        </div>
+      </div>
+
       <h2 class="subtitle is-2">Reguläre Artikel</h2>
       <ul v-if="this.articleList != null">
         <li
@@ -270,113 +283,80 @@
 }
 </style>
 
-<script>
-import axios from "axios";
-import { ErrorReportingService } from "@/services";
+<script lang="ts">
+import { ErrorReportingService, ShopService } from "@/services";
+import { Component, Vue } from "vue-property-decorator";
+import { AxiosUtil } from "@/utils";
+import { Article } from "@/types";
 
-export default {
-  components: {},
-  data() {
-    return {
-      displayForm: false,
-      displayError: false,
-      displaySuccess: false,
-      errormessage: "",
-      name: "",
-      email: "",
-      articles: "",
-      adress: "",
-      deliveryMethod: "",
-      articleList: null,
-      formAuthorizationToken: process.env.VUE_APP_COCKPIT_AUTHORIZATION,
-      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_AUTHORIZATION,
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData",
-  },
-  methods: {
-    order() {
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+@Component({})
+export default class Laedeli extends Vue {
+  private displayForm = false;
+  private displayError = false;
+  private displaySuccess = false;
+  private errormessage = "";
+  private error = false;
+  private loading = false;
+  private name = "";
+  private email = "";
+  private articles = "";
+  private adress = "";
+  private deliveryMethod = "";
+  private articleList: Article[] = [];
+
+  mounted() {
+    const service: ShopService = new ShopService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    this.articleList = [];
+    this.loading = true;
+    this.error = false;
+
+    service
+      .getArticles()
+      .then((articles: Article[]) => {
+        this.error = false;
+        this.loading = false;
+        this.articleList = articles;
+      })
+      .catch((err) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
       });
+  }
 
-      instance
-        .post(
-          "forms/submit/shoporder",
-          {
-            form: {
-              name: this.name,
-              email: this.email,
-              articles: this.articles,
-              deliveryMethod: this.deliveryMethod,
-              adress: this.adress,
-            },
-          },
-          {
-            headers: {
-              Authorization: "Bearer " + this.formAuthorizationToken,
-            },
-          }
-        )
-        .then(() => {
-          this.displayForm = false;
-          this.displaySuccess = true;
-          this.name = "";
-          this.email = "";
-          this.articles = "";
-          this.deliveryMethod = "";
-          this.adress = "";
-        })
-        .catch((err) => {
-          this.displayError = true;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-    fetchData() {
-      this.events = null;
-      this.loading = true;
-      this.error = false;
+  order() {
+    const service: ShopService = new ShopService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
 
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+    service
+      .submitForm({
+        form: {
+          name: this.name,
+          email: this.email,
+          articles: this.articles,
+          deliveryMethod: this.deliveryMethod,
+          adress: this.adress,
+        },
+      })
+      .then(() => {
+        this.displayForm = false;
+        this.displaySuccess = true;
+        this.name = "";
+        this.email = "";
+        this.articles = "";
+        this.deliveryMethod = "";
+        this.adress = "";
+      })
+      .catch((err) => {
+        this.displayError = true;
+        errorService.report(err);
       });
-
-      instance
-        .get("collections/get/Shop", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          this.error = false;
-          this.loading = false;
-
-          this.articleList = resp.data.entries.map((article) => {
-            return {
-              category: article.category,
-              file: process.env.VUE_APP_COCKPIT_FILES + article.image.path,
-              name: article.name,
-              description: article.description,
-              price: article.price,
-            };
-          });
-        })
-        .catch((err) => {
-          this.error = true;
-          this.loading = false;
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-};
+  }
+}
 </script>

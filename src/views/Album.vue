@@ -103,7 +103,7 @@ export default class AlbumView extends Vue {
         this.loading = false;
         this.albums = albums;
       })
-      .catch((err: any) => {
+      .catch((err) => {
         this.error = true;
         this.loading = false;
         errorService.report(err);
