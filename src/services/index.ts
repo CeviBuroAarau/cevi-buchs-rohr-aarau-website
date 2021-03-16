@@ -4,3 +4,4 @@ export * from "./AlbumService";
 export * from "./ErrorReportingService";
 export * from "./KontaktService";
 export * from "./MediaService";
+export * from "./ShopService";

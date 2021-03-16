@@ -35,7 +35,7 @@ export default class Kontakt extends Vue {
         this.email = "";
         this.message = "";
       })
-      .catch((err: any) => {
+      .catch((err) => {
         this.displayError = true;
         errorService.report(err);
       });
