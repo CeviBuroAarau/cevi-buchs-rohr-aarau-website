@@ -1,8 +1,9 @@
-name: Build
+name: Build Main
 
 on:
   push:
-  pull_request:
+    branches:
+      - main
   schedule:
     - cron: '0 20 1 * *'
 
@@ -35,12 +36,6 @@ jobs:
     - name: "Install Dependencies"
       run: yarn --frozen-lockfile
 
-    - name: generate build number
-      id: build_number
-      uses: zyborg/gh-action-buildnum@v1
-      with:
-        gist_token: ${{ secrets.GIST_TOKEN }}
-
     - name: get date and revision
       id: date_and_rev
       run: |
@@ -49,7 +44,6 @@ jobs:
 
     - name: set env variables
       run: |
-        sed -i 's#VUE_APP_VERSION=Not specified#VUE_APP_VERSION=${{ steps.build_number.outputs.global_build_number }}#g' .env
         sed -i 's#VUE_APP_DATE=Not specified#VUE_APP_DATE=${{ steps.date_and_rev.outputs.created }}#g' .env
         sed -i 's#VUE_APP_REVISION=Not specified#VUE_APP_REVISION=${{ steps.date_and_rev.outputs.revision }}#g' .env
         sed -i 's#SENTRY_AUTH_TOKEN=Not specified#SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_TOKEN }}#g' .env
@@ -111,7 +105,6 @@ jobs:
   buildDockerImage:
     runs-on: ubuntu-latest
     needs: [build_and_test, sonarcloud]
-    if: github.ref == 'refs/heads/main'
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -171,7 +164,6 @@ jobs:
     environment:
       name: test
       url: "https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/"
-    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v2
 

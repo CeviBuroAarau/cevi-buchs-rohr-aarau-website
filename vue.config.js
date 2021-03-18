@@ -12,7 +12,10 @@ module.exports = {
   },
   // eslint-disable-next-line
   configureWebpack: (config) => {
-    if (process.env.NODE_ENV === "production") {
+    if (
+      process.env.NODE_ENV === "production" &&
+      process.env.SENTRY_AUTH_TOKEN !== "Not specified"
+    ) {
       return {
         plugins: [
           new BundleAnalyzerPlugin({
