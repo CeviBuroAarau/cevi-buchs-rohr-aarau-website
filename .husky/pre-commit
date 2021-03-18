@@ -1,4 +1,15 @@
-#!/bin/sh
+#!/bin/bash
+set -o pipefail
+IFS=$'\n\t'
 . "$(dirname "$0")/_/husky.sh"
 
-yarn lint && yarn yaml-validator .github/workflows/build.yml && yarn yaml-validator .github/workflows/prod.yml && yarn test:unit && sed -i -e "s#https://nexus.uhlme.ch/repository/npm-group#https://registry.yarnpkg.com/#g" yarn.lock && git diff --name-only --cached --diff-filter=d | xargs -l git add
+yarn lint
+yarn yaml-validator .github/workflows/analyze.yml
+yarn yaml-validator .github/workflows/build_branch_and_pr.yml
+yarn yaml-validator .github/workflows/build_main.yml
+yarn yaml-validator .github/workflows/issue-branch.yml
+yarn yaml-validator .github/workflows/prod.yml
+yarn yaml-validator .github/dependabot.yml
+sed -i -e "s#https://nexus.uhlme.ch/repository/npm-group#https://registry.yarnpkg.com/#g" yarn.lock
+yarn test:unit
+git diff --name-only --cached --diff-filter=d | xargs -l git add
