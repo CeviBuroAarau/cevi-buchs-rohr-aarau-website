@@ -1,7 +1,7 @@
 <script lang="ts">
 import { ErrorReportingService, AgendaService } from "@/services";
 import { Component, Vue } from "vue-property-decorator";
-import { AxiosUtil } from "@/utils";
+import { AxiosUtil, DateUtils } from "@/utils";
 import { Agenda, EventInfo } from "@/types";
 
 @Component({
@@ -57,7 +57,9 @@ export default class AgendaView extends Vue {
   eventsByDate(date: Date) {
     return this.eventInfos == null
       ? []
-      : this.eventInfos.filter((event) => event.date === date);
+      : this.eventInfos.filter((event) =>
+          DateUtils.isSameDay(event.date, date)
+        );
   }
 }
 </script>
