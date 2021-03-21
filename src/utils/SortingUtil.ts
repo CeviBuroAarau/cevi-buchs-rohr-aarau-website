@@ -1,5 +1,5 @@
 export class SortingUtil {
-  static sortDescending(a: Date, b: Date) {
+  static sortDescending(a: Date, b: Date): number {
     if (a > b) {
       return -1;
     } else if (a === b) {
@@ -9,7 +9,8 @@ export class SortingUtil {
     }
   }
 
-  static sortAscending(a: Date, b: Date) {
-    return -1 * this.sortDescending(a, b);
+  static sortAscending(a: Date, b: Date): number {
+    const res = -1 * this.sortDescending(a, b);
+    return Object.is(res, -0) ? 0 : res;
   }
 }
