@@ -7,3 +7,4 @@ export * from "./LeaderService";
 export * from "./MediaService";
 export * from "./SchnuppernService";
 export * from "./ShopService";
+export * from "./WelcomeImageService";

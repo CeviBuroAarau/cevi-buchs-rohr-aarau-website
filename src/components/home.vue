@@ -144,97 +144,67 @@
 </template>
 
 <script lang="ts">
-import { Vue } from "vue-property-decorator";
-import axios from "axios";
-import { ErrorReportingService } from "@/services";
+import { ErrorReportingService, WelcomeImageService } from "@/services";
+import { AxiosUtil } from "@/utils";
+import { Component, Prop, Vue } from "vue-property-decorator";
+import { WelcomeImage } from "@/types";
 
-interface WelcomeImage {
-  url: string;
-}
+@Component({})
+export default class Home extends Vue {
+  @Prop({ default: false }) isMobileMenuOpen!: boolean;
 
-export default Vue.extend({
-  name: "Home",
-  data() {
-    return {
-      activeBackgroundImage: "",
-      cevianerLinkText: "Cevianer/In",
-      interessierteLinkText: "Interessierte",
-      cevianerLinkTo: "/cevianer",
-      interessierteLinkTo: "/interessierte",
-      welcomeImages: [],
-      dataAuthorizationToken: process.env.VUE_APP_COCKPIT_AUTHORIZATION,
-    };
-  },
-  created() {
-    this.fetchData();
-  },
-  watch: {
-    $route: "fetchData",
-  },
-  props: {
-    isMobileMenuOpen: {
-      type: Boolean,
-      default: false,
-    },
-  },
+  private activeBackgroundImage = "";
+  private cevianerLinkText = "Cevianer/In";
+  private interessierteLinkText = "Interessierte";
+  private cevianerLinkTo = "/cevianer";
+  private interessierteLinkTo = "/interessierte";
+  private welcomeImages: WelcomeImage[] = [];
+
   mounted() {
     this.$nextTick(() => {
       window.addEventListener("resize", this.onResize);
       this.onResize();
     });
-  },
-  methods: {
-    onMobileNaviagation() {
-      this.$emit("mobileOpenChanged", false);
-    },
-    onResize() {
-      if (window.innerWidth <= 768) {
-        this.cevianerLinkText = "Mehr Info";
-        this.interessierteLinkText = "Mehr Info";
-        this.cevianerLinkTo = "/cevianer";
-        this.interessierteLinkTo = "/interessierte";
-      } else {
-        this.cevianerLinkText = "Cevianer/In";
-        this.interessierteLinkText = "Interessierte";
-        this.cevianerLinkTo = "#";
-        this.interessierteLinkTo = "#";
-      }
-    },
-    fetchData() {
-      this.welcomeImages = [];
 
-      const instance = axios.create({
-        baseURL: process.env.VUE_APP_COCKPIT_API,
-        timeout: 10000,
-        headers: { "Content-Type": "application/json" },
+    this.welcomeImages = [];
+
+    const service: WelcomeImageService = new WelcomeImageService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const errorService: ErrorReportingService = new ErrorReportingService();
+
+    service
+      .getImages()
+      .then((welcomeImages) => {
+        this.welcomeImages = welcomeImages;
+
+        const index = Math.floor(Math.random() * this.welcomeImages.length);
+        const file: WelcomeImage = this.welcomeImages[index];
+        this.activeBackgroundImage = file.url;
+      })
+      .catch((err) => {
+        errorService.report(err);
       });
+  }
 
-      instance
-        .get("collections/get/WelcomeImages", {
-          headers: {
-            Authorization: "Bearer " + this.dataAuthorizationToken,
-          },
-        })
-        .then((resp) => {
-          // eslint-disable-next-line
-          this.welcomeImages = resp.data.entries.map((entry: any) => {
-            return {
-              url: entry.image.path,
-            };
-          });
+  onMobileNaviagation() {
+    this.$emit("mobileOpenChanged", false);
+  }
 
-          const index = Math.floor(Math.random() * this.welcomeImages.length);
-          const file: WelcomeImage = this.welcomeImages[index];
-          this.activeBackgroundImage =
-            process.env.VUE_APP_COCKPIT_FILES + file.url;
-        })
-        .catch((err) => {
-          const errorReportingService = new ErrorReportingService();
-          errorReportingService.report(err);
-        });
-    },
-  },
-});
+  onResize() {
+    if (window.innerWidth <= 768) {
+      this.cevianerLinkText = "Mehr Info";
+      this.interessierteLinkText = "Mehr Info";
+      this.cevianerLinkTo = "/cevianer";
+      this.interessierteLinkTo = "/interessierte";
+    } else {
+      this.cevianerLinkText = "Cevianer/In";
+      this.interessierteLinkText = "Interessierte";
+      this.cevianerLinkTo = "#";
+      this.interessierteLinkTo = "#";
+    }
+  }
+}
 </script>
 
 <style scoped lang="scss">

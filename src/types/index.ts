@@ -6,3 +6,4 @@ export * from "./Leader";
 export * from "./Media";
 export * from "./Schnuppern";
 export * from "./Shop";
+export * from "./WelcomeImage";
