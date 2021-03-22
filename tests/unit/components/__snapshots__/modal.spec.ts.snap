@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render success 1`] = `
+<div
+  class="modal"
+>
+  <div
+    class="modal-background"
+  />
+   
+  <div
+    class="modal-card"
+  >
+    <header
+      class="modal-card-head"
+    >
+      <p
+        class="modal-card-title"
+      >
+        Titel
+      </p>
+    </header>
+     
+    <section
+      class="modal-card-body"
+    >
+      <div
+        class="notification"
+      >
+        
+        Message
+      
+      </div>
+    </section>
+     
+    <footer
+      class="modal-card-foot"
+    >
+      <button
+        class="button is-success"
+      >
+        OK
+      </button>
+    </footer>
+  </div>
+</div>
+`;
+
+exports[`renders error 1`] = `
+<div
+  class="modal"
+>
+  <div
+    class="modal-background"
+  />
+   
+  <div
+    class="modal-card"
+  >
+    <header
+      class="modal-card-head"
+    >
+      <p
+        class="modal-card-title"
+      >
+        Titel
+      </p>
+    </header>
+     
+    <section
+      class="modal-card-body"
+    >
+      <div
+        class="notification is-danger"
+      >
+        
+        Message
+      
+      </div>
+    </section>
+     
+    <footer
+      class="modal-card-foot"
+    >
+      <button
+        class="button is-success"
+      >
+        OK
+      </button>
+    </footer>
+  </div>
+</div>
+`;

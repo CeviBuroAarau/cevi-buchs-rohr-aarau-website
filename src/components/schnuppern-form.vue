@@ -1,11 +1,19 @@
 <script lang="ts">
 import { ErrorReportingService, SchnuppernService } from "@/services";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { SchnuppernFormState } from "@/types";
+import Modal from "@/components/modal.vue";
 
-@Component
+@Component({
+  components: {
+    Modal,
+  },
+})
 export default class SchnuppernForm extends Vue {
+  @Ref("successModal") readonly successModal!: Modal;
+  @Ref("errorModal") readonly errorModal!: Modal;
+
   private state: SchnuppernFormState = SchnuppernFormState.NotDisplayed;
   private name = "";
   private email = "";
@@ -29,13 +37,15 @@ export default class SchnuppernForm extends Vue {
         },
       })
       .then(() => {
-        this.state = SchnuppernFormState.Success;
+        this.state = SchnuppernFormState.NotDisplayed;
+        this.successModal.open();
         this.name = "";
         this.email = "";
         this.message = "";
       })
       .catch((err) => {
-        this.state = SchnuppernFormState.Error;
+        this.state = SchnuppernFormState.NotDisplayed;
+        this.errorModal.open();
         errorService.report(err);
       });
   }
@@ -156,47 +166,18 @@ export default class SchnuppernForm extends Vue {
       </div>
     </div>
 
-    <div
-      class="modal"
-      :class="{
-        'is-active': state == SchnuppernFormState.Success,
-      }"
-    >
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Danke für die Anfrage</p>
-        </header>
-        <section class="modal-card-body">
-          Wir beantworten Ihre Anfrage in der Regel innert 2 Arbeitstagen.
-        </section>
-        <footer class="modal-card-foot">
-          <button class="button is-success" v-on:click="close()">OK</button>
-        </footer>
-      </div>
-    </div>
+    <modal
+      title="Danke für die Anfrage"
+      message="Wir beantworten Ihre Anfrage in der Regel innert 2 Arbeitstagen."
+      ref="successModal"
+    ></modal>
 
-    <div
-      class="modal"
-      :class="{
-        'is-active': state == SchnuppernFormState.Error,
-      }"
-    >
-      <div class="modal-background"></div>
-      <div class="modal-card">
-        <header class="modal-card-head">
-          <p class="modal-card-title">Anfrage fehlgeschlagen</p>
-        </header>
-        <section class="modal-card-body">
-          <div class="notification is-danger">
-            Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
-            nocheinmal.
-          </div>
-        </section>
-        <footer class="modal-card-foot">
-          <button class="button is-success" v-on:click="close()">OK</button>
-        </footer>
-      </div>
-    </div>
+    <modal
+      title="Anfrage fehlgeschlagen"
+      message="Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
+            nocheinmal."
+      type="error"
+      ref="errorModal"
+    ></modal>
   </div>
 </template>
