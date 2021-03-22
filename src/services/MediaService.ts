@@ -1,6 +1,6 @@
 import { CockpitMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil } from "@/utils";
+import { SortingUtil, DateUtils } from "@/utils";
 
 export class MediaService {
   private axios: AxiosInstance;
@@ -44,7 +44,7 @@ export class MediaService {
     for (const key of Object.keys(body)) {
       if (key == searchKey) {
         const value = body[key];
-        body[key] = new Date(value);
+        body[key] = DateUtils.parseDateWithoutTime(value);
       }
     }
   }
