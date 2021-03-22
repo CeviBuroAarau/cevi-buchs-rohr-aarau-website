@@ -20,6 +20,4 @@ export interface SchnuppernFormResponse {
 export enum SchnuppernFormState {
   NotDisplayed,
   Displayed,
-  Error,
-  Success,
 }
