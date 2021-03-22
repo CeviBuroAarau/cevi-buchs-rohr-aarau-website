@@ -65,7 +65,7 @@
               </tr>
               <tr>
                 <td>Tollste Cevi Erlebnisse</td>
-                <td>{{ activeLeiter.bestExperience }}</td>
+                <td>{{ activeLeiter.bestExperiences }}</td>
               </tr>
             </table>
           </section>
