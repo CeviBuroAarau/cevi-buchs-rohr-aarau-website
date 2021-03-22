@@ -23,7 +23,7 @@ export class LeaderService {
         place: leader.place,
         profession: leader.profession,
         recreation: leader.recreation,
-        inScountsSince: leader.inScountsSince,
+        inScoutsSince: leader.inScoutsSince,
         inScoutsBecause: leader.inScoutsBecause,
         bestExperiences: leader.bestExperiences,
         file: process.env.VUE_APP_COCKPIT_FILES + leader.image.path,

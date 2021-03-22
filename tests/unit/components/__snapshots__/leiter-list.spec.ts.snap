@@ -1,0 +1,70 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render leiter-list 1`] = `
+<div>
+  <leiter-detail-stub />
+   
+  <ul
+    style="display: flex; flex-wrap: wrap;"
+  >
+    <li
+      class="leiterlist"
+    >
+      <div
+        class="card"
+        style="width: 180px;"
+      >
+        <div
+          class="card-image is-centered"
+        >
+          <img
+            alt="Luna"
+            src="https://backend.cevi-buro-aarau.ch/\\\\/storage\\\\/uploads\\\\/2021\\\\/02\\\\/01\\\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
+            width="170"
+          />
+        </div>
+         
+        <div
+          class="card-content is-centered"
+        >
+          <strong>
+            Leah Dellenbach
+            <br />
+            
+            v/o Luna
+          </strong>
+        </div>
+      </div>
+    </li>
+    <li
+      class="leiterlist"
+    >
+      <div
+        class="card"
+        style="width: 180px;"
+      >
+        <div
+          class="card-image is-centered"
+        >
+          <img
+            alt="Luna"
+            src="https://backend.cevi-buro-aarau.ch/\\\\/storage\\\\/uploads\\\\/2021\\\\/02\\\\/01\\\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
+            width="170"
+          />
+        </div>
+         
+        <div
+          class="card-content is-centered"
+        >
+          <strong>
+            Leah Dellenbach
+            <br />
+            
+            v/o Luna
+          </strong>
+        </div>
+      </div>
+    </li>
+  </ul>
+</div>
+`;
