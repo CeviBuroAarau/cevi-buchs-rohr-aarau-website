@@ -1,14 +1,15 @@
 export interface Leader {
+  name: string;
   scoutname: string;
-  function: string;
+  function: string[];
   group: string;
   birthyear: string;
   place: string;
   profession: string;
   recreation: string;
-  inScoutsSince: string;
+  inScountsSince: string;
   inScoutsBecause: string;
-  bestExperience: string;
+  bestExperiences: string;
   file: string;
 }
 
@@ -17,16 +18,17 @@ export interface CockpitLeaders {
 }
 
 export interface LeaderRaw {
+  name: string;
   scoutname: string;
-  function: string;
+  function: string[];
   group: string;
   birthyear: string;
   place: string;
   profession: string;
   recreation: string;
-  inScoutsSince: string;
+  inScountsSince: string;
   inScoutsBecause: string;
-  bestExperience: string;
+  bestExperiences: string;
   image: {
     path: string;
   };

@@ -15,6 +15,7 @@ export class LeaderService {
 
     const result: Leader[] = resp.data.entries.map((leader) => {
       return {
+        name: leader.name,
         scoutname: leader.scoutname,
         function: leader.function,
         group: leader.group,
@@ -22,9 +23,9 @@ export class LeaderService {
         place: leader.place,
         profession: leader.profession,
         recreation: leader.recreation,
-        inScoutsSince: leader.inScoutsSince,
+        inScountsSince: leader.inScountsSince,
         inScoutsBecause: leader.inScoutsBecause,
-        bestExperience: leader.bestExperience,
+        bestExperiences: leader.bestExperiences,
         file: process.env.VUE_APP_COCKPIT_FILES + leader.image.path,
       };
     });
