@@ -215,55 +215,19 @@
         </div>
       </div>
 
-      <div
-        class="modal"
-        :class="{
-          'is-active': displaySuccess,
-        }"
-      >
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Danke für die Bestellung</p>
-          </header>
-          <section class="modal-card-body">
-            Wir behandeln Ihre Bestellung in der Regel innert 5 Arbeitstagen.
-          </section>
-          <footer class="modal-card-foot">
-            <button
-              class="button is-success"
-              v-on:click="displaySuccess = false"
-            >
-              OK
-            </button>
-          </footer>
-        </div>
-      </div>
+      <modal
+        title="Danke für die Bestellung"
+        message="Wir behandeln Ihre Bestellung in der Regel innert 5 Arbeitstagen."
+        ref="successModal"
+      ></modal>
 
-      <div
-        class="modal"
-        :class="{
-          'is-active': displayError,
-        }"
-      >
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Bestellung fehlgeschlagen</p>
-          </header>
-          <section class="modal-card-body">
-            <div class="notification is-danger">
-              Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
-              nocheinmal.
-            </div>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success" v-on:click="displayError = false">
-              OK
-            </button>
-          </footer>
-        </div>
-      </div>
+      <modal
+        title="Bestellung fehlgeschlagen"
+        message="Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
+            nocheinmal."
+        type="error"
+        ref="errorModal"
+      ></modal>
     </div>
   </section>
 </template>
@@ -285,15 +249,21 @@
 
 <script lang="ts">
 import { ErrorReportingService, ShopService } from "@/services";
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { Article } from "@/types";
+import Modal from "@/components/modal.vue";
 
-@Component({})
+@Component({
+  components: {
+    Modal,
+  },
+})
 export default class Laedeli extends Vue {
+  @Ref("successModal") readonly successModal!: Modal;
+  @Ref("errorModal") readonly errorModal!: Modal;
+
   private displayForm = false;
-  private displayError = false;
-  private displaySuccess = false;
   private errormessage = "";
   private error = false;
   private loading = false;
@@ -346,7 +316,7 @@ export default class Laedeli extends Vue {
       })
       .then(() => {
         this.displayForm = false;
-        this.displaySuccess = true;
+        this.successModal.open();
         this.name = "";
         this.email = "";
         this.articles = "";
@@ -354,7 +324,8 @@ export default class Laedeli extends Vue {
         this.adress = "";
       })
       .catch((err) => {
-        this.displayError = true;
+        this.displayForm = false;
+        this.errorModal.open();
         errorService.report(err);
       });
   }
