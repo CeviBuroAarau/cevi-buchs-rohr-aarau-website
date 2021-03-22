@@ -1,15 +1,19 @@
 <script lang="ts">
 import { ErrorReportingService, KontaktService } from "@/services";
 import { AxiosUtil } from "@/utils";
+import Modal from "@/components/modal.vue";
 
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Ref, Vue } from "vue-property-decorator";
 
 @Component({
-  components: {},
+  components: {
+    Modal,
+  },
 })
 export default class Kontakt extends Vue {
-  private displaySuccess = false;
-  private displayError = false;
+  @Ref("successModal") readonly successModal!: Modal;
+  @Ref("errorModal") readonly errorModal!: Modal;
+
   private name = "";
   private email = "";
   private message = "";
@@ -29,14 +33,13 @@ export default class Kontakt extends Vue {
         },
       })
       .then(() => {
-        this.displayError = false;
-        this.displaySuccess = true;
+        this.successModal.open();
         this.name = "";
         this.email = "";
         this.message = "";
       })
       .catch((err) => {
-        this.displayError = true;
+        this.errorModal.open();
         errorService.report(err);
       });
   }
@@ -105,55 +108,19 @@ export default class Kontakt extends Vue {
         </div>
       </div>
 
-      <div
-        class="modal"
-        :class="{
-          'is-active': displaySuccess,
-        }"
-      >
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Danke für die Anfrage</p>
-          </header>
-          <section class="modal-card-body">
-            Wir beantworten Ihre Anfrage in der Regel innert 2 Arbeitstagen.
-          </section>
-          <footer class="modal-card-foot">
-            <button
-              class="button is-success"
-              v-on:click="displaySuccess = false"
-            >
-              OK
-            </button>
-          </footer>
-        </div>
-      </div>
+      <modal
+        title="Danke für die Anfrage"
+        message="Wir beantworten Ihre Anfrage in der Regel innert 2 Arbeitstagen."
+        ref="successModal"
+      ></modal>
 
-      <div
-        class="modal"
-        :class="{
-          'is-active': displayError,
-        }"
-      >
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">Anfrage fehlgeschlagen</p>
-          </header>
-          <section class="modal-card-body">
-            <div class="notification is-danger">
-              Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
-              nocheinmal.
-            </div>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button is-success" v-on:click="displayError = false">
-              OK
-            </button>
-          </footer>
-        </div>
-      </div>
+      <modal
+        title="Anfrage fehlgeschlagen"
+        message="Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
+            nocheinmal."
+        type="error"
+        ref="errorModal"
+      ></modal>
     </div>
   </section>
 </template>
