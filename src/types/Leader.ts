@@ -7,7 +7,7 @@ export interface Leader {
   place: string;
   profession: string;
   recreation: string;
-  inScountsSince: string;
+  inScoutsSince: string;
   inScoutsBecause: string;
   bestExperiences: string;
   file: string;
@@ -26,7 +26,7 @@ export interface LeaderRaw {
   place: string;
   profession: string;
   recreation: string;
-  inScountsSince: string;
+  inScoutsSince: string;
   inScoutsBecause: string;
   bestExperiences: string;
   image: {
