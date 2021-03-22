@@ -16,3 +16,10 @@ export interface SchnuppernFormResponse {
     message: string;
   };
 }
+
+export enum SchnuppernFormState {
+  NotDisplayed,
+  Displayed,
+  Error,
+  Success,
+}
