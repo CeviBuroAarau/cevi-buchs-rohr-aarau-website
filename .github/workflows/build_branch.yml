@@ -45,31 +45,3 @@ jobs:
       with:
         name: unit test coverage report
         path: coverage
-
-  sonarcloud:
-    runs-on: ubuntu-latest
-    needs: [build_and_test]
-
-    steps:
-    - name: "Checkout"
-      uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
-
-    - name: Download coverage reports
-      uses: actions/download-artifact@v2
-      with:
-        name: unit test coverage report
-        path: coverage
-
-    - name: fix code coverage paths # see https://community.sonarsource.com/t/code-coverage-doesnt-work-with-github-action/16747/5
-      working-directory: ./coverage
-      run: |
-        sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' lcov.info
-        sed -i 's/\/home\/runner\/work\/cevi-buchs-rohr-aarau-website\/cevi-buchs-rohr-aarau-website\//\/github\/workspace\//g' sonar-test-reporter.xml
-
-    - name: SonarCloud Scan
-      uses: sonarsource/sonarcloud-github-action@master
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

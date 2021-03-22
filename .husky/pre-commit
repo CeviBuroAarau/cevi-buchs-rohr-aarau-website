@@ -6,7 +6,6 @@ IFS=$'\n\t'
 yarn lint
 yarn yaml-validator .github/workflows/analyze.yml
 yarn yaml-validator .github/workflows/build_branch.yml
-yarn yaml-validator .github/workflows/build_pr.yml
 yarn yaml-validator .github/workflows/build_main.yml
 yarn yaml-validator .github/workflows/issue-branch.yml
 yarn yaml-validator .github/workflows/build_and_deploy_prod.yml
