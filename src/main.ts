@@ -2,7 +2,6 @@ import Vue from "vue";
 import App from "./App.vue";
 import "./registerServiceWorker";
 import router from "./router";
-import store from "./store";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faBars } from "@fortawesome/free-solid-svg-icons";
@@ -46,7 +45,6 @@ if (process.env.NODE_ENV === "production") {
 
 new Vue({
   router,
-  store,
   filters: {
     formatDateFilter,
   },
