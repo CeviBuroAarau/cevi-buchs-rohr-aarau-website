@@ -1,12 +1,7 @@
 name: Build PR
 
 on:
-  push:
-    branches-ignore:
-      - main
   pull_request:
-  schedule:
-    - cron: '0 20 1 * *'
 
 jobs:
   build_and_test:
