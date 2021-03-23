@@ -1,24 +1,23 @@
 <script lang="ts">
 import { ErrorReportingService, AgendaService } from "@/services";
 import { Component, Vue } from "vue-property-decorator";
-import { AxiosUtil, DateUtils } from "@/utils";
-import { Agenda, EventInfo } from "@/types";
+import { AxiosUtil } from "@/utils";
+import { Agenda } from "@/types";
+import EventList from "@/components/event-list.vue";
 
 @Component({
-  components: {},
+  components: {
+    EventList,
+  },
 })
 export default class AgendaView extends Vue {
   private loading = false;
   private error = false;
   private events: Agenda[] = [];
-  private eventInfos: EventInfo[] = [];
   private publicPath = process.env.BASE_URL;
-  private showModal = false;
-  private activeEventInfo = null;
 
   mounted() {
     this.events = [];
-    this.eventInfos = [];
     this.loading = true;
     this.error = false;
 
@@ -39,27 +38,6 @@ export default class AgendaView extends Vue {
         this.loading = false;
         errorService.report(err);
       });
-
-    service
-      .getEventInfo()
-      .then((eventInfo) => {
-        this.error = false;
-        this.loading = false;
-        this.eventInfos = eventInfo;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
-  }
-
-  eventsByDate(date: Date) {
-    return this.eventInfos == null
-      ? []
-      : this.eventInfos.filter((event) =>
-          DateUtils.isSameDay(event.date, date)
-        );
   }
 }
 </script>
@@ -67,44 +45,6 @@ export default class AgendaView extends Vue {
   <section class="section">
     <div class="container">
       <h1 class="title is-1">Agenda</h1>
-
-      <div
-        v-if="activeEventInfo != null"
-        class="modal"
-        :class="{
-          'is-active': showModal,
-        }"
-      >
-        <div class="modal-background"></div>
-        <div class="modal-card">
-          <header class="modal-card-head">
-            <p class="modal-card-title">
-              <span v-if="activeEventInfo.scope == 'section'"
-                >Informationen für alle</span
-              >
-              <span v-if="activeEventInfo.scope == 'group_spartacus'"
-                >Informationen für Spartacus</span
-              >
-              <span v-if="activeEventInfo.scope == 'group_schleckmaeuler'"
-                >Informationen für Schleckmäuler</span
-              >
-            </p>
-            <button
-              class="delete"
-              aria-label="close"
-              v-on:click="showModal = false"
-            ></button>
-          </header>
-          <section class="modal-card-body">
-            <div v-html="activeEventInfo.text"></div>
-          </section>
-          <footer class="modal-card-foot">
-            <button class="button" v-on:click="showModal = false">
-              Schliessen
-            </button>
-          </footer>
-        </div>
-      </div>
 
       <div v-if="loading">
         <p>Daten werden geladen.</p>
@@ -143,63 +83,10 @@ export default class AgendaView extends Vue {
           Untenstehend sind die nächsten 3 Anlässe mit detaillierten
           Informationen aufgeführt.
         </p>
-        <div
-          class="card agenda-item"
-          v-for="(event, eventIndex) in events"
-          :key="eventIndex"
-        >
-          <header class="card-header">
-            <p class="card-header-title">
-              {{ event.title }}
-            </p>
-          </header>
-          <div class="card-content">
-            <div class="content">
-              <p class="content">
-                {{ event.text }}
-              </p>
-
-              <div v-if="eventsByDate(event.date) != null">
-                <p
-                  v-for="(info, itemIndex) in eventsByDate(event.date)"
-                  :key="itemIndex"
-                >
-                  <a
-                    v-if="info.scope == 'section'"
-                    @click="
-                      activeEventInfo = info;
-                      showModal = true;
-                    "
-                    >Informationen für alle</a
-                  >
-                  <a
-                    v-if="info.scope == 'group_spartacus'"
-                    @click="
-                      activeEventInfo = info;
-                      showModal = true;
-                    "
-                    >Informationen für Spartacus</a
-                  >
-                  <a
-                    v-if="info.scope == 'group_schleckmaeuler'"
-                    @click="
-                      activeEventInfo = info;
-                      showModal = true;
-                    "
-                    >Informationen für Schleckmäuler</a
-                  >
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <event-list :events="this.events"></event-list>
       </div>
     </div>
   </section>
 </template>
 
-<style scoped lang="scss">
-.agenda-item {
-  margin: 0 0 1em 0;
-}
-</style>
+<style scoped lang="scss"></style>

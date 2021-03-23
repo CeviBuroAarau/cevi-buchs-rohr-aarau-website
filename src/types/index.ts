@@ -1,6 +1,7 @@
 export * from "./Activity";
 export * from "./Agenda";
 export * from "./Album";
+export * from "./Common";
 export * from "./Kontakt";
 export * from "./Leader";
 export * from "./Media";
