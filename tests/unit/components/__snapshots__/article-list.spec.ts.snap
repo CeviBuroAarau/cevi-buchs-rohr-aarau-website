@@ -1,0 +1,92 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render article-list 1`] = `
+<ul>
+  <li
+    class="vue-light-gallery-thumb"
+  >
+    <div
+      class="card"
+    >
+      <header
+        class="card-header"
+      >
+        <p
+          class="card-header-title is-centered"
+        >
+          
+          Jungscharhemd Kinder
+        
+        </p>
+      </header>
+       
+      <div
+        class="card-image"
+      >
+        <img
+          alt=""
+          src="https://backend.cevi-buro-aarau.ch/\\\\/storage\\\\/uploads\\\\/2021\\\\/01\\\\/28\\\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp"
+        />
+      </div>
+       
+      <div
+        class="card-content"
+      >
+        <div
+          class="content"
+        >
+          
+          54.9 CHF
+          <br />
+          
+          Verf\\u00fcgbare Gr\\u00f6ssen 140, 152, 164
+        
+        </div>
+      </div>
+    </div>
+  </li>
+  <li
+    class="vue-light-gallery-thumb"
+  >
+    <div
+      class="card"
+    >
+      <header
+        class="card-header"
+      >
+        <p
+          class="card-header-title is-centered"
+        >
+          
+          Jungscharhemd Erwachsene
+        
+        </p>
+      </header>
+       
+      <div
+        class="card-image"
+      >
+        <img
+          alt=""
+          src="https://backend.cevi-buro-aarau.ch/\\\\/storage\\\\/uploads\\\\/2021\\\\/01\\\\/28\\\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp"
+        />
+      </div>
+       
+      <div
+        class="card-content"
+      >
+        <div
+          class="content"
+        >
+          
+          62.9 CHF
+          <br />
+          
+          Verf\\u00fcgbare Gr\\u00f6ssen S, M, L, XL, 2XL
+        
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+`;

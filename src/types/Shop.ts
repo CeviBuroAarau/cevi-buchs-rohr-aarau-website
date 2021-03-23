@@ -20,7 +20,7 @@ export interface ShopFormResponse {
 }
 
 export interface Article {
-  category: string;
+  categories: string[];
   file: string;
   name: string;
   description: string;
@@ -32,11 +32,16 @@ export interface CockpitArticles {
 }
 
 export interface ArticlesRaw {
-  category: string;
+  category: string[];
   image: {
     path: string;
   };
   name: string;
   description: string;
   price: string;
+}
+
+export enum LaedeliFormState {
+  NotDisplayed,
+  Displayed,
 }

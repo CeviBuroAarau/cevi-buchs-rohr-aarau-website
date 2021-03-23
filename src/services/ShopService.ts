@@ -24,11 +24,9 @@ export class ShopService {
 
     const result: Article[] = resp.data.entries.map((article) => {
       return {
-        category: article.category,
+        categories: article.category,
         file: process.env.VUE_APP_COCKPIT_FILES + article.image.path,
-        name: article.name,
-        description: article.description,
-        price: article.price,
+        ...article,
       };
     });
 
