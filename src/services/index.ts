@@ -6,5 +6,6 @@ export * from "./KontaktService";
 export * from "./LeaderService";
 export * from "./MediaService";
 export * from "./SchnuppernService";
+export * from "./SemesterScheduleService";
 export * from "./ShopService";
 export * from "./WelcomeImageService";

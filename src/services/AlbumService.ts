@@ -27,10 +27,7 @@ export class AlbumService {
     const tempResult: CockpitAlbumEntry[] = resp.data.entries;
     let result: Album[] = tempResult.map((a) => {
       return {
-        title: a.title,
-        dateString: a.dateString,
-        date: a.date,
-        year: a.year,
+        ...a,
         images: a.images.map((img) => {
           return {
             title: img.meta.title,

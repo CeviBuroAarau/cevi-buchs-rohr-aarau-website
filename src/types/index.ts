@@ -6,5 +6,6 @@ export * from "./Kontakt";
 export * from "./Leader";
 export * from "./Media";
 export * from "./Schnuppern";
+export * from "./SemesterSchedule";
 export * from "./Shop";
 export * from "./WelcomeImage";
