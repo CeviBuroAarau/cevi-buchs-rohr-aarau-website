@@ -1,8 +1,12 @@
 <script lang="ts">
-import { ErrorReportingService, AgendaService } from "@/services";
+import {
+  ErrorReportingService,
+  AgendaService,
+  SemesterScheduleService,
+} from "@/services";
 import { Component, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
-import { Agenda } from "@/types";
+import { Agenda, SemesterSchedule } from "@/types";
 import EventList from "@/components/event-list.vue";
 
 @Component({
@@ -14,24 +18,41 @@ export default class AgendaView extends Vue {
   private loading = false;
   private error = false;
   private events: Agenda[] = [];
-  private publicPath = process.env.BASE_URL;
+  private schedules: SemesterSchedule[] = [];
 
   mounted() {
     this.events = [];
     this.loading = true;
     this.error = false;
 
-    const service: AgendaService = new AgendaService(
+    const agendaService: AgendaService = new AgendaService(
+      AxiosUtil.getCockpitInstance()
+    );
+    const semesterScheduleService: SemesterScheduleService = new SemesterScheduleService(
       AxiosUtil.getCockpitInstance()
     );
     const errorService: ErrorReportingService = new ErrorReportingService();
 
-    service
+    agendaService
       .getAgenda()
       .then((agenda) => {
         this.error = false;
         this.loading = false;
         this.events = agenda;
+      })
+      .catch((err) => {
+        this.error = true;
+        this.loading = false;
+        errorService.report(err);
+      });
+
+    const currentDate: Date = new Date();
+    semesterScheduleService
+      .getSchedules(currentDate.getFullYear())
+      .then((schedules) => {
+        this.error = false;
+        this.loading = false;
+        this.schedules = schedules;
       })
       .catch((err) => {
         this.error = true;
@@ -65,16 +86,17 @@ export default class AgendaView extends Vue {
         </p>
         <div class="content">
           <ul>
-            <li>
-              <a
-                :href="`${publicPath}files/jungschidaten/2021-1Jungschardaten.pdf`"
-                >Semesterplan (erstes Semester)</a
-              >
-            </li>
-            <li>
-              <a
-                :href="`${publicPath}files/jungschidaten/2021-2Jungschardaten.pdf`"
-                >Semesterplan (zweites Semester)</a
+            <li
+              v-for="(schedule, scheduleIndex) in this.schedules"
+              :key="scheduleIndex"
+            >
+              <a :href="schedule.file"
+                >Semesterplan
+                {{
+                  schedule.semester == "1"
+                    ? "erstes Semester"
+                    : "zweites Semester"
+                }}</a
               >
             </li>
           </ul>
