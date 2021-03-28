@@ -15,15 +15,16 @@
         <progress class="progress is-small is-primary" max="100">15%</progress>
       </div>
 
-      <div v-if="error">
+      <div v-else-if="error">
         <div class="notification is-danger">
           Die Aktivitäten können monentan nicht abgerufen werden. Bitte
           versuchen Sie es später noch einmal.
         </div>
       </div>
 
-      <div v-if="activities">
+      <div v-else>
         <LightGallery
+          id="gallery"
           :images="activities"
           :index="index"
           :disable-scroll="true"
@@ -73,33 +74,29 @@ interface ActivityView {
   },
 })
 export default class Aktivitaeten extends Vue {
-  private loading = false;
+  private loading = true;
   private error = false;
   private activities: ActivityView[] = [];
   private index: number | null = null;
+  service: ActivitiesService = new ActivitiesService(
+    AxiosUtil.getCockpitInstance()
+  );
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    this.activities = [];
-    this.loading = true;
-    this.error = false;
+  async mounted() {
+    await this.loadActivities();
+  }
 
-    const service: ActivitiesService = new ActivitiesService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .getActivities()
-      .then((activities) => {
-        this.error = false;
-        this.loading = false;
-        this.activities = activities;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
+  async loadActivities() {
+    try {
+      this.activities = await this.service.getActivities();
+      this.error = false;
+      this.loading = false;
+    } catch (err) {
+      this.error = true;
+      this.loading = false;
+      this.errorService.report(err);
+    }
   }
 }
 </script>

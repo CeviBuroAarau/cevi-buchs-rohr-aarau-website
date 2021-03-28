@@ -7,18 +7,18 @@
         <p>Daten werden geladen.</p>
         <progress class="progress is-small is-primary" max="100">15%</progress>
       </div>
-
-      <div v-if="error">
+      <div v-else-if="error">
         <div class="notification is-danger">
           Die Medien können monentan nicht abgerufen werden. Bitte versuchen Sie
           es später noch einmal.
         </div>
       </div>
-
-      <p class="content" id="medialist">Die neusten Artikel:</p>
-      <media-table :media="this.news"></media-table>
-      <p class="content" id="medialist">Historische Dokumente:</p>
-      <media-table :media="this.chronics"></media-table>
+      <div v-else>
+        <p class="content" id="medialist">Die neusten Artikel:</p>
+        <media-table :media="this.news"></media-table>
+        <p class="content" id="chroniclist">Historische Dokumente:</p>
+        <media-table :media="this.chronics"></media-table>
+      </div>
     </div>
   </section>
 </template>
@@ -38,39 +38,38 @@ import { AxiosUtil } from "@/utils";
 export default class Medien extends Vue {
   private chronics: Media[] = [];
   private news: Media[] = [];
-  private loading = false;
+  private loading = true;
   private error = false;
+  service: MediaService = new MediaService(AxiosUtil.getCockpitInstance());
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    this.loading = true;
-    this.error = false;
+  async mounted() {
+    await this.loadChronics();
+    await this.loadNews();
+  }
 
-    const service: MediaService = new MediaService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
+  async loadChronics() {
+    try {
+      this.chronics = await this.service.getChronic();
+      this.error = false;
+      this.loading = false;
+    } catch (err) {
+      this.errorService.report(err);
+      this.error = true;
+      this.loading = false;
+    }
+  }
 
-    service
-      .getChronic()
-      .then((chronics) => {
-        this.error = false;
-        this.loading = false;
-        this.chronics = chronics;
-      })
-      .catch(errorService.report);
-
-    service
-      .getNews()
-      .then((news) => {
-        this.error = false;
-        this.loading = false;
-        this.news = news;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
+  async loadNews() {
+    try {
+      this.news = await this.service.getNews();
+      this.error = false;
+      this.loading = false;
+    } catch (err) {
+      this.errorService.report(err);
+      this.error = true;
+      this.loading = false;
+    }
   }
 }
 </script>

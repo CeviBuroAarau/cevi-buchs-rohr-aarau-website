@@ -15,50 +15,48 @@ import EventList from "@/components/event-list.vue";
   },
 })
 export default class AgendaView extends Vue {
-  private loading = false;
+  private loading = true;
   private error = false;
   private events: Agenda[] = [];
   private schedules: SemesterSchedule[] = [];
+  agendaService: AgendaService = new AgendaService(
+    AxiosUtil.getCockpitInstance()
+  );
+  semesterScheduleService: SemesterScheduleService = new SemesterScheduleService(
+    AxiosUtil.getCockpitInstance()
+  );
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    this.events = [];
-    this.loading = true;
-    this.error = false;
+  async mounted() {
+    await this.loadAgenda();
+    await this.loadSemesterSchedules();
+  }
 
-    const agendaService: AgendaService = new AgendaService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const semesterScheduleService: SemesterScheduleService = new SemesterScheduleService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
+  async loadAgenda() {
+    try {
+      this.events = await this.agendaService.getAgenda();
+      this.error = false;
+      this.loading = false;
+    } catch (err) {
+      this.error = true;
+      this.loading = false;
+      this.errorService.report(err);
+    }
+  }
 
-    agendaService
-      .getAgenda()
-      .then((agenda) => {
-        this.error = false;
-        this.loading = false;
-        this.events = agenda;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
-
+  async loadSemesterSchedules() {
     const currentDate: Date = new Date();
-    semesterScheduleService
-      .getSchedules(currentDate.getFullYear())
-      .then((schedules) => {
-        this.error = false;
-        this.loading = false;
-        this.schedules = schedules;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
+    try {
+      this.schedules = await this.semesterScheduleService.getSchedules(
+        currentDate.getFullYear()
+      );
+      this.loading = false;
+      this.error = false;
+    } catch (err) {
+      this.error = true;
+      this.loading = false;
+      this.errorService.report(err);
+    }
   }
 }
 </script>
@@ -72,14 +70,14 @@ export default class AgendaView extends Vue {
         <progress class="progress is-small is-primary" max="100">15%</progress>
       </div>
 
-      <div v-if="error">
+      <div v-else-if="error">
         <div class="notification is-danger">
           Die Agendadaten können monentan nicht abgerufen werden. Bitte
           versuchen Sie es später noch einmal.
         </div>
       </div>
 
-      <div v-if="events">
+      <div v-else>
         <p class="content">
           Die Semsterpläne werden jeweils zu Beginn des Jahres veröffentlicht
           und enthalten wenig detaillierte Informationen:
@@ -105,7 +103,7 @@ export default class AgendaView extends Vue {
           Untenstehend sind die nächsten 3 Anlässe mit detaillierten
           Informationen aufgeführt.
         </p>
-        <event-list :events="this.events"></event-list>
+        <event-list id="eventlist" :events="this.events"></event-list>
       </div>
     </div>
   </section>

@@ -1,10 +1,11 @@
 import { mount } from "@vue/test-utils";
 import NotFound from "@/views/NotFound.vue";
 
-test("can be instantiated", () => {
-  const wrapper = mount(NotFound, {
-    stubs: ["router-link", "font-awesome-icon"],
-  });
+describe("Cevianer Page", () => {
+  it("can be instantiated", () => {
+    const wrapper = mount(NotFound, {});
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+    const content = wrapper.find("p.content");
+    expect(content.exists()).toBe(true);
+  });
 });

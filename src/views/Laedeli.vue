@@ -15,30 +15,34 @@
         <progress class="progress is-small is-primary" max="100">15%</progress>
       </div>
 
-      <div v-if="error">
+      <div v-else-if="error">
         <div class="notification is-danger">
           Die Artikel können monentan nicht abgerufen werden. Bitte versuchen
           Sie es später noch einmal.
         </div>
       </div>
 
-      <h2 class="subtitle is-2">Reguläre Artikel</h2>
+      <div v-else id="articles">
+        <h2 class="subtitle is-2">Reguläre Artikel</h2>
 
-      <article-list
-        :articles="
-          articleList.filter((item) => item.category == 'Reguläre Artikel')
-        "
-      ></article-list>
+        <article-list
+          :articles="
+            articleList.filter((item) => item.category == 'Reguläre Artikel')
+          "
+        ></article-list>
 
-      <h2 class="subtitle is-2">Restposten</h2>
-      <article-list
-        :articles="articleList.filter((item) => item.category == 'Restposten')"
-      ></article-list>
+        <h2 class="subtitle is-2">Restposten</h2>
+        <article-list
+          :articles="
+            articleList.filter((item) => item.category == 'Restposten')
+          "
+        ></article-list>
 
-      <button v-on:click="showForm()" class="button is-link">
-        Bestellformular öffnen
-      </button>
-      <laedeli-form ref="laedeliForm"></laedeli-form>
+        <button v-on:click="showForm()" class="button is-link">
+          Bestellformular öffnen
+        </button>
+        <laedeli-form ref="laedeliForm"></laedeli-form>
+      </div>
     </div>
   </section>
 </template>
@@ -63,31 +67,25 @@ export default class Laedeli extends Vue {
   @Ref("laedeliForm") readonly laedeliForm!: LaedeliForm;
 
   private error = false;
-  private loading = false;
+  private loading = true;
   private articleList: Article[] = [];
+  service: ShopService = new ShopService(AxiosUtil.getCockpitInstance());
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    const service: ShopService = new ShopService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
+  async mounted() {
+    await this.loadArticles();
+  }
 
-    this.articleList = [];
-    this.loading = true;
-    this.error = false;
-
-    service
-      .getArticles()
-      .then((articles: Article[]) => {
-        this.error = false;
-        this.loading = false;
-        this.articleList = articles;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
+  async loadArticles() {
+    try {
+      this.articleList = await this.service.getArticles();
+      this.error = false;
+      this.loading = false;
+    } catch (err) {
+      this.error = true;
+      this.loading = false;
+      this.errorService.report(err);
+    }
   }
 
   showForm() {

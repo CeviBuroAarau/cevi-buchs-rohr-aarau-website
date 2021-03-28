@@ -1,10 +1,13 @@
 import { mount } from "@vue/test-utils";
 import Standort from "@/views/Standort.vue";
 
-test("can be instantiated", () => {
-  const wrapper = mount(Standort, {
-    stubs: ["router-link", "font-awesome-icon"],
-  });
+describe("Standort Page", () => {
+  it("can be instantiated", () => {
+    const wrapper = mount(Standort, {
+      stubs: ["router-link"],
+    });
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+    const content = wrapper.find("p.content");
+    expect(content.exists()).toBe(true);
+  });
 });

@@ -1,10 +1,13 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Interessierte from "@/views/Interessierte.vue";
 
-test("can be instantiated", () => {
-  const wrapper = mount(Interessierte, {
-    stubs: ["router-link", "font-awesome-icon"],
-  });
+describe("CeviSchweiz Page", () => {
+  it("can be instantiated", () => {
+    const wrapper = shallowMount(Interessierte, {
+      stubs: ["router-link"],
+    });
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+    const content = wrapper.find("p.content");
+    expect(content.exists()).toBe(true);
+  });
 });

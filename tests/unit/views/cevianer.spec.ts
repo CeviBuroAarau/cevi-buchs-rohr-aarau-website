@@ -1,10 +1,13 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Cevianer from "@/views/Cevianer.vue";
 
-test("can be instantiated", () => {
-  const wrapper = mount(Cevianer, {
-    stubs: ["router-link", "font-awesome-icon"],
-  });
+describe("Cevianer Page", () => {
+  it("can be instantiated", () => {
+    const wrapper = shallowMount(Cevianer, {
+      stubs: ["router-link"],
+    });
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+    const content = wrapper.find("p.content");
+    expect(content.exists()).toBe(true);
+  });
 });

@@ -11,15 +11,16 @@
         <progress class="progress is-small is-primary" max="100">15%</progress>
       </div>
 
-      <div v-if="error">
+      <div v-else-if="error">
         <div class="notification is-danger">
           Die Albumdaten können monentan nicht abgerufen werden. Bitte versuchen
           Sie es später noch einmal.
         </div>
       </div>
 
-      <div v-if="albums">
+      <div v-else>
         <LightGallery
+          id="album"
           :images="activeAlbum"
           :index="index"
           :disable-scroll="true"
@@ -80,34 +81,28 @@ import { Album } from "@/types";
   },
 })
 export default class AlbumView extends Vue {
-  private loading = false;
+  private loading = true;
   private error = false;
   private activeAlbum: Album | null = null;
   private albums: Album[] = [];
   private index: number | null = null;
+  service: AlbumService = new AlbumService(AxiosUtil.getCockpitInstance());
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    this.albums = [];
-    this.loading = true;
-    this.error = false;
+  async mounted() {
+    await this.loadAlbums();
+  }
 
-    const service: AlbumService = new AlbumService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .getAlbums()
-      .then((albums: Album[]) => {
-        this.error = false;
-        this.loading = false;
-        this.albums = albums;
-      })
-      .catch((err) => {
-        this.error = true;
-        this.loading = false;
-        errorService.report(err);
-      });
+  async loadAlbums() {
+    try {
+      this.albums = await this.service.getAlbums();
+      this.error = false;
+      this.loading = false;
+    } catch (err) {
+      this.error = true;
+      this.loading = false;
+      this.errorService.report(err);
+    }
   }
 }
 </script>

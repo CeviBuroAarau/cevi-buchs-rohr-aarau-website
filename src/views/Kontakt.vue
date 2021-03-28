@@ -17,31 +17,26 @@ export default class Kontakt extends Vue {
   private name = "";
   private email = "";
   private message = "";
+  service: KontaktService = new KontaktService(AxiosUtil.getCockpitInstance());
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  send() {
-    const service: KontaktService = new KontaktService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .submitForm({
+  async send() {
+    try {
+      await this.service.submitForm({
         form: {
           name: this.name,
           email: this.email,
           message: this.message,
         },
-      })
-      .then(() => {
-        this.successModal.open();
-        this.name = "";
-        this.email = "";
-        this.message = "";
-      })
-      .catch((err) => {
-        this.errorModal.open();
-        errorService.report(err);
       });
+      this.successModal.open();
+      this.name = "";
+      this.email = "";
+      this.message = "";
+    } catch (err) {
+      this.errorModal.open();
+      this.errorService.report(err);
+    }
   }
 }
 </script>
@@ -109,12 +104,14 @@ export default class Kontakt extends Vue {
       </div>
 
       <modal
+        id="success"
         title="Danke für die Anfrage"
         message="Wir beantworten Ihre Anfrage in der Regel innert 2 Arbeitstagen."
         ref="successModal"
       ></modal>
 
       <modal
+        id="error"
         title="Anfrage fehlgeschlagen"
         message="Senden des Formulars fehlgeschlagen. Bitte versuchen Sie es später
             nocheinmal."
