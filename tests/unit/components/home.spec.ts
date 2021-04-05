@@ -42,7 +42,7 @@ describe("Home Component", () => {
     );
     await wrapper.vm.loadData();
 
-    expect(wrapper.vm.activeBackgroundImage).toBe("image.png");
+    expect(wrapper.vm.$data.activeBackgroundImage).toBe("image.png");
   });
 
   it("load Error", async () => {
@@ -70,7 +70,7 @@ describe("Home Component", () => {
     );
     await wrapper.vm.loadData();
 
-    expect(wrapper.vm.activeBackgroundImage).toBe("");
+    expect(wrapper.vm.$data.activeBackgroundImage).toBe("");
   });
 
   it("resize large", async () => {

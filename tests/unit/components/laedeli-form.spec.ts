@@ -112,7 +112,7 @@ describe("LaedeliForm Component", () => {
     });
     await wrapper.vm.showForm();
 
-    expect(wrapper.vm.state).toBe(LaedeliFormState.Displayed);
+    expect(wrapper.vm.$data.state).toBe(LaedeliFormState.Displayed);
   });
 
   it("close Form", async () => {
@@ -136,6 +136,6 @@ describe("LaedeliForm Component", () => {
     });
     await wrapper.vm.close();
 
-    expect(wrapper.vm.state).toBe(LaedeliFormState.NotDisplayed);
+    expect(wrapper.vm.$data.state).toBe(LaedeliFormState.NotDisplayed);
   });
 });
