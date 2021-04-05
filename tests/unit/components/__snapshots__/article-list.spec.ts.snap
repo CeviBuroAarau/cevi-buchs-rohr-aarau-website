@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render article-list 1`] = `
+exports[`ArticleList Component render article-list 1`] = `
 <ul>
   <li
     class="vue-light-gallery-thumb"

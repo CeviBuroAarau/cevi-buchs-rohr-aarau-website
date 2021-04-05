@@ -1,8 +1,8 @@
-import { shallowMount } from "@vue/test-utils";
+import { shallowMount, Wrapper } from "@vue/test-utils";
 import LeiterDetail from "@/components/leiter-detail.vue";
 import { Leader } from "@/types";
 
-test("render leiter-detail with leiter", () => {
+describe("LeiterDetail Component", () => {
   const leiter: Leader = {
     name: "Leah Dellenbach",
     scoutname: "Luna",
@@ -20,12 +20,46 @@ test("render leiter-detail with leiter", () => {
       "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
   };
 
-  const wrapper = shallowMount(LeiterDetail, {
-    stubs: [],
-    propsData: {
-      leiter: leiter,
-    },
+  test("render leiter-detail with leiter", () => {
+    const wrapper = shallowMount(LeiterDetail, {
+      stubs: [],
+      propsData: {
+        leiter: leiter,
+      },
+    });
+
+    expect(wrapper.element).toMatchSnapshot();
   });
 
-  expect(wrapper.element).toMatchSnapshot();
+  test("open Form", async () => {
+    const wrapper: Wrapper<
+      LeiterDetail & { [key: string]: any }
+    > = shallowMount(LeiterDetail, {
+      stubs: [],
+      propsData: {
+        leiter: leiter,
+      },
+    });
+
+    await wrapper.vm.open();
+
+    const container = wrapper.find("div.is-active");
+    expect(container.exists()).toBe(true);
+  });
+
+  test("close Form", async () => {
+    const wrapper: Wrapper<
+      LeiterDetail & { [key: string]: any }
+    > = shallowMount(LeiterDetail, {
+      stubs: [],
+      propsData: {
+        leiter: leiter,
+      },
+    });
+
+    await wrapper.vm.close();
+
+    const container = wrapper.find("div.is-active");
+    expect(container.exists()).toBe(false);
+  });
 });

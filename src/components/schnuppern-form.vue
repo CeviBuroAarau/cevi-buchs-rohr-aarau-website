@@ -20,34 +20,31 @@ export default class SchnuppernForm extends Vue {
   private phonenumber = "";
   private message = "";
   public SchnuppernFormState = SchnuppernFormState;
+  private service: SchnuppernService = new SchnuppernService(
+    AxiosUtil.getCockpitInstance()
+  );
+  private errorService: ErrorReportingService = new ErrorReportingService();
 
-  subscribe() {
-    const service: SchnuppernService = new SchnuppernService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .submitForm({
+  async subscribe() {
+    try {
+      await this.service.submitForm({
         form: {
           name: this.name,
           email: this.email,
           phonenumber: this.phonenumber,
           message: this.message,
         },
-      })
-      .then(() => {
-        this.state = SchnuppernFormState.NotDisplayed;
-        this.successModal.open();
-        this.name = "";
-        this.email = "";
-        this.message = "";
-      })
-      .catch((err) => {
-        this.state = SchnuppernFormState.NotDisplayed;
-        this.errorModal.open();
-        errorService.report(err);
       });
+      this.state = SchnuppernFormState.NotDisplayed;
+      this.successModal.open();
+      this.name = "";
+      this.email = "";
+      this.message = "";
+    } catch (err) {
+      this.state = SchnuppernFormState.NotDisplayed;
+      this.errorModal.open();
+      this.errorService.report(err);
+    }
   }
 
   public showSubscriptionForm() {

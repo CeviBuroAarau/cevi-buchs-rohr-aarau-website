@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render leiter-list 1`] = `
+exports[`LeiterList Component render leiter-list 1`] = `
 <div>
   <leiter-detail-stub />
    

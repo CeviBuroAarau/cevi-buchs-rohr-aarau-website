@@ -2,7 +2,7 @@ import { shallowMount } from "@vue/test-utils";
 import ArticleList from "@/components/article-list.vue";
 import { Article } from "@/types";
 
-test("render article-list", () => {
+describe("ArticleList Component", () => {
   const articles: Article[] = [
     {
       name: "Jungscharhemd Kinder",
@@ -24,12 +24,14 @@ test("render article-list", () => {
     },
   ];
 
-  const wrapper = shallowMount(ArticleList, {
-    stubs: [],
-    propsData: {
-      articles: articles,
-    },
-  });
+  test("render article-list", () => {
+    const wrapper = shallowMount(ArticleList, {
+      stubs: [],
+      propsData: {
+        articles: articles,
+      },
+    });
 
-  expect(wrapper.element).toMatchSnapshot();
+    expect(wrapper.element).toMatchSnapshot();
+  });
 });

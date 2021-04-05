@@ -1,10 +1,16 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount, Wrapper } from "@vue/test-utils";
 import Navigation from "@/components/navigation.vue";
 
-test("can be instantiated", () => {
-  const wrapper = mount(Navigation, {
-    stubs: ["router-link", "font-awesome-icon"],
-  });
+describe("Navigation Component", () => {
+  it("onMobileOpenChanged", async () => {
+    const wrapper: Wrapper<
+      Navigation & { [key: string]: any }
+    > = await shallowMount(Navigation, {
+      stubs: ["router-link"],
+    });
+    wrapper.vm.onMobileNaviagation();
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+    const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
+    expect(mobileOpenChangedEmitted![0]).toEqual([false]);
+  });
 });

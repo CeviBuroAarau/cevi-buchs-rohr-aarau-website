@@ -14,23 +14,19 @@ export default class EventList extends Vue {
   @Prop({}) readonly events!: Agenda[];
   @Ref("eventDetail") readonly eventDetail!: EventDetail;
   private eventInfos: EventInfo[] = [];
+  service: AgendaService = new AgendaService(AxiosUtil.getCockpitInstance());
+  errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    this.eventInfos = [];
+  async mounted() {
+    await this.loadEventInfo();
+  }
 
-    const service: AgendaService = new AgendaService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .getEventInfo()
-      .then((eventInfo) => {
-        this.eventInfos = eventInfo;
-      })
-      .catch((err) => {
-        errorService.report(err);
-      });
+  async loadEventInfo() {
+    try {
+      this.eventInfos = await this.service.getEventInfo();
+    } catch (err) {
+      this.errorService.report(err);
+    }
   }
 
   eventsByDate(date: Date) {
@@ -70,13 +66,20 @@ export default class EventList extends Vue {
               v-for="(info, itemIndex) in eventsByDate(event.date)"
               :key="itemIndex"
             >
-              <a v-if="info.scope == 'section'" @click="showEvent(info)"
+              <a
+                class="eventinfo"
+                v-if="info.scope == 'section'"
+                @click="showEvent(info)"
                 >Informationen für alle</a
               >
-              <a v-if="info.scope == 'group_spartacus'" @click="showEvent(info)"
+              <a
+                class="eventinfo"
+                v-if="info.scope == 'group_spartacus'"
+                @click="showEvent(info)"
                 >Informationen für Spartacus</a
               >
               <a
+                class="eventinfo"
                 v-if="info.scope == 'group_schleckmaeuler'"
                 @click="showEvent(info)"
                 >Informationen für Schleckmäuler</a

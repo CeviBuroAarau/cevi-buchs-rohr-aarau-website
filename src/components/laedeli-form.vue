@@ -21,15 +21,14 @@ export default class LaedeliForm extends Vue {
   private adress = "";
   private deliveryMethod = "";
   public LaedeliFormState = LaedeliFormState;
+  private service: ShopService = new ShopService(
+    AxiosUtil.getCockpitInstance()
+  );
+  private errorService: ErrorReportingService = new ErrorReportingService();
 
-  order() {
-    const service: ShopService = new ShopService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .submitForm({
+  async order() {
+    try {
+      await this.service.submitForm({
         form: {
           name: this.name,
           email: this.email,
@@ -37,21 +36,19 @@ export default class LaedeliForm extends Vue {
           deliveryMethod: this.deliveryMethod,
           adress: this.adress,
         },
-      })
-      .then(() => {
-        this.state = LaedeliFormState.NotDisplayed;
-        this.successModal.open();
-        this.name = "";
-        this.email = "";
-        this.articles = "";
-        this.deliveryMethod = "";
-        this.adress = "";
-      })
-      .catch((err) => {
-        this.state = LaedeliFormState.NotDisplayed;
-        this.errorModal.open();
-        errorService.report(err);
       });
+      this.state = LaedeliFormState.NotDisplayed;
+      this.successModal.open();
+      this.name = "";
+      this.email = "";
+      this.articles = "";
+      this.deliveryMethod = "";
+      this.adress = "";
+    } catch (err) {
+      this.state = LaedeliFormState.NotDisplayed;
+      this.errorModal.open();
+      this.errorService.report(err);
+    }
   }
 
   public showForm() {

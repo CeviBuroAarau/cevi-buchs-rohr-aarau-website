@@ -159,32 +159,30 @@ export default class Home extends Vue {
   private cevianerLinkTo = "/cevianer";
   private interessierteLinkTo = "/interessierte";
   private welcomeImages: WelcomeImage[] = [];
+  private service: WelcomeImageService = new WelcomeImageService(
+    AxiosUtil.getCockpitInstance()
+  );
+  private errorService: ErrorReportingService = new ErrorReportingService();
 
-  mounted() {
-    this.$nextTick(() => {
-      window.addEventListener("resize", this.onResize);
-      this.onResize();
-    });
+  async mounted() {
+    this.initResponsiveLayout();
+    await this.loadData();
+  }
 
-    this.welcomeImages = [];
+  initResponsiveLayout() {
+    window.addEventListener("resize", this.onResize);
+    this.onResize();
+  }
 
-    const service: WelcomeImageService = new WelcomeImageService(
-      AxiosUtil.getCockpitInstance()
-    );
-    const errorService: ErrorReportingService = new ErrorReportingService();
-
-    service
-      .getImages()
-      .then((welcomeImages) => {
-        this.welcomeImages = welcomeImages;
-
-        const index = Math.floor(Math.random() * this.welcomeImages.length);
-        const file: WelcomeImage = this.welcomeImages[index];
-        this.activeBackgroundImage = file.url;
-      })
-      .catch((err) => {
-        errorService.report(err);
-      });
+  async loadData() {
+    try {
+      this.welcomeImages = await this.service.getImages();
+      const index = Math.floor(Math.random() * this.welcomeImages.length);
+      const file: WelcomeImage = this.welcomeImages[index];
+      this.activeBackgroundImage = file.url;
+    } catch (err) {
+      this.errorService.report(err);
+    }
   }
 
   onMobileNaviagation() {

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render success 1`] = `
+exports[`Modal Component render success 1`] = `
 <div
   class="modal"
 >
@@ -46,7 +46,7 @@ exports[`render success 1`] = `
 </div>
 `;
 
-exports[`renders error 1`] = `
+exports[`Modal Component renders error 1`] = `
 <div
   class="modal"
 >

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`render leiter-detail with leiter 1`] = `
+exports[`LeiterDetail Component render leiter-detail with leiter 1`] = `
 <div
   class="modal"
 >
