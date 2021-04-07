@@ -27,9 +27,10 @@ Replace *** with your [token](https://sentry.io/settings/account/api/auth-tokens
 ```
 yarn build
 yarn test:unit
+yarn test:e2e
 ```
 
-A coverage report is generated in the folder coverage
+A coverage report is generated in the folder coverage and tests/e2e/reports
 
 
 ### Run with docker
