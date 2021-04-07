@@ -1,10 +1,16 @@
-import { mount } from "@vue/test-utils";
+import { shallowMount, Wrapper } from "@vue/test-utils";
 import Front from "@/layouts/Front.vue";
 
-test("can be instantiated", () => {
-  const wrapper = mount(Front, {
-    stubs: ["router-link", "font-awesome-icon"],
-  });
+describe("Front Layout", () => {
+  it("onMobileOpenChanged", async () => {
+    const wrapper: Wrapper<Front & { [key: string]: any }> = await shallowMount(
+      Front,
+      {
+        stubs: ["router-link", "font-awesome-icon"],
+      }
+    );
+    await wrapper.vm.onMobileOpenChanged(true);
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+    expect(wrapper.vm.$data.mobileOpen).toEqual(true);
+  });
 });
