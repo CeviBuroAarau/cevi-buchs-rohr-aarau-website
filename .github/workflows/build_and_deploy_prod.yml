@@ -150,6 +150,16 @@ jobs:
         run: |
           (cd coverage && zip -r ../unit_test_coverage_report.zip .)
 
+      - name: Download E2E test report
+        uses: actions/download-artifact@v2
+        with:
+          name: e2e test report
+          path: tests/e2e/reports
+
+      - name: Zip E2E test report
+        run: |
+          (cd tests/e2e/reports && zip -r ../e2e_report.zip .)
+
       - name: Upload Dist Archive
         uses: actions/upload-release-asset@v1
         env:
@@ -168,6 +178,16 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: ./unit_test_coverage_report.zip
           asset_name: unit_test_coverage_report.zip
+          asset_content_type: application/zip
+
+      - name: Upload E2E Test Report
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./e2e_report.zip
+          asset_name: e2e_report.zip
           asset_content_type: application/zip
 
   deploy:
