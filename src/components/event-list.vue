@@ -57,9 +57,7 @@ export default class EventList extends Vue {
       </header>
       <div class="card-content">
         <div class="content">
-          <p class="content">
-            {{ event.text }}
-          </p>
+          <p v-html="event.text" class="content"></p>
 
           <div v-if="eventsByDate(event.date) != null">
             <p
