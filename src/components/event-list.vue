@@ -2,7 +2,7 @@
 import { Component, Prop, Ref, Vue } from "vue-property-decorator";
 import { Agenda, EventInfo } from "@/types";
 import EventDetail from "@/components/event-detail.vue";
-import { AxiosUtil, DateUtils } from "@/utils";
+import { AxiosUtil, DateUtil } from "@/utils";
 import { ErrorReportingService, AgendaService } from "@/services";
 
 @Component({
@@ -32,9 +32,7 @@ export default class EventList extends Vue {
   eventsByDate(date: Date) {
     return this.eventInfos == null
       ? []
-      : this.eventInfos.filter((event) =>
-          DateUtils.isSameDay(event.date, date)
-        );
+      : this.eventInfos.filter((event) => DateUtil.isSameDay(event.date, date));
   }
 
   showEvent(eventInfo: EventInfo) {

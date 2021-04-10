@@ -1,6 +1,6 @@
 import { CockpitAlbum, CockpitAlbumEntry, Album } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, DateUtils } from "@/utils";
+import { SortingUtil, DateUtil } from "@/utils";
 
 export class AlbumService {
   private axios: AxiosInstance;
@@ -55,7 +55,7 @@ export class AlbumService {
     for (const key of Object.keys(body)) {
       if (key == searchKey) {
         const value = body[key];
-        body[key] = DateUtils.parseDateWithoutTime(value);
+        body[key] = DateUtil.parseDateWithoutTime(value);
       }
     }
   }

@@ -1,3 +1,3 @@
 export * from "./AxiosUtil";
-export * from "./DateUtils";
+export * from "./DateUtil";
 export * from "./SortingUtil";
