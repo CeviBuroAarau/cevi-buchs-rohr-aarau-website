@@ -1,4 +1,4 @@
-export class DateUtils {
+export class DateUtil {
   static isSameDay(a: Date, b: Date) {
     return (
       a.getUTCFullYear() == b.getUTCFullYear() &&
