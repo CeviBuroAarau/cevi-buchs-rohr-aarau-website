@@ -17,6 +17,7 @@ import EventList from "@/components/event-list.vue";
 export default class AgendaView extends Vue {
   private loading = true;
   private error = false;
+  private isFull = false;
   private events: Agenda[] = [];
   private schedules: SemesterSchedule[] = [];
   agendaService: AgendaService = new AgendaService(
@@ -34,7 +35,9 @@ export default class AgendaView extends Vue {
 
   async loadAgenda() {
     try {
-      this.events = await this.agendaService.getAgenda();
+      this.events = await this.agendaService.getEventsAfterDate(
+        new Date(Date.now())
+      );
       this.error = false;
       this.loading = false;
     } catch (err) {
@@ -45,7 +48,7 @@ export default class AgendaView extends Vue {
   }
 
   async loadSemesterSchedules() {
-    const currentDate: Date = new Date();
+    const currentDate: Date = new Date(Date.now());
     try {
       this.schedules = await this.semesterScheduleService.getSchedules(
         currentDate.getFullYear()
@@ -56,6 +59,14 @@ export default class AgendaView extends Vue {
       this.error = true;
       this.loading = false;
       this.errorService.report(err);
+    }
+  }
+
+  getEventsForDisplay() {
+    if (this.isFull) {
+      return this.events;
+    } else {
+      return this.events.slice(0, 3);
     }
   }
 }
@@ -100,10 +111,17 @@ export default class AgendaView extends Vue {
           </ul>
         </div>
         <p class="content">
-          Untenstehend sind die nächsten 3 Anlässe mit detaillierten
+          Untenstehend sind die nächsten
+          {{ this.getEventsForDisplay().length }} Anlässe mit detaillierten
           Informationen aufgeführt.
         </p>
-        <event-list id="eventlist" :events="this.events"></event-list>
+        <event-list
+          id="eventlist"
+          :events="this.getEventsForDisplay()"
+        ></event-list>
+        <p v-if="!isFull">
+          <a @click="isFull = true">Mehr Anlässe anzeigen</a>
+        </p>
       </div>
     </div>
   </section>
