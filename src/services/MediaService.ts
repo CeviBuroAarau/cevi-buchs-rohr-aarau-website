@@ -1,22 +1,15 @@
 import { CockpitMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, DateUtil } from "@/utils";
+import { SortingUtil, DateUtil, AxiosUtil } from "@/utils";
 
 export class MediaService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {
     this.axios = axios;
-
-    this.axios.interceptors.response.use((originalResponse) => {
-      if (originalResponse.data.entries) {
-        // eslint-disable-next-line
-        originalResponse.data.entries.forEach((entry: any) =>
-          this.handleDates(entry, "date")
-        );
-      }
-      return originalResponse;
-    });
+    this.axios.interceptors.response.use((resp) =>
+      AxiosUtil.dateConversionInterceptor(resp, "date")
+    );
   }
 
   private async retrieveMedia(): Promise<Media[]> {
@@ -34,19 +27,6 @@ export class MediaService {
     });
 
     return result;
-  }
-
-  // eslint-disable-next-line
-  private handleDates(body: any, searchKey: string) {
-    if (body === null || body === undefined || typeof body !== "object")
-      return body;
-
-    for (const key of Object.keys(body)) {
-      if (key == searchKey) {
-        const value = body[key];
-        body[key] = DateUtil.parseDateWithoutTime(value);
-      }
-    }
   }
 
   async getChronic(): Promise<Media[]> {
