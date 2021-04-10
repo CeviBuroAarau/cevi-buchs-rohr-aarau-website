@@ -10,7 +10,7 @@ const LazyCeviSchweiz = () => import("@/views/CeviSchweiz.vue");
 const LazyStandort = () => import("@/views/Standort.vue");
 const LazyMedien = () => import("@/views/Medien.vue");
 const LazyCevianer = () => import("@/views/Cevianer.vue");
-const LazyAgenda = () => import("@/views/AgendaView.vue");
+const LazyAgenda = () => import("@/views/Agenda.vue");
 const LazyAlbum = () => import("@/views/Album.vue");
 const LazyLaedeli = () => import("@/views/Laedeli.vue");
 const LazyAusbildung = () => import("@/views/Ausbildung.vue");
