@@ -50,10 +50,6 @@ describe("Agenda Page", () => {
       getEventInfo: () => [],
     };
 
-    const semesterScheduleService = {
-      getSchedules: () => [],
-    };
-
     const errorService = {
       report: jest.fn(),
     };
@@ -68,14 +64,12 @@ describe("Agenda Page", () => {
         data: () => {
           return {
             agendaService: agendaService,
-            semesterScheduleService: semesterScheduleService,
             errorService: errorService,
           };
         },
       }
     );
     await wrapper.vm.loadAgenda();
-    await wrapper.vm.loadSemesterSchedules();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -117,10 +111,6 @@ describe("Agenda Page", () => {
       getEventInfo: () => [],
     };
 
-    const semesterScheduleService = {
-      getSchedules: () => [],
-    };
-
     const errorService = {
       report: jest.fn(),
     };
@@ -135,7 +125,6 @@ describe("Agenda Page", () => {
         data: () => {
           return {
             agendaService: agendaService,
-            semesterScheduleService: semesterScheduleService,
             errorService: errorService,
             isFull: true,
           };
@@ -143,7 +132,6 @@ describe("Agenda Page", () => {
       }
     );
     await wrapper.vm.loadAgenda();
-    await wrapper.vm.loadSemesterSchedules();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -168,12 +156,6 @@ describe("Agenda Page", () => {
       },
     };
 
-    const semesterScheduleService = {
-      getSchedules: () => {
-        throw new Error("SomeError");
-      },
-    };
-
     const errorService = {
       report: jest.fn(),
     };
@@ -184,13 +166,11 @@ describe("Agenda Page", () => {
       data: () => {
         return {
           agendaService: agendaService,
-          semesterScheduleService: semesterScheduleService,
           errorService: errorService,
         };
       },
     });
     await wrapper.vm.loadAgenda();
-    await wrapper.vm.loadSemesterSchedules();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
