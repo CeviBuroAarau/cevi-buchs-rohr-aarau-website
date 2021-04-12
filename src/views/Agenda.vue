@@ -72,7 +72,7 @@ export default class AgendaView extends Vue {
         )
       );
 
-    doc.addImage(logo, "PNG", 20, 15, 170, 170 / 5);
+    doc.addImage(logo, "PNG", 20, 15, 170, 170 / 5, undefined, "MEDIUM");
 
     doc.setFontSize(12);
     doc.setFont("Helvetica", "Bold");
