@@ -1,4 +1,4 @@
-import { mount, shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount, Wrapper } from "@vue/test-utils";
 import HeaderBar from "@/components/header-bar.vue";
 
 describe("HeaderBar Component", () => {
@@ -11,6 +11,11 @@ describe("HeaderBar Component", () => {
     wrapper.vm.onMobileOpenChanged();
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
-    expect(mobileOpenChangedEmitted![0]).toEqual([true]);
+    if (mobileOpenChangedEmitted === undefined) {
+      fail("mobileOpenChangedEmitted mustn't be undefined");
+    } else {
+      expect(mobileOpenChangedEmitted.length).toBe(1);
+      expect(mobileOpenChangedEmitted[0]).toEqual([true]);
+    }
   });
 });

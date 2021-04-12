@@ -1,6 +1,5 @@
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import EventList from "@/components/event-list.vue";
-import { EventInfo } from "@/types";
 
 describe("EventList Component", () => {
   it("load Success", async () => {
@@ -55,9 +54,7 @@ describe("EventList Component", () => {
       report: () => reportFunction(),
     };
 
-    const wrapper: Wrapper<
-      EventList & { [key: string]: any }
-    > = await shallowMount(EventList, {
+    await shallowMount(EventList, {
       data: () => {
         return {
           service: service,
@@ -117,7 +114,7 @@ describe("EventList Component", () => {
   it("show event", async () => {
     const eventDetailFunction = jest.fn();
     const eventDetail = {
-      open: (info: EventInfo) => eventDetailFunction(),
+      open: () => eventDetailFunction(),
     };
 
     const wrapper: Wrapper<

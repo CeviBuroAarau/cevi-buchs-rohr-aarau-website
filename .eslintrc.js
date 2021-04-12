@@ -25,6 +25,9 @@ module.exports = {
       ],
       env: {
         jest: true
+      },
+      rules: {
+        "@typescript-eslint/no-explicit-any": "off" // disable because any is required in the wrapper type definitions for the tests
       }
     }
   ]

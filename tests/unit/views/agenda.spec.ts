@@ -25,7 +25,7 @@ describe("Agenda Page", () => {
 
   it("load Short Agenda Success", async () => {
     const agendaService = {
-      getEventsAfterDate: (currentDate: Date) => [
+      getEventsAfterDate: () => [
         {
           title: "123",
           text: "123",
@@ -86,7 +86,7 @@ describe("Agenda Page", () => {
 
   it("load Full Agenda Success", async () => {
     const agendaService = {
-      getEventsAfterDate: (currentDate: Date) => [
+      getEventsAfterDate: () => [
         {
           title: "123",
           text: "123",

@@ -14,7 +14,7 @@ export class AxiosUtil {
   }
 
   static dateConversionInterceptor(
-    originalResponse: AxiosResponse<any>,
+    originalResponse: AxiosResponse<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
     fieldName: string
   ) {
     if (originalResponse.data.entries) {

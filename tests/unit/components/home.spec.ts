@@ -12,7 +12,12 @@ describe("Home Component", () => {
     wrapper.vm.onMobileNaviagation();
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
-    expect(mobileOpenChangedEmitted![0]).toEqual([false]);
+    if (mobileOpenChangedEmitted === undefined) {
+      fail("mobileOpenChangedEmitted mustn't be undefined");
+    } else {
+      expect(mobileOpenChangedEmitted.length).toBe(1);
+      expect(mobileOpenChangedEmitted[0]).toEqual([false]);
+    }
   });
 
   it("load Success", async () => {

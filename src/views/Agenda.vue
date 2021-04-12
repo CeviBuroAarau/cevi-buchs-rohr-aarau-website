@@ -57,7 +57,6 @@ export default class AgendaView extends Vue {
 
   async generatePDF() {
     const doc = new jsPDF("portrait", "mm", "a4");
-    const pageWidth = 210;
     const pageHeight = 295;
 
     const logoResp = await axios.get("http://localhost:8080/logo.png", {
@@ -97,6 +96,7 @@ export default class AgendaView extends Vue {
     });
 
     doc.setFontSize(12);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (doc as any).autoTable({
       headStyles: {
         fillColor: [50, 51, 148],
@@ -109,7 +109,7 @@ export default class AgendaView extends Vue {
     });
 
     doc.setFontSize(10);
-    let finalY = (doc as any).previousAutoTable.finalY + 8;
+    let finalY = (doc as any).previousAutoTable.finalY + 8; // eslint-disable-line @typescript-eslint/no-explicit-any
 
     if (finalY + 20 > pageHeight) {
       doc.addPage();
@@ -139,6 +139,7 @@ export default class AgendaView extends Vue {
       ],
     ];
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (doc as any).autoTable({
       headStyles: {
         fillColor: [50, 51, 148],
@@ -150,7 +151,7 @@ export default class AgendaView extends Vue {
       margin: { left: 40, right: 40 },
     });
 
-    finalY = (doc as any).previousAutoTable.finalY + 8;
+    finalY = (doc as any).previousAutoTable.finalY + 8; // eslint-disable-line @typescript-eslint/no-explicit-any
 
     if (finalY + 20 > pageHeight) {
       doc.addPage();

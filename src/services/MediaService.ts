@@ -1,6 +1,6 @@
 import { CockpitMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, DateUtil, AxiosUtil } from "@/utils";
+import { SortingUtil, AxiosUtil } from "@/utils";
 
 export class MediaService {
   private axios: AxiosInstance;
