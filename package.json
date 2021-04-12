@@ -42,7 +42,7 @@
     "yaml-validator": "^3.0.1"
   },
   "devDependencies": {
-    "@sentry/webpack-plugin": "^1.14.2",
+    "@sentry/webpack-plugin": "^1.15.0",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",
     "@vue/cli-plugin-babel": "~4.5.12",
