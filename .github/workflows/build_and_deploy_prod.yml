@@ -158,7 +158,7 @@ jobs:
 
       - name: Zip E2E test report
         run: |
-          (cd tests/e2e/reports && zip -r ../e2e_report.zip .)
+          (cd tests/e2e/reports && zip -r ../../../e2e_report.zip .)
 
       - name: Upload Dist Archive
         uses: actions/upload-release-asset@v1
