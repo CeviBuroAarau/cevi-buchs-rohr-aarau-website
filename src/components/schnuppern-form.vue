@@ -78,7 +78,7 @@ export default class SchnuppernForm extends Vue {
           <button
             class="delete"
             aria-label="close"
-            v-on:click="closePopups()"
+            v-on:click="close()"
           ></button>
         </header>
         <section class="modal-card-body">
