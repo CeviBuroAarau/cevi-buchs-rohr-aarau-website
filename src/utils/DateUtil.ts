@@ -3,7 +3,7 @@ export class DateUtil {
     return (
       a.getUTCFullYear() == b.getUTCFullYear() &&
       a.getUTCMonth() == b.getUTCMonth() &&
-      a.getUTCDay() == b.getUTCDay()
+      a.getUTCDate() == b.getUTCDate()
     );
   }
 

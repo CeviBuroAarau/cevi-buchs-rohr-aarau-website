@@ -20,6 +20,11 @@ describe("DateUtil", () => {
     const d2: Date = new Date(2021, 0, 1, 2, 0, 0);
     expect(DateUtil.isSameDay(d, d2)).toBe(false);
   });
+  test("isSameDay with different days one week apart", () => {
+    const d: Date = new Date(2021, 0, 2, 1, 0, 0);
+    const d2: Date = new Date(2021, 0, 9, 1, 0, 0);
+    expect(DateUtil.isSameDay(d, d2)).toBe(false);
+  });
   test("parseDateWithoutTime iso", () => {
     expect(DateUtil.parseDateWithoutTime("2020-06-01").toISOString()).toBe(
       "2020-06-01T00:00:00.000Z"
