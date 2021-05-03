@@ -80,17 +80,18 @@ export default class Ausbildung extends Vue {}
             (Fröschli).
           </li>
           <li>
-            Ab 17 Jahren kannst du den nationalen Ortsgruppenleiterkurs
+            Ab 17 Jahren kannst du den nationalen Ortsgruppenleiterkurs (NOLK)
             besuchen. Es werden alle wichtigen Elemente für die Leitung einer
             Abteilung vermittelt.
           </li>
           <li>
-            Mit 19 Jahren kannst du den Lagerleiterkurs absolvieren. Dieser
-            befähigt Dich ein Lager unter J+S anzumelden und durchzuführen.
+            Mit 19 Jahren kannst du das Lagerleitermodul (LLM) absolvieren.
+            Dieses befähigt Dich ein Lager für die Abteilung unter J+S
+            anzumelden und durchzuführen.
           </li>
           <li>
-            Später: Verschiedene "Kaderkurse" beispielsweise J+S Expertenkurs,
-            J+S Coachkurs und J+S Kursleiterkurs.
+            Später: Gibt es verschiedene "Kaderkurse" wie beispielsweise J+S
+            Expertenkurs, J+S Coachkurs und J+S Kursleiterkurs.
           </li>
         </ul>
 
@@ -126,9 +127,12 @@ export default class Ausbildung extends Vue {}
           <a href="https://cevi-agsoluzg.ch/ausbildung/">Ausbildungsseite</a>.
           Auf dieser findest du eine Liste der Kurse. Wenn du einen Kurs
           auswählst findest du den Anmeldetalon. Sobald du diesen ausgefüllt und
-          eingesendet hast bist du dabei. Hinweis: da der Grundlagenkurs noch
-          kein J+S Kurs ist kannst du alle Felder betreffend J+S Coach leer
-          lassen.
+          eingesendet hast bist du dabei.<br />Hinweise zum Ausfüllen: da der
+          Grundlagenkurs noch kein J+S Kurs ist kannst du alle Felder betreffend
+          J+S Coach leer lassen. Beim Unterschriftfeld kann das Kind selber
+          unterschreiben (das ist eher für die späteren Kurse, wenn man bereits
+          volljährig ist relevant) oder es leer lassen. Verbindlich ist beim GKu
+          die Unterschrift der Eltern.
         </p>
 
         <h2 class="title is-2">Auffrischung J+S Leiter</h2>
