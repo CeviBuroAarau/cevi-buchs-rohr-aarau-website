@@ -7,6 +7,12 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
 module.exports = {
+  pwa: {
+    workboxOptions: {
+      skipWaiting: true,
+      clientsClaim: true,
+    },
+  },
   devServer: {
     port: 8080,
   },
