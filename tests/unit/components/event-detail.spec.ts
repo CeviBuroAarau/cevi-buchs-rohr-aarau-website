@@ -1,11 +1,11 @@
-import { mount, shallowMount, Wrapper } from "@vue/test-utils";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { shallowMount, Wrapper } from "@vue/test-utils";
 import EventDetail from "@/components/event-detail.vue";
 
 describe("EventDetail Component", () => {
   it("show info", async () => {
-    const wrapper: Wrapper<
-      EventDetail & { [key: string]: any }
-    > = await shallowMount(EventDetail, {});
+    const wrapper: Wrapper<EventDetail & { [key: string]: any }> =
+      await shallowMount(EventDetail, {});
     await wrapper.vm.open({
       scope: "a",
       text: "b",
@@ -17,9 +17,8 @@ describe("EventDetail Component", () => {
   });
 
   it("hide info", async () => {
-    const wrapper: Wrapper<
-      EventDetail & { [key: string]: any }
-    > = await shallowMount(EventDetail, {});
+    const wrapper: Wrapper<EventDetail & { [key: string]: any }> =
+      await shallowMount(EventDetail, {});
     await wrapper.vm.close();
 
     const modal = wrapper.find("div.is-active");

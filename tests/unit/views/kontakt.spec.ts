@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import Kontakt from "@/views/Kontakt.vue";
 
@@ -28,24 +29,23 @@ describe("Kontakt Page", () => {
       open: () => openSuccessFunction(),
     };
 
-    const wrapper: Wrapper<
-      Kontakt & { [key: string]: any }
-    > = await shallowMount(Kontakt, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-      computed: {
-        errorModal() {
-          return errorModal;
+    const wrapper: Wrapper<Kontakt & { [key: string]: any }> =
+      await shallowMount(Kontakt, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
         },
-        successModal() {
-          return successModal;
+        computed: {
+          errorModal() {
+            return errorModal;
+          },
+          successModal() {
+            return successModal;
+          },
         },
-      },
-    });
+      });
     await wrapper.vm.send();
 
     expect(openErrorFunction.mock.calls.length).toBe(0);
@@ -73,24 +73,23 @@ describe("Kontakt Page", () => {
       open: () => openSuccessFunction(),
     };
 
-    const wrapper: Wrapper<
-      Kontakt & { [key: string]: any }
-    > = await shallowMount(Kontakt, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-      computed: {
-        errorModal() {
-          return errorModal;
+    const wrapper: Wrapper<Kontakt & { [key: string]: any }> =
+      await shallowMount(Kontakt, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
         },
-        successModal() {
-          return successModal;
+        computed: {
+          errorModal() {
+            return errorModal;
+          },
+          successModal() {
+            return successModal;
+          },
         },
-      },
-    });
+      });
     await wrapper.vm.send();
 
     expect(openErrorFunction.mock.calls.length).toBe(1);

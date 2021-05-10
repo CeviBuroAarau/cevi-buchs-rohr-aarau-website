@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import LeiterDetail from "@/components/leiter-detail.vue";
 import { Leader } from "@/types";
@@ -32,14 +33,13 @@ describe("LeiterDetail Component", () => {
   });
 
   test("open Form", async () => {
-    const wrapper: Wrapper<
-      LeiterDetail & { [key: string]: any }
-    > = shallowMount(LeiterDetail, {
-      stubs: [],
-      propsData: {
-        leiter: leiter,
-      },
-    });
+    const wrapper: Wrapper<LeiterDetail & { [key: string]: any }> =
+      shallowMount(LeiterDetail, {
+        stubs: [],
+        propsData: {
+          leiter: leiter,
+        },
+      });
 
     await wrapper.vm.open();
 
@@ -48,14 +48,13 @@ describe("LeiterDetail Component", () => {
   });
 
   test("close Form", async () => {
-    const wrapper: Wrapper<
-      LeiterDetail & { [key: string]: any }
-    > = shallowMount(LeiterDetail, {
-      stubs: [],
-      propsData: {
-        leiter: leiter,
-      },
-    });
+    const wrapper: Wrapper<LeiterDetail & { [key: string]: any }> =
+      shallowMount(LeiterDetail, {
+        stubs: [],
+        propsData: {
+          leiter: leiter,
+        },
+      });
 
     await wrapper.vm.close();
 

@@ -1,6 +1,6 @@
 import { CockpitMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, DateUtil, AxiosUtil } from "@/utils";
+import { SortingUtil, AxiosUtil } from "@/utils";
 
 export class MediaService {
   private axios: AxiosInstance;
@@ -13,9 +13,8 @@ export class MediaService {
   }
 
   private async retrieveMedia(): Promise<Media[]> {
-    const resp: AxiosResponse<CockpitMedia> = await this.axios.get<CockpitMedia>(
-      "collections/get/Media"
-    );
+    const resp: AxiosResponse<CockpitMedia> =
+      await this.axios.get<CockpitMedia>("collections/get/Media");
 
     let result: Media[] = resp.data.entries;
     result.forEach((m) => {

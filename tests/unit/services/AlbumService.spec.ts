@@ -62,16 +62,14 @@ jest.mock("axios", () => {
                     title: "21.02 - Kochen \u00fcber dem Feuer",
                     asset: "5fb25628396661804a000350",
                   },
-                  path:
-                    "/storage/uploads/2020/11/16/2015-02-21-1455-Waldlufer.jpg_uid_5fb25628437ec.webp",
+                  path: "/storage/uploads/2020/11/16/2015-02-21-1455-Waldlufer.jpg_uid_5fb25628437ec.webp",
                 },
                 {
                   meta: {
                     title: "21.02 - Schoggicreme mit Doppelrahm",
                     asset: "5fb256283937362a5000009e",
                   },
-                  path:
-                    "/storage/uploads/2020/11/16/2015-02-21-162824-Waldlufer.jpg_uid_5fb256289b73b.webp",
+                  path: "/storage/uploads/2020/11/16/2015-02-21-162824-Waldlufer.jpg_uid_5fb256289b73b.webp",
                 },
               ],
               _mby: "5e8c4a1f30656581770002f3",
@@ -80,8 +78,7 @@ jest.mock("axios", () => {
               _created: 1605474150,
               _id: "5fb1976632643038e10002fe",
               previewImage: {
-                path:
-                  "/storage/uploads/2020/11/18/2015-diverse.jpg_uid_5fb5827dbbd71.webp",
+                path: "/storage/uploads/2020/11/18/2015-diverse.jpg_uid_5fb5827dbbd71.webp",
               },
             },
           ],

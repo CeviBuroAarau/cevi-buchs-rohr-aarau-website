@@ -109,8 +109,7 @@ jest.mock("axios", () => {
               _created: 1586261102,
               _id: "5e8c6c6e633238ddad0002c5",
               image: {
-                path:
-                  "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
+                path: "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
               },
             },
           ],

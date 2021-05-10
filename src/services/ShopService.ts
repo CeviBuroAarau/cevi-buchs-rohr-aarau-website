@@ -18,9 +18,8 @@ export class ShopService {
   }
 
   async getArticles(): Promise<Article[]> {
-    const resp: AxiosResponse<CockpitArticles> = await this.axios.get<CockpitArticles>(
-      "collections/get/Shop"
-    );
+    const resp: AxiosResponse<CockpitArticles> =
+      await this.axios.get<CockpitArticles>("collections/get/Shop");
 
     const result: Article[] = resp.data.entries.map((article) => {
       return {

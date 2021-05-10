@@ -36,12 +36,10 @@ jest.mock("axios", () => {
             {
               title: "Kochen \u00fcber dem Feuer",
               image: {
-                path:
-                  "/storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb2509f512be.webp",
+                path: "/storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb2509f512be.webp",
               },
               thumb: {
-                path:
-                  "/storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb255d55ef95.webp",
+                path: "/storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb255d55ef95.webp",
               },
               _mby: "5e8c4a1f30656581770002f3",
               _by: "5e8c4a1f30656581770002f3",

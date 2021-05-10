@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import Medien from "@/views/Medien.vue";
 
@@ -75,16 +76,15 @@ describe("Medien Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      Medien & { [key: string]: any }
-    > = await shallowMount(Medien, {
-      data: () => {
-        return {
-          service: mediaService,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<Medien & { [key: string]: any }> =
+      await shallowMount(Medien, {
+        data: () => {
+          return {
+            service: mediaService,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadChronics();
     await wrapper.vm.loadNews();
 
@@ -110,16 +110,15 @@ describe("Medien Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      Medien & { [key: string]: any }
-    > = await shallowMount(Medien, {
-      data: () => {
-        return {
-          service: mediaService,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<Medien & { [key: string]: any }> =
+      await shallowMount(Medien, {
+        data: () => {
+          return {
+            service: mediaService,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadChronics();
     await wrapper.vm.loadNews();
 

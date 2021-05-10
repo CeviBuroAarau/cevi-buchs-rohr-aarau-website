@@ -54,8 +54,7 @@ jest.mock("axios", () => {
             {
               year: "2021",
               semester: "2",
-              file:
-                "storage\\/uploads\\/2021\\/03\\/24\\/2021-2Jungschardaten_uid_605b8bcca78c2.pdf",
+              file: "storage\\/uploads\\/2021\\/03\\/24\\/2021-2Jungschardaten_uid_605b8bcca78c2.pdf",
               _mby: "5e8c4a1f30656581770002f3",
               _by: "5e8c4a1f30656581770002f3",
               _modified: 1616612305,
@@ -65,8 +64,7 @@ jest.mock("axios", () => {
             {
               year: "2021",
               semester: "1",
-              file:
-                "storage\\/uploads\\/2021\\/03\\/24\\/2021-1Jungschardaten_uid_605b8bb18006d.pdf",
+              file: "storage\\/uploads\\/2021\\/03\\/24\\/2021-1Jungschardaten_uid_605b8bb18006d.pdf",
               _mby: "5e8c4a1f30656581770002f3",
               _by: "5e8c4a1f30656581770002f3",
               _modified: 1616612277,
@@ -76,8 +74,7 @@ jest.mock("axios", () => {
             {
               year: "2020",
               semester: "2",
-              file:
-                "storage\\/uploads\\/2021\\/03\\/24\\/2020-2Jungschardaten_uid_605b8bc5d5cd3.pdf",
+              file: "storage\\/uploads\\/2021\\/03\\/24\\/2020-2Jungschardaten_uid_605b8bc5d5cd3.pdf",
               _mby: "5e8c4a1f30656581770002f3",
               _by: "5e8c4a1f30656581770002f3",
               _modified: 1616612347,

@@ -23,9 +23,8 @@ export default class AgendaView extends Vue {
   agendaService: AgendaService = new AgendaService(
     AxiosUtil.getCockpitInstance()
   );
-  semesterScheduleService: SemesterScheduleService = new SemesterScheduleService(
-    AxiosUtil.getCockpitInstance()
-  );
+  semesterScheduleService: SemesterScheduleService =
+    new SemesterScheduleService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
 
   async mounted() {

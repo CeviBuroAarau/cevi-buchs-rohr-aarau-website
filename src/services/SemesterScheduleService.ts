@@ -9,9 +9,10 @@ export class SemesterScheduleService {
   }
 
   async getSchedules(year: number): Promise<SemesterSchedule[]> {
-    const resp: AxiosResponse<CockpitSemesterSchedule> = await this.axios.get<CockpitSemesterSchedule>(
-      "collections/get/SemesterSchedule"
-    );
+    const resp: AxiosResponse<CockpitSemesterSchedule> =
+      await this.axios.get<CockpitSemesterSchedule>(
+        "collections/get/SemesterSchedule"
+      );
 
     const schedule: SemesterSchedule[] = resp.data.entries.map(
       (semesterSchedule) => {
@@ -23,7 +24,6 @@ export class SemesterScheduleService {
       }
     );
 
-    const currentDate = new Date();
     return schedule
       .filter((schedule) => schedule.year === year)
       .sort((first, second) => {

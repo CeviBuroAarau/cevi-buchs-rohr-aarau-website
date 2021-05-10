@@ -23,8 +23,7 @@ jest.mock("axios", () => {
           entries: [
             {
               image: {
-                path:
-                  "/storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp",
+                path: "/storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp",
               },
               _mby: "5e8c4a1f30656581770002f3",
               _by: "5e8c4a1f30656581770002f3",
@@ -34,8 +33,7 @@ jest.mock("axios", () => {
             },
             {
               image: {
-                path:
-                  "/storage/uploads/2021/02/27/background2_uid_603a773ecd85d.webp",
+                path: "/storage/uploads/2021/02/27/background2_uid_603a773ecd85d.webp",
               },
               _mby: "5e8c4a1f30656581770002f3",
               _by: "5e8c4a1f30656581770002f3",

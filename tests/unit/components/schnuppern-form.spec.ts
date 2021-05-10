@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import SchnuppernForm from "@/components/schnuppern-form.vue";
 
@@ -21,24 +22,23 @@ describe("SchnuppernForm Component", () => {
       open: () => openSuccessFunction(),
     };
 
-    const wrapper: Wrapper<
-      SchnuppernForm & { [key: string]: any }
-    > = await shallowMount(SchnuppernForm, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-      computed: {
-        errorModal() {
-          return errorModal;
+    const wrapper: Wrapper<SchnuppernForm & { [key: string]: any }> =
+      await shallowMount(SchnuppernForm, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
         },
-        successModal() {
-          return successModal;
+        computed: {
+          errorModal() {
+            return errorModal;
+          },
+          successModal() {
+            return successModal;
+          },
         },
-      },
-    });
+      });
     await wrapper.vm.subscribe();
 
     expect(openErrorFunction.mock.calls.length).toBe(0);
@@ -66,24 +66,23 @@ describe("SchnuppernForm Component", () => {
       open: () => openSuccessFunction(),
     };
 
-    const wrapper: Wrapper<
-      SchnuppernForm & { [key: string]: any }
-    > = await shallowMount(SchnuppernForm, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-      computed: {
-        errorModal() {
-          return errorModal;
+    const wrapper: Wrapper<SchnuppernForm & { [key: string]: any }> =
+      await shallowMount(SchnuppernForm, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
         },
-        successModal() {
-          return successModal;
+        computed: {
+          errorModal() {
+            return errorModal;
+          },
+          successModal() {
+            return successModal;
+          },
         },
-      },
-    });
+      });
     await wrapper.vm.subscribe();
 
     expect(openErrorFunction.mock.calls.length).toBe(1);
@@ -91,9 +90,8 @@ describe("SchnuppernForm Component", () => {
   });
 
   it("show form", async () => {
-    const wrapper: Wrapper<
-      SchnuppernForm & { [key: string]: any }
-    > = await shallowMount(SchnuppernForm, {});
+    const wrapper: Wrapper<SchnuppernForm & { [key: string]: any }> =
+      await shallowMount(SchnuppernForm, {});
     await wrapper.vm.showSubscriptionForm();
 
     const modal = wrapper.find("div.is-active");
@@ -101,9 +99,8 @@ describe("SchnuppernForm Component", () => {
   });
 
   it("close form", async () => {
-    const wrapper: Wrapper<
-      SchnuppernForm & { [key: string]: any }
-    > = await shallowMount(SchnuppernForm, {});
+    const wrapper: Wrapper<SchnuppernForm & { [key: string]: any }> =
+      await shallowMount(SchnuppernForm, {});
     await wrapper.vm.close();
 
     const modal = wrapper.find("div.is-active");

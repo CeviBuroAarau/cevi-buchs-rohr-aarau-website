@@ -9,9 +9,8 @@ export class ActivitiesService {
   }
 
   private async retrieveActivities(): Promise<Activity[]> {
-    const resp: AxiosResponse<CockpitActivities> = await this.axios.get<CockpitActivities>(
-      "collections/get/Activities"
-    );
+    const resp: AxiosResponse<CockpitActivities> =
+      await this.axios.get<CockpitActivities>("collections/get/Activities");
 
     const result: Activity[] = resp.data.entries.map((activity) => {
       return {

@@ -1,7 +1,7 @@
 "use strict";
 
-const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
-  .BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin =
+  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 // eslint-disable-next-line
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
