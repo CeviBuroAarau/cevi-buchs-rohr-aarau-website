@@ -14,6 +14,7 @@ export class AxiosUtil {
   }
 
   static dateConversionInterceptor(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     originalResponse: AxiosResponse<any>,
     fieldName: string
   ) {

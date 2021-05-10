@@ -3,6 +3,7 @@ import { AxiosUtil } from "@/utils";
 describe("AxiosUtil", () => {
   test("getCockpitInstance", () => {
     const axios = AxiosUtil.getCockpitInstance();
+    expect(axios).toBeTruthy();
   });
 
   test("dateConversionInterceptor", () => {

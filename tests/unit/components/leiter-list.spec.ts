@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mount, shallowMount, Wrapper } from "@vue/test-utils";
 import LeiterList from "@/components/leiter-list.vue";
 import { Leader } from "@/types";

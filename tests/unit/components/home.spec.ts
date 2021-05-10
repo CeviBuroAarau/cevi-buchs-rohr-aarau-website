@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import Home from "@/components/home.vue";
 
@@ -12,7 +13,11 @@ describe("Home Component", () => {
     wrapper.vm.onMobileNaviagation();
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
-    expect(mobileOpenChangedEmitted![0]).toEqual([false]);
+    if (mobileOpenChangedEmitted !== undefined) {
+      expect(mobileOpenChangedEmitted[0]).toEqual([false]);
+    } else {
+      fail();
+    }
   });
 
   it("load Success", async () => {
