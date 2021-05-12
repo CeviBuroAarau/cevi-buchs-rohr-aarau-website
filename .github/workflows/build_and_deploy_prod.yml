@@ -161,7 +161,7 @@ jobs:
           (cd tests/e2e/reports && zip -r ../../../e2e_report.zip .)
 
       - name: Upload Dist Archive
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -171,7 +171,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload Unit Test Report
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
@@ -181,7 +181,7 @@ jobs:
           asset_content_type: application/zip
 
       - name: Upload E2E Test Report
-        uses: actions/upload-release-asset@v1
+        uses: actions/upload-release-asset@v1.0.2
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
