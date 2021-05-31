@@ -60,7 +60,7 @@
     "chromedriver": "^90.0.1",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.4.0",
-    "eslint-plugin-vue": "^7.9.0",
+    "eslint-plugin-vue": "^7.10.0",
     "geckodriver": "^2.0.0",
     "husky": "^6.0.0",
     "jest-sonar-reporter": "^2.0.0",
