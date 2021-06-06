@@ -1,5 +1,6 @@
 export interface Leader {
   name: string;
+  isactive: boolean;
   scoutname: string;
   function: string[];
   group: string;
@@ -19,6 +20,7 @@ export interface CockpitLeaders {
 
 export interface LeaderRaw {
   name: string;
+  isactive: boolean;
   scoutname: string;
   function: string[];
   group: string;

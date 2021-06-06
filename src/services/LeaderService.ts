@@ -19,6 +19,6 @@ export class LeaderService {
       };
     });
 
-    return result;
+    return result.filter((leader) => leader.isactive);
   }
 }

@@ -6,6 +6,7 @@ import { Leader } from "@/types";
 describe("LeiterDetail Component", () => {
   const leiter: Leader = {
     name: "Leah Dellenbach",
+    isactive: true,
     scoutname: "Luna",
     function: ["Gruppenleiterin", "Abteilungsleiterin"],
     group: "Spartacus",
