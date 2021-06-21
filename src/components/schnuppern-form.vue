@@ -78,7 +78,7 @@ export default class SchnuppernForm extends Vue {
           <button
             class="delete"
             aria-label="close"
-            v-on:click="closePopups()"
+            v-on:click="close()"
           ></button>
         </header>
         <section class="modal-card-body">
@@ -137,7 +137,7 @@ export default class SchnuppernForm extends Vue {
 
           <div class="field">
             <label for="message" class="label"
-              >Nachricht (z. B. Alter des Kindes, gewünschtes
+              >Nachricht (z. B. Anzahl und Alter der Kinder, gewünschtes
               Schnupperdatum)</label
             >
             <div class="control">

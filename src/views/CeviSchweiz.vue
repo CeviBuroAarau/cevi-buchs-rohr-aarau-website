@@ -13,13 +13,22 @@ export default class CeviSchweiz extends Vue {}
       <h1 class="title is-1">Cevi Schweiz</h1>
       <h2 class="title is-2">Was ist der Cevi?</h2>
       <p class="content">
-        Der <a href="https://www.cevi.ch/portrait/">Cevi</a> ist der
-        drittgrösste Jugendverband in der Schweiz. Er umfasst rund 13 000
-        Cevianer/innen in über 200 lokalen Vereinen, führt jährlich über 80
-        Ausbildungskurse und gegen 300 Lager durch. Als christlich und
-        international ausgerichtete Jugendbewegung stehen Leiterschaft und das
-        Befähigen von Menschen im Zentrum aller Tätigkeiten. Der Cevi Schweiz
-        ist Teil der europäischen und weltweiten Cevi-Verbände
+        Mit seinen gute 13'000 Mitgliedern ist der
+        <a href="https://www.cevi.ch/portrait/">Cevi</a> der drittgrösste
+        Jugendverband in der Schweiz. Er ist aufgeteilt in sieben
+        <a href="https://www.cevi.ch/mitglieder-organisationen/"
+          >Regionalverbände</a
+        >
+        und vier
+        <a href="https://www.cevi.ch/mitglieder-organisationen/"
+          >Arbeitsgebiete</a
+        >. Seine Arbeit reicht von der klassischen Jungscharbeit in den
+        Regionalverbänden hin zu Sportgruppen, Chören, Aufgabenhilfe und vielen
+        weiteren Aktivitäten. Kein anderer Jugendverband ist in der Schweiz so
+        breit abgestützt! Als christlich und international ausgerichtete
+        Jugendbewegung stehen Leiterschaft und das Befähigen von Menschen im
+        Zentrum aller Tätigkeiten. Der Cevi Schweiz ist Teil der europäischen
+        und weltweiten Cevi-Verbände
         <a href="https://www.ymca.int/">YMCA</a> und
         <a href="https://www.worldywca.org/">YWCA</a> mit insgesamt 70 Millionen
         Mitgliedern.

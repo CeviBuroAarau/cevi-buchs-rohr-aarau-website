@@ -9,9 +9,10 @@ export class WelcomeImageService {
   }
 
   async getImages(): Promise<WelcomeImage[]> {
-    const resp: AxiosResponse<CockpitWelcomeImage> = await this.axios.get<CockpitWelcomeImage>(
-      "collections/get/WelcomeImages"
-    );
+    const resp: AxiosResponse<CockpitWelcomeImage> =
+      await this.axios.get<CockpitWelcomeImage>(
+        "collections/get/WelcomeImages"
+      );
 
     return resp.data.entries.map((welcomeImage) => {
       return {

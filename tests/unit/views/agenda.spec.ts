@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mount, shallowMount, Wrapper } from "@vue/test-utils";
 import AgendaView from "@/views/Agenda.vue";
 
@@ -25,7 +26,8 @@ describe("Agenda Page", () => {
 
   it("load Short Agenda Success", async () => {
     const agendaService = {
-      getEventsAfterDate: () => [
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      getEventsAfterDate: (currentDate: Date) => [
         {
           title: "123",
           text: "123",
@@ -86,7 +88,8 @@ describe("Agenda Page", () => {
 
   it("load Full Agenda Success", async () => {
     const agendaService = {
-      getEventsAfterDate: () => [
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      getEventsAfterDate: (currentDate: Date) => [
         {
           title: "123",
           text: "123",
@@ -160,16 +163,15 @@ describe("Agenda Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      AgendaView & { [key: string]: any }
-    > = await shallowMount(AgendaView, {
-      data: () => {
-        return {
-          agendaService: agendaService,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<AgendaView & { [key: string]: any }> =
+      await shallowMount(AgendaView, {
+        data: () => {
+          return {
+            agendaService: agendaService,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadAgenda();
 
     const progress = wrapper.find("progress");

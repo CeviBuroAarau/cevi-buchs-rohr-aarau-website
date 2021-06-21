@@ -56,8 +56,7 @@ jest.mock("axios", () => {
             {
               name: "Jungscharhemd Kinder",
               image: {
-                path:
-                  "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp",
+                path: "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp",
               },
               price: "54.9",
               category: ["Regul\\u00e4re Artikel"],
@@ -72,8 +71,7 @@ jest.mock("axios", () => {
             {
               name: "Jungscharhemd Erwachsene",
               image: {
-                path:
-                  "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp",
+                path: "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp",
               },
               price: "62.9",
               category: ["Regul\\u00e4re Artikel"],

@@ -13,9 +13,8 @@ export class AlbumService {
   }
 
   async getAlbums(): Promise<Album[]> {
-    const resp: AxiosResponse<CockpitAlbum> = await this.axios.get<CockpitAlbum>(
-      "collections/get/Album"
-    );
+    const resp: AxiosResponse<CockpitAlbum> =
+      await this.axios.get<CockpitAlbum>("collections/get/Album");
 
     const tempResult: CockpitAlbumEntry[] = resp.data.entries;
     let result: Album[] = tempResult.map((a) => {

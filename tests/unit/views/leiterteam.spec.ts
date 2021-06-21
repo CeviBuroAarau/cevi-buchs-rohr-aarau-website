@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import Leiterteam from "@/views/Leiterteam.vue";
 
@@ -32,16 +33,15 @@ describe("Leiterteam Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      Leiterteam & { [key: string]: any }
-    > = await shallowMount(Leiterteam, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<Leiterteam & { [key: string]: any }> =
+      await shallowMount(Leiterteam, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadLeaders();
 
     const progress = wrapper.find("progress");
@@ -63,16 +63,15 @@ describe("Leiterteam Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      Leiterteam & { [key: string]: any }
-    > = await shallowMount(Leiterteam, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<Leiterteam & { [key: string]: any }> =
+      await shallowMount(Leiterteam, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadLeaders();
 
     const progress = wrapper.find("progress");

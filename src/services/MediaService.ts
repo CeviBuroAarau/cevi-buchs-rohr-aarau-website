@@ -13,9 +13,8 @@ export class MediaService {
   }
 
   private async retrieveMedia(): Promise<Media[]> {
-    const resp: AxiosResponse<CockpitMedia> = await this.axios.get<CockpitMedia>(
-      "collections/get/Media"
-    );
+    const resp: AxiosResponse<CockpitMedia> =
+      await this.axios.get<CockpitMedia>("collections/get/Media");
 
     let result: Media[] = resp.data.entries;
     result.forEach((m) => {

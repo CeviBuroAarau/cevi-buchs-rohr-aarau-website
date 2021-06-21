@@ -25,6 +25,12 @@ jest.mock("axios", () => {
               localize: false,
               options: [],
             },
+            isactive: {
+              name: "is_active",
+              type: "boolean",
+              localize: false,
+              options: [],
+            },
             group: {
               name: "group",
               type: "text",
@@ -93,6 +99,7 @@ jest.mock("axios", () => {
             {
               name: "Leah Dellenbach",
               scoutname: "Luna",
+              isactive: true,
               function: ["Gruppenleiterin", "Abteilungsleiterin"],
               group: "Spartacus",
               birthyear: "1998",
@@ -109,8 +116,30 @@ jest.mock("axios", () => {
               _created: 1586261102,
               _id: "5e8c6c6e633238ddad0002c5",
               image: {
-                path:
-                  "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
+                path: "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
+              },
+            },
+            {
+              name: "Leah Dellenbach",
+              scoutname: "Luna",
+              isactive: false,
+              function: ["Gruppenleiterin", "Abteilungsleiterin"],
+              group: "Spartacus",
+              birthyear: "1998",
+              place: "Aarau",
+              profession: "Neue Kantonsschule Aarau",
+              recreation: "Lesen, Jungschi, mit Freunden treffen",
+              inScountsSince: "ungef\\u00e4hr 2006",
+              inScoutsBecause:
+                "es lustig ist mit Gleichgesinnten etwas zu machen",
+              bestExperiences: "Pfila 2007, Leiteranl\\u00e4sse",
+              _mby: "5e8c4a1f30656581770002f3",
+              _by: "5e8c4a1f30656581770002f3",
+              _modified: 1612215935,
+              _created: 1586261102,
+              _id: "5e8c6c6e633238ddad0002c5",
+              image: {
+                path: "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
               },
             },
           ],
@@ -127,5 +156,6 @@ describe("LeaderService", () => {
     const service: LeaderService = new LeaderService(axiosInstance);
     const leaders: Leader[] = await service.getLeaders();
     expect(leaders[0].place).toBe("Aarau");
+    expect(leaders.length).toBe(1);
   });
 });

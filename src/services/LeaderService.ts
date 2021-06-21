@@ -9,9 +9,8 @@ export class LeaderService {
   }
 
   async getLeaders(): Promise<Leader[]> {
-    const resp: AxiosResponse<CockpitLeaders> = await this.axios.get<CockpitLeaders>(
-      "collections/get/Leader"
-    );
+    const resp: AxiosResponse<CockpitLeaders> =
+      await this.axios.get<CockpitLeaders>("collections/get/Leader");
 
     const result: Leader[] = resp.data.entries.map((leader) => {
       return {
@@ -20,6 +19,6 @@ export class LeaderService {
       };
     });
 
-    return result;
+    return result.filter((leader) => leader.isactive);
   }
 }

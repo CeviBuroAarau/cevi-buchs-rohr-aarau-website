@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount, Wrapper } from "@vue/test-utils";
 import Laedeli from "@/views/Laedeli.vue";
 
@@ -32,16 +33,15 @@ describe("Lädeli Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      Laedeli & { [key: string]: any }
-    > = await shallowMount(Laedeli, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<Laedeli & { [key: string]: any }> =
+      await shallowMount(Laedeli, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadArticles();
 
     const progress = wrapper.find("progress");
@@ -63,16 +63,15 @@ describe("Lädeli Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<
-      Laedeli & { [key: string]: any }
-    > = await shallowMount(Laedeli, {
-      data: () => {
-        return {
-          service: service,
-          errorService: errorService,
-        };
-      },
-    });
+    const wrapper: Wrapper<Laedeli & { [key: string]: any }> =
+      await shallowMount(Laedeli, {
+        data: () => {
+          return {
+            service: service,
+            errorService: errorService,
+          };
+        },
+      });
     await wrapper.vm.loadArticles();
 
     const progress = wrapper.find("progress");
@@ -89,15 +88,14 @@ describe("Lädeli Page", () => {
       showForm: () => laedeliFormFunction(),
     };
 
-    const wrapper: Wrapper<
-      Laedeli & { [key: string]: any }
-    > = await shallowMount(Laedeli, {
-      computed: {
-        laedeliForm() {
-          return laedeliForm;
+    const wrapper: Wrapper<Laedeli & { [key: string]: any }> =
+      await shallowMount(Laedeli, {
+        computed: {
+          laedeliForm() {
+            return laedeliForm;
+          },
         },
-      },
-    });
+      });
     wrapper.vm.showForm();
 
     expect(laedeliFormFunction.mock.calls.length).toBe(1);

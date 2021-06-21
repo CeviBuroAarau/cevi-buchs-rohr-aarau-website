@@ -37,7 +37,10 @@ exports[`LeiterDetail Component render leiter-detail with leiter 1`] = `
       />
        
       <table
-        class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        class="
+          table
+          is-bordered is-striped is-narrow is-hoverable is-fullwidth
+        "
         role="presentation"
       >
         <tr>

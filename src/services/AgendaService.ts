@@ -14,9 +14,8 @@ export class AgendaService {
   }
 
   private async retrieveUpcomingEvents(currentDay: Date): Promise<Agenda[]> {
-    const resp: AxiosResponse<CockpitAgenda> = await this.axios.get<CockpitAgenda>(
-      "collections/get/Agenda"
-    );
+    const resp: AxiosResponse<CockpitAgenda> =
+      await this.axios.get<CockpitAgenda>("collections/get/Agenda");
 
     currentDay.setHours(0, 0, 0, 0);
 
@@ -32,9 +31,8 @@ export class AgendaService {
   }
 
   private async retrieveEventInfo(): Promise<EventInfo[]> {
-    const resp: AxiosResponse<CockpitEventInfo> = await this.axios.get<CockpitEventInfo>(
-      "collections/get/EventInfo"
-    );
+    const resp: AxiosResponse<CockpitEventInfo> =
+      await this.axios.get<CockpitEventInfo>("collections/get/EventInfo");
 
     const currentDay = new Date();
     currentDay.setHours(0, 0, 0, 0);
