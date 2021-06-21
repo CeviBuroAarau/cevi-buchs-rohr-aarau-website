@@ -111,6 +111,13 @@ describe("LaedeliForm Component", () => {
     await wrapper.vm.showForm();
 
     expect(wrapper.vm.$data.state).toBe(LaedeliFormState.Displayed);
+
+    const onFormOpenedEmitted = wrapper.emitted().onFormOpened;
+    if (onFormOpenedEmitted === undefined) {
+      fail("onFormOpened mustn't be undefined");
+    } else {
+      expect(onFormOpenedEmitted.length).toBe(1);
+    }
   });
 
   it("close Form", async () => {
@@ -134,5 +141,12 @@ describe("LaedeliForm Component", () => {
     await wrapper.vm.close();
 
     expect(wrapper.vm.$data.state).toBe(LaedeliFormState.NotDisplayed);
+
+    const onFormClosedEmitted = wrapper.emitted().onFormClosed;
+    if (onFormClosedEmitted === undefined) {
+      fail("onFormClosed mustn't be undefined");
+    } else {
+      expect(onFormClosedEmitted.length).toBe(1);
+    }
   });
 });

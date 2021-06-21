@@ -10,38 +10,48 @@
         einem Jungschinachmittag direkt bei uns vorbeikommen.
       </p>
 
-      <div v-if="loading">
-        <p>Daten werden geladen.</p>
-        <progress class="progress is-small is-primary" max="100">15%</progress>
-      </div>
-
-      <div v-else-if="error">
-        <div class="notification is-danger">
-          Die Artikel können monentan nicht abgerufen werden. Bitte versuchen
-          Sie es später noch einmal.
-        </div>
-      </div>
-
-      <div v-else id="articles">
-        <h2 class="subtitle is-2">Reguläre Artikel</h2>
-
-        <article-list
-          :articles="
-            articleList.filter((item) => item.category == 'Reguläre Artikel')
-          "
-        ></article-list>
-
-        <h2 class="subtitle is-2">Restposten</h2>
-        <article-list
-          :articles="
-            articleList.filter((item) => item.category == 'Restposten')
-          "
-        ></article-list>
-
+      <p class="content">
         <button v-on:click="showForm()" class="button is-link">
           Bestellformular öffnen
         </button>
-        <laedeli-form ref="laedeliForm"></laedeli-form>
+      </p>
+      <laedeli-form
+        ref="laedeliForm"
+        @onFormOpened="onFormOpened()"
+        @onFormClosed="onFormClosed()"
+      ></laedeli-form>
+
+      <div class="container" v-bind:class="{ noPrint: isFormOpen }">
+        <div v-if="loading">
+          <p>Daten werden geladen.</p>
+          <progress class="progress is-small is-primary" max="100">
+            15%
+          </progress>
+        </div>
+
+        <div v-else-if="error">
+          <div class="notification is-danger">
+            Die Artikel können monentan nicht abgerufen werden. Bitte versuchen
+            Sie es später noch einmal.
+          </div>
+        </div>
+
+        <div v-else id="articles">
+          <h2 class="subtitle is-2">Reguläre Artikel</h2>
+
+          <article-list
+            :articles="
+              articleList.filter((item) => item.category == 'Reguläre Artikel')
+            "
+          ></article-list>
+
+          <h2 class="subtitle is-2">Restposten</h2>
+          <article-list
+            :articles="
+              articleList.filter((item) => item.category == 'Restposten')
+            "
+          ></article-list>
+        </div>
       </div>
     </div>
   </section>
@@ -71,6 +81,7 @@ export default class Laedeli extends Vue {
   private articleList: Article[] = [];
   service: ShopService = new ShopService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
+  private isFormOpen = false;
 
   async mounted() {
     await this.loadArticles();
@@ -90,6 +101,14 @@ export default class Laedeli extends Vue {
 
   showForm() {
     this.laedeliForm.showForm();
+  }
+
+  onFormOpened() {
+    this.isFormOpen = true;
+  }
+
+  onFormClosed() {
+    this.isFormOpen = false;
   }
 }
 </script>

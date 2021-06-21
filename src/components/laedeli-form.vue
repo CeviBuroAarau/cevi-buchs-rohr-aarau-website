@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ErrorReportingService, ShopService } from "@/services";
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { LaedeliFormState } from "@/types";
 import Modal from "@/components/modal.vue";
@@ -51,10 +51,12 @@ export default class LaedeliForm extends Vue {
     }
   }
 
+  @Emit("onFormOpened")
   public showForm() {
     this.state = LaedeliFormState.Displayed;
   }
 
+  @Emit("onFormClosed")
   close() {
     this.state = LaedeliFormState.NotDisplayed;
   }
