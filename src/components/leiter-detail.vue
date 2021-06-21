@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 import { Leader } from "@/types";
 
 @Component({})
@@ -8,10 +8,12 @@ export default class LeiterDetail extends Vue {
 
   private display = false;
 
+  @Emit("onLeiterOpened")
   public open() {
     this.display = true;
   }
 
+  @Emit("onLeiterClosed")
   public close() {
     this.display = false;
   }

@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Component, Prop, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Ref, Vue } from "vue-property-decorator";
 import { Leader } from "@/types";
 import LeiterDetail from "@/components/leiter-detail.vue";
 
@@ -11,6 +11,7 @@ import LeiterDetail from "@/components/leiter-detail.vue";
 export default class LeiterList extends Vue {
   @Prop({}) readonly leiter!: Leader[];
   @Ref("leiterDetail") readonly leiterDetail!: LeiterDetail;
+  private isEventDisplayed = false;
 
   private activeLeiter: Leader | null = null;
   private leiterList: Leader[] = [];
@@ -19,14 +20,35 @@ export default class LeiterList extends Vue {
     this.activeLeiter = leiter;
     this.leiterDetail.open();
   }
+
+  @Emit("onLeiterOpened")
+  onLeiterOpened() {
+    this.isEventDisplayed = true;
+  }
+
+  @Emit("onLeiterClosed")
+  onLeiterClosed() {
+    this.isEventDisplayed = false;
+  }
 }
 </script>
 
 <template>
   <div>
-    <leiter-detail ref="leiterDetail" :leiter="activeLeiter"></leiter-detail>
+    <leiter-detail
+      ref="leiterDetail"
+      @onLeiterOpened="onLeiterOpened()"
+      @onLeiterClosed="onLeiterClosed()"
+      :leiter="activeLeiter"
+    ></leiter-detail>
 
-    <ul style="display: flex; flex-wrap: wrap" v-if="this.leiterList != null">
+    <ul
+      style="display: flex; flex-wrap: wrap"
+      v-if="this.leiterList != null"
+      v-bind:class="{
+        noPrint: isEventDisplayed,
+      }"
+    >
       <li
         class="leiterlist"
         v-for="(item, itemIndex) in leiter"
