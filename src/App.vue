@@ -26,7 +26,7 @@ body {
 
   /* used to hide other content when modals are displayed */
   .noPrint {
-    display: none;
+    display: none !important;
   }
 
   /* show modal at the beginning of the screen instead of centered */

@@ -5,6 +5,7 @@ exports[`LeiterList Component render leiter-list 1`] = `
   <leiter-detail-stub />
    
   <ul
+    class=""
     style="display: flex; flex-wrap: wrap;"
   >
     <li

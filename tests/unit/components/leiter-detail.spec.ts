@@ -46,6 +46,13 @@ describe("LeiterDetail Component", () => {
 
     const container = wrapper.find("div.is-active");
     expect(container.exists()).toBe(true);
+
+    const onLeiterOpenedEmitted = wrapper.emitted().onLeiterOpened;
+    if (onLeiterOpenedEmitted === undefined) {
+      fail("onLeiterOpened mustn't be undefined");
+    } else {
+      expect(onLeiterOpenedEmitted.length).toBe(1);
+    }
   });
 
   test("close Form", async () => {
@@ -61,5 +68,12 @@ describe("LeiterDetail Component", () => {
 
     const container = wrapper.find("div.is-active");
     expect(container.exists()).toBe(false);
+
+    const onLeiterClosedEmitted = wrapper.emitted().onLeiterClosed;
+    if (onLeiterClosedEmitted === undefined) {
+      fail("onLeiterClosed mustn't be undefined");
+    } else {
+      expect(onLeiterClosedEmitted.length).toBe(1);
+    }
   });
 });
