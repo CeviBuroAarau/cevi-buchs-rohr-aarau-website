@@ -23,6 +23,14 @@ body {
   a[href^="http"]:not([href*="cevi-buro-aarau.ch"]):after {
     content: " (" attr(href) ")";
   }
+
+  .noPrint {
+    display: none;
+  }
+
+  .modal-card-head button.delete {
+    display: none;
+  }
 }
 </style>
 

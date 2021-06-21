@@ -96,6 +96,13 @@ describe("SchnuppernForm Component", () => {
 
     const modal = wrapper.find("div.is-active");
     expect(modal.exists()).toBe(true);
+
+    const onFormOpenedEmitted = wrapper.emitted().onFormOpened;
+    if (onFormOpenedEmitted === undefined) {
+      fail("onFormOpened mustn't be undefined");
+    } else {
+      expect(onFormOpenedEmitted.length).toBe(1);
+    }
   });
 
   it("close form", async () => {
@@ -105,5 +112,12 @@ describe("SchnuppernForm Component", () => {
 
     const modal = wrapper.find("div.is-active");
     expect(modal.exists()).toBe(false);
+
+    const onFormClosedEmitted = wrapper.emitted().onFormClosed;
+    if (onFormClosedEmitted === undefined) {
+      fail("onFormOpened mustn't be undefined");
+    } else {
+      expect(onFormClosedEmitted.length).toBe(1);
+    }
   });
 });

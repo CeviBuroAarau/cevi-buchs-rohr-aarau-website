@@ -9,19 +9,32 @@ import SchnuppernForm from "@/components/schnuppern-form.vue";
 })
 export default class Schnuppern extends Vue {
   @Ref("schnuppernForm") readonly schnuppernForm!: SchnuppernForm;
+  private isFormDisplayed = false;
 
   showSubscriptionForm() {
     this.schnuppernForm.showSubscriptionForm();
+  }
+
+  onFormOpened() {
+    this.isFormDisplayed = true;
+  }
+
+  onFormClosed() {
+    this.isFormDisplayed = false;
   }
 }
 </script>
 
 <template>
   <section class="section">
-    <div class="container">
-      <h1 class="title is-1">Schnuppern</h1>
+    <schnuppern-form
+      @onFormClosed="onFormClosed()"
+      @onFormOpened="onFormOpened()"
+      ref="schnuppernForm"
+    ></schnuppern-form>
 
-      <schnuppern-form ref="schnuppernForm"></schnuppern-form>
+    <div class="container" v-bind:class="{ noPrint: isFormDisplayed }">
+      <h1 class="title is-1">Schnuppern</h1>
 
       <h2 class="title is-2">Anmeldung</h2>
       <p class="content">
