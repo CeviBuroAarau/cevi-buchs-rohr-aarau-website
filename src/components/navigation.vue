@@ -123,6 +123,12 @@ export default class Navigation extends Vue {
 </template>
 
 <style scoped lang="scss">
+@media print {
+  ul.main-menu {
+    display: none;
+  }
+}
+
 .main-menu {
   flex-shrink: 0;
   width: 33%;
