@@ -19,6 +19,7 @@ export default class AgendaView extends Vue {
     AxiosUtil.getCockpitInstance()
   );
   errorService: ErrorReportingService = new ErrorReportingService();
+  private isEventDisplayed = false;
 
   async mounted() {
     await this.loadAgenda();
@@ -44,6 +45,14 @@ export default class AgendaView extends Vue {
     } else {
       return this.events.slice(0, 3);
     }
+  }
+
+  onEventOpened() {
+    this.isEventDisplayed = true;
+  }
+
+  onEventClosed() {
+    this.isEventDisplayed = false;
   }
 }
 </script>
@@ -76,6 +85,8 @@ export default class AgendaView extends Vue {
         <event-list
           id="eventlist"
           :events="this.getEventsForDisplay()"
+          @onEventOpened="onEventOpened()"
+          @onEventClosed="onEventClosed()"
         ></event-list>
         <p v-if="!isFull">
           <a @click="isFull = true">Mehr Anlässe anzeigen</a>

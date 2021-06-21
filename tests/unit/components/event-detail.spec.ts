@@ -14,6 +14,13 @@ describe("EventDetail Component", () => {
 
     const modal = wrapper.find("div.is-active");
     expect(modal.exists()).toBe(true);
+
+    const onEventOpenedEmitted = wrapper.emitted().onEventOpened;
+    if (onEventOpenedEmitted === undefined) {
+      fail("onEventOpened mustn't be undefined");
+    } else {
+      expect(onEventOpenedEmitted.length).toBe(1);
+    }
   });
 
   it("hide info", async () => {
@@ -23,5 +30,12 @@ describe("EventDetail Component", () => {
 
     const modal = wrapper.find("div.is-active");
     expect(modal.exists()).toBe(false);
+
+    const onEventClosedEmitted = wrapper.emitted().onEventClosed;
+    if (onEventClosedEmitted === undefined) {
+      fail("onEventClosed mustn't be undefined");
+    } else {
+      expect(onEventClosedEmitted.length).toBe(1);
+    }
   });
 });
