@@ -24,14 +24,21 @@ body {
     content: " (" attr(href) ")";
   }
 
+  /* used to hide other content when modals are displayed */
   .noPrint {
     display: none;
+  }
+
+  /* show modal at the beginning of the screen instead of centered */
+  .modal {
+    justify-content: flex-start !important;
   }
 
   .modal-card-head button.delete {
     display: none;
   }
 
+  /* always print borders for tables and make them black */
   table.is-bordered td,
   th {
     border: solid #000 !important;
