@@ -206,6 +206,13 @@ export default class Home extends Vue {
 </script>
 
 <style scoped lang="scss">
+@media print {
+  * {
+    -webkit-print-color-adjust: exact !important; /* Chrome, Safari -> print background image */
+    color-adjust: exact !important; /*Firefox -> print background image */
+  }
+}
+
 .flex-wrapper {
   display: flex;
   flex-flow: column;
