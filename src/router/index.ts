@@ -198,7 +198,7 @@ const routes: Array<RouteConfig> = [
     component: LazyRegularLayout,
     children: [
       {
-        name: "NOt Found",
+        name: "Not Found",
         path: "",
         component: LazyNotFound,
       },

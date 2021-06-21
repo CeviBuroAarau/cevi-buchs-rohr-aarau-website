@@ -134,4 +134,13 @@ describe("Router", function () {
       .saveScreenshot("tests/e2e/reports/kontakt.png")
       .end();
   });
+
+  test("visit a non existing page", (browser) => {
+    browser
+      .init("http://localhost:8080/non_existing")
+      .waitForElementVisible("#app")
+      .assert.containsText("h1", "Ups, da ist was schief gegangen")
+      .saveScreenshot("tests/e2e/reports/not_found.png")
+      .end();
+  });
 });

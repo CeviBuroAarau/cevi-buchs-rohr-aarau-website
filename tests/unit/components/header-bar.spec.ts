@@ -11,10 +11,11 @@ describe("HeaderBar Component", () => {
     wrapper.vm.onMobileOpenChanged();
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
-    if (mobileOpenChangedEmitted !== undefined) {
-      expect(mobileOpenChangedEmitted[0]).toEqual([true]);
+    if (mobileOpenChangedEmitted === undefined) {
+      fail("mobileOpenChangedEmitted mustn't be undefined");
     } else {
-      fail("mobileOpenChangedEmitted was null");
+      expect(mobileOpenChangedEmitted.length).toBe(1);
+      expect(mobileOpenChangedEmitted[0]).toEqual([true]);
     }
   });
 });

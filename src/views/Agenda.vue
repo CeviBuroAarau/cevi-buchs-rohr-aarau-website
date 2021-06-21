@@ -1,12 +1,8 @@
 <script lang="ts">
-import {
-  ErrorReportingService,
-  AgendaService,
-  SemesterScheduleService,
-} from "@/services";
+import { ErrorReportingService, AgendaService } from "@/services";
 import { Component, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
-import { Agenda, SemesterSchedule } from "@/types";
+import { Agenda } from "@/types";
 import EventList from "@/components/event-list.vue";
 
 @Component({
@@ -19,17 +15,13 @@ export default class AgendaView extends Vue {
   private error = false;
   private isFull = false;
   private events: Agenda[] = [];
-  private schedules: SemesterSchedule[] = [];
   agendaService: AgendaService = new AgendaService(
     AxiosUtil.getCockpitInstance()
   );
-  semesterScheduleService: SemesterScheduleService =
-    new SemesterScheduleService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
 
   async mounted() {
     await this.loadAgenda();
-    await this.loadSemesterSchedules();
   }
 
   async loadAgenda() {
@@ -39,21 +31,6 @@ export default class AgendaView extends Vue {
       );
       this.error = false;
       this.loading = false;
-    } catch (err) {
-      this.error = true;
-      this.loading = false;
-      this.errorService.report(err);
-    }
-  }
-
-  async loadSemesterSchedules() {
-    const currentDate: Date = new Date(Date.now());
-    try {
-      this.schedules = await this.semesterScheduleService.getSchedules(
-        currentDate.getFullYear()
-      );
-      this.loading = false;
-      this.error = false;
     } catch (err) {
       this.error = true;
       this.loading = false;
@@ -89,30 +66,12 @@ export default class AgendaView extends Vue {
 
       <div v-else>
         <p class="content">
-          Die Semsterpläne werden jeweils zu Beginn des Jahres veröffentlicht
-          und enthalten wenig detaillierte Informationen:
-        </p>
-        <div class="content">
-          <ul>
-            <li
-              v-for="(schedule, scheduleIndex) in this.schedules"
-              :key="scheduleIndex"
-            >
-              <a :href="schedule.file"
-                >Semesterplan
-                {{
-                  schedule.semester == "1"
-                    ? "erstes Semester"
-                    : "zweites Semester"
-                }}</a
-              >
-            </li>
-          </ul>
-        </div>
-        <p class="content">
           Untenstehend sind die nächsten
           {{ this.getEventsForDisplay().length }} Anlässe mit detaillierten
-          Informationen aufgeführt.
+          Informationen aufgeführt.<br />
+          <a @click="agendaService.generatePDF(events)"
+            >Alle geplante Anlässe als PDF herunterladen</a
+          >
         </p>
         <event-list
           id="eventlist"

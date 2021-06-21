@@ -11,10 +11,11 @@ describe("Navigation Component", () => {
     wrapper.vm.onMobileNaviagation();
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
-    if (mobileOpenChangedEmitted !== undefined) {
-      expect(mobileOpenChangedEmitted[0]).toEqual([false]);
+    if (mobileOpenChangedEmitted === undefined) {
+      fail("mobileOpenChanged mustn't be undefined");
     } else {
-      fail();
+      expect(mobileOpenChangedEmitted.length).toBe(1);
+      expect(mobileOpenChangedEmitted[0]).toEqual([false]);
     }
   });
 });

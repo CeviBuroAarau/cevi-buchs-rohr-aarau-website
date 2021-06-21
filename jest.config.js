@@ -11,4 +11,5 @@ module.exports = {
     },
   },
   testResultsProcessor: "jest-sonar-reporter",
+  setupFiles: ["jest-canvas-mock"],
 };
