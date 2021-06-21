@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { Component, Emit, Vue } from "vue-property-decorator";
 import { EventInfo, FormState } from "@/types";
 
 @Component({})
@@ -8,11 +8,13 @@ export default class EventDetail extends Vue {
   private state: FormState = FormState.NotDisplayed;
   public FormState = FormState;
 
+  @Emit("onEventOpened")
   public open(eventInfo: EventInfo) {
     this.eventInfo = eventInfo;
     this.state = FormState.Displayed;
   }
 
+  @Emit("onEventClosed")
   public close() {
     this.state = FormState.NotDisplayed;
   }

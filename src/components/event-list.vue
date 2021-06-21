@@ -1,5 +1,5 @@
 <script lang="ts">
-import { Component, Prop, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Prop, Ref, Vue } from "vue-property-decorator";
 import { Agenda, EventInfo } from "@/types";
 import EventDetail from "@/components/event-detail.vue";
 import { AxiosUtil, DateUtil } from "@/utils";
@@ -16,6 +16,7 @@ export default class EventList extends Vue {
   private eventInfos: EventInfo[] = [];
   service: AgendaService = new AgendaService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
+  private isEventDisplayed = false;
 
   async mounted() {
     await this.loadEventInfo();
@@ -38,13 +39,30 @@ export default class EventList extends Vue {
   showEvent(eventInfo: EventInfo) {
     this.eventDetail.open(eventInfo);
   }
+
+  @Emit("onEventOpened")
+  onEventOpened() {
+    this.isEventDisplayed = true;
+  }
+
+  @Emit("onEventClosed")
+  onEventClosed() {
+    this.isEventDisplayed = false;
+  }
 }
 </script>
 
 <template>
   <div>
+    <event-detail
+      ref="eventDetail"
+      @onEventOpened="onEventOpened()"
+      @onEventClosed="onEventClosed()"
+    ></event-detail>
+
     <div
       class="card agenda-item"
+      v-bind:class="{ noPrint: isEventDisplayed }"
       v-for="(event, eventIndex) in events"
       :key="eventIndex"
     >
@@ -85,7 +103,6 @@ export default class EventList extends Vue {
         </div>
       </div>
     </div>
-    <event-detail ref="eventDetail"></event-detail>
   </div>
 </template>
 
