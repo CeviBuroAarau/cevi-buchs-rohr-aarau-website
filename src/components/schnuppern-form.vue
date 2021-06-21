@@ -1,6 +1,6 @@
 <script lang="ts">
 import { ErrorReportingService, SchnuppernService } from "@/services";
-import { Component, Ref, Vue } from "vue-property-decorator";
+import { Component, Emit, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { SchnuppernFormState } from "@/types";
 import Modal from "@/components/modal.vue";
@@ -47,10 +47,12 @@ export default class SchnuppernForm extends Vue {
     }
   }
 
+  @Emit("onFormOpened")
   public showSubscriptionForm() {
     this.state = SchnuppernFormState.Displayed;
   }
 
+  @Emit("onFormClosed")
   close() {
     this.state = SchnuppernFormState.NotDisplayed;
   }
