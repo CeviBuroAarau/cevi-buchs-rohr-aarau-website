@@ -18,6 +18,12 @@ body {
   margin: 0;
   padding: 0;
 }
+
+@media print {
+  a[href^="http"]:not([href*="cevi-buro-aarau.ch"]):after {
+    content: " (" attr(href) ")";
+  }
+}
 </style>
 
 <style scoped lang="scss">
