@@ -38,17 +38,16 @@ export default class Schnuppern extends Vue {
 
       <h2 class="title is-2">Anmeldung</h2>
       <p class="content">
-        Hast Du Lust vorbeizuschauen? Die ersten zwei Schnuppernachmittage sind
-        kostenlos und unverbindlich. Danach kannst Du Dich entscheiden ob Du
-        dabei sein möchtest oder nicht.
+        Möchten Sie Ihr Kind reinschnuppern lassen? Die ersten zwei
+        Schnuppernachmittage sind in jedem Fall kostenlos und unverbindlich.
       </p>
       <p class="content">
         <button v-on:click="showSubscriptionForm()" class="button is-link">
-          Anmeldeformular anzeigen
+          Zum Schnuppern anmelden
         </button>
       </p>
       <p class="content">
-        Untenstehend findest du weitere Informationen und Antworten auf häufige
+        Untenstehend finden Sie weitere Informationen und Antworten auf häufige
         Fragen.
       </p>
 
@@ -60,7 +59,8 @@ export default class Schnuppern extends Vue {
         Wir möchten Kindern
         <router-link to="/interessierte/aktivitaeten"
           >spannende Erlebnisse in der Natur ermöglichen</router-link
-        >, beibringen sorgsam mit der Umwelt umzugehen. Ausserdem unterstützen
+        >
+        und beibringen sorgsam mit der Umwelt umzugehen. Ausserdem unterstützen
         wir Kinder und Jugendliche dabei, ihr Leben sinnvoll zu gestalten und in
         der Gesellschaft Verantwortung zu übernehmen.
       </p>
@@ -73,7 +73,7 @@ export default class Schnuppern extends Vue {
       <p class="content">
         Unter
         <router-link to="/interessierte/aktivitaeten">Aktivitäten</router-link>
-        findest du eine Zusammenstellung von möglichen Programmelementen.
+        finden Sie eine Zusammenstellung von möglichen Programmelementen.
       </p>
       <p class="content">
         Meistens bildet eine spannende Geschichte den Rahmen. Ein gutes
@@ -93,8 +93,10 @@ export default class Schnuppern extends Vue {
       </p>
       <div class="content">
         <ul class="content">
-          <li>Kinder von 4-7: Fröschli</li>
-          <li>Kinder von 8-10: Schleckmäuler</li>
+          <li>
+            Kinder von 4-10: Schleckmäuler (teilen sich meistens nochmal in zwei
+            Altersgruppen auf)
+          </li>
           <li>Kinder ab 11 Jahren: Spartacus</li>
         </ul>
       </div>
@@ -131,13 +133,6 @@ export default class Schnuppern extends Vue {
         weiter.
       </p>
 
-      <h2 class="title is-2">Was machen wir?</h2>
-      <p class="content">
-        Unter
-        <router-link to="/interessierte/aktivitaeten">Aktivitäten</router-link>
-        findest du eine Zusammenstellung von möglichen Programmelementen.
-      </p>
-
       <h2 class="title is-2">Wann treffen wir uns?</h2>
       <p class="content">
         Die regulären Programme finden jeweils samstags von 14:00 - 17:00 Uhr
@@ -160,7 +155,7 @@ export default class Schnuppern extends Vue {
 
       <h2 class="title is-2">Was muss ich mitnehmen?</h2>
       <p class="content">
-        An einem normalen Nachmittag benötigt das Kind folgendes Material:
+        An einem normalen Nachmittag benötigt Ihr Kind folgendes Material:
       </p>
       <div class="content">
         <ul class="content">
@@ -173,7 +168,7 @@ export default class Schnuppern extends Vue {
 
       <h2 class="title is-2">Wie gewährleisten wir die Sicherheit?</h2>
       <p class="content">
-        Undere Gruppenleiter werden in einem von J+S (Jugend und Sport,
+        Unsere Gruppenleiter werden in einem von J+S (Jugend und Sport,
         Bundesamt für Sport) anerkannten Kurs ausgebildet. Zusätzlich wird
         dieser durch mind. einen in der Regel aber mehreren weiteren Leiter
         unterstützt, welche ebenfalls den Gruppenleiterkurs oder den

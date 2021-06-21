@@ -24,7 +24,7 @@ export default class Spenden extends Vue {}
         Spenden und Aktionen sowie Mitgliederbeiträge ermöglicht.
       </p>
       <p>
-        Möchtest du aktiv unsere Kinder- und Jugendarbeit unterstützen, freuen
+        Möchten Sie aktiv unsere Kinder- und Jugendarbeit unterstützen, freuen
         wir uns über eine Spende
       </p>
       <p>
