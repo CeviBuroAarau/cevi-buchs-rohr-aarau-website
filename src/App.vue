@@ -31,6 +31,12 @@ body {
   .modal-card-head button.delete {
     display: none;
   }
+
+  table.is-bordered td,
+  th {
+    border: solid #000 !important;
+    border-width: 1px !important;
+  }
 }
 </style>
 
