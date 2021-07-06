@@ -4,6 +4,7 @@
       <h1 class="title is-1">Version</h1>
       <p class="content">
         Modus: {{ this.mode }}<br />
+        Environment: {{ this.environment }}<br />
         Version: {{ this.version }}<br />
         Erstellungsdatum: {{ this.creationDate }}<br />
         Git Revision: {{ this.revision }}
@@ -23,5 +24,6 @@ export default class Version extends Vue {
   private version = process.env.VUE_APP_VERSION;
   private creationDate = process.env.VUE_APP_DATE;
   private revision = process.env.VUE_APP_REVISION;
+  private environment = process.env.VUE_APP_SENTRY_ENVIRONMENT;
 }
 </script>
