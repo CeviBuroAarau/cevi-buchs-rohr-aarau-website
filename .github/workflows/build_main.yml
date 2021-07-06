@@ -47,6 +47,7 @@ jobs:
         sed -i 's#VUE_APP_DATE=Not specified#VUE_APP_DATE=${{ steps.date_and_rev.outputs.created }}#g' .env
         sed -i 's#VUE_APP_REVISION=Not specified#VUE_APP_REVISION=${{ steps.date_and_rev.outputs.revision }}#g' .env
         sed -i 's#SENTRY_AUTH_TOKEN=Not specified#SENTRY_AUTH_TOKEN=${{ secrets.SENTRY_TOKEN }}#g' .env
+        sed -i 's#VUE_APP_SENTRY_ENVIRONMENT=local#VUE_APP_SENTRY_ENVIRONMENT=heroku#g' .env
 
     - name: "Build"
       run: yarn run build
