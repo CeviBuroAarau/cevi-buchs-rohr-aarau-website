@@ -7,8 +7,6 @@ Metrics:
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 
-
-
 ## Getting started
 ```
 yarn install
@@ -32,6 +30,23 @@ yarn test:e2e
 
 A coverage report is generated in the folder coverage and tests/e2e/reports
 
+### Run offline
+
+Run a mock of the backend:
+```
+docker run --init --rm -v $(pwd):/tmp -p 4010:4010 stoplight/prism:4 mock -h 0.0.0.0 "/tmp/api/Backend.yaml"
+``` 
+
+Run the webpage:
+```
+sed -i 's#VUE_APP_COCKPIT_API=https://backend.cevi-buro-aarau.ch/api/#VUE_APP_COCKPIT_API=http://localhost:4010/#g' .env
+yarn install
+yarn serve
+```
+
+The webpage is then available under localhost:8080
+
+Note: it will fail to load the images/files but it will be able to execute all api calls.
 
 ### Run with docker
 
