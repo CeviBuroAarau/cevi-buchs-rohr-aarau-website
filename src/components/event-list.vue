@@ -80,23 +80,8 @@ export default class EventList extends Vue {
               v-for="(info, itemIndex) in eventsByDate(event.date)"
               :key="itemIndex"
             >
-              <a
-                class="eventinfo"
-                v-if="info.scope == 'section'"
-                @click="showEvent(info)"
-                >Informationen für alle</a
-              >
-              <a
-                class="eventinfo"
-                v-if="info.scope == 'group_spartacus'"
-                @click="showEvent(info)"
-                >Informationen für Spartacus</a
-              >
-              <a
-                class="eventinfo"
-                v-if="info.scope == 'group_schleckmaeuler'"
-                @click="showEvent(info)"
-                >Informationen für Schleckmäuler</a
+              <a class="eventinfo" @click="showEvent(info)"
+                >Informationen für {{ info.scope }}</a
               >
             </p>
           </div>

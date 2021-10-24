@@ -33,15 +33,7 @@ export default class EventDetail extends Vue {
     <div class="modal-card">
       <header class="modal-card-head">
         <p class="modal-card-title">
-          <span v-if="eventInfo.scope == 'section'"
-            >Informationen für alle</span
-          >
-          <span v-if="eventInfo.scope == 'group_spartacus'"
-            >Informationen für Spartacus</span
-          >
-          <span v-if="eventInfo.scope == 'group_schleckmaeuler'"
-            >Informationen für Schleckmäuler</span
-          >
+          <span>Informationen für {{ eventInfo.scope }}</span>
         </p>
         <button class="delete" aria-label="close" v-on:click="close()"></button>
       </header>

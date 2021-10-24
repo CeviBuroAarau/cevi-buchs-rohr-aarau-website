@@ -1,4 +1,4 @@
-import { CockpitAgenda, Agenda, CockpitEventInfo, EventInfo } from "@/types";
+import { CockpitAgenda, Agenda, EventInfo, CockpitEventInfos } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
 import { SortingUtil, AxiosUtil, HtmlUtil } from "@/utils";
 import { AgendaPDFCreator } from "./AgendaPDFCreator";
@@ -31,14 +31,16 @@ export class AgendaService {
   }
 
   private async retrieveEventInfo(): Promise<EventInfo[]> {
-    const resp: AxiosResponse<CockpitEventInfo> =
-      await this.axios.get<CockpitEventInfo>("collections/get/EventInfo");
+    const resp: AxiosResponse<CockpitEventInfos> =
+      await this.axios.get<CockpitEventInfos>("collections/get/EventInfo");
 
     const currentDay = new Date();
     currentDay.setHours(0, 0, 0, 0);
-    const result: EventInfo[] = resp.data.entries.filter(
-      (ei) => ei.date >= currentDay
-    );
+    const result: EventInfo[] = resp.data.entries
+      .filter((ei) => ei.date >= currentDay)
+      .map((info) => {
+        return { ...info, scope: info.scope.display };
+      });
 
     return result;
   }
