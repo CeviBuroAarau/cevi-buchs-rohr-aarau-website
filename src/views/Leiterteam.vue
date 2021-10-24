@@ -33,33 +33,39 @@
           v-bind:class="{ noPrint: !isALDisplayed && this.isAnyDisplayed() }"
         ></leiter-list>
 
-        <h2 class="title is-2">Spartacus</h2>
+        <h2 class="title is-2">Glühwürmli</h2>
         <leiter-list
-          :leiter="leiterList.filter((item) => item.group == 'Spartacus')"
-          @onLeiterOpened="onSpartacusOpened()"
-          @onLeiterClosed="onSpartacusClosed()"
+          :leiter="
+            leiterList.filter((item) => item.group == 'Gruppe Glühwürmli')
+          "
+          @onLeiterOpened="onGluehwuermliOpened()"
+          @onLeiterClosed="onGluehwuermliClosed()"
           v-bind:class="{
-            noPrint: !isSpartacusDisplayed && this.isAnyDisplayed(),
+            noPrint: !isGluehwuermliDisplayed && this.isAnyDisplayed(),
           }"
         ></leiter-list>
 
-        <h2 class="title is-2">Schleckmäuler</h2>
+        <h2 class="title is-2">Feuerstühle</h2>
         <leiter-list
-          :leiter="leiterList.filter((item) => item.group == 'Schleckmäuler')"
-          @onLeiterOpened="onSchleckmaeulerOpened()"
-          @onLeiterClosed="onSchleckmaeulerClosed()"
+          :leiter="
+            leiterList.filter((item) => item.group == 'Gruppe Feuerstühle')
+          "
+          @onLeiterOpened="onFeuerstuehleOpened()"
+          @onLeiterClosed="onFeuerstuehleClosed()"
           v-bind:class="{
-            noPrint: !isSchleckmaeulerDisplayed && this.isAnyDisplayed(),
+            noPrint: !isFeuerstuehleDisplayed && this.isAnyDisplayed(),
           }"
         ></leiter-list>
 
-        <h2 class="title is-2">Springer</h2>
+        <h2 class="title is-2">Die Kleinen</h2>
         <leiter-list
-          :leiter="leiterList.filter((item) => item.group == 'Springer')"
-          @onLeiterOpened="onSpringerOpened()"
-          @onLeiterClosed="onSpringerClosed()"
+          :leiter="
+            leiterList.filter((item) => item.group == 'Gruppe Die Kleinen')
+          "
+          @onLeiterOpened="onKleineOpened()"
+          @onLeiterClosed="onKleineClosed()"
           v-bind:class="{
-            noPrint: !isSpringerDisplayed && this.isAnyDisplayed(),
+            noPrint: !isKleineDisplayed && this.isAnyDisplayed(),
           }"
         ></leiter-list>
       </div>
@@ -86,9 +92,9 @@ export default class Leiterteam extends Vue {
   service: LeaderService = new LeaderService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
   private isALDisplayed = false;
-  private isSpartacusDisplayed = false;
-  private isSchleckmaeulerDisplayed = false;
-  private isSpringerDisplayed = false;
+  private isGluehwuermliDisplayed = false;
+  private isFeuerstuehleDisplayed = false;
+  private isKleineDisplayed = false;
 
   async mounted() {
     await this.loadLeaders();
@@ -114,36 +120,36 @@ export default class Leiterteam extends Vue {
     this.isALDisplayed = false;
   }
 
-  onSpartacusOpened() {
-    this.isSpartacusDisplayed = true;
+  onGluehwuermliOpened() {
+    this.isGluehwuermliDisplayed = true;
   }
 
-  onSpartacusClosed() {
-    this.isSpartacusDisplayed = false;
+  onGluehwuermliClosed() {
+    this.isGluehwuermliDisplayed = false;
   }
 
-  onSchleckmaeulerOpened() {
-    this.isSchleckmaeulerDisplayed = true;
+  onFeuerstuehleOpened() {
+    this.isFeuerstuehleDisplayed = true;
   }
 
-  onSchleckmaeulerClosed() {
-    this.isSchleckmaeulerDisplayed = false;
+  onFeuerstuehleClosed() {
+    this.isFeuerstuehleDisplayed = false;
   }
 
-  onSpringerOpened() {
-    this.isSpringerDisplayed = true;
+  onKleineOpened() {
+    this.isKleineDisplayed = true;
   }
 
-  onSpringerClosed() {
-    this.isSpringerDisplayed = false;
+  onKleineClosed() {
+    this.isKleineDisplayed = false;
   }
 
   isAnyDisplayed() {
     return (
       this.isALDisplayed ||
-      this.isSpartacusDisplayed ||
-      this.isSchleckmaeulerDisplayed ||
-      this.isSpringerDisplayed
+      this.isGluehwuermliDisplayed ||
+      this.isFeuerstuehleDisplayed ||
+      this.isKleineDisplayed
     );
   }
 }

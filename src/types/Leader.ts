@@ -23,7 +23,9 @@ export interface LeaderRaw {
   isactive: boolean;
   scoutname: string;
   function: string[];
-  group: string;
+  group: {
+    display: string;
+  };
   birthyear: string;
   place: string;
   profession: string;

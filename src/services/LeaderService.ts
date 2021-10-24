@@ -15,6 +15,7 @@ export class LeaderService {
     const result: Leader[] = resp.data.entries.map((leader) => {
       return {
         ...leader,
+        group: leader.group.display,
         file: process.env.VUE_APP_COCKPIT_FILES + leader.image.path,
       };
     });
