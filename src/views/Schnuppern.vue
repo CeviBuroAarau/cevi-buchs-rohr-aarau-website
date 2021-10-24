@@ -89,15 +89,13 @@ export default class Schnuppern extends Vue {
         Die Kinder werden je nach Alter in Geschlechter-gemischte Gruppen
         eingeteilt, welche von mind. zwei Leitern geleitet wird. Dies ermöglicht
         uns altersgerechte Erlebnisse anzubieten. Aktuell führen wir folgende
-        drei Gruppen:
+        Gruppen:
       </p>
       <div class="content">
         <ul class="content">
-          <li>
-            Kinder von 4-10: Schleckmäuler (teilen sich meistens nochmal in zwei
-            Altersgruppen auf)
-          </li>
-          <li>Kinder ab 11 Jahren: Spartacus</li>
+          <li>Kinder von 5-6: Die Kleinen</li>
+          <li>Kinder von 7-8 Jahren: Feuerstühle</li>
+          <li>Kinder ab 9 Jahre: Glühwürmli</li>
         </ul>
       </div>
       <p class="content">
