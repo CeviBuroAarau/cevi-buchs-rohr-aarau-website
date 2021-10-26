@@ -7679,10 +7679,10 @@ jsonify@~0.0.0:
   resolved "https://registry.yarnpkg.com//jsonify/-/jsonify-0.0.0.tgz#2c74b6ee41d93ca51b7b5aaee8f503631d252a73"
   integrity sha1-LHS27kHZPKUbe1qu6PUDYx0lKnM=
 
-jspdf-autotable@^3.5.22:
-  version "3.5.22"
-  resolved "https://registry.yarnpkg.com/jspdf-autotable/-/jspdf-autotable-3.5.22.tgz#eb248b17dc8c9a8cdf2aa0627d2b888a6dbee9c3"
-  integrity sha512-TMmoALEgwGJDzEjYzG2CFWCSFWskjIGSIpyODUzreNu+2wU7BxA8KQ+CQfIzkZMlrPjj6mETsz6HVbwD2B9xdQ==
+jspdf-autotable@^3.5.23:
+  version "3.5.23"
+  resolved "https://registry.yarnpkg.com/jspdf-autotable/-/jspdf-autotable-3.5.23.tgz#c46448ef93b51fc958feb6a2974257dde63c8f79"
+  integrity sha512-uIYxQsdKrDdbhygEFlbTVoaxawZMZXMasAOryQ1oMFTragcxLhhWIfc8peLCBXuB7fJ5SICtPZ2De7Pk7eS8SQ==
 
 jspdf@*, jspdf@^2.4.0:
   version "2.4.0"

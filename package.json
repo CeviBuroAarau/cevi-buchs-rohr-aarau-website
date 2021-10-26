@@ -30,7 +30,7 @@
     "express": "^4.17.1",
     "jest-canvas-mock": "^2.3.1",
     "jspdf": "^2.4.0",
-    "jspdf-autotable": "^3.5.22",
+    "jspdf-autotable": "^3.5.23",
     "leaflet": "^1.6.0",
     "leaflet-defaulticon-compatibility": "^0.1.1",
     "lint-staged": "^11.2.4",
