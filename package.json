@@ -61,7 +61,7 @@
     "@vue/cli-service": "~4.5.15",
     "@vue/eslint-config-prettier": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.0.0",
-    "@vue/test-utils": "^1.2.2",
+    "@vue/test-utils": "^1.3.0",
     "chromedriver": "^95.0.0",
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.4.1",
