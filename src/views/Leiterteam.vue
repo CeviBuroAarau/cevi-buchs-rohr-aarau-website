@@ -57,15 +57,15 @@
           }"
         ></leiter-list>
 
-        <h2 class="title is-2">Die Kleinen</h2>
+        <h2 class="title is-2">Sprösslis</h2>
         <leiter-list
           :leiter="
-            leiterList.filter((item) => item.group == 'Gruppe Die Kleinen')
+            leiterList.filter((item) => item.group == 'Gruppe Sprösslis')
           "
-          @onLeiterOpened="onKleineOpened()"
-          @onLeiterClosed="onKleineClosed()"
+          @onLeiterOpened="onSproesslisOpened()"
+          @onLeiterClosed="onSproesslisClosed()"
           v-bind:class="{
-            noPrint: !isKleineDisplayed && this.isAnyDisplayed(),
+            noPrint: !isSproesslisDisplayed && this.isAnyDisplayed(),
           }"
         ></leiter-list>
       </div>
@@ -94,7 +94,7 @@ export default class Leiterteam extends Vue {
   private isALDisplayed = false;
   private isGluehwuermliDisplayed = false;
   private isFeuerstuehleDisplayed = false;
-  private isKleineDisplayed = false;
+  private isSproesslisDisplayed = false;
 
   async mounted() {
     await this.loadLeaders();
@@ -136,12 +136,12 @@ export default class Leiterteam extends Vue {
     this.isFeuerstuehleDisplayed = false;
   }
 
-  onKleineOpened() {
-    this.isKleineDisplayed = true;
+  onSprosslisOpened() {
+    this.isSproesslisDisplayed = true;
   }
 
-  onKleineClosed() {
-    this.isKleineDisplayed = false;
+  onSprosslisClosed() {
+    this.isSproesslisDisplayed = false;
   }
 
   isAnyDisplayed() {
@@ -149,7 +149,7 @@ export default class Leiterteam extends Vue {
       this.isALDisplayed ||
       this.isGluehwuermliDisplayed ||
       this.isFeuerstuehleDisplayed ||
-      this.isKleineDisplayed
+      this.isSproesslisDisplayed
     );
   }
 }

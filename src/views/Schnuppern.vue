@@ -93,7 +93,7 @@ export default class Schnuppern extends Vue {
       </p>
       <div class="content">
         <ul class="content">
-          <li>Kinder von 5-6: Die Kleinen</li>
+          <li>Kinder von 5-6: Sprösslis</li>
           <li>Kinder von 7-8 Jahren: Feuerstühle</li>
           <li>Kinder ab 9 Jahre: Glühwürmli</li>
         </ul>
