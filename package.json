@@ -65,7 +65,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-vue": "^7.20.0",
-    "geckodriver": "^2.0.4",
+    "geckodriver": "^3.0.1",
     "husky": "^7.0.4",
     "jest-sonar-reporter": "^2.0.0",
     "prettier": "^2.5.1",
