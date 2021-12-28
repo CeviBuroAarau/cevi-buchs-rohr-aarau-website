@@ -67,15 +67,13 @@ export class AgendaService {
 
     const contactHeader = [["Funktion", "Kontaktdaten"]];
     const contactData: Array<string[]> = [
-      ["Gruppenleiter Schleckmäuler", "Seraina Frei v/o Floh, 079 952 70 84"],
+      ["Gruppenleiterin Sprösslis", "Seraina Frei v/o Floh, 079 952 70 84"],
       [
-        "Gruppenleiter Spartacus",
-        "Yannis Bontempi v/o Ayal, 079 932 44 85\r\nSira Hächler v/o Zippora, 075 424 67 11",
+        "Gruppenleiterin Feuerstühle",
+        "Leah Dellenbach v/o Luna, 076 405 81 18",
       ],
-      [
-        "Abteilungsleitung",
-        "Leah Dellenbach v/o Luna, 076 405 81 18\r\nPatrick Uhlmann v/o Luchs, 078 662 62 72\r\nMichael Frei v/o Jarne, 078 946 84 54",
-      ],
+      ["Gruppenleiter Glühwürmli", "Yannis Bontempi v/o Ayal, 079 932 44 85"],
+      ["Abteilungsleitung", "Leah Dellenbach v/o Luna, 076 405 81 18"],
     ];
 
     const creator: AgendaPDFCreator = new AgendaPDFCreator();
