@@ -33,7 +33,7 @@ describe("AxiosUtil", () => {
       },
       status: 200,
       statusText: "",
-      headers: "",
+      headers: {} as Record<string, string>,
       config: {},
     };
     const processed = AxiosUtil.dateConversionInterceptor(res, "date");
@@ -58,7 +58,7 @@ describe("AxiosUtil", () => {
       },
       status: 200,
       statusText: "",
-      headers: "",
+      headers: {} as Record<string, string>,
       config: {},
     };
     const processed = AxiosUtil.dateConversionInterceptor(res, "date");

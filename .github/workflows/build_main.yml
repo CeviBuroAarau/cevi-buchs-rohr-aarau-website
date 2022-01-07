@@ -75,6 +75,10 @@ jobs:
         name: unit test coverage report
         path: coverage
 
+    - name: Setup Chrome
+      uses: browser-actions/setup-chrome@latest
+      run: chrome --version
+
     - name: "E2E Tests"
       run: yarn test:e2e
 
