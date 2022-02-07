@@ -27,10 +27,6 @@ export interface Article {
   price: string;
 }
 
-export interface CockpitArticles {
-  entries: ArticlesRaw[];
-}
-
 export interface ArticlesRaw {
   category: string[];
   image: {
@@ -39,6 +35,10 @@ export interface ArticlesRaw {
   name: string;
   description: string;
   price: string;
+}
+
+export interface CockpitArticles {
+  entries: ArticlesRaw[];
 }
 
 export enum LaedeliFormState {

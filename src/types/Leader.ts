@@ -14,10 +14,6 @@ export interface Leader {
   file: string;
 }
 
-export interface CockpitLeaders {
-  entries: LeaderRaw[];
-}
-
 export interface LeaderRaw {
   name: string;
   isactive: boolean;
@@ -36,4 +32,8 @@ export interface LeaderRaw {
   image: {
     path: string;
   };
+}
+
+export interface CockpitLeaders {
+  entries: LeaderRaw[];
 }
