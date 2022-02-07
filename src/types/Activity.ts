@@ -4,10 +4,6 @@ export interface Activity {
   thumb: string;
 }
 
-export interface CockpitActivities {
-  entries: ActivityRaw[];
-}
-
 export interface ActivityRaw {
   title: string;
   image: {
@@ -16,4 +12,8 @@ export interface ActivityRaw {
   thumb: {
     path: string;
   };
+}
+
+export interface CockpitActivities {
+  entries: ActivityRaw[];
 }

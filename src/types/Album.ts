@@ -1,10 +1,5 @@
-export interface Album {
-  title: string;
-  dateString: string;
-  date: Date;
-  year: number;
-  images: AlbumImage[];
-  previewImage: AlbumPreviewImage;
+export interface AlbumPreviewImage {
+  url: string;
 }
 
 export interface AlbumImage {
@@ -12,21 +7,13 @@ export interface AlbumImage {
   url: string;
 }
 
-export interface AlbumPreviewImage {
-  url: string;
-}
-
-export interface CockpitAlbum {
-  entries: CockpitAlbumEntry[];
-}
-
-export interface CockpitAlbumEntry {
+export interface Album {
   title: string;
   dateString: string;
   date: Date;
   year: number;
-  images: CockpitAlbumImage[];
-  previewImage: CockpitAlbumPreviewImage;
+  images: AlbumImage[];
+  previewImage: AlbumPreviewImage;
 }
 
 export interface CockpitAlbumImage {
@@ -39,4 +26,17 @@ export interface CockpitAlbumImage {
 
 export interface CockpitAlbumPreviewImage {
   path: string;
+}
+
+export interface CockpitAlbumEntry {
+  title: string;
+  dateString: string;
+  date: Date;
+  year: number;
+  images: CockpitAlbumImage[];
+  previewImage: CockpitAlbumPreviewImage;
+}
+
+export interface CockpitAlbum {
+  entries: CockpitAlbumEntry[];
 }
