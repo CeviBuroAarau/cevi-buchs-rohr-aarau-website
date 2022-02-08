@@ -1259,9 +1259,10 @@
     "@sentry/utils" "6.17.5"
     tslib "^1.9.3"
 
-"@sentry/integrations@^6.17.4":
+
+"@sentry/integrations@^6.17.5":
   version "6.17.5"
-  resolved "https://registry.yarnpkg.com//@sentry/integrations/-/integrations-6.17.5.tgz#74e75e957de8816961e7ac5ce4ab0af2546fd2aa"
+  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-6.17.5.tgz#74e75e957de8816961e7ac5ce4ab0af2546fd2aa"
   integrity sha512-TL/D9r01fvSe75OpWXYzF0mINjbrDpHFFryIAxZpg6VFjvffK2f5HXkCXAXdA19TuLbxNYf/4lJjao3A4OhcRg==
   dependencies:
     "@sentry/types" "6.17.5"
@@ -1278,9 +1279,9 @@
     "@sentry/types" "6.17.5"
     tslib "^1.9.3"
 
-"@sentry/tracing@^6.17.4":
+"@sentry/tracing@^6.17.5":
   version "6.17.5"
-  resolved "https://registry.yarnpkg.com//@sentry/tracing/-/tracing-6.17.5.tgz#3bc25279d370b9771d1f8abe3d7d7e7a0f445c9f"
+  resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-6.17.5.tgz#3bc25279d370b9771d1f8abe3d7d7e7a0f445c9f"
   integrity sha512-SVIDFL/QbNAlv+Rhgq14TqtTBp9WGipkjQXXaD/Pbqcj3/Oil7ZHHKYesW8Z+gtKQs73oQ9a0nCgraLFcQ68PQ==
   dependencies:
     "@sentry/hub" "6.17.5"
