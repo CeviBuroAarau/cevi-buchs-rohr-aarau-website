@@ -1250,15 +1250,6 @@
     "@sentry/utils" "6.17.7"
     tslib "^1.9.3"
 
-"@sentry/hub@6.17.6":
-  version "6.17.6"
-  resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.17.6.tgz#af387ed1c180c05839610091de21ffb895b1403c"
-  integrity sha512-Ps9nk+DoFia8jhZ1lucdRE0vDx8hqXOsKXJE8a3hK/Ndki0J9jedYqBeLqSgiFG4qRjXpNFcD6TEM6tnQrv5lw==
-  dependencies:
-    "@sentry/types" "6.17.6"
-    "@sentry/utils" "6.17.6"
-    tslib "^1.9.3"
-
 "@sentry/hub@6.17.7":
   version "6.17.7"
   resolved "https://registry.yarnpkg.com/@sentry/hub/-/hub-6.17.7.tgz#5c90d661e263dad7da0e0106f1cb90cf797d93a7"
@@ -1278,15 +1269,6 @@
     localforage "^1.8.1"
     tslib "^1.9.3"
 
-"@sentry/minimal@6.17.6":
-  version "6.17.6"
-  resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.17.6.tgz#9e6c37af869133834328889925500e0e76090cef"
-  integrity sha512-PLGf8WlhtdHuY6ofwYR3nyClr/TYHHAW6i0r62OZCOXTqnFPJorZpAz3VCCP2jMJmbgVbo03wN+u/xAA/zwObA==
-  dependencies:
-    "@sentry/hub" "6.17.6"
-    "@sentry/types" "6.17.6"
-    tslib "^1.9.3"
-
 "@sentry/minimal@6.17.7":
   version "6.17.7"
   resolved "https://registry.yarnpkg.com/@sentry/minimal/-/minimal-6.17.7.tgz#f19182047f19b563f40a30d45d2ce9ad7df1ec4e"
@@ -1296,15 +1278,15 @@
     "@sentry/types" "6.17.7"
     tslib "^1.9.3"
 
-"@sentry/tracing@^6.17.6":
-  version "6.17.6"
-  resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-6.17.6.tgz#40f6e6166e05059c7b826ced70056ba06d5722e8"
-  integrity sha512-+h5ov+zEm5WH9+vmFfdT4EIqBOW7Tggzh0BDz8QRStRc2JbvEiSZDs+HlsycBwWMQi/ucJs93FPtNnWjW+xvBw==
+"@sentry/tracing@^6.17.7":
+  version "6.17.7"
+  resolved "https://registry.yarnpkg.com/@sentry/tracing/-/tracing-6.17.7.tgz#f4536683b29bb3ac7ddda5ca49494731cec6b619"
+  integrity sha512-QzIDHOjjdi/0LTdrK2LTC27YEOODI473KD8KmMJ+r9PmjDeIjNzz4hJlPwQSnXR3Mu/8foxGJGXsAt3LNmKzlQ==
   dependencies:
-    "@sentry/hub" "6.17.6"
-    "@sentry/minimal" "6.17.6"
-    "@sentry/types" "6.17.6"
-    "@sentry/utils" "6.17.6"
+    "@sentry/hub" "6.17.7"
+    "@sentry/minimal" "6.17.7"
+    "@sentry/types" "6.17.7"
+    "@sentry/utils" "6.17.7"
     tslib "^1.9.3"
 
 "@sentry/types@6.17.6":
