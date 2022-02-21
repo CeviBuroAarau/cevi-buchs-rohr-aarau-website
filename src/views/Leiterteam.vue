@@ -136,11 +136,11 @@ export default class Leiterteam extends Vue {
     this.isFeuerstuehleDisplayed = false;
   }
 
-  onSprosslisOpened() {
+  onSproesslisOpened() {
     this.isSproesslisDisplayed = true;
   }
 
-  onSprosslisClosed() {
+  onSproesslisClosed() {
     this.isSproesslisDisplayed = false;
   }
 
