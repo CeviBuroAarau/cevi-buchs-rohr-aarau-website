@@ -2,6 +2,15 @@
 # yarn lockfile v1
 
 
+"@achrinza/node-ipc@9.2.2":
+  version "9.2.2"
+  resolved "https://registry.yarnpkg.com/@achrinza/node-ipc/-/node-ipc-9.2.2.tgz#ae1b5d3d6a9362034eea60c8d946b93893c2e4ec"
+  integrity sha512-b90U39dx0cU6emsOvy5hxU4ApNXnE3+Tuo8XQZfiKTGelDwpMwBVgBP7QX6dGTcJgu/miyJuNJ/2naFBliNWEw==
+  dependencies:
+    "@node-ipc/js-queue" "2.0.3"
+    event-pubsub "4.3.0"
+    js-message "1.0.7"
+
 "@ampproject/remapping@^2.0.0":
   version "2.1.0"
   resolved "https://registry.yarnpkg.com//@ampproject/remapping/-/remapping-2.1.0.tgz#72becdf17ee44b2d1ac5651fb12f1952c336fe23"
@@ -1191,6 +1200,13 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
+"@node-ipc/js-queue@2.0.3":
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/@node-ipc/js-queue/-/js-queue-2.0.3.tgz#ac7fe33d766fa53e233ef8fedaf3443a01c5a4cd"
+  integrity sha512-fL1wpr8hhD5gT2dA1qifeVaoDFlQR5es8tFuKqjHX+kdOtdNHnxkVZbtIrR2rxnMFvehkjaZRNV2H/gPXlb0hw==
+  dependencies:
+    easy-stack "1.0.1"
+
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
   resolved "https://registry.yarnpkg.com//@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz#7619c2eb21b25483f6d167548b4cfd5a7488c3d5"
@@ -1961,12 +1977,12 @@
     deepmerge "^4.2.2"
     nightwatch "^1.3.5"
 
-"@vue/cli-plugin-eslint@~4.5.15":
-  version "4.5.15"
-  resolved "https://registry.yarnpkg.com//@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.5.15.tgz#5781824a941f34c26336a67b1f6584a06c6a24ff"
-  integrity sha512-/2Fl6wY/5bz3HD035oSnFRMsKNxDxU396KqBdpCQdwdvqk4mm6JAbXqihpcBRTNPeTO6w+LwGe6FE56PVbJdbg==
+"@vue/cli-plugin-eslint@~4.5.17":
+  version "4.5.17"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-eslint/-/cli-plugin-eslint-4.5.17.tgz#7667bf87bdfdb39faeb3baed58657622354a17bc"
+  integrity sha512-bVNDP+SuWcuJrBMc+JLaKvlxx25XKIlZBa+zzFnxhHZlwPZ7CeBD3e2wnsygJyPoKgDZcZwDgmEz1BZzMEjsNw==
   dependencies:
-    "@vue/cli-shared-utils" "^4.5.15"
+    "@vue/cli-shared-utils" "^4.5.17"
     eslint-loader "^2.2.1"
     globby "^9.2.0"
     inquirer "^7.1.0"
@@ -2007,15 +2023,15 @@
   optionalDependencies:
     fork-ts-checker-webpack-plugin-v5 "npm:fork-ts-checker-webpack-plugin@^5.0.11"
 
-"@vue/cli-plugin-unit-jest@~4.5.15":
-  version "4.5.15"
-  resolved "https://registry.yarnpkg.com//@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-4.5.15.tgz#7be914ca1507ca344487eb377ed925c9db0b772a"
-  integrity sha512-oE3RDMerb21P6ALg70Zh2zU+RYYjoe09/7ZXYUj03uTb2obqUbcINpFfeVwM0B/J6H1YmqWJpnNBxWURhrqQHg==
+"@vue/cli-plugin-unit-jest@~4.5.17":
+  version "4.5.17"
+  resolved "https://registry.yarnpkg.com/@vue/cli-plugin-unit-jest/-/cli-plugin-unit-jest-4.5.17.tgz#82aa81590411f2c751299dcbfb9754e18892c7db"
+  integrity sha512-Ta8hx68Y252umik1yD50dyyrwhzj4KzTEpngY9YKB6bY6pga9GK2olqyrb3+2X8o6tnSQkTFz+UcobfRQJDs5A==
   dependencies:
     "@babel/core" "^7.11.0"
     "@babel/plugin-transform-modules-commonjs" "^7.9.6"
     "@types/jest" "^24.0.19"
-    "@vue/cli-shared-utils" "^4.5.15"
+    "@vue/cli-shared-utils" "^4.5.17"
     babel-core "^7.0.0-bridge.0"
     babel-jest "^24.9.0"
     babel-plugin-transform-es2015-modules-commonjs "^6.26.2"
@@ -2096,17 +2112,17 @@
   optionalDependencies:
     vue-loader-v16 "npm:vue-loader@^16.1.0"
 
-"@vue/cli-shared-utils@^4.5.15":
-  version "4.5.15"
-  resolved "https://registry.yarnpkg.com//@vue/cli-shared-utils/-/cli-shared-utils-4.5.15.tgz#dba3858165dbe3465755f256a4890e69084532d6"
-  integrity sha512-SKaej9hHzzjKSOw1NlFmc6BSE0vcqUQMQiv1cxQ2DhVyy4QxZXBmzmiLBUBe+hYZZs1neXW7n//udeN9bCAY+Q==
+"@vue/cli-shared-utils@^4.5.15", "@vue/cli-shared-utils@^4.5.17":
+  version "4.5.17"
+  resolved "https://registry.yarnpkg.com/@vue/cli-shared-utils/-/cli-shared-utils-4.5.17.tgz#bb4aac8b816036cf5c0adf3af3cc1cb9c425501e"
+  integrity sha512-VoFNdxvTW4vZu3ne+j1Mf7mU99J2SAoRVn9XPrsouTUUJablglM8DASk7Ixhsh6ymyL/W9EADQFR6Pgj8Ujjuw==
   dependencies:
+    "@achrinza/node-ipc" "9.2.2"
     "@hapi/joi" "^15.0.1"
     chalk "^2.4.2"
     execa "^1.0.0"
     launch-editor "^2.2.1"
     lru-cache "^5.1.1"
-    node-ipc "^9.1.1"
     open "^6.3.0"
     ora "^3.4.0"
     read-pkg "^5.1.1"
@@ -4843,7 +4859,7 @@ eastasianwidth@^0.2.0:
   resolved "https://registry.yarnpkg.com//eastasianwidth/-/eastasianwidth-0.2.0.tgz#696ce2ec0aa0e6ea93a397ffcf24aa7840c827cb"
   integrity sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==
 
-easy-stack@^1.0.1:
+easy-stack@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com//easy-stack/-/easy-stack-1.0.1.tgz#8afe4264626988cabb11f3c704ccd0c835411066"
   integrity sha512-wK2sCs4feiiJeFXn3zvY0p41mdU5VUgbgs1rNsc/y5ngFUijdWd+iIN8eoyuZHKB8xN6BL4PdWmzqFmxNg6V2w==
@@ -7657,13 +7673,6 @@ js-message@1.0.7:
   resolved "https://registry.yarnpkg.com//js-message/-/js-message-1.0.7.tgz#fbddd053c7a47021871bb8b2c95397cc17c20e47"
   integrity sha512-efJLHhLjIyKRewNS9EGZ4UpI8NguuL6fKkhRxVuMmrGV2xN/0APGdQYwLFky5w9naebSZ0OwAGp0G6/2Cg90rA==
 
-js-queue@2.0.2:
-  version "2.0.2"
-  resolved "https://registry.yarnpkg.com//js-queue/-/js-queue-2.0.2.tgz#0be590338f903b36c73d33c31883a821412cd482"
-  integrity sha512-pbKLsbCfi7kriM3s1J4DDCo7jQkI58zPLHi0heXPzPlj0hjUsm+FesPUbE0DSbIVIK503A36aUBoCN7eMFedkA==
-  dependencies:
-    easy-stack "^1.0.1"
-
 js-stringify@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com//js-stringify/-/js-stringify-1.0.2.tgz#1736fddfd9724f28a3682adc6230ae7e4e9679db"
@@ -8902,15 +8911,6 @@ node-int64@^0.4.0:
   version "0.4.0"
   resolved "https://registry.yarnpkg.com//node-int64/-/node-int64-0.4.0.tgz#87a9065cdb355d3182d8f94ce11188b825c68a3b"
   integrity sha1-h6kGXNs1XTGC2PlM4RGIuCXGijs=
-
-node-ipc@^9.1.1:
-  version "9.2.1"
-  resolved "https://registry.yarnpkg.com//node-ipc/-/node-ipc-9.2.1.tgz#b32f66115f9d6ce841dc4ec2009d6a733f98bb6b"
-  integrity sha512-mJzaM6O3xHf9VT8BULvJSbdVbmHUKRNOH7zDDkCrA1/T+CVjq2WVIDfLt0azZRXpgArJtl3rtmEozrbXPZ9GaQ==
-  dependencies:
-    event-pubsub "4.3.0"
-    js-message "1.0.7"
-    js-queue "2.0.2"
 
 node-libs-browser@^2.2.1:
   version "2.2.1"
