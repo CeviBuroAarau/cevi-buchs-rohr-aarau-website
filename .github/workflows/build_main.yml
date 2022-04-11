@@ -98,7 +98,7 @@ jobs:
         fetch-depth: 0
 
     - name: Download coverage reports
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: unit test coverage report
         path: coverage
@@ -153,7 +153,7 @@ jobs:
         password: ${{ secrets.CR_PAT }}
 
     - name: Download dist
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v3
       with:
         name: dist
         path: docker/github/dist
@@ -181,7 +181,7 @@ jobs:
       - uses: actions/checkout@v3
 
       - name: Download dist
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: dist
           path: docker/heroku/dist
