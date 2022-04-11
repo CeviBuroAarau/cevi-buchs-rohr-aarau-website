@@ -53,7 +53,7 @@ jobs:
       run: yarn run build
 
     - name: Archive dist
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: dist
         path: |
@@ -61,7 +61,7 @@ jobs:
           !dist/report.html
 
     - name: Archive report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: webpack report
         path: dist/report.html
@@ -70,7 +70,7 @@ jobs:
       run: yarn test:unit
 
     - name: Archive report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: unit test coverage report
         path: coverage
@@ -82,7 +82,7 @@ jobs:
       run: yarn test:e2e
 
     - name: Archive E2E test report
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       with:
         name: e2e test report
         path: tests/e2e/reports
