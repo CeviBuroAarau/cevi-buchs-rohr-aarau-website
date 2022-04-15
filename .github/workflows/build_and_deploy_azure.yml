@@ -221,3 +221,4 @@ jobs:
           local_path: './*'
           remote_path: '/var/www/website'
           args: '-o ConnectTimeout=5'
+          sftp_only: true
