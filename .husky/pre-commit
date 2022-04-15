@@ -8,7 +8,8 @@ yarn yaml-validator .github/workflows/analyze.yml
 yarn yaml-validator .github/workflows/build_branch.yml
 yarn yaml-validator .github/workflows/build_main.yml
 yarn yaml-validator .github/workflows/issue-branch.yml
-yarn yaml-validator .github/workflows/build_and_deploy_prod.yml
+yarn yaml-validator .github/workflows/build_and_deploy_azure.yml
+yarn yaml-validator .github/workflows/build_and_deploy_cyon.yml
 yarn yaml-validator .github/dependabot.yml
 sed -i -e "s#https://nexus.uhlme.ch/repository/npm-group#https://registry.yarnpkg.com/#g" yarn.lock
 yarn test:unit
