@@ -175,7 +175,7 @@ jobs:
     needs: buildDockerImage
     runs-on: ubuntu-latest
     environment:
-      name: test
+      name: heroku
       url: "https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/"
     steps:
       - uses: actions/checkout@v3
