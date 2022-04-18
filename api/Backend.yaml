@@ -12,7 +12,7 @@ info:
     name: MIT
     url: 'https://raw.githubusercontent.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/main/LICENSE'
 servers:
-  - url: 'https://backend.cevi-buro-aarau.ch/api'
+  - url: 'https://cockpit.cevi-buro-aarau.ch/api'
   - url: 'http://localhost:3000/api'
     description: ''
 paths:

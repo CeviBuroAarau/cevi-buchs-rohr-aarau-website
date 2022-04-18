@@ -39,7 +39,7 @@ docker run --init --rm -v $(pwd):/tmp -p 4010:4010 stoplight/prism:4 mock -h 0.0
 
 Run the webpage:
 ```
-sed -i 's#VUE_APP_COCKPIT_API=https://backend.cevi-buro-aarau.ch/api/#VUE_APP_COCKPIT_API=http://localhost:4010/#g' .env
+sed -i 's#VUE_APP_COCKPIT_API=https://cockpit.cevi-buro-aarau.ch/api/#VUE_APP_COCKPIT_API=http://localhost:4010/#g' .env
 yarn install
 yarn serve
 ```
