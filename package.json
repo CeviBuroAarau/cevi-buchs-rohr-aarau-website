@@ -20,7 +20,7 @@
     "@sentry/integrations": "^6.19.7",
     "@sentry/tracing": "^6.19.7",
     "@sentry/vue": "^6.19.7",
-    "@types/leaflet": "^1.7.9",
+    "@types/leaflet": "^1.7.10",
     "axios": "^0.27.2",
     "bulma": "^0.9.4",
     "compression": "^1.7.4",
