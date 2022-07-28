@@ -67,12 +67,14 @@ export class AgendaService {
 
     const contactHeader = [["Funktion", "Kontaktdaten"]];
     const contactData: Array<string[]> = [
-      ["Gruppenleiterin Sprösslis", "Seraina Frei v/o Floh, 079 952 70 84"],
       [
-        "Gruppenleiterin Feuerstühle",
-        "Leah Dellenbach v/o Luna, 076 405 81 18",
+        "Gruppenleiter Sprösslis",
+        "Elias Scheidegger v/o Asterix, 079 727 02 16 / asterix@cevimail.ch",
       ],
-      ["Gruppenleiter Glühwürmli", "Yannis Bontempi v/o Ayal, 079 932 44 85"],
+      [
+        "Gruppenleiter Glühwürmli",
+        "Yannis Bontempi v/o Ayal, 079 932 44 85 / ayal@cevimail.ch",
+      ],
       ["Abteilungsleitung", "Leah Dellenbach v/o Luna, 076 405 81 18"],
     ];
 

@@ -45,18 +45,6 @@
           }"
         ></leiter-list>
 
-        <h2 class="title is-2">Feuerstühle</h2>
-        <leiter-list
-          :leiter="
-            leiterList.filter((item) => item.group == 'Gruppe Feuerstühle')
-          "
-          @onLeiterOpened="onFeuerstuehleOpened()"
-          @onLeiterClosed="onFeuerstuehleClosed()"
-          v-bind:class="{
-            noPrint: !isFeuerstuehleDisplayed && this.isAnyDisplayed(),
-          }"
-        ></leiter-list>
-
         <h2 class="title is-2">Sprösslis</h2>
         <leiter-list
           :leiter="
@@ -93,7 +81,6 @@ export default class Leiterteam extends Vue {
   errorService: ErrorReportingService = new ErrorReportingService();
   private isALDisplayed = false;
   private isGluehwuermliDisplayed = false;
-  private isFeuerstuehleDisplayed = false;
   private isSproesslisDisplayed = false;
 
   async mounted() {
@@ -128,14 +115,6 @@ export default class Leiterteam extends Vue {
     this.isGluehwuermliDisplayed = false;
   }
 
-  onFeuerstuehleOpened() {
-    this.isFeuerstuehleDisplayed = true;
-  }
-
-  onFeuerstuehleClosed() {
-    this.isFeuerstuehleDisplayed = false;
-  }
-
   onSproesslisOpened() {
     this.isSproesslisDisplayed = true;
   }
@@ -148,7 +127,6 @@ export default class Leiterteam extends Vue {
     return (
       this.isALDisplayed ||
       this.isGluehwuermliDisplayed ||
-      this.isFeuerstuehleDisplayed ||
       this.isSproesslisDisplayed
     );
   }
