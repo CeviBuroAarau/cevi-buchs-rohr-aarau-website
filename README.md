@@ -56,7 +56,3 @@ docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-website cevi-buchs-rohr/we
 ```
 
 The webpage is then available under localhost:8080
-
-### Test (on Heroku)
-
-https://cevi-buchs-rohr-aarau-webpage.herokuapp.com/
