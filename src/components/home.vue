@@ -270,7 +270,7 @@ export default class Home extends Vue {
   border: 1px solid darken(#323394, 50%);
   box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.2);
   display: block;
-  text-decoration: underline;
+  text-decoration: none;
   margin: 2px;
 }
 
