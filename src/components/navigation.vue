@@ -6,7 +6,7 @@ export default class Navigation extends Vue {
   @Prop({ default: false }) isMobileMenuOpen!: boolean;
 
   @Emit("mobileOpenChanged")
-  onMobileNaviagation() {
+  onMobileNaviagation(): boolean {
     return false;
   }
 }

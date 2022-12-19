@@ -33,7 +33,7 @@ export class AgendaPDFCreator {
     schnuppernText: string,
     anschlagTitle: string,
     anschlagText: string
-  ) {
+  ): Promise<void> {
     await this.addLogo();
     this.addEmptyLine();
     this.addHeading(headingText);
@@ -57,7 +57,7 @@ export class AgendaPDFCreator {
     this.save();
   }
 
-  getCreatedText() {
+  getCreatedText(): string {
     return (
       "Generiert am: " +
       this.currentDate.toLocaleDateString("de-CH", {
@@ -74,11 +74,11 @@ export class AgendaPDFCreator {
     );
   }
 
-  save() {
+  save(): void {
     this.doc.save(this.getFilename());
   }
 
-  getFilename() {
+  getFilename(): string {
     return (
       this.currentDate.getFullYear() +
       "-" +
@@ -93,7 +93,7 @@ export class AgendaPDFCreator {
     return new jsPDF("portrait", "mm", "a4");
   }
 
-  async addLogo() {
+  async addLogo(): Promise<void> {
     const logo = await JsPdfUtil.getPngImageData("logo.png");
     const logoHeight = 35;
     this.doc.addImage(
@@ -109,17 +109,17 @@ export class AgendaPDFCreator {
     this.currentY = AgendaPDFCreator.PAGE_TOP_MARGIN + logoHeight;
   }
 
-  addHeading(heading: string) {
+  addHeading(heading: string): void {
     this.applyHeadingStyle();
     this.addText(heading);
   }
 
-  addRegularText(text: string) {
+  addRegularText(text: string): void {
     this.applyRegularStyle();
     this.addText(text);
   }
 
-  addLink(text: string, url: string) {
+  addLink(text: string, url: string): void {
     this.applyLinkStyle();
     this.doc.textWithLink(
       text,
@@ -132,7 +132,7 @@ export class AgendaPDFCreator {
     this.currentY = this.currentY + AgendaPDFCreator.LINE_HEIGHT_MM;
   }
 
-  addBlock(heading: string, text: string) {
+  addBlock(heading: string, text: string): void {
     this.applyBoldStyle();
     this.addText(heading);
     this.applyRegularStyle();
@@ -143,7 +143,7 @@ export class AgendaPDFCreator {
     header: Array<string[]>,
     data: Array<string[]>,
     isDoubleMargin = false
-  ) {
+  ): void {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.doc as any).autoTable({
       headStyles: {
@@ -167,11 +167,11 @@ export class AgendaPDFCreator {
     this.currentY = (this.doc as any).previousAutoTable.finalY;
   }
 
-  addEmptyLine() {
+  addEmptyLine(): void {
     this.currentY = this.currentY + AgendaPDFCreator.LINE_HEIGHT_MM;
   }
 
-  addText(text: string) {
+  addText(text: string): void {
     const lines: string[] = this.doc.splitTextToSize(
       text,
       AgendaPDFCreator.PAGE_AVAILABLE_WIDTH
@@ -184,7 +184,7 @@ export class AgendaPDFCreator {
       this.currentY + lines.length * AgendaPDFCreator.LINE_HEIGHT_MM;
   }
 
-  insertPageBreakIfNeeded(doc: jsPDF, lineCount: number) {
+  insertPageBreakIfNeeded(doc: jsPDF, lineCount: number): void {
     if (
       this.currentY +
         lineCount * AgendaPDFCreator.LINE_HEIGHT_MM +
@@ -196,35 +196,35 @@ export class AgendaPDFCreator {
     }
   }
 
-  applyHeadingStyle() {
+  applyHeadingStyle(): void {
     this.doc.setFontSize(12);
     this.applyBoldFont();
     this.doc.setTextColor(0, 0, 0);
   }
 
-  applyRegularStyle() {
+  applyRegularStyle(): void {
     this.doc.setFontSize(10);
     this.applyNormalFont();
     this.doc.setTextColor(0, 0, 0);
   }
 
-  applyLinkStyle() {
+  applyLinkStyle(): void {
     this.doc.setFontSize(10);
     this.applyNormalFont();
     this.doc.setTextColor(0, 0, 255);
   }
 
-  applyBoldStyle() {
+  applyBoldStyle(): void {
     this.doc.setFontSize(10);
     this.applyBoldFont();
     this.doc.setTextColor(0, 0, 0);
   }
 
-  applyNormalFont() {
+  applyNormalFont(): void {
     this.doc.setFont(AgendaPDFCreator.FONT_NAME, "");
   }
 
-  applyBoldFont() {
+  applyBoldFont(): void {
     this.doc.setFont(AgendaPDFCreator.FONT_NAME, "Bold");
   }
 }

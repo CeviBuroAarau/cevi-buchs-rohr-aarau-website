@@ -13,7 +13,7 @@ export class ShopService {
     this.axios = axios;
   }
 
-  async submitForm(data: ShopFormRequest) {
+  async submitForm(data: ShopFormRequest): Promise<void> {
     await this.axios.post<ShopFormResponse>("forms/submit/shoporder", data);
   }
 

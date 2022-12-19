@@ -83,11 +83,11 @@ export default class Leiterteam extends Vue {
   private isGluehwuermliDisplayed = false;
   private isSproesslisDisplayed = false;
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadLeaders();
   }
 
-  async loadLeaders() {
+  async loadLeaders(): Promise<void> {
     try {
       this.leiterList = await this.service.getLeaders();
       this.error = false;
@@ -99,31 +99,31 @@ export default class Leiterteam extends Vue {
     }
   }
 
-  onALOpened() {
+  onALOpened(): void {
     this.isALDisplayed = true;
   }
 
-  onALClosed() {
+  onALClosed(): void {
     this.isALDisplayed = false;
   }
 
-  onGluehwuermliOpened() {
+  onGluehwuermliOpened(): void {
     this.isGluehwuermliDisplayed = true;
   }
 
-  onGluehwuermliClosed() {
+  onGluehwuermliClosed(): void {
     this.isGluehwuermliDisplayed = false;
   }
 
-  onSproesslisOpened() {
+  onSproesslisOpened(): void {
     this.isSproesslisDisplayed = true;
   }
 
-  onSproesslisClosed() {
+  onSproesslisClosed(): void {
     this.isSproesslisDisplayed = false;
   }
 
-  isAnyDisplayed() {
+  isAnyDisplayed(): boolean {
     return (
       this.isALDisplayed ||
       this.isGluehwuermliDisplayed ||

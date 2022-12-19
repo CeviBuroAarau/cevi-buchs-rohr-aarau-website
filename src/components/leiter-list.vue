@@ -16,18 +16,18 @@ export default class LeiterList extends Vue {
   private activeLeiter: Leader | null = null;
   private leiterList: Leader[] = [];
 
-  showDetail(leiter: Leader) {
+  showDetail(leiter: Leader): void {
     this.activeLeiter = leiter;
     this.leiterDetail.open();
   }
 
   @Emit("onLeiterOpened")
-  onLeiterOpened() {
+  onLeiterOpened(): void {
     this.isEventDisplayed = true;
   }
 
   @Emit("onLeiterClosed")
-  onLeiterClosed() {
+  onLeiterClosed(): void {
     this.isEventDisplayed = false;
   }
 }

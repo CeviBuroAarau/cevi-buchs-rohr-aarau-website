@@ -21,11 +21,11 @@ export default class AgendaView extends Vue {
   errorService: ErrorReportingService = new ErrorReportingService();
   private isEventDisplayed = false;
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadAgenda();
   }
 
-  async loadAgenda() {
+  async loadAgenda(): Promise<void> {
     try {
       this.events = await this.agendaService.getEventsAfterDate(
         new Date(Date.now())
@@ -39,7 +39,7 @@ export default class AgendaView extends Vue {
     }
   }
 
-  getEventsForDisplay() {
+  getEventsForDisplay(): Agenda[] {
     if (this.isFull) {
       return this.events;
     } else {
@@ -47,11 +47,11 @@ export default class AgendaView extends Vue {
     }
   }
 
-  onEventOpened() {
+  onEventOpened(): void {
     this.isEventDisplayed = true;
   }
 
-  onEventClosed() {
+  onEventClosed(): void {
     this.isEventDisplayed = false;
   }
 }

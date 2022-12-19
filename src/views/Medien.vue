@@ -43,12 +43,12 @@ export default class Medien extends Vue {
   service: MediaService = new MediaService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadChronics();
     await this.loadNews();
   }
 
-  async loadChronics() {
+  async loadChronics(): Promise<void> {
     try {
       this.chronics = await this.service.getChronic();
       this.error = false;
@@ -60,7 +60,7 @@ export default class Medien extends Vue {
     }
   }
 
-  async loadNews() {
+  async loadNews(): Promise<void> {
     try {
       this.news = await this.service.getNews();
       this.error = false;

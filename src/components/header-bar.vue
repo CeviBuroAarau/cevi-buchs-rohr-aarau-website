@@ -6,7 +6,7 @@ export default class HeaderBar extends Vue {
   @Prop({ default: false }) isMobileMenuOpen!: boolean;
 
   @Emit("mobileOpenChanged")
-  onMobileOpenChanged() {
+  onMobileOpenChanged(): boolean {
     return !this.isMobileMenuOpen;
   }
 }

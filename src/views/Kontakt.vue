@@ -20,7 +20,7 @@ export default class Kontakt extends Vue {
   service: KontaktService = new KontaktService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
 
-  async send() {
+  async send(): Promise<void> {
     try {
       await this.service.submitForm({
         form: {

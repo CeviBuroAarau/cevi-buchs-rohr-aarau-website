@@ -55,7 +55,7 @@ export class AgendaService {
     return eventInfo;
   }
 
-  async generatePDF(events: Agenda[]) {
+  async generatePDF(events: Agenda[]): Promise<void> {
     const eventTableHeader = [["Datum", "Anlass"]];
     const eventTableData: Array<string[]> = [];
     events.forEach((event) => {

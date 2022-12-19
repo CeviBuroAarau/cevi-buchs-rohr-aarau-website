@@ -25,7 +25,7 @@ export default class SchnuppernForm extends Vue {
   );
   private errorService: ErrorReportingService = new ErrorReportingService();
 
-  async subscribe() {
+  async subscribe(): Promise<void> {
     try {
       await this.service.submitForm({
         form: {
@@ -48,12 +48,12 @@ export default class SchnuppernForm extends Vue {
   }
 
   @Emit("onFormOpened")
-  public showSubscriptionForm() {
+  public showSubscriptionForm(): void {
     this.state = SchnuppernFormState.Displayed;
   }
 
   @Emit("onFormClosed")
-  close() {
+  close(): void {
     this.state = SchnuppernFormState.NotDisplayed;
   }
 }

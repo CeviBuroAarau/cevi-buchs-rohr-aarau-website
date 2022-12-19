@@ -9,12 +9,12 @@ export default class LeiterDetail extends Vue {
   private display = false;
 
   @Emit("onLeiterOpened")
-  public open() {
+  public open(): void {
     this.display = true;
   }
 
   @Emit("onLeiterClosed")
-  public close() {
+  public close(): void {
     this.display = false;
   }
 }

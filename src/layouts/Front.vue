@@ -25,7 +25,7 @@ import HeaderBar from "@/components/header-bar.vue";
 export default class FrontLayout extends Vue {
   private mobileOpen = false;
 
-  onMobileOpenChanged(value: boolean) {
+  onMobileOpenChanged(value: boolean): void {
     this.mobileOpen = value;
   }
 }

@@ -9,11 +9,11 @@ export default class Modal extends Vue {
 
   private display = false;
 
-  public open() {
+  public open(): void {
     this.display = true;
   }
 
-  public close() {
+  public close(): void {
     this.display = false;
   }
 }

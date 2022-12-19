@@ -26,7 +26,7 @@ export default class LaedeliForm extends Vue {
   );
   private errorService: ErrorReportingService = new ErrorReportingService();
 
-  async order() {
+  async order(): Promise<void> {
     try {
       await this.service.submitForm({
         form: {
@@ -52,12 +52,12 @@ export default class LaedeliForm extends Vue {
   }
 
   @Emit("onFormOpened")
-  public showForm() {
+  public showForm(): void {
     this.state = LaedeliFormState.Displayed;
   }
 
   @Emit("onFormClosed")
-  close() {
+  close(): void {
     this.state = LaedeliFormState.NotDisplayed;
   }
 }

@@ -18,11 +18,11 @@ export default class EventList extends Vue {
   errorService: ErrorReportingService = new ErrorReportingService();
   private isEventDisplayed = false;
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadEventInfo();
   }
 
-  async loadEventInfo() {
+  async loadEventInfo(): Promise<void> {
     try {
       this.eventInfos = await this.service.getEventInfo();
     } catch (err) {
@@ -30,23 +30,23 @@ export default class EventList extends Vue {
     }
   }
 
-  eventsByDate(date: Date) {
+  eventsByDate(date: Date): EventInfo[] {
     return this.eventInfos == null
       ? []
       : this.eventInfos.filter((event) => DateUtil.isSameDay(event.date, date));
   }
 
-  showEvent(eventInfo: EventInfo) {
+  showEvent(eventInfo: EventInfo): void {
     this.eventDetail.open(eventInfo);
   }
 
   @Emit("onEventOpened")
-  onEventOpened() {
+  onEventOpened(): void {
     this.isEventDisplayed = true;
   }
 
   @Emit("onEventClosed")
-  onEventClosed() {
+  onEventClosed(): void {
     this.isEventDisplayed = false;
   }
 }

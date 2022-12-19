@@ -164,17 +164,17 @@ export default class Home extends Vue {
   );
   private errorService: ErrorReportingService = new ErrorReportingService();
 
-  async mounted() {
+  async mounted(): Promise<void> {
     this.initResponsiveLayout();
     await this.loadData();
   }
 
-  initResponsiveLayout() {
+  initResponsiveLayout(): void {
     window.addEventListener("resize", this.onResize);
     this.onResize();
   }
 
-  async loadData() {
+  async loadData(): Promise<void> {
     try {
       this.welcomeImages = await this.service.getImages();
       const index = Math.floor(Math.random() * this.welcomeImages.length);
@@ -185,11 +185,11 @@ export default class Home extends Vue {
     }
   }
 
-  onMobileNaviagation() {
+  onMobileNaviagation(): void {
     this.$emit("mobileOpenChanged", false);
   }
 
-  onResize() {
+  onResize(): void {
     if (window.innerWidth <= 768) {
       this.cevianerLinkText = "Mehr Info";
       this.interessierteLinkText = "Mehr Info";

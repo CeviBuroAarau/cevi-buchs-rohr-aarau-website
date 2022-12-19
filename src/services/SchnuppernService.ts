@@ -8,7 +8,7 @@ export class SchnuppernService {
     this.axios = axios;
   }
 
-  async submitForm(data: SchnuppernFormRequest) {
+  async submitForm(data: SchnuppernFormRequest): Promise<void> {
     await this.axios.post<SchnuppernFormResponse>("forms/submit/join", data);
   }
 }

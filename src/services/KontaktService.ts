@@ -8,7 +8,7 @@ export class KontaktService {
     this.axios = axios;
   }
 
-  async submitForm(data: KontaktFormRequest) {
+  async submitForm(data: KontaktFormRequest): Promise<void> {
     await this.axios.post<KontaktFormResponse>("forms/submit/contact", data);
   }
 }

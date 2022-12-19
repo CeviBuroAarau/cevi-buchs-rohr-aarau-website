@@ -11,15 +11,15 @@ export default class Schnuppern extends Vue {
   @Ref("schnuppernForm") readonly schnuppernForm!: SchnuppernForm;
   private isFormDisplayed = false;
 
-  showSubscriptionForm() {
+  showSubscriptionForm(): void {
     this.schnuppernForm.showSubscriptionForm();
   }
 
-  onFormOpened() {
+  onFormOpened(): void {
     this.isFormDisplayed = true;
   }
 
-  onFormClosed() {
+  onFormClosed(): void {
     this.isFormDisplayed = false;
   }
 }

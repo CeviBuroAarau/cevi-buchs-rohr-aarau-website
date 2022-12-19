@@ -83,11 +83,11 @@ export default class Aktivitaeten extends Vue {
   );
   errorService: ErrorReportingService = new ErrorReportingService();
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadActivities();
   }
 
-  async loadActivities() {
+  async loadActivities(): Promise<void> {
     try {
       this.activities = await this.service.getActivities();
       this.error = false;

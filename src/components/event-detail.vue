@@ -9,13 +9,13 @@ export default class EventDetail extends Vue {
   public FormState = FormState;
 
   @Emit("onEventOpened")
-  public open(eventInfo: EventInfo) {
+  public open(eventInfo: EventInfo): void {
     this.eventInfo = eventInfo;
     this.state = FormState.Displayed;
   }
 
   @Emit("onEventClosed")
-  public close() {
+  public close(): void {
     this.state = FormState.NotDisplayed;
   }
 }

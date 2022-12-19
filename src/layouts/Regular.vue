@@ -30,7 +30,7 @@ import Navigation from "@/components/navigation.vue";
 export default class RegularLayout extends Vue {
   private mobileOpen = false;
 
-  onMobileOpenChanged(value: boolean) {
+  onMobileOpenChanged(value: boolean): void {
     this.mobileOpen = value;
   }
 }

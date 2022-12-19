@@ -83,11 +83,11 @@ export default class Laedeli extends Vue {
   errorService: ErrorReportingService = new ErrorReportingService();
   private isFormOpen = false;
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadArticles();
   }
 
-  async loadArticles() {
+  async loadArticles(): Promise<void> {
     try {
       this.articleList = await this.service.getArticles();
       this.error = false;
@@ -99,15 +99,15 @@ export default class Laedeli extends Vue {
     }
   }
 
-  showForm() {
+  showForm(): void {
     this.laedeliForm.showForm();
   }
 
-  onFormOpened() {
+  onFormOpened(): void {
     this.isFormOpen = true;
   }
 
-  onFormClosed() {
+  onFormClosed(): void {
     this.isFormOpen = false;
   }
 }

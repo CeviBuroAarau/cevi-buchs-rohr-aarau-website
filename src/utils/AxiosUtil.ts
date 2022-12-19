@@ -1,8 +1,8 @@
-import axios, { AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 import { DateUtil } from "./DateUtil";
 
 export class AxiosUtil {
-  static getCockpitInstance() {
+  static getCockpitInstance(): AxiosInstance {
     return axios.create({
       baseURL: process.env.VUE_APP_COCKPIT_API,
       timeout: 10000,
@@ -16,7 +16,8 @@ export class AxiosUtil {
   static dateConversionInterceptor(
     originalResponse: AxiosResponse<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
     fieldName: string
-  ) {
+    // eslint-disable-next-line
+  ): AxiosResponse<any, any> {
     if (originalResponse.data.entries) {
       // eslint-disable-next-line
       originalResponse.data.entries.forEach((entry: any) =>

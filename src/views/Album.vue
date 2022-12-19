@@ -89,11 +89,11 @@ export default class AlbumView extends Vue {
   service: AlbumService = new AlbumService(AxiosUtil.getCockpitInstance());
   errorService: ErrorReportingService = new ErrorReportingService();
 
-  async mounted() {
+  async mounted(): Promise<void> {
     await this.loadAlbums();
   }
 
-  async loadAlbums() {
+  async loadAlbums(): Promise<void> {
     try {
       this.albums = await this.service.getAlbums();
       this.error = false;
