@@ -23,7 +23,7 @@ jobs:
 
     - name: Get yarn cache directory path
       id: yarn-cache-dir-path
-      run: echo "::set-output name=dir::$(yarn cache dir)"
+      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
 
     - uses: actions/cache@v3
       id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
@@ -39,8 +39,8 @@ jobs:
     - name: get date and revision
       id: date_and_rev
       run: |
-        echo ::set-output name=revision::sha-${GITHUB_SHA::8}
-        echo ::set-output name=created::$(date -u +'%d.%m.%Y %H:%M:%S')
+     	echo "revision=sha-${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+     	echo "created=$(date -u +'%d.%m.%Y %H:%M:%S')" >> $GITHUB_OUTPUT
 
     - name: set env variables
       run: |
@@ -138,9 +138,9 @@ jobs:
         if [ "${{ github.event_name }}" = "push" ]; then
           TAGS="$TAGS,${DOCKER_IMAGE}:sha-${GITHUB_SHA::8}"
         fi
-        echo ::set-output name=version::${VERSION}
-        echo ::set-output name=tags::${TAGS}
-        echo ::set-output name=created::$(date -u +'%Y-%m-%dT%H:%M:%SZ')
+     	echo "version=${VERSION}" >> $GITHUB_OUTPUT
+     	echo "tags=${TAGS}" >> $GITHUB_OUTPUT
+     	echo "created=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v2.4.1
