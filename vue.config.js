@@ -1,8 +1,5 @@
 "use strict";
 
-const BundleAnalyzerPlugin =
-  require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
-
 // eslint-disable-next-line
 const SentryWebpackPlugin = require("@sentry/webpack-plugin");
 
@@ -24,10 +21,6 @@ module.exports = {
     ) {
       return {
         plugins: [
-          new BundleAnalyzerPlugin({
-            analyzerMode: "static",
-            openAnalyzer: false,
-          }),
           new SentryWebpackPlugin({
             // sentry-cli configuration
             authToken: process.env.SENTRY_AUTH_TOKEN,
@@ -44,12 +37,7 @@ module.exports = {
       };
     } else {
       return {
-        plugins: [
-          new BundleAnalyzerPlugin({
-            analyzerMode: "static",
-            openAnalyzer: false,
-          }),
-        ],
+        plugins: [],
         devtool: "source-map",
       };
     }
