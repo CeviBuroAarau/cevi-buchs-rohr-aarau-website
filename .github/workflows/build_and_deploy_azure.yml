@@ -200,7 +200,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: azure
-      url: "https://website.cevi-buro-aarau.ch/"
+      url: "https://cevi-buro-aarau.ch/"
     steps:
       - name: Download dist
         uses: actions/download-artifact@v3
