@@ -39,7 +39,7 @@ jobs:
 
     - name: generate build number
       id: build_number
-      uses: zyborg/gh-action-buildnum@v1.2.0
+      uses: zyborg/gh-action-buildnum@v2
       with:
         gist_token: ${{ secrets.GIST_TOKEN }}
 
@@ -107,7 +107,7 @@ jobs:
     needs: build_and_test
     steps:
       - name: get existing build number
-        uses: zyborg/gh-action-buildnum@v1
+        uses: zyborg/gh-action-buildnum@v2
         id: lastBuildNum
         with:
           gist_token: ${{ secrets.GIST_TOKEN }}
