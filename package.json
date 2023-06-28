@@ -31,7 +31,7 @@
     "core-js": "^3.29.1",
     "express": "^4.18.1",
     "jest": "^27.0.0",
-    "jest-canvas-mock": "^2.4.0",
+    "jest-canvas-mock": "^2.5.2",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.5.23",
     "leaflet": "^1.8.0",
