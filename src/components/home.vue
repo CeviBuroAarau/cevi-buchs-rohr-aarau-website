@@ -72,6 +72,11 @@
             </ul>
           </li>
           <li>
+            <router-link to="/datenschutzinformation"
+              >Datenschutzinformation</router-link
+            >
+          </li>
+          <li>
             <router-link to="/kontakt">Kontakt</router-link>
           </li>
         </ul>

@@ -115,6 +115,13 @@ export default class Navigation extends Vue {
       </ul>
     </li>
     <li>
+      <router-link
+        to="/datenschutzinformation"
+        v-on:click.native="onMobileNaviagation()"
+        >Datenschutzinformation</router-link
+      >
+    </li>
+    <li>
       <router-link to="/kontakt" v-on:click.native="onMobileNaviagation()"
         >Kontakt</router-link
       >

@@ -15,6 +15,8 @@ const LazyAlbum = () => import("@/views/Album.vue");
 const LazyLaedeli = () => import("@/views/Laedeli.vue");
 const LazyAusbildung = () => import("@/views/Ausbildung.vue");
 const LazyLeiterteam = () => import("@/views/Leiterteam.vue");
+const LazyDatenschutzinformation = () =>
+  import("@/views/Datenschutzinformation.vue");
 const LazyKontakt = () => import("@/views/Kontakt.vue");
 const LazyVersion = () => import("@/views/Version.vue");
 const LazySpenden = () => import("@/views/Spenden.vue");
@@ -168,6 +170,17 @@ const routes: Array<RouteConfig> = [
         name: "Leiterteam",
         path: "",
         component: LazyLeiterteam,
+      },
+    ],
+  },
+  {
+    path: "/datenschutzinformation",
+    component: LazyRegularLayout,
+    children: [
+      {
+        name: "Datenschutzinformation",
+        path: "",
+        component: LazyDatenschutzinformation,
       },
     ],
   },
