@@ -95,6 +95,10 @@ export default class Datenschutzinformation extends Vue {}
           <td>Hosting der Webseite und weiterer Dienste wie z. B. Nextcloud</td>
         </tr>
         <tr>
+          <td>Openstreetmap, Amsterdam Niederlande</td>
+          <td>Kartenmaterial</td>
+        </tr>
+        <tr>
           <td>Meta, auf der ganzen Welt</td>
           <td>Facebook, Instagram, Whatsapp</td>
         </tr>
