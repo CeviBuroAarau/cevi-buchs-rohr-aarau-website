@@ -18,7 +18,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
     "@fortawesome/vue-fontawesome": "^2.0.10",
-    "@sentry/integrations": "^7.59.3",
+    "@sentry/integrations": "^7.66.0",
     "@sentry/tracing": "^7.59.3",
     "@sentry/vue": "^7.59.3",
     "@types/leaflet": "^1.9.3",
