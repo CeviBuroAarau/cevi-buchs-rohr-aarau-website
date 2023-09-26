@@ -1528,13 +1528,13 @@
     "@sentry/utils" "7.70.0"
     tslib "^2.4.1 || ^1.9.3"
 
-"@sentry/integrations@^7.70.0":
-  version "7.70.0"
-  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-7.70.0.tgz#723c20671876e875708f451cf7976d15555dba6c"
-  integrity sha512-ffIEuiElROzl4IpYX0O7vtPaadXVycPtyjq86YTHjd2TUFcYuQTPBm5UjEVE0/sSNNCdfWYxNThU/fVyq93l1g==
+"@sentry/integrations@^7.71.0":
+  version "7.71.0"
+  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-7.71.0.tgz#5f54ee7ea97c83da794511cc0807baf86c11d9b2"
+  integrity sha512-7Ay58ckFq+ra8OzV6HjO/SrCJIkuanp7NP/X2KVLKTyRfS+V3kqj/bAnyIodqQlJCiZV40PaEagIhDM9Fr/7/Q==
   dependencies:
-    "@sentry/types" "7.70.0"
-    "@sentry/utils" "7.70.0"
+    "@sentry/types" "7.71.0"
+    "@sentry/utils" "7.71.0"
     localforage "^1.8.1"
     tslib "^2.4.1 || ^1.9.3"
 
@@ -1559,12 +1559,25 @@
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.70.0.tgz#c7b533bb18144e3b020550b38cf4812c32d05ffe"
   integrity sha512-rY4DqpiDBtXSk4MDNBH3dwWqfPbNBI/9GA7Y5WJSIcObBtfBKp0fzYliHJZD0pgM7d4DPFrDn42K9Iiumgymkw==
 
+"@sentry/types@7.71.0":
+  version "7.71.0"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.71.0.tgz#51a4eeeed35e2b58dda9483e1c89819ea55aa1cf"
+  integrity sha512-30PRLZI1RoeWbLE9K7AHsRPWDH22CqC4WcLNeVmRfLC5m1vE1FHb53r98QSKFhLoONMPMVzDhZZgl4ZcC5mptQ==
+
 "@sentry/utils@7.70.0":
   version "7.70.0"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.70.0.tgz#825387ceb10cbb1e145357394b697a1a6d60eb74"
   integrity sha512-0cChMH0lsGp+5I3D4wOHWwjFN19HVrGUs7iWTLTO5St3EaVbdeLbI1vFXHxMxvopbwgpeZafbreHw/loIdZKpw==
   dependencies:
     "@sentry/types" "7.70.0"
+    tslib "^2.4.1 || ^1.9.3"
+
+"@sentry/utils@7.71.0":
+  version "7.71.0"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.71.0.tgz#e7a468fa023630130f8dffe33fb3759c321a517e"
+  integrity sha512-aS53l/E/5XsSJMOXHKvS0GlX4gZHBgNAMfhEB3f8rUIn5iLF2uu8lCA1uEvX6VB8b7q/Cg4WFTi6BiJ0hvJHQg==
+  dependencies:
+    "@sentry/types" "7.71.0"
     tslib "^2.4.1 || ^1.9.3"
 
 "@sentry/vue@^7.70.0":
