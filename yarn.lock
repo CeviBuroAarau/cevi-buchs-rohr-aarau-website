@@ -1528,15 +1528,23 @@
     "@sentry/utils" "7.70.0"
     tslib "^2.4.1 || ^1.9.3"
 
-"@sentry/integrations@^7.70.0":
-  version "7.70.0"
-  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-7.70.0.tgz#723c20671876e875708f451cf7976d15555dba6c"
-  integrity sha512-ffIEuiElROzl4IpYX0O7vtPaadXVycPtyjq86YTHjd2TUFcYuQTPBm5UjEVE0/sSNNCdfWYxNThU/fVyq93l1g==
+"@sentry/core@7.75.0":
+  version "7.75.0"
+  resolved "https://registry.yarnpkg.com/@sentry/core/-/core-7.75.0.tgz#d5477faf9afdfbf45b4ff46b809729f14d4e1b80"
+  integrity sha512-vXg3cdJgwzP24oTS9zFCgLW4MgTkMZqXx+ESRq7gTD9qJTpcmAmYT+Ckmvebg8K6DBThV6+0v61r50na2+XdrA==
   dependencies:
-    "@sentry/types" "7.70.0"
-    "@sentry/utils" "7.70.0"
+    "@sentry/types" "7.75.0"
+    "@sentry/utils" "7.75.0"
+
+"@sentry/integrations@^7.75.0":
+  version "7.75.0"
+  resolved "https://registry.yarnpkg.com/@sentry/integrations/-/integrations-7.75.0.tgz#0dcee498b34b4075856d67698d317f8e3c0b96f0"
+  integrity sha512-dnKZvPJBj+KiOIteYJEVuZcB3Hcd6NYdQ3xJhGk5FD4+gGOHTF+8kMdBC6q+Rnkyc63IB0vPRMhhs/T5XbWByg==
+  dependencies:
+    "@sentry/core" "7.75.0"
+    "@sentry/types" "7.75.0"
+    "@sentry/utils" "7.75.0"
     localforage "^1.8.1"
-    tslib "^2.4.1 || ^1.9.3"
 
 "@sentry/replay@7.70.0":
   version "7.70.0"
@@ -1559,6 +1567,11 @@
   resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.70.0.tgz#c7b533bb18144e3b020550b38cf4812c32d05ffe"
   integrity sha512-rY4DqpiDBtXSk4MDNBH3dwWqfPbNBI/9GA7Y5WJSIcObBtfBKp0fzYliHJZD0pgM7d4DPFrDn42K9Iiumgymkw==
 
+"@sentry/types@7.75.0":
+  version "7.75.0"
+  resolved "https://registry.yarnpkg.com/@sentry/types/-/types-7.75.0.tgz#e171f1680785a155cb828942af890ad4ee657ca3"
+  integrity sha512-xG8OLADxG7HpGhMxrF4v4tKq/v/gqmLsTZ858R51pz0xCWM8SK6ZSWOKudkAGBIpRjI6RUHMnkBtRAN2aKDOkQ==
+
 "@sentry/utils@7.70.0":
   version "7.70.0"
   resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.70.0.tgz#825387ceb10cbb1e145357394b697a1a6d60eb74"
@@ -1566,6 +1579,13 @@
   dependencies:
     "@sentry/types" "7.70.0"
     tslib "^2.4.1 || ^1.9.3"
+
+"@sentry/utils@7.75.0":
+  version "7.75.0"
+  resolved "https://registry.yarnpkg.com/@sentry/utils/-/utils-7.75.0.tgz#7a638c4c027ca2018518ee8d2eead1397cb97d66"
+  integrity sha512-UHWKeevhUNRp+mAWDbMVFOMgseoq8t/xFgdUywO/2PC14qZKRBH+0k1BKoNkp5sOzDT06ETj2w6wYoYhy6i+dA==
+  dependencies:
+    "@sentry/types" "7.75.0"
 
 "@sentry/vue@^7.70.0":
   version "7.70.0"
