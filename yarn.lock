@@ -4874,17 +4874,17 @@ eslint-plugin-prettier@^3.4.1:
   dependencies:
     prettier-linter-helpers "^1.0.0"
 
-eslint-plugin-vue@^9.17.0:
-  version "9.17.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-9.17.0.tgz#4501547373f246547083482838b4c8f4b28e5932"
-  integrity sha512-r7Bp79pxQk9I5XDP0k2dpUC7Ots3OSWgvGZNu3BxmKK6Zg7NgVtcOB6OCna5Kb9oQwJPl5hq183WD0SY5tZtIQ==
+eslint-plugin-vue@^9.20.1:
+  version "9.20.1"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-vue/-/eslint-plugin-vue-9.20.1.tgz#7ed78846898574b2cd26939f28b0b87798a7b528"
+  integrity sha512-GyCs8K3lkEvoyC1VV97GJhP1SvqsKCiWGHnbn0gVUYiUhaH2+nB+Dv1uekv1THFMPbBfYxukrzQdltw950k+LQ==
   dependencies:
     "@eslint-community/eslint-utils" "^4.4.0"
     natural-compare "^1.4.0"
     nth-check "^2.1.1"
     postcss-selector-parser "^6.0.13"
     semver "^7.5.4"
-    vue-eslint-parser "^9.3.1"
+    vue-eslint-parser "^9.4.0"
     xml-name-validator "^4.0.0"
 
 eslint-scope@5.1.1, eslint-scope@^5.1.1:
@@ -11040,10 +11040,10 @@ vue-class-component@^7.2.3:
   resolved "https://registry.yarnpkg.com/vue-class-component/-/vue-class-component-7.2.6.tgz#8471e037b8e4762f5a464686e19e5afc708502e4"
   integrity sha512-+eaQXVrAm/LldalI272PpDe3+i4mPis0ORiMYxF6Ae4hyuCh15W8Idet7wPUEs4N4YptgFHGys4UrgNQOMyO6w==
 
-vue-eslint-parser@^9.3.1:
-  version "9.3.1"
-  resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-9.3.1.tgz#429955e041ae5371df5f9e37ebc29ba046496182"
-  integrity sha512-Clr85iD2XFZ3lJ52/ppmUDG/spxQu6+MAeHXjjyI4I1NUYZ9xmenQp4N0oaHJhrA8OOxltCVxMRfANGa70vU0g==
+vue-eslint-parser@^9.3.1, vue-eslint-parser@^9.4.0:
+  version "9.4.0"
+  resolved "https://registry.yarnpkg.com/vue-eslint-parser/-/vue-eslint-parser-9.4.0.tgz#dfd22302e2992fe45748a76553cef7afa5bdde27"
+  integrity sha512-7KsNBb6gHFA75BtneJsoK/dbZ281whUIwFYdQxA68QrCrGMXYzUMbPDHGcOQ0OocIVKrWSKWXZ4mL7tonCXoUw==
   dependencies:
     debug "^4.3.4"
     eslint-scope "^7.1.1"
