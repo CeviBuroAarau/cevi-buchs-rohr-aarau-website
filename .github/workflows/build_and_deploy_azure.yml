@@ -67,18 +67,21 @@ jobs:
         path: |
           dist
           !dist/report.html
+        if-no-files-found: error
 
     - name: Archive webpack report
       uses: actions/upload-artifact@v4
       with:
         name: webpack report
-        path: dist/report.html
+        path: ${{ github.workspace }}/dist/report.html
+        if-no-files-found: error
 
     - name: Archive .htaccess
       uses: actions/upload-artifact@v4
       with:
         name: .htaccess
-        path: .htaccess
+        path: ${{ github.workspace }}/.htaccess
+        if-no-files-found: error
 
     - name: "Unit Tests"
       run: yarn test:unit
