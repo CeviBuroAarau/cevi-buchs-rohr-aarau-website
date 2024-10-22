@@ -21,7 +21,7 @@
     "@sentry/integrations": "^7.112.2",
     "@sentry/tracing": "^7.112.2",
     "@sentry/vue": "^7.112.2",
-    "@types/leaflet": "^1.9.3",
+    "@types/leaflet": "^1.9.13",
     "@vue/vue2-jest": "^27.0.0",
     "axios": "^0.27.2",
     "babel-jest": "^27.0.0",
