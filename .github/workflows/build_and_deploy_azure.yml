@@ -73,7 +73,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: .htaccess
-        path: ${{ github.workspace }}/.htaccess
+        path: .htaccess
         if-no-files-found: error
 
     - name: "Unit Tests"
