@@ -1,6 +1,7 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import FrontLayout from "@/layouts/Front.vue";
+import { Route } from "@sentry/vue/types/router";
 
 const LazyRegularLayout = () => import("@/layouts/Regular.vue");
 const LazyInteressierte = () => import("@/views/Interessierte.vue");
@@ -219,10 +220,17 @@ const routes: Array<RouteConfig> = [
   },
 ];
 
+declare const Shynet: {
+  newPageLoad(): [];
+};
+
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
   routes,
+});
+router.afterEach((to: Route, from: Route) => {
+  Shynet.newPageLoad();
 });
 
 export default router;
