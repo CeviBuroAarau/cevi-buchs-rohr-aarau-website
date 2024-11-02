@@ -1,7 +1,5 @@
 Header always set Content-Security-Policy "default-src https: data: 'unsafe-inline' 'unsafe-eval'"
 Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-Header always set X-Frame-Options "SAMEORIGIN"
-Header always set X-Xss-Protection "1; mode=block"
 Header always set X-Content-Type-Options "nosniff"
 Header always set Referrer-Policy "no-referrer"
 Header always set Permissions-Policy "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()"
