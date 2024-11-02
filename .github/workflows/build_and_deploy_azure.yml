@@ -64,9 +64,7 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: dist
-        path: |
-          dist
-          !dist/report.html
+        path: dist
         if-no-files-found: error
 
     - name: Archive .htaccess
@@ -75,6 +73,7 @@ jobs:
         name: .htaccess
         path: .htaccess
         if-no-files-found: error
+        include-hidden-files: true
 
     - name: "Unit Tests"
       run: yarn test:unit
