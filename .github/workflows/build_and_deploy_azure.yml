@@ -208,7 +208,7 @@ jobs:
           name: .htaccess
 
       - name: deploy file
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
         with:
           username: 'ceviftp'
           server: ${{ secrets.SFTP_SERVER }}
