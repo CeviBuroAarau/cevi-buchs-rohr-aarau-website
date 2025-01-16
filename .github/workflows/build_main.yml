@@ -159,7 +159,7 @@ jobs:
         path: docker/github/dist
 
     - name: Build container image
-      uses: docker/build-push-action@v6.9.0
+      uses: docker/build-push-action@v6.12.0
       with:
         context: docker/github
         file: docker/github/Dockerfile
