@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@babel/core": "7.28.4",
-    "@fortawesome/fontawesome-svg-core": "^6.4.0",
-    "@fortawesome/free-brands-svg-icons": "^6.4.0",
-    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/fontawesome-svg-core": "^7.1.0",
+    "@fortawesome/free-brands-svg-icons": "^7.1.0",
+    "@fortawesome/free-solid-svg-icons": "^7.1.0",
     "@fortawesome/vue-fontawesome": "^2.0.10",
     "@sentry/integrations": "^7.112.2",
     "@sentry/tracing": "^7.112.2",
