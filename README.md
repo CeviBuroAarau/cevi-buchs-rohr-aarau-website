@@ -13,6 +13,8 @@ Note:
   * typescript > 4 not supported
   * jest > 27 not supported
   * jspdf > 2 not supported
+  * vue-fontawesome > 2 not supported
+  * fortawesome icons > 6 not supported
 
 
 ## Getting started
