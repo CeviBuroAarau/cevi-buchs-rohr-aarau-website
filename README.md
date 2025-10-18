@@ -7,8 +7,11 @@ Metrics:
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 
+Note: does not run on Node 24 (tested October 2025). Use Node 22.
+
 ## Getting started
 ```
+nvm use 22
 yarn install
 yarn serve
 ```
