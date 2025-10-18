@@ -7,7 +7,13 @@ Metrics:
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 
-Note: does not run on Node 24 (tested October 2025). Use Node 22.
+Note: 
+  * node > 22 not supported
+  * prettier > 2 not supported
+  * typescript > 4 not supported
+  * jest > 27 not supported
+  * jspdf > 2 not supported
+
 
 ## Getting started
 ```

@@ -229,6 +229,7 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
+/* eslint-disable @typescript-eslint/no-unused-vars */
 router.afterEach((to: Route, from: Route) => {
   Shynet.newPageLoad();
 });
