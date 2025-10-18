@@ -13,7 +13,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Möchten Sie uns kennenlernen?")
+      .assert.textContains("h1", "Möchten Sie uns kennenlernen?")
       .saveScreenshot("tests/e2e/reports/interessierte.png")
       .end();
   });
@@ -22,7 +22,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte/schnuppern")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Schnuppern")
+      .assert.textContains("h1", "Schnuppern")
       .saveScreenshot("tests/e2e/reports/schnuppern.png")
       .end();
   });
@@ -31,7 +31,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte/aktivitaeten")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Aktivitäten")
+      .assert.textContains("h1", "Aktivitäten")
       .saveScreenshot("tests/e2e/reports/aktivitaeten.png")
       .end();
   });
@@ -40,7 +40,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte/cevi_schweiz")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Cevi Schweiz")
+      .assert.textContains("h1", "Cevi Schweiz")
       .saveScreenshot("tests/e2e/reports/cevi_schweiz.png")
       .end();
   });
@@ -49,7 +49,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte/standort")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Standort")
+      .assert.textContains("h1", "Standort")
       .saveScreenshot("tests/e2e/reports/standort.png")
       .end();
   });
@@ -58,7 +58,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte/medien")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Medien")
+      .assert.textContains("h1", "Medien")
       .saveScreenshot("tests/e2e/reports/medien.png")
       .end();
   });
@@ -67,7 +67,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/interessierte/spenden")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Spenden")
+      .assert.textContains("h1", "Spenden")
       .saveScreenshot("tests/e2e/reports/spenden.png")
       .end();
   });
@@ -76,7 +76,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/cevianer")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Cevianer/in")
+      .assert.textContains("h1", "Cevianer/in")
       .saveScreenshot("tests/e2e/reports/cevianer.png")
       .end();
   });
@@ -85,7 +85,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/cevianer/agenda")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Agenda")
+      .assert.textContains("h1", "Agenda")
       .saveScreenshot("tests/e2e/reports/agenda.png")
       .end();
   });
@@ -94,7 +94,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/cevianer/album")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Album")
+      .assert.textContains("h1", "Album")
       .saveScreenshot("tests/e2e/reports/album.png")
       .end();
   });
@@ -103,7 +103,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/cevianer/laedeli")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Lädeli")
+      .assert.textContains("h1", "Lädeli")
       .saveScreenshot("tests/e2e/reports/laedeli.png")
       .end();
   });
@@ -112,7 +112,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/cevianer/ausbildung")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Ausbildung")
+      .assert.textContains("h1", "Ausbildung")
       .saveScreenshot("tests/e2e/reports/ausbildung.png")
       .end();
   });
@@ -121,7 +121,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/cevianer/leiterteam")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Leiterteam")
+      .assert.textContains("h1", "Leiterteam")
       .saveScreenshot("tests/e2e/reports/leiterteam.png")
       .end();
   });
@@ -130,7 +130,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/kontakt")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Kontakt")
+      .assert.textContains("h1", "Kontakt")
       .saveScreenshot("tests/e2e/reports/kontakt.png")
       .end();
   });
@@ -139,7 +139,7 @@ describe("Router", function () {
     browser
       .init("http://localhost:8080/non_existing")
       .waitForElementVisible("#app")
-      .assert.containsText("h1", "Ups, da ist was schief gegangen")
+      .assert.textContains("h1", "Ups, da ist was schief gegangen")
       .saveScreenshot("tests/e2e/reports/not_found.png")
       .end();
   });
