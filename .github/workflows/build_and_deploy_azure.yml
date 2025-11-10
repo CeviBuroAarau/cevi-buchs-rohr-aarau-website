@@ -130,7 +130,7 @@ jobs:
           prerelease: false
 
       - name: Download dist
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: dist
           path: dist
@@ -140,7 +140,7 @@ jobs:
           (cd dist && zip -r ../dist.zip .)
 
       - name: Download unit test report
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: unit test coverage report
           path: coverage
@@ -150,7 +150,7 @@ jobs:
           (cd coverage && zip -r ../unit_test_coverage_report.zip .)
 
       - name: Download E2E test report
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: e2e test report
           path: tests/e2e/reports
@@ -198,12 +198,12 @@ jobs:
       url: "https://cevi-buro-aarau.ch/"
     steps:
       - name: Download dist
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: dist
 
       - name: Download .htaccess
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: .htaccess
 
