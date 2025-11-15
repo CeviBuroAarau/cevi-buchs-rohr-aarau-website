@@ -2,25 +2,22 @@
 
 import Vue from "vue";
 import * as Sentry from "@sentry/vue";
-import { CaptureConsole } from "@sentry/integrations";
-import { Integrations } from "@sentry/tracing";
 
 export class ErrorReportingService {
   init(): void {
     if (process.env.NODE_ENV === "production") {
       Sentry.init({
-        Vue: Vue,
+        app: Vue,
         dsn: process.env.VUE_APP_SENTRY_DSN,
+
         integrations: [
-          new CaptureConsole({
+          Sentry.captureConsoleIntegration({
             levels: ["error"],
           }),
-          new Integrations.BrowserTracing(),
+          Sentry.browserTracingIntegration(),
         ],
+
         tracesSampleRate: 1.0,
-        tracingOptions: {
-          trackComponents: true,
-        },
         environment: process.env.VUE_APP_SENTRY_ENVIRONMENT,
       });
     }

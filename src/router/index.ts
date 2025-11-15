@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter, { RouteConfig } from "vue-router";
 import FrontLayout from "@/layouts/Front.vue";
-import { Route } from "@sentry/vue/types/router";
 
 const LazyRegularLayout = () => import("@/layouts/Regular.vue");
 const LazyInteressierte = () => import("@/views/Interessierte.vue");
@@ -229,8 +228,8 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes,
 });
-/* eslint-disable @typescript-eslint/no-unused-vars */
-router.afterEach((to: Route, from: Route) => {
+
+router.afterEach(() => {
   Shynet.newPageLoad();
 });
 
