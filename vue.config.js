@@ -1,6 +1,6 @@
 "use strict";
 
-const SentryWebpackPlugin = require("@sentry/webpack-plugin");
+const { SentryWebpackPlugin } = require("@sentry/webpack-plugin");
 
 module.exports = {
   pwa: {
