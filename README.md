@@ -15,6 +15,7 @@ Note:
   * jspdf > 2 not supported
   * vue-fontawesome > 2 not supported
   * fortawesome icons > 6 not supported
+  * @vue/eslint-config-prettier > 6 not suported
 
 
 ## Getting started
@@ -59,11 +60,16 @@ The webpage is then available under localhost:8080
 
 Note: it will fail to load the images/files but it will be able to execute all api calls.
 
-### Run with docker
+### Build the docker image locally
 
 ```
-docker build -t cevi-buchs-rohr/website .
-docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-website cevi-buchs-rohr/website
+docker build -t cevi-buchs-rohr-aarau-website:latest .
+```
+
+### Execute the last public docker image
+
+```
+docker run -it -p 8080:80 --rm --name ghcr.io/ceviburoaarau/cevi-buchs-rohr-aarau-website:latest cevi-buchs-rohr/website
 ```
 
 The webpage is then available under localhost:8080
