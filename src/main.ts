@@ -5,15 +5,11 @@ import router from "./router";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";
 import { faUser, faBars } from "@fortawesome/free-solid-svg-icons";
-import { ErrorReportingService } from "@/services";
 
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { formatDateFilter } from "@/filters";
 
 dom.watch();
-
-const errorReportingService = new ErrorReportingService();
-errorReportingService.init();
 
 Vue.config.productionTip = false;
 

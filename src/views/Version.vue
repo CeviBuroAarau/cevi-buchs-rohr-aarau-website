@@ -24,6 +24,5 @@ export default class Version extends Vue {
   private version = process.env.VUE_APP_VERSION;
   private creationDate = process.env.VUE_APP_DATE;
   private revision = process.env.VUE_APP_REVISION;
-  private environment = process.env.VUE_APP_SENTRY_ENVIRONMENT;
 }
 </script>

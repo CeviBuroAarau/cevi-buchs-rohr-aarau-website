@@ -102,10 +102,6 @@ export default class Datenschutzinformation extends Vue {}
           <td>Meta, auf der ganzen Welt</td>
           <td>Facebook, Instagram, Whatsapp</td>
         </tr>
-        <tr>
-          <td>Sentry, Iowa USA</td>
-          <td>Fehlererkennung bei der Nutzung der Webseite</td>
-        </tr>
       </table>
 
       <h2 class="title is-2">6. Datensicherheit</h2>
