@@ -13,7 +13,7 @@
 
       <div v-else-if="error">
         <div class="notification is-danger">
-          Die Albumdaten können monentan nicht abgerufen werden. Bitte versuchen
+          Die Albumdaten können momentan nicht abgerufen werden. Bitte versuchen
           Sie es später noch einmal.
         </div>
       </div>

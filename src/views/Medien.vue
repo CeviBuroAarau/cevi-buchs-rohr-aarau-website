@@ -9,7 +9,7 @@
       </div>
       <div v-else-if="error">
         <div class="notification is-danger">
-          Die Medien können monentan nicht abgerufen werden. Bitte versuchen Sie
+          Die Medien können momentan nicht abgerufen werden. Bitte versuchen Sie
           es später noch einmal.
         </div>
       </div>

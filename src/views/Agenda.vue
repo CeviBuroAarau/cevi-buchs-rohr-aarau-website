@@ -68,7 +68,7 @@ export default class AgendaView extends Vue {
 
       <div v-else-if="error">
         <div class="notification is-danger">
-          Die Agendadaten können monentan nicht abgerufen werden. Bitte
+          Die Agendadaten können momentan nicht abgerufen werden. Bitte
           versuchen Sie es später noch einmal.
         </div>
       </div>
