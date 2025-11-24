@@ -33,7 +33,7 @@
     "jspdf-autotable": "^3.7.1",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.1",
-    "lint-staged": "^16.2.6",
+    "lint-staged": "^16.2.7",
     "nightwatch-html-reporter": "^2.0.6",
     "register-service-worker": "^1.7.2",
     "ts-jest": "^27.0.0",
