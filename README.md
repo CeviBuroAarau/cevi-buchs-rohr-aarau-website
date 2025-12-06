@@ -64,7 +64,7 @@ docker build -t cevi-buchs-rohr-aarau-website:latest .
 ### Execute the last public docker image
 
 ```
-docker run -it -p 8080:80 --rm --name ghcr.io/ceviburoaarau/cevi-buchs-rohr-aarau-website:latest cevi-buchs-rohr/website
+docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-aarau-website ghcr.io/ceviburoaarau/cevi-buchs-rohr-aarau-website:main
 ```
 
 The webpage is then available under localhost:8080
