@@ -96,7 +96,7 @@ jobs:
         fetch-depth: 0
 
     - name: Download coverage reports
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: unit test coverage report
         path: coverage
@@ -151,7 +151,7 @@ jobs:
         password: ${{ secrets.CR_PAT }}
 
     - name: Download dist
-      uses: actions/download-artifact@v6
+      uses: actions/download-artifact@v7
       with:
         name: dist
         path: docker/github/dist
