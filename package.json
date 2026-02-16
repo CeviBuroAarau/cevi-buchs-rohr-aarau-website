@@ -43,7 +43,7 @@
     "vue-property-decorator": "^9.1.2",
     "vue-router": "^3.5.4",
     "vue2-leaflet": "^2.7.1",
-    "webpack": "^5.105.0",
+    "webpack": "^5.105.2",
     "yaml-validator": "^5.0.0"
   },
   "devDependencies": {
