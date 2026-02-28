@@ -1,22 +1,36 @@
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 
-@Component
-export default class Modal extends Vue {
-  @Prop({}) title!: string;
-  @Prop({}) message!: string;
-  @Prop({}) type!: string;
-
-  private display = false;
-
-  public open(): void {
-    this.display = true;
-  }
-
-  public close(): void {
-    this.display = false;
-  }
-}
+export default defineComponent({
+  name: "Modal",
+  props: {
+    title: {
+      type: String,
+      required: true,
+    },
+    message: {
+      type: String,
+      required: true,
+    },
+    type: {
+      type: String,
+      default: "",
+    },
+  },
+  data() {
+    return {
+      display: false,
+    };
+  },
+  methods: {
+    open(): void {
+      this.display = true;
+    },
+    close(): void {
+      this.display = false;
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

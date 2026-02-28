@@ -30,7 +30,7 @@
           "
           @onLeiterOpened="onALOpened()"
           @onLeiterClosed="onALClosed()"
-          v-bind:class="{ noPrint: !isALDisplayed && this.isAnyDisplayed() }"
+          v-bind:class="{ noPrint: !isALDisplayed && isAnyDisplayed() }"
         ></leiter-list>
 
         <h2 class="title is-2">Glühwürmli</h2>
@@ -41,7 +41,7 @@
           @onLeiterOpened="onGluehwuermliOpened()"
           @onLeiterClosed="onGluehwuermliClosed()"
           v-bind:class="{
-            noPrint: !isGluehwuermliDisplayed && this.isAnyDisplayed(),
+            noPrint: !isGluehwuermliDisplayed && isAnyDisplayed(),
           }"
         ></leiter-list>
 
@@ -53,7 +53,7 @@
           @onLeiterOpened="onSproesslisOpened()"
           @onLeiterClosed="onSproesslisClosed()"
           v-bind:class="{
-            noPrint: !isSproesslisDisplayed && this.isAnyDisplayed(),
+            noPrint: !isSproesslisDisplayed && isAnyDisplayed(),
           }"
         ></leiter-list>
       </div>
@@ -62,73 +62,71 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { ErrorReportingService, LeaderService } from "@/services";
-import { Component, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { Leader } from "@/types";
 import LeiterList from "@/components/leiter-list.vue";
 
-@Component({
+export default defineComponent({
+  name: "Leiterteam",
   components: {
     LeiterList,
   },
-})
-export default class Leiterteam extends Vue {
-  private leiterList: Leader[] = [];
-  private loading = true;
-  private error = false;
-  service: LeaderService = new LeaderService(AxiosUtil.getCockpitInstance());
-  errorService: ErrorReportingService = new ErrorReportingService();
-  private isALDisplayed = false;
-  private isGluehwuermliDisplayed = false;
-  private isSproesslisDisplayed = false;
-
+  data() {
+    return {
+      leiterList: [] as Leader[],
+      loading: true,
+      error: false,
+      service: new LeaderService(
+        AxiosUtil.getCockpitInstance()
+      ) as LeaderService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+      isALDisplayed: false,
+      isGluehwuermliDisplayed: false,
+      isSproesslisDisplayed: false,
+    };
+  },
   async mounted(): Promise<void> {
     await this.loadLeaders();
-  }
-
-  async loadLeaders(): Promise<void> {
-    try {
-      this.leiterList = await this.service.getLeaders();
-      this.error = false;
-      this.loading = false;
-    } catch (err) {
-      this.error = true;
-      this.loading = false;
-      this.errorService.report(err);
-    }
-  }
-
-  onALOpened(): void {
-    this.isALDisplayed = true;
-  }
-
-  onALClosed(): void {
-    this.isALDisplayed = false;
-  }
-
-  onGluehwuermliOpened(): void {
-    this.isGluehwuermliDisplayed = true;
-  }
-
-  onGluehwuermliClosed(): void {
-    this.isGluehwuermliDisplayed = false;
-  }
-
-  onSproesslisOpened(): void {
-    this.isSproesslisDisplayed = true;
-  }
-
-  onSproesslisClosed(): void {
-    this.isSproesslisDisplayed = false;
-  }
-
-  isAnyDisplayed(): boolean {
-    return (
-      this.isALDisplayed ||
-      this.isGluehwuermliDisplayed ||
-      this.isSproesslisDisplayed
-    );
-  }
-}
+  },
+  methods: {
+    async loadLeaders(): Promise<void> {
+      try {
+        this.leiterList = await this.service.getLeaders();
+        this.error = false;
+        this.loading = false;
+      } catch (err) {
+        this.error = true;
+        this.loading = false;
+        this.errorService.report(err);
+      }
+    },
+    onALOpened(): void {
+      this.isALDisplayed = true;
+    },
+    onALClosed(): void {
+      this.isALDisplayed = false;
+    },
+    onGluehwuermliOpened(): void {
+      this.isGluehwuermliDisplayed = true;
+    },
+    onGluehwuermliClosed(): void {
+      this.isGluehwuermliDisplayed = false;
+    },
+    onSproesslisOpened(): void {
+      this.isSproesslisDisplayed = true;
+    },
+    onSproesslisClosed(): void {
+      this.isSproesslisDisplayed = false;
+    },
+    isAnyDisplayed(): boolean {
+      return (
+        this.isALDisplayed ||
+        this.isGluehwuermliDisplayed ||
+        this.isSproesslisDisplayed
+      );
+    },
+  },
+});
 </script>

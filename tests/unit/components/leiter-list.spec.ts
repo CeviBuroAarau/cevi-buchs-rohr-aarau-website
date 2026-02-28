@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { mount, shallowMount, Wrapper } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import LeiterList from "@/components/leiter-list.vue";
 import { Leader } from "@/types";
 
@@ -25,8 +25,10 @@ describe("LeiterList Component", () => {
 
   test("render leiter-list", () => {
     const wrapper = shallowMount(LeiterList, {
-      stubs: ["leiter-detail"],
-      propsData: {
+      global: {
+        stubs: ["leiter-detail"],
+      },
+      props: {
         leiter: leiter,
       },
     });
@@ -35,16 +37,13 @@ describe("LeiterList Component", () => {
   });
 
   test("showDetail", async () => {
-    const wrapper: Wrapper<LeiterList & { [key: string]: any }> = mount(
-      LeiterList,
-      {
-        propsData: {
-          leiter: leiter,
-        },
-      }
-    );
+    const wrapper = mount(LeiterList, {
+      props: {
+        leiter: leiter,
+      },
+    });
 
-    await wrapper.vm.showDetail(luna);
+    await (wrapper.vm as any).showDetail(luna);
 
     const container = wrapper.find("div.is-active");
     expect(container.exists()).toBe(true);

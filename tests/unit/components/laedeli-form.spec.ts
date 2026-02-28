@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import LaedeliForm from "@/components/laedeli-form.vue";
 import { LaedeliFormState } from "@/types";
 
@@ -14,33 +14,23 @@ describe("LaedeliForm Component", () => {
     };
 
     const openErrorFunction = jest.fn();
-    const errorModal = {
-      open: () => openErrorFunction(),
-    };
-
     const openSuccessFunction = jest.fn();
-    const successModal = {
-      open: () => openSuccessFunction(),
+
+    const wrapper = await shallowMount(LaedeliForm, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+
+    (wrapper.vm.$ as any).refs = {
+      successModal: { open: openSuccessFunction },
+      errorModal: { open: openErrorFunction },
     };
 
-    const wrapper: Wrapper<LaedeliForm & { [key: string]: any }> =
-      await shallowMount(LaedeliForm, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-        computed: {
-          errorModal() {
-            return errorModal;
-          },
-          successModal() {
-            return successModal;
-          },
-        },
-      });
-    await wrapper.vm.order();
+    await (wrapper.vm as any).order();
 
     expect(openErrorFunction.mock.calls.length).toBe(0);
     expect(openSuccessFunction.mock.calls.length).toBe(1);
@@ -58,33 +48,23 @@ describe("LaedeliForm Component", () => {
     };
 
     const openErrorFunction = jest.fn();
-    const errorModal = {
-      open: () => openErrorFunction(),
-    };
-
     const openSuccessFunction = jest.fn();
-    const successModal = {
-      open: () => openSuccessFunction(),
+
+    const wrapper = await shallowMount(LaedeliForm, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+
+    (wrapper.vm.$ as any).refs = {
+      successModal: { open: openSuccessFunction },
+      errorModal: { open: openErrorFunction },
     };
 
-    const wrapper: Wrapper<LaedeliForm & { [key: string]: any }> =
-      await shallowMount(LaedeliForm, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-        computed: {
-          errorModal() {
-            return errorModal;
-          },
-          successModal() {
-            return successModal;
-          },
-        },
-      });
-    await wrapper.vm.order();
+    await (wrapper.vm as any).order();
 
     expect(openErrorFunction.mock.calls.length).toBe(1);
     expect(openSuccessFunction.mock.calls.length).toBe(0);
@@ -99,18 +79,17 @@ describe("LaedeliForm Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<LaedeliForm & { [key: string]: any }> =
-      await shallowMount(LaedeliForm, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.showForm();
+    const wrapper = await shallowMount(LaedeliForm, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).showForm();
 
-    expect(wrapper.vm.$data.state).toBe(LaedeliFormState.Displayed);
+    expect((wrapper.vm as any).state).toBe(LaedeliFormState.Displayed);
 
     const onFormOpenedEmitted = wrapper.emitted().onFormOpened;
     if (onFormOpenedEmitted === undefined) {
@@ -129,18 +108,17 @@ describe("LaedeliForm Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<LaedeliForm & { [key: string]: any }> =
-      await shallowMount(LaedeliForm, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.close();
+    const wrapper = await shallowMount(LaedeliForm, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).close();
 
-    expect(wrapper.vm.$data.state).toBe(LaedeliFormState.NotDisplayed);
+    expect((wrapper.vm as any).state).toBe(LaedeliFormState.NotDisplayed);
 
     const onFormClosedEmitted = wrapper.emitted().onFormClosed;
     if (onFormClosedEmitted === undefined) {

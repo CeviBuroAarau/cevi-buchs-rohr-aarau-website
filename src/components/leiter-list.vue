@@ -1,36 +1,42 @@
 <script lang="ts">
-import { Component, Emit, Prop, Ref, Vue } from "vue-property-decorator";
+import { defineComponent, PropType } from "vue";
 import { Leader } from "@/types";
 import LeiterDetail from "@/components/leiter-detail.vue";
 
-@Component({
+export default defineComponent({
+  name: "LeiterList",
   components: {
     LeiterDetail,
   },
-})
-export default class LeiterList extends Vue {
-  @Prop({}) readonly leiter!: Leader[];
-  @Ref("leiterDetail") readonly leiterDetail!: LeiterDetail;
-  private isEventDisplayed = false;
-
-  private activeLeiter: Leader | null = null;
-  private leiterList: Leader[] = [];
-
-  showDetail(leiter: Leader): void {
-    this.activeLeiter = leiter;
-    this.leiterDetail.open();
-  }
-
-  @Emit("onLeiterOpened")
-  onLeiterOpened(): void {
-    this.isEventDisplayed = true;
-  }
-
-  @Emit("onLeiterClosed")
-  onLeiterClosed(): void {
-    this.isEventDisplayed = false;
-  }
-}
+  props: {
+    leiter: {
+      type: Array as PropType<Leader[]>,
+      required: true,
+    },
+  },
+  emits: ["onLeiterOpened", "onLeiterClosed"],
+  data() {
+    return {
+      isEventDisplayed: false,
+      activeLeiter: null as Leader | null,
+      leiterList: [] as Leader[],
+    };
+  },
+  methods: {
+    showDetail(leiter: Leader): void {
+      this.activeLeiter = leiter;
+      (this.$refs.leiterDetail as InstanceType<typeof LeiterDetail>).open();
+    },
+    onLeiterOpened(): void {
+      this.isEventDisplayed = true;
+      this.$emit("onLeiterOpened");
+    },
+    onLeiterClosed(): void {
+      this.isEventDisplayed = false;
+      this.$emit("onLeiterClosed");
+    },
+  },
+});
 </script>
 
 <template>
@@ -44,7 +50,7 @@ export default class LeiterList extends Vue {
 
     <ul
       style="display: flex; flex-wrap: wrap"
-      v-if="this.leiterList != null"
+      v-if="leiterList != null"
       v-bind:class="{
         noPrint: isEventDisplayed,
       }"

@@ -1,20 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { mount, shallowMount, Wrapper } from "@vue/test-utils";
+import { mount, shallowMount } from "@vue/test-utils";
 import AgendaView from "@/views/Agenda.vue";
 
 describe("Agenda Page", () => {
   it("check loading message", () => {
-    const wrapper: Wrapper<AgendaView & { [key: string]: any }> = shallowMount(
-      AgendaView,
-      {
-        data: () => {
-          return {
-            loading: true,
-            error: false,
-          };
-        },
-      }
-    );
+    const wrapper = shallowMount(AgendaView, {
+      data: () => {
+        return {
+          loading: true,
+          error: false,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(true);
@@ -60,18 +57,15 @@ describe("Agenda Page", () => {
     const dateNowStub = jest.fn(() => 1593900000000); // 2020-07-05 00:00:00
     global.Date.now = dateNowStub;
 
-    const wrapper: Wrapper<AgendaView & { [key: string]: any }> = await mount(
-      AgendaView,
-      {
-        data: () => {
-          return {
-            agendaService: agendaService,
-            errorService: errorService,
-          };
-        },
-      }
-    );
-    await wrapper.vm.loadAgenda();
+    const wrapper = await mount(AgendaView, {
+      data: () => {
+        return {
+          agendaService: agendaService,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadAgenda();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -122,19 +116,16 @@ describe("Agenda Page", () => {
     const dateNowStub = jest.fn(() => 1593900000000); // 2020-07-05 00:00:00
     global.Date.now = dateNowStub;
 
-    const wrapper: Wrapper<AgendaView & { [key: string]: any }> = await mount(
-      AgendaView,
-      {
-        data: () => {
-          return {
-            agendaService: agendaService,
-            errorService: errorService,
-            isFull: true,
-          };
-        },
-      }
-    );
-    await wrapper.vm.loadAgenda();
+    const wrapper = await mount(AgendaView, {
+      data: () => {
+        return {
+          agendaService: agendaService,
+          errorService: errorService,
+          isFull: true,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadAgenda();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -163,16 +154,15 @@ describe("Agenda Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<AgendaView & { [key: string]: any }> =
-      await shallowMount(AgendaView, {
-        data: () => {
-          return {
-            agendaService: agendaService,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadAgenda();
+    const wrapper = await shallowMount(AgendaView, {
+      data: () => {
+        return {
+          agendaService: agendaService,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadAgenda();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);

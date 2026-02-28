@@ -1,55 +1,65 @@
 <script lang="ts">
-import { Component, Emit, Prop, Ref, Vue } from "vue-property-decorator";
+import { defineComponent, PropType } from "vue";
 import { Agenda, EventInfo } from "@/types";
 import EventDetail from "@/components/event-detail.vue";
 import { AxiosUtil, DateUtil } from "@/utils";
 import { ErrorReportingService, AgendaService } from "@/services";
 
-@Component({
+export default defineComponent({
+  name: "EventList",
   components: {
     EventDetail,
   },
-})
-export default class EventList extends Vue {
-  @Prop({}) readonly events!: Agenda[];
-  @Ref("eventDetail") readonly eventDetail!: EventDetail;
-  private eventInfos: EventInfo[] = [];
-  service: AgendaService = new AgendaService(AxiosUtil.getCockpitInstance());
-  errorService: ErrorReportingService = new ErrorReportingService();
-  private isEventDisplayed = false;
-
+  props: {
+    events: {
+      type: Array as PropType<Agenda[]>,
+      required: true,
+    },
+  },
+  emits: ["onEventOpened", "onEventClosed"],
+  data() {
+    return {
+      eventInfos: [] as EventInfo[],
+      service: new AgendaService(
+        AxiosUtil.getCockpitInstance()
+      ) as AgendaService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+      isEventDisplayed: false,
+    };
+  },
   async mounted(): Promise<void> {
     await this.loadEventInfo();
-  }
-
-  async loadEventInfo(): Promise<void> {
-    try {
-      this.eventInfos = await this.service.getEventInfo();
-    } catch (err) {
-      this.errorService.report(err);
-    }
-  }
-
-  eventsByDate(date: Date): EventInfo[] {
-    return this.eventInfos == null
-      ? []
-      : this.eventInfos.filter((event) => DateUtil.isSameDay(event.date, date));
-  }
-
-  showEvent(eventInfo: EventInfo): void {
-    this.eventDetail.open(eventInfo);
-  }
-
-  @Emit("onEventOpened")
-  onEventOpened(): void {
-    this.isEventDisplayed = true;
-  }
-
-  @Emit("onEventClosed")
-  onEventClosed(): void {
-    this.isEventDisplayed = false;
-  }
-}
+  },
+  methods: {
+    async loadEventInfo(): Promise<void> {
+      try {
+        this.eventInfos = await this.service.getEventInfo();
+      } catch (err) {
+        this.errorService.report(err);
+      }
+    },
+    eventsByDate(date: Date): EventInfo[] {
+      return this.eventInfos == null
+        ? []
+        : this.eventInfos.filter((event) =>
+            DateUtil.isSameDay(event.date, date)
+          );
+    },
+    showEvent(eventInfo: EventInfo): void {
+      (this.$refs.eventDetail as InstanceType<typeof EventDetail>).open(
+        eventInfo
+      );
+    },
+    onEventOpened(): void {
+      this.isEventDisplayed = true;
+      this.$emit("onEventOpened");
+    },
+    onEventClosed(): void {
+      this.isEventDisplayed = false;
+      this.$emit("onEventClosed");
+    },
+  },
+});
 </script>
 
 <template>

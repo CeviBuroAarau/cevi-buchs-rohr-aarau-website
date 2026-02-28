@@ -1,1 +1,1 @@
-export * from "./DateFilter";
+export { formatDate } from "./DateFilter";

@@ -1,5 +1,4 @@
-import Vue from "vue";
-import VueRouter, { RouteConfig } from "vue-router";
+import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import FrontLayout from "@/layouts/Front.vue";
 
 const LazyRegularLayout = () => import("@/layouts/Regular.vue");
@@ -22,9 +21,7 @@ const LazyVersion = () => import("@/views/Version.vue");
 const LazySpenden = () => import("@/views/Spenden.vue");
 const LazyNotFound = () => import("@/views/NotFound.vue");
 
-Vue.use(VueRouter);
-
-const routes: Array<RouteConfig> = [
+const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
     component: FrontLayout,
@@ -207,7 +204,7 @@ const routes: Array<RouteConfig> = [
     ],
   },
   {
-    path: "*",
+    path: "/:pathMatch(.*)*",
     component: LazyRegularLayout,
     children: [
       {
@@ -223,9 +220,8 @@ declare const Shynet: {
   newPageLoad(): [];
 };
 
-const router = new VueRouter({
-  mode: "history",
-  base: process.env.BASE_URL,
+const router = createRouter({
+  history: createWebHistory(process.env.BASE_URL),
   routes,
 });
 

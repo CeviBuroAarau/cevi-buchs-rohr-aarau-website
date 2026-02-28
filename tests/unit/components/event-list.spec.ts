@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import EventList from "@/components/event-list.vue";
 import { EventInfo } from "@/types";
 
@@ -19,25 +19,24 @@ describe("EventList Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<EventList & { [key: string]: any }> =
-      await shallowMount(EventList, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-        propsData: {
-          events: [
-            {
-              scope: "section",
-              text: "b",
-              date: new Date(),
-            },
-          ],
-        },
-      });
-    await wrapper.vm.loadEventInfo();
+    const wrapper = await shallowMount(EventList, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+      props: {
+        events: [
+          {
+            scope: "section",
+            text: "b",
+            date: new Date(),
+          },
+        ],
+      },
+    } as any);
+    await (wrapper.vm as any).loadEventInfo();
 
     const link = wrapper.find("a.eventinfo");
     expect(link.exists()).toBe(true);
@@ -62,7 +61,7 @@ describe("EventList Component", () => {
           errorService: errorService,
         };
       },
-      propsData: {
+      props: {
         events: [
           {
             scope: "section",
@@ -71,7 +70,7 @@ describe("EventList Component", () => {
           },
         ],
       },
-    });
+    } as any);
 
     expect(reportFunction.mock.calls.length).toBe(1);
   });
@@ -87,25 +86,24 @@ describe("EventList Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<EventList & { [key: string]: any }> =
-      await shallowMount(EventList, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-        propsData: {
-          events: [
-            {
-              scope: "section",
-              text: "b",
-              date: new Date(),
-            },
-          ],
-        },
-      });
-    await wrapper.vm.loadEventInfo();
+    const wrapper = await shallowMount(EventList, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+      props: {
+        events: [
+          {
+            scope: "section",
+            text: "b",
+            date: new Date(),
+          },
+        ],
+      },
+    } as any);
+    await (wrapper.vm as any).loadEventInfo();
 
     const link = wrapper.find("a.eventinfo");
     expect(link.exists()).toBe(false);
@@ -118,15 +116,14 @@ describe("EventList Component", () => {
       open: (info: EventInfo) => eventDetailFunction(),
     };
 
-    const wrapper: Wrapper<EventList & { [key: string]: any }> =
-      await shallowMount(EventList, {
-        computed: {
-          eventDetail() {
-            return eventDetail;
-          },
-        },
-      });
-    wrapper.vm.showEvent({
+    const wrapper = await shallowMount(EventList, {});
+
+    // Mock $refs via internal instance
+    (wrapper.vm.$ as any).refs = {
+      eventDetail: eventDetail,
+    };
+
+    (wrapper.vm as any).showEvent({
       scope: "section",
       text: "b",
       date: new Date(),

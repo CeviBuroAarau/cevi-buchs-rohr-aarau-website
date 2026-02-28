@@ -17,23 +17,27 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 import HeaderBar from "@/components/header-bar.vue";
 import Navigation from "@/components/navigation.vue";
 
-@Component({
+export default defineComponent({
+  name: "RegularLayout",
   components: {
     HeaderBar,
     Navigation,
   },
-})
-export default class RegularLayout extends Vue {
-  private mobileOpen = false;
-
-  onMobileOpenChanged(value: boolean): void {
-    this.mobileOpen = value;
-  }
-}
+  data() {
+    return {
+      mobileOpen: false,
+    };
+  },
+  methods: {
+    onMobileOpenChanged(value: boolean): void {
+      this.mobileOpen = value;
+    },
+  },
+});
 </script>
 
 <style lang="scss">

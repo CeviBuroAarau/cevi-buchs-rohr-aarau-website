@@ -1,62 +1,62 @@
 <script lang="ts">
+import { defineComponent } from "vue";
 import { ErrorReportingService, SchnuppernService } from "@/services";
-import { Component, Emit, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { SchnuppernFormState } from "@/types";
 import Modal from "@/components/modal.vue";
 
-@Component({
+export default defineComponent({
+  name: "SchnuppernForm",
   components: {
     Modal,
   },
-})
-export default class SchnuppernForm extends Vue {
-  @Ref("successModal") readonly successModal!: Modal;
-  @Ref("errorModal") readonly errorModal!: Modal;
-
-  private state: SchnuppernFormState = SchnuppernFormState.NotDisplayed;
-  private name = "";
-  private email = "";
-  private phonenumber = "";
-  private message = "";
-  public SchnuppernFormState = SchnuppernFormState;
-  private service: SchnuppernService = new SchnuppernService(
-    AxiosUtil.getCockpitInstance()
-  );
-  private errorService: ErrorReportingService = new ErrorReportingService();
-
-  async subscribe(): Promise<void> {
-    try {
-      await this.service.submitForm({
-        form: {
-          name: this.name,
-          email: this.email,
-          phonenumber: this.phonenumber,
-          message: this.message,
-        },
-      });
+  emits: ["onFormOpened", "onFormClosed"],
+  data() {
+    return {
+      state: SchnuppernFormState.NotDisplayed,
+      name: "",
+      email: "",
+      phonenumber: "",
+      message: "",
+      SchnuppernFormState: SchnuppernFormState,
+      service: new SchnuppernService(
+        AxiosUtil.getCockpitInstance()
+      ) as SchnuppernService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+    };
+  },
+  methods: {
+    async subscribe(): Promise<void> {
+      try {
+        await this.service.submitForm({
+          form: {
+            name: this.name,
+            email: this.email,
+            phonenumber: this.phonenumber,
+            message: this.message,
+          },
+        });
+        this.state = SchnuppernFormState.NotDisplayed;
+        (this.$refs.successModal as InstanceType<typeof Modal>).open();
+        this.name = "";
+        this.email = "";
+        this.message = "";
+      } catch (err) {
+        this.state = SchnuppernFormState.NotDisplayed;
+        (this.$refs.errorModal as InstanceType<typeof Modal>).open();
+        this.errorService.report(err);
+      }
+    },
+    showSubscriptionForm(): void {
+      this.state = SchnuppernFormState.Displayed;
+      this.$emit("onFormOpened");
+    },
+    close(): void {
       this.state = SchnuppernFormState.NotDisplayed;
-      this.successModal.open();
-      this.name = "";
-      this.email = "";
-      this.message = "";
-    } catch (err) {
-      this.state = SchnuppernFormState.NotDisplayed;
-      this.errorModal.open();
-      this.errorService.report(err);
-    }
-  }
-
-  @Emit("onFormOpened")
-  public showSubscriptionForm(): void {
-    this.state = SchnuppernFormState.Displayed;
-  }
-
-  @Emit("onFormClosed")
-  close(): void {
-    this.state = SchnuppernFormState.NotDisplayed;
-  }
-}
+      this.$emit("onFormClosed");
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

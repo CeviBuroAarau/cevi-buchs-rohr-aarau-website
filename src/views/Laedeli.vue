@@ -60,55 +60,53 @@
 <style scoped lang="scss"></style>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { ErrorReportingService, ShopService } from "@/services";
-import { Component, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { Article } from "@/types";
 import ArticleList from "@/components/article-list.vue";
 import LaedeliForm from "@/components/laedeli-form.vue";
 
-@Component({
+export default defineComponent({
+  name: "Laedeli",
   components: {
     ArticleList,
     LaedeliForm,
   },
-})
-export default class Laedeli extends Vue {
-  @Ref("laedeliForm") readonly laedeliForm!: LaedeliForm;
-
-  private error = false;
-  private loading = true;
-  private articleList: Article[] = [];
-  service: ShopService = new ShopService(AxiosUtil.getCockpitInstance());
-  errorService: ErrorReportingService = new ErrorReportingService();
-  private isFormOpen = false;
-
+  data() {
+    return {
+      error: false,
+      loading: true,
+      articleList: [] as Article[],
+      service: new ShopService(AxiosUtil.getCockpitInstance()) as ShopService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+      isFormOpen: false,
+    };
+  },
   async mounted(): Promise<void> {
     await this.loadArticles();
-  }
-
-  async loadArticles(): Promise<void> {
-    try {
-      this.articleList = await this.service.getArticles();
-      this.error = false;
-      this.loading = false;
-    } catch (err) {
-      this.error = true;
-      this.loading = false;
-      this.errorService.report(err);
-    }
-  }
-
-  showForm(): void {
-    this.laedeliForm.showForm();
-  }
-
-  onFormOpened(): void {
-    this.isFormOpen = true;
-  }
-
-  onFormClosed(): void {
-    this.isFormOpen = false;
-  }
-}
+  },
+  methods: {
+    async loadArticles(): Promise<void> {
+      try {
+        this.articleList = await this.service.getArticles();
+        this.error = false;
+        this.loading = false;
+      } catch (err) {
+        this.error = true;
+        this.loading = false;
+        this.errorService.report(err);
+      }
+    },
+    showForm(): void {
+      (this.$refs.laedeliForm as InstanceType<typeof LaedeliForm>).showForm();
+    },
+    onFormOpened(): void {
+      this.isFormOpen = true;
+    },
+    onFormClosed(): void {
+      this.isFormOpen = false;
+    },
+  },
+});
 </script>

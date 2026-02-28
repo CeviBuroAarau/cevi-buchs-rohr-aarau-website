@@ -1,44 +1,46 @@
 <script lang="ts">
+import { defineComponent } from "vue";
 import { ErrorReportingService, KontaktService } from "@/services";
 import { AxiosUtil } from "@/utils";
 import Modal from "@/components/modal.vue";
 
-import { Component, Ref, Vue } from "vue-property-decorator";
-
-@Component({
+export default defineComponent({
+  name: "Kontakt",
   components: {
     Modal,
   },
-})
-export default class Kontakt extends Vue {
-  @Ref("successModal") readonly successModal!: Modal;
-  @Ref("errorModal") readonly errorModal!: Modal;
-
-  private name = "";
-  private email = "";
-  private message = "";
-  service: KontaktService = new KontaktService(AxiosUtil.getCockpitInstance());
-  errorService: ErrorReportingService = new ErrorReportingService();
-
-  async send(): Promise<void> {
-    try {
-      await this.service.submitForm({
-        form: {
-          name: this.name,
-          email: this.email,
-          message: this.message,
-        },
-      });
-      this.successModal.open();
-      this.name = "";
-      this.email = "";
-      this.message = "";
-    } catch (err) {
-      this.errorModal.open();
-      this.errorService.report(err);
-    }
-  }
-}
+  data() {
+    return {
+      name: "",
+      email: "",
+      message: "",
+      service: new KontaktService(
+        AxiosUtil.getCockpitInstance()
+      ) as KontaktService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+    };
+  },
+  methods: {
+    async send(): Promise<void> {
+      try {
+        await this.service.submitForm({
+          form: {
+            name: this.name,
+            email: this.email,
+            message: this.message,
+          },
+        });
+        (this.$refs.successModal as InstanceType<typeof Modal>).open();
+        this.name = "";
+        this.email = "";
+        this.message = "";
+      } catch (err) {
+        (this.$refs.errorModal as InstanceType<typeof Modal>).open();
+        this.errorService.report(err);
+      }
+    },
+  },
+});
 </script>
 
 <template>

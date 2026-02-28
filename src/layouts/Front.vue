@@ -12,29 +12,33 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 import Home from "@/components/home.vue";
 import HeaderBar from "@/components/header-bar.vue";
 
-@Component({
+export default defineComponent({
+  name: "FrontLayout",
   components: {
     HeaderBar,
     Home,
   },
-})
-export default class FrontLayout extends Vue {
-  private mobileOpen = false;
-
-  onMobileOpenChanged(value: boolean): void {
-    this.mobileOpen = value;
-  }
-}
+  data() {
+    return {
+      mobileOpen: false,
+    };
+  },
+  methods: {
+    onMobileOpenChanged(value: boolean): void {
+      this.mobileOpen = value;
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">
 .wrapper {
   display: flex;
   flex-flow: column;
-  height: 100%;
+  height: 100vh;
 }
 </style>

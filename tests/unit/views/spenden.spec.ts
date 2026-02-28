@@ -4,7 +4,9 @@ import Spenden from "@/views/Spenden.vue";
 describe("Spenden Page", () => {
   it("can be instantiated", () => {
     const wrapper = mount(Spenden, {
-      stubs: ["router-link", "font-awesome-icon"],
+      global: {
+        stubs: ["router-link", "font-awesome-icon"],
+      },
     });
 
     const content = wrapper.find("p.content");

@@ -1,10 +1,9 @@
 <script lang="ts">
-import { Component, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 
-@Component({
-  components: {},
-})
-export default class Datenschutzinformation extends Vue {}
+export default defineComponent({
+  name: "Datenschutzinformation",
+});
 </script>
 
 <template>

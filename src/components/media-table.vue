@@ -1,25 +1,36 @@
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { defineComponent, PropType } from "vue";
 import { Media } from "@/types";
+import { formatDate } from "@/filters/DateFilter";
 
-@Component
-export default class MediaTable extends Vue {
-  @Prop({ required: true }) readonly media!: Media[];
-}
+export default defineComponent({
+  name: "MediaTable",
+  props: {
+    media: {
+      type: Array as PropType<Media[]>,
+      required: true,
+    },
+  },
+  methods: {
+    formatDate(date: Date): string {
+      return formatDate(date);
+    },
+  },
+});
 </script>
 
 <template>
   <table
     class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
     aria-describedby="medialist"
-    v-if="this.media != null"
+    v-if="media != null"
   >
     <tr>
       <th scope="col">Datum</th>
       <th scope="col">Artikel</th>
     </tr>
-    <tr v-for="(media, mediaIndex) in this.media" :key="mediaIndex">
-      <td>{{ media.date | formatDate }}</td>
+    <tr v-for="(media, mediaIndex) in media" :key="mediaIndex">
+      <td>{{ formatDate(media.date) }}</td>
       <td>
         <div v-html="media.description"></div>
         <br />

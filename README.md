@@ -7,17 +7,6 @@ Metrics:
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=coverage)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 [![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=cevi-buchs-rohr-aarau-website&metric=ncloc)](https://sonarcloud.io/dashboard?id=cevi-buchs-rohr-aarau-website)
 
-Note: 
-  * node > 22 not supported
-  * prettier > 2 not supported
-  * typescript > 4 not supported
-  * jest > 27 not supported
-  * jspdf > 2 not supported
-  * vue-fontawesome > 2 not supported
-  * fortawesome icons > 6 not supported
-  * @vue/eslint-config-prettier > 6 not suported
-
-
 ## Getting started
 ```
 nvm use 22

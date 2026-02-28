@@ -26,8 +26,7 @@ describe("ArticleList Component", () => {
 
   test("render article-list", () => {
     const wrapper = shallowMount(ArticleList, {
-      stubs: [],
-      propsData: {
+      props: {
         articles: articles,
       },
     });

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import LeiterDetail from "@/components/leiter-detail.vue";
 import { Leader } from "@/types";
 
@@ -24,8 +24,7 @@ describe("LeiterDetail Component", () => {
 
   test("render leiter-detail with leiter", () => {
     const wrapper = shallowMount(LeiterDetail, {
-      stubs: [],
-      propsData: {
+      props: {
         leiter: leiter,
       },
     });
@@ -34,15 +33,13 @@ describe("LeiterDetail Component", () => {
   });
 
   test("open Form", async () => {
-    const wrapper: Wrapper<LeiterDetail & { [key: string]: any }> =
-      shallowMount(LeiterDetail, {
-        stubs: [],
-        propsData: {
-          leiter: leiter,
-        },
-      });
+    const wrapper = shallowMount(LeiterDetail, {
+      props: {
+        leiter: leiter,
+      },
+    });
 
-    await wrapper.vm.open();
+    await (wrapper.vm as any).open();
 
     const container = wrapper.find("div.is-active");
     expect(container.exists()).toBe(true);
@@ -56,15 +53,13 @@ describe("LeiterDetail Component", () => {
   });
 
   test("close Form", async () => {
-    const wrapper: Wrapper<LeiterDetail & { [key: string]: any }> =
-      shallowMount(LeiterDetail, {
-        stubs: [],
-        propsData: {
-          leiter: leiter,
-        },
-      });
+    const wrapper = shallowMount(LeiterDetail, {
+      props: {
+        leiter: leiter,
+      },
+    });
 
-    await wrapper.vm.close();
+    await (wrapper.vm as any).close();
 
     const container = wrapper.find("div.is-active");
     expect(container.exists()).toBe(false);

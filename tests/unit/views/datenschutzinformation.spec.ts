@@ -4,7 +4,9 @@ import Datenschutzinformation from "@/views/Datenschutzinformation.vue";
 describe("Datenschutzinformation Page", () => {
   it("can be instantiated", () => {
     const wrapper = mount(Datenschutzinformation, {
-      stubs: ["router-link"],
+      global: {
+        stubs: ["router-link"],
+      },
     });
 
     const content = wrapper.find("p.content");

@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount, RouterLinkStub } from "@vue/test-utils";
 import Home from "@/components/home.vue";
 
 describe("Home Component", () => {
   it("onMobileOpenChanged", async () => {
-    const wrapper: Wrapper<Home & { [key: string]: any }> = await shallowMount(
-      Home,
-      {
-        stubs: ["router-link"],
-      }
-    );
-    wrapper.vm.onMobileNaviagation();
+    const wrapper = await shallowMount(Home, {
+      global: {
+        stubs: { RouterLink: RouterLinkStub },
+      },
+    });
+    (wrapper.vm as any).onMobileNaviagation();
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
     if (mobileOpenChangedEmitted === undefined) {
@@ -34,21 +33,20 @@ describe("Home Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Home & { [key: string]: any }> = await shallowMount(
-      Home,
-      {
-        stubs: ["router-link"],
-        data: () => {
-          return {
-            service: welcomeService,
-            errorService: errorService,
-          };
-        },
-      }
-    );
-    await wrapper.vm.loadData();
+    const wrapper = await shallowMount(Home, {
+      global: {
+        stubs: { RouterLink: RouterLinkStub },
+      },
+      data: () => {
+        return {
+          service: welcomeService,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadData();
 
-    expect(wrapper.vm.$data.activeBackgroundImage).toBe("image.png");
+    expect((wrapper.vm as any).activeBackgroundImage).toBe("image.png");
   });
 
   it("load Error", async () => {
@@ -62,21 +60,20 @@ describe("Home Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Home & { [key: string]: any }> = await shallowMount(
-      Home,
-      {
-        stubs: ["router-link"],
-        data: () => {
-          return {
-            service: welcomeService,
-            errorService: errorService,
-          };
-        },
-      }
-    );
-    await wrapper.vm.loadData();
+    const wrapper = await shallowMount(Home, {
+      global: {
+        stubs: { RouterLink: RouterLinkStub },
+      },
+      data: () => {
+        return {
+          service: welcomeService,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadData();
 
-    expect(wrapper.vm.$data.activeBackgroundImage).toBe("");
+    expect((wrapper.vm as any).activeBackgroundImage).toBe("");
   });
 
   it("resize large", async () => {
@@ -92,24 +89,23 @@ describe("Home Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Home & { [key: string]: any }> = await shallowMount(
-      Home,
-      {
-        stubs: ["router-link"],
-        data: () => {
-          return {
-            service: welcomeService,
-            errorService: errorService,
-          };
-        },
-      }
-    );
+    const wrapper = await shallowMount(Home, {
+      global: {
+        stubs: { RouterLink: RouterLinkStub },
+      },
+      data: () => {
+        return {
+          service: welcomeService,
+          errorService: errorService,
+        };
+      },
+    } as any);
 
     Object.defineProperty(window, "innerWidth", {
       value: 1000,
     });
 
-    await wrapper.vm.onResize();
+    await (wrapper.vm as any).onResize();
 
     const cevianerLink = wrapper.find(".cevianer_link");
     expect(cevianerLink.text()).toBe("Cevianer/In");
@@ -130,24 +126,23 @@ describe("Home Component", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Home & { [key: string]: any }> = await shallowMount(
-      Home,
-      {
-        stubs: ["router-link"],
-        data: () => {
-          return {
-            service: welcomeService,
-            errorService: errorService,
-          };
-        },
-      }
-    );
+    const wrapper = await shallowMount(Home, {
+      global: {
+        stubs: { RouterLink: RouterLinkStub },
+      },
+      data: () => {
+        return {
+          service: welcomeService,
+          errorService: errorService,
+        };
+      },
+    } as any);
 
     Object.defineProperty(window, "innerWidth", {
       value: 500,
     });
 
-    await wrapper.vm.onResize();
+    await (wrapper.vm as any).onResize();
 
     const cevianerLink = wrapper.find(".cevianer_link");
     expect(cevianerLink.text()).toBe("Mehr Info");

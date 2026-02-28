@@ -1,15 +1,21 @@
 <script lang="ts">
-import { Component, Prop, Vue, Emit } from "vue-property-decorator";
+import { defineComponent } from "vue";
 
-@Component({})
-export default class Navigation extends Vue {
-  @Prop({ default: false }) isMobileMenuOpen!: boolean;
-
-  @Emit("mobileOpenChanged")
-  onMobileNaviagation(): boolean {
-    return false;
-  }
-}
+export default defineComponent({
+  name: "Navigation",
+  props: {
+    isMobileMenuOpen: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ["mobileOpenChanged"],
+  methods: {
+    onMobileNaviagation(): void {
+      this.$emit("mobileOpenChanged", false);
+    },
+  },
+});
 </script>
 
 <template>
@@ -24,105 +30,91 @@ export default class Navigation extends Vue {
       <router-link to="/">Home</router-link>
     </li>
     <li>
-      <router-link to="/interessierte" v-on:click.native="onMobileNaviagation()"
+      <router-link to="/interessierte" @click="onMobileNaviagation()"
         >Interessierte</router-link
       >
       <ul>
         <li>
           <router-link
             to="/interessierte/schnuppern"
-            v-on:click.native="onMobileNaviagation()"
+            @click="onMobileNaviagation()"
             >Schnuppern</router-link
           >
         </li>
         <li>
           <router-link
             to="/interessierte/aktivitaeten"
-            v-on:click.native="onMobileNaviagation()"
+            @click="onMobileNaviagation()"
             >Aktivitäten</router-link
           >
         </li>
         <li>
           <router-link
             to="/interessierte/cevi_schweiz"
-            v-on:click.native="onMobileNaviagation()"
+            @click="onMobileNaviagation()"
             >Cevi Schweiz</router-link
           >
         </li>
         <li>
           <router-link
             to="/interessierte/standort"
-            v-on:click.native="onMobileNaviagation()"
+            @click="onMobileNaviagation()"
             >Standort</router-link
           >
         </li>
         <li>
-          <router-link
-            to="/interessierte/medien"
-            v-on:click.native="onMobileNaviagation()"
+          <router-link to="/interessierte/medien" @click="onMobileNaviagation()"
             >Medien</router-link
           >
         </li>
         <li>
           <router-link
             to="/interessierte/spenden"
-            v-on:click.native="onMobileNaviagation()"
+            @click="onMobileNaviagation()"
             >Spenden</router-link
           >
         </li>
       </ul>
     </li>
     <li>
-      <router-link to="/cevianer" v-on:click.native="onMobileNaviagation()"
+      <router-link to="/cevianer" @click="onMobileNaviagation()"
         >Cevianer/in</router-link
       >
       <ul>
         <li>
-          <router-link
-            to="/cevianer/agenda"
-            v-on:click.native="onMobileNaviagation()"
+          <router-link to="/cevianer/agenda" @click="onMobileNaviagation()"
             >Agenda</router-link
           >
         </li>
         <li>
-          <router-link
-            to="/cevianer/album"
-            v-on:click.native="onMobileNaviagation()"
+          <router-link to="/cevianer/album" @click="onMobileNaviagation()"
             >Album</router-link
           >
         </li>
         <li>
-          <router-link
-            to="/cevianer/laedeli"
-            v-on:click.native="onMobileNaviagation()"
+          <router-link to="/cevianer/laedeli" @click="onMobileNaviagation()"
             >Lädeli</router-link
           >
         </li>
         <li>
-          <router-link
-            to="/cevianer/ausbildung"
-            v-on:click.native="onMobileNaviagation()"
+          <router-link to="/cevianer/ausbildung" @click="onMobileNaviagation()"
             >Ausbildung</router-link
           >
         </li>
         <li>
-          <router-link
-            to="/cevianer/leiterteam"
-            v-on:click.native="onMobileNaviagation()"
+          <router-link to="/cevianer/leiterteam" @click="onMobileNaviagation()"
             >Leiterteam</router-link
           >
         </li>
       </ul>
     </li>
     <li>
-      <router-link
-        to="/datenschutzinformation"
-        v-on:click.native="onMobileNaviagation()"
+      <router-link to="/datenschutzinformation" @click="onMobileNaviagation()"
         >Datenschutzinformation</router-link
       >
     </li>
     <li>
-      <router-link to="/kontakt" v-on:click.native="onMobileNaviagation()"
+      <router-link to="/kontakt" @click="onMobileNaviagation()"
         >Kontakt</router-link
       >
     </li>

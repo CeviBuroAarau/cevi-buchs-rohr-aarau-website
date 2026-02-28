@@ -1,28 +1,31 @@
 <script lang="ts">
-import { Component, Vue, Ref } from "vue-property-decorator";
+import { defineComponent } from "vue";
 import SchnuppernForm from "@/components/schnuppern-form.vue";
 
-@Component({
+export default defineComponent({
+  name: "Schnuppern",
   components: {
     SchnuppernForm,
   },
-})
-export default class Schnuppern extends Vue {
-  @Ref("schnuppernForm") readonly schnuppernForm!: SchnuppernForm;
-  private isFormDisplayed = false;
-
-  showSubscriptionForm(): void {
-    this.schnuppernForm.showSubscriptionForm();
-  }
-
-  onFormOpened(): void {
-    this.isFormDisplayed = true;
-  }
-
-  onFormClosed(): void {
-    this.isFormDisplayed = false;
-  }
-}
+  data() {
+    return {
+      isFormDisplayed: false,
+    };
+  },
+  methods: {
+    showSubscriptionForm(): void {
+      (
+        this.$refs.schnuppernForm as InstanceType<typeof SchnuppernForm>
+      ).showSubscriptionForm();
+    },
+    onFormOpened(): void {
+      this.isFormDisplayed = true;
+    },
+    onFormClosed(): void {
+      this.isFormDisplayed = false;
+    },
+  },
+});
 </script>
 
 <template>

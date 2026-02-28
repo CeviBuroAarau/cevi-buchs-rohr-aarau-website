@@ -1,24 +1,29 @@
 <script lang="ts">
-import { Component, Emit, Vue } from "vue-property-decorator";
+import { defineComponent } from "vue";
 import { EventInfo, FormState } from "@/types";
 
-@Component({})
-export default class EventDetail extends Vue {
-  private eventInfo: EventInfo | null = null;
-  private state: FormState = FormState.NotDisplayed;
-  public FormState = FormState;
-
-  @Emit("onEventOpened")
-  public open(eventInfo: EventInfo): void {
-    this.eventInfo = eventInfo;
-    this.state = FormState.Displayed;
-  }
-
-  @Emit("onEventClosed")
-  public close(): void {
-    this.state = FormState.NotDisplayed;
-  }
-}
+export default defineComponent({
+  name: "EventDetail",
+  emits: ["onEventOpened", "onEventClosed"],
+  data() {
+    return {
+      eventInfo: null as EventInfo | null,
+      state: FormState.NotDisplayed,
+      FormState: FormState,
+    };
+  },
+  methods: {
+    open(eventInfo: EventInfo): void {
+      this.eventInfo = eventInfo;
+      this.state = FormState.Displayed;
+      this.$emit("onEventOpened");
+    },
+    close(): void {
+      this.state = FormState.NotDisplayed;
+      this.$emit("onEventClosed");
+    },
+  },
+});
 </script>
 
 <template>

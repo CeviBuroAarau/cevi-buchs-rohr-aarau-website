@@ -1,20 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Leiterteam from "@/views/Leiterteam.vue";
 
 describe("Leiterteam Page", () => {
   it("check loading message", () => {
-    const wrapper: Wrapper<Leiterteam & { [key: string]: any }> = shallowMount(
-      Leiterteam,
-      {
-        data: () => {
-          return {
-            loading: true,
-            error: false,
-          };
-        },
-      }
-    );
+    const wrapper = shallowMount(Leiterteam, {
+      data: () => {
+        return {
+          loading: true,
+          error: false,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(true);
@@ -33,16 +30,15 @@ describe("Leiterteam Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Leiterteam & { [key: string]: any }> =
-      await shallowMount(Leiterteam, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadLeaders();
+    const wrapper = await shallowMount(Leiterteam, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadLeaders();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -63,16 +59,15 @@ describe("Leiterteam Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Leiterteam & { [key: string]: any }> =
-      await shallowMount(Leiterteam, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadLeaders();
+    const wrapper = await shallowMount(Leiterteam, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadLeaders();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);

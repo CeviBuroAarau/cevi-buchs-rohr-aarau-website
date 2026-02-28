@@ -1,18 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Aktivitaeten from "@/views/Aktivitaeten.vue";
 
 describe("Aktivitaeten Page", () => {
   it("check loading message", () => {
-    const wrapper: Wrapper<Aktivitaeten & { [key: string]: any }> =
-      shallowMount(Aktivitaeten, {
-        data: () => {
-          return {
-            loading: true,
-            error: false,
-          };
-        },
-      });
+    const wrapper = shallowMount(Aktivitaeten, {
+      data: () => {
+        return {
+          loading: true,
+          error: false,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(true);
@@ -31,16 +30,15 @@ describe("Aktivitaeten Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Aktivitaeten & { [key: string]: any }> =
-      await shallowMount(Aktivitaeten, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadActivities();
+    const wrapper = await shallowMount(Aktivitaeten, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadActivities();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -61,16 +59,15 @@ describe("Aktivitaeten Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Aktivitaeten & { [key: string]: any }> =
-      await shallowMount(Aktivitaeten, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadActivities();
+    const wrapper = await shallowMount(Aktivitaeten, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadActivities();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);

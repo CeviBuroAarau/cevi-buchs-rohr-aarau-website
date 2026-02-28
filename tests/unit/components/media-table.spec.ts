@@ -1,6 +1,5 @@
 import { shallowMount } from "@vue/test-utils";
 import MediaTable from "@/components/media-table.vue";
-import { formatDateFilter } from "@/filters";
 import { Media } from "@/types";
 
 const media: Media[] = [
@@ -14,23 +13,18 @@ const media: Media[] = [
 
 test("can be instantiated", () => {
   const wrapper = shallowMount(MediaTable, {
-    stubs: [],
-    propsData: {
+    props: {
       media: media,
     },
   });
 
-  expect(wrapper.isVueInstance).toBeTruthy();
+  expect(wrapper.vm).toBeTruthy();
 });
 
 test("renders correctly", () => {
   const wrapper = shallowMount(MediaTable, {
-    stubs: [],
-    propsData: {
+    props: {
       media: media,
-    },
-    filters: {
-      formatDateFilter,
     },
   });
 

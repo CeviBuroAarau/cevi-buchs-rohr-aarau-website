@@ -1,20 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Medien from "@/views/Medien.vue";
 
 describe("Medien Page", () => {
   it("check loading message", () => {
-    const wrapper: Wrapper<Medien & { [key: string]: any }> = shallowMount(
-      Medien,
-      {
-        data: () => {
-          return {
-            loading: true,
-            error: false,
-          };
-        },
-      }
-    );
+    const wrapper = shallowMount(Medien, {
+      data: () => {
+        return {
+          loading: true,
+          error: false,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(true);
@@ -25,17 +22,14 @@ describe("Medien Page", () => {
   });
 
   it("check error message", () => {
-    const wrapper: Wrapper<Medien & { [key: string]: any }> = shallowMount(
-      Medien,
-      {
-        data: () => {
-          return {
-            loading: false,
-            error: true,
-          };
-        },
-      }
-    );
+    const wrapper = shallowMount(Medien, {
+      data: () => {
+        return {
+          loading: false,
+          error: true,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -46,17 +40,14 @@ describe("Medien Page", () => {
   });
 
   it("check data", () => {
-    const wrapper: Wrapper<Medien & { [key: string]: any }> = shallowMount(
-      Medien,
-      {
-        data: () => {
-          return {
-            loading: false,
-            error: false,
-          };
-        },
-      }
-    );
+    const wrapper = shallowMount(Medien, {
+      data: () => {
+        return {
+          loading: false,
+          error: false,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -76,17 +67,16 @@ describe("Medien Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Medien & { [key: string]: any }> =
-      await shallowMount(Medien, {
-        data: () => {
-          return {
-            service: mediaService,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadChronics();
-    await wrapper.vm.loadNews();
+    const wrapper = await shallowMount(Medien, {
+      data: () => {
+        return {
+          service: mediaService,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadChronics();
+    await (wrapper.vm as any).loadNews();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -110,17 +100,16 @@ describe("Medien Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Medien & { [key: string]: any }> =
-      await shallowMount(Medien, {
-        data: () => {
-          return {
-            service: mediaService,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadChronics();
-    await wrapper.vm.loadNews();
+    const wrapper = await shallowMount(Medien, {
+      data: () => {
+        return {
+          service: mediaService,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadChronics();
+    await (wrapper.vm as any).loadNews();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);

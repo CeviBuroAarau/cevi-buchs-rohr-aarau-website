@@ -4,9 +4,11 @@ import App from "@/App.vue";
 describe("App", () => {
   it("can be instantiated", () => {
     const wrapper = mount(App, {
-      stubs: ["router-view"],
+      global: {
+        stubs: ["router-view"],
+      },
     });
 
-    expect(wrapper.isVueInstance).toBeTruthy();
+    expect(wrapper.vm).toBeTruthy();
   });
 });

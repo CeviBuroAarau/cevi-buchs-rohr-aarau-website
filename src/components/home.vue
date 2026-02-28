@@ -88,8 +88,8 @@
         <router-link
           class="interessierte_link"
           :to="interessierteLinkTo"
-          @mouseover.native="onMobileNaviagation()"
-          v-on:click.native="onMobileNaviagation()"
+          @mouseover="onMobileNaviagation()"
+          @click="onMobileNaviagation()"
           >{{ interessierteLinkText }}</router-link
         >
         <ul class="table-menu">
@@ -122,8 +122,8 @@
         <router-link
           class="cevianer_link"
           :to="cevianerLinkTo"
-          @mouseover.native="onMobileNaviagation()"
-          v-on:click.native="onMobileNaviagation()"
+          @mouseover="onMobileNaviagation()"
+          @click="onMobileNaviagation()"
           >{{ cevianerLinkText }}</router-link
         >
         <ul class="table-menu">
@@ -149,65 +149,71 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "vue";
 import { ErrorReportingService, WelcomeImageService } from "@/services";
 import { AxiosUtil } from "@/utils";
-import { Component, Prop, Vue } from "vue-property-decorator";
 import { WelcomeImage } from "@/types";
 
-@Component({})
-export default class Home extends Vue {
-  @Prop({ default: false }) isMobileMenuOpen!: boolean;
-
-  private activeBackgroundImage = "";
-  private cevianerLinkText = "Cevianer/In";
-  private interessierteLinkText = "Interessierte";
-  private cevianerLinkTo = "/cevianer";
-  private interessierteLinkTo = "/interessierte";
-  private welcomeImages: WelcomeImage[] = [];
-  private service: WelcomeImageService = new WelcomeImageService(
-    AxiosUtil.getCockpitInstance()
-  );
-  private errorService: ErrorReportingService = new ErrorReportingService();
-
+export default defineComponent({
+  name: "Home",
+  props: {
+    isMobileMenuOpen: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  emits: ["mobileOpenChanged"],
+  data() {
+    return {
+      activeBackgroundImage: "",
+      cevianerLinkText: "Cevianer/In",
+      interessierteLinkText: "Interessierte",
+      cevianerLinkTo: "/cevianer",
+      interessierteLinkTo: "/interessierte",
+      welcomeImages: [] as WelcomeImage[],
+      service: new WelcomeImageService(
+        AxiosUtil.getCockpitInstance()
+      ) as WelcomeImageService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+    };
+  },
   async mounted(): Promise<void> {
     this.initResponsiveLayout();
     await this.loadData();
-  }
-
-  initResponsiveLayout(): void {
-    window.addEventListener("resize", this.onResize);
-    this.onResize();
-  }
-
-  async loadData(): Promise<void> {
-    try {
-      this.welcomeImages = await this.service.getImages();
-      const index = Math.floor(Math.random() * this.welcomeImages.length);
-      const file: WelcomeImage = this.welcomeImages[index];
-      this.activeBackgroundImage = file.url;
-    } catch (err) {
-      this.errorService.report(err);
-    }
-  }
-
-  onMobileNaviagation(): void {
-    this.$emit("mobileOpenChanged", false);
-  }
-
-  onResize(): void {
-    if (window.innerWidth <= 768) {
-      this.cevianerLinkText = "Mehr Info";
-      this.interessierteLinkText = "Mehr Info";
-      this.cevianerLinkTo = "/cevianer";
-      this.interessierteLinkTo = "/interessierte";
-    } else {
-      this.cevianerLinkText = "Cevianer/In";
-      this.interessierteLinkText = "Interessierte";
-      this.cevianerLinkTo = "#";
-      this.interessierteLinkTo = "#";
-    }
-  }
-}
+  },
+  methods: {
+    initResponsiveLayout(): void {
+      window.addEventListener("resize", this.onResize);
+      this.onResize();
+    },
+    async loadData(): Promise<void> {
+      try {
+        this.welcomeImages = await this.service.getImages();
+        const index = Math.floor(Math.random() * this.welcomeImages.length);
+        const file: WelcomeImage = this.welcomeImages[index];
+        this.activeBackgroundImage = file.url;
+      } catch (err) {
+        this.errorService.report(err);
+      }
+    },
+    onMobileNaviagation(): void {
+      this.$emit("mobileOpenChanged", false);
+    },
+    onResize(): void {
+      if (window.innerWidth <= 768) {
+        this.cevianerLinkText = "Mehr Info";
+        this.interessierteLinkText = "Mehr Info";
+        this.cevianerLinkTo = "/cevianer";
+        this.interessierteLinkTo = "/interessierte";
+      } else {
+        this.cevianerLinkText = "Cevianer/In";
+        this.interessierteLinkText = "Interessierte";
+        this.cevianerLinkTo = "#";
+        this.interessierteLinkTo = "#";
+      }
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">
@@ -221,7 +227,8 @@ export default class Home extends Vue {
 .flex-wrapper {
   display: flex;
   flex-flow: column;
-  height: 100%;
+  flex: 1;
+  min-height: 0;
 }
 
 .background {

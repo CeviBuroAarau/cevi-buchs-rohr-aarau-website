@@ -23,5 +23,27 @@ module.exports = {
 
   css: {
     sourceMap: true,
+    loaderOptions: {
+      sass: {
+        sassOptions: {
+          silenceDeprecations: [
+            "import",
+            "global-builtin",
+            "color-functions",
+            "mixed-decls",
+          ],
+        },
+      },
+      scss: {
+        sassOptions: {
+          silenceDeprecations: [
+            "import",
+            "global-builtin",
+            "color-functions",
+            "mixed-decls",
+          ],
+        },
+      },
+    },
   },
 };

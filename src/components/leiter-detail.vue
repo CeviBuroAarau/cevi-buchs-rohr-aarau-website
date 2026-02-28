@@ -1,23 +1,32 @@
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import { defineComponent, PropType } from "vue";
 import { Leader } from "@/types";
 
-@Component({})
-export default class LeiterDetail extends Vue {
-  @Prop({}) readonly leiter!: Leader;
-
-  private display = false;
-
-  @Emit("onLeiterOpened")
-  public open(): void {
-    this.display = true;
-  }
-
-  @Emit("onLeiterClosed")
-  public close(): void {
-    this.display = false;
-  }
-}
+export default defineComponent({
+  name: "LeiterDetail",
+  props: {
+    leiter: {
+      type: Object as PropType<Leader>,
+      default: null,
+    },
+  },
+  emits: ["onLeiterOpened", "onLeiterClosed"],
+  data() {
+    return {
+      display: false,
+    };
+  },
+  methods: {
+    open(): void {
+      this.display = true;
+      this.$emit("onLeiterOpened");
+    },
+    close(): void {
+      this.display = false;
+      this.$emit("onLeiterClosed");
+    },
+  },
+});
 </script>
 
 <template>

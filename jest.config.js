@@ -12,4 +12,7 @@ module.exports = {
   },
   testResultsProcessor: "jest-sonar-reporter",
   setupFiles: ["jest-canvas-mock"],
+  transform: {
+    "^.+\\.vue$": "@vue/vue3-jest",
+  },
 };

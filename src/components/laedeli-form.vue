@@ -1,66 +1,64 @@
 <script lang="ts">
+import { defineComponent } from "vue";
 import { ErrorReportingService, ShopService } from "@/services";
-import { Component, Emit, Ref, Vue } from "vue-property-decorator";
 import { AxiosUtil } from "@/utils";
 import { LaedeliFormState } from "@/types";
 import Modal from "@/components/modal.vue";
 
-@Component({
+export default defineComponent({
+  name: "LaedeliForm",
   components: {
     Modal,
   },
-})
-export default class LaedeliForm extends Vue {
-  @Ref("successModal") readonly successModal!: Modal;
-  @Ref("errorModal") readonly errorModal!: Modal;
-
-  private state: LaedeliFormState = LaedeliFormState.NotDisplayed;
-  private name = "";
-  private email = "";
-  private articles = "";
-  private adress = "";
-  private deliveryMethod = "";
-  public LaedeliFormState = LaedeliFormState;
-  private service: ShopService = new ShopService(
-    AxiosUtil.getCockpitInstance()
-  );
-  private errorService: ErrorReportingService = new ErrorReportingService();
-
-  async order(): Promise<void> {
-    try {
-      await this.service.submitForm({
-        form: {
-          name: this.name,
-          email: this.email,
-          articles: this.articles,
-          deliveryMethod: this.deliveryMethod,
-          adress: this.adress,
-        },
-      });
+  emits: ["onFormOpened", "onFormClosed"],
+  data() {
+    return {
+      state: LaedeliFormState.NotDisplayed,
+      name: "",
+      email: "",
+      articles: "",
+      adress: "",
+      deliveryMethod: "",
+      LaedeliFormState: LaedeliFormState,
+      service: new ShopService(AxiosUtil.getCockpitInstance()) as ShopService,
+      errorService: new ErrorReportingService() as ErrorReportingService,
+    };
+  },
+  methods: {
+    async order(): Promise<void> {
+      try {
+        await this.service.submitForm({
+          form: {
+            name: this.name,
+            email: this.email,
+            articles: this.articles,
+            deliveryMethod: this.deliveryMethod,
+            adress: this.adress,
+          },
+        });
+        this.state = LaedeliFormState.NotDisplayed;
+        (this.$refs.successModal as InstanceType<typeof Modal>).open();
+        this.name = "";
+        this.email = "";
+        this.articles = "";
+        this.deliveryMethod = "";
+        this.adress = "";
+      } catch (err) {
+        this.state = LaedeliFormState.NotDisplayed;
+        (this.$refs.errorModal as InstanceType<typeof Modal>).open();
+        this.errorService.report(err);
+      }
+    },
+    showForm(): void {
+      this.state = LaedeliFormState.Displayed;
+      this.$emit("onFormOpened");
+    },
+    close(): void {
       this.state = LaedeliFormState.NotDisplayed;
-      this.successModal.open();
-      this.name = "";
-      this.email = "";
-      this.articles = "";
-      this.deliveryMethod = "";
-      this.adress = "";
-    } catch (err) {
-      this.state = LaedeliFormState.NotDisplayed;
-      this.errorModal.open();
-      this.errorService.report(err);
-    }
-  }
-
-  @Emit("onFormOpened")
-  public showForm(): void {
-    this.state = LaedeliFormState.Displayed;
-  }
-
-  @Emit("onFormClosed")
-  close(): void {
-    this.state = LaedeliFormState.NotDisplayed;
-  }
-}
+      this.$emit("onFormClosed");
+    },
+  },
+});
 </script>
 
 <style scoped lang="scss">

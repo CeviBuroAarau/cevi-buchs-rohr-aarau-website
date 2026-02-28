@@ -1,20 +1,17 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { shallowMount, Wrapper } from "@vue/test-utils";
+import { shallowMount } from "@vue/test-utils";
 import Laedeli from "@/views/Laedeli.vue";
 
 describe("Lädeli Page", () => {
   it("check loading message", () => {
-    const wrapper: Wrapper<Laedeli & { [key: string]: any }> = shallowMount(
-      Laedeli,
-      {
-        data: () => {
-          return {
-            loading: true,
-            error: false,
-          };
-        },
-      }
-    );
+    const wrapper = shallowMount(Laedeli, {
+      data: () => {
+        return {
+          loading: true,
+          error: false,
+        };
+      },
+    } as any);
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(true);
@@ -33,16 +30,15 @@ describe("Lädeli Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Laedeli & { [key: string]: any }> =
-      await shallowMount(Laedeli, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadArticles();
+    const wrapper = await shallowMount(Laedeli, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadArticles();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -63,16 +59,15 @@ describe("Lädeli Page", () => {
       report: jest.fn(),
     };
 
-    const wrapper: Wrapper<Laedeli & { [key: string]: any }> =
-      await shallowMount(Laedeli, {
-        data: () => {
-          return {
-            service: service,
-            errorService: errorService,
-          };
-        },
-      });
-    await wrapper.vm.loadArticles();
+    const wrapper = await shallowMount(Laedeli, {
+      data: () => {
+        return {
+          service: service,
+          errorService: errorService,
+        };
+      },
+    } as any);
+    await (wrapper.vm as any).loadArticles();
 
     const progress = wrapper.find("progress");
     expect(progress.exists()).toBe(false);
@@ -84,19 +79,14 @@ describe("Lädeli Page", () => {
 
   it("show form", async () => {
     const laedeliFormFunction = jest.fn();
-    const laedeliForm = {
-      showForm: () => laedeliFormFunction(),
+
+    const wrapper = await shallowMount(Laedeli, {});
+
+    (wrapper.vm.$ as any).refs = {
+      laedeliForm: { showForm: laedeliFormFunction },
     };
 
-    const wrapper: Wrapper<Laedeli & { [key: string]: any }> =
-      await shallowMount(Laedeli, {
-        computed: {
-          laedeliForm() {
-            return laedeliForm;
-          },
-        },
-      });
-    wrapper.vm.showForm();
+    (wrapper.vm as any).showForm();
 
     expect(laedeliFormFunction.mock.calls.length).toBe(1);
   });

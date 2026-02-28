@@ -3,11 +3,11 @@
 exports[`LeiterList Component render leiter-list 1`] = `
 <div>
   <leiter-detail-stub />
-   
   <ul
     class=""
     style="display: flex; flex-wrap: wrap;"
   >
+    
     <li
       class="leiterlist"
     >
@@ -24,15 +24,13 @@ exports[`LeiterList Component render leiter-list 1`] = `
             width="170"
           />
         </div>
-         
         <div
           class="card-content is-centered"
         >
           <strong>
             Leah Dellenbach
             <br />
-            
-            v/o Luna
+             v/o Luna
           </strong>
         </div>
       </div>
@@ -53,19 +51,18 @@ exports[`LeiterList Component render leiter-list 1`] = `
             width="170"
           />
         </div>
-         
         <div
           class="card-content is-centered"
         >
           <strong>
             Leah Dellenbach
             <br />
-            
-            v/o Luna
+             v/o Luna
           </strong>
         </div>
       </div>
     </li>
+    
   </ul>
 </div>
 `;

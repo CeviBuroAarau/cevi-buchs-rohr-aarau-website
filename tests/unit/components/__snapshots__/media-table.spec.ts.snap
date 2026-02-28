@@ -11,26 +11,22 @@ exports[`renders correctly 1`] = `
     >
       Datum
     </th>
-     
     <th
       scope="col"
     >
       Artikel
     </th>
   </tr>
-   
+  
   <tr>
     <td>
       01.01.2021
     </td>
-     
     <td>
       <div>
         Some text
       </div>
-       
       <br />
-       
       <a
         href="Some file"
       >
@@ -38,5 +34,6 @@ exports[`renders correctly 1`] = `
       </a>
     </td>
   </tr>
+  
 </table>
 `;

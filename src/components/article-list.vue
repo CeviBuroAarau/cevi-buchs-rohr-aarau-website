@@ -1,20 +1,20 @@
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { defineComponent, PropType } from "vue";
 import { Article } from "@/types";
-import LeiterDetail from "@/components/leiter-detail.vue";
 
-@Component({
-  components: {
-    LeiterDetail,
+export default defineComponent({
+  name: "ArticleList",
+  props: {
+    articles: {
+      type: Array as PropType<Article[]>,
+      required: true,
+    },
   },
-})
-export default class ArticleList extends Vue {
-  @Prop({}) readonly articles!: Article[];
-}
+});
 </script>
 
 <template>
-  <ul v-if="this.articles != null">
+  <ul v-if="articles != null">
     <li
       class="vue-light-gallery-thumb"
       v-for="(article, itemIndex) in articles"
