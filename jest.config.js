@@ -11,11 +11,10 @@ module.exports = {
     },
   },
   testResultsProcessor: "jest-sonar-reporter",
-  setupFiles: ["jest-canvas-mock"],
+  setupFiles: ["jest-canvas-mock", "<rootDir>/tests/unit/setup.js"],
   testEnvironment: "jest-environment-jsdom",
   testEnvironmentOptions: {
     url: "http://localhost/",
-    customExportConditions: ["node", "node-addons"],
   },
   transform: {
     "^.+\\.vue$": "@vue/vue3-jest",
@@ -23,5 +22,8 @@ module.exports = {
   },
   moduleNameMapper: {
     "^axios$": "<rootDir>/node_modules/axios/dist/node/axios.cjs",
+    "^@vue/test-utils$":
+      "<rootDir>/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js",
+    "^jspdf$": "<rootDir>/node_modules/jspdf/dist/jspdf.umd.min.js",
   },
 };

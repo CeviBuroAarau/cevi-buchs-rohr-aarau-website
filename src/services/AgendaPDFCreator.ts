@@ -1,6 +1,7 @@
 import { JsPdfUtil } from "@/utils";
 import jsPDF from "jspdf";
-import "jspdf-autotable";
+import { applyPlugin } from "jspdf-autotable";
+applyPlugin(jsPDF);
 
 export class AgendaPDFCreator {
   static readonly PAGE_HEIGHT = 295;
@@ -164,7 +165,7 @@ export class AgendaPDFCreator {
     });
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    this.currentY = (this.doc as any).previousAutoTable.finalY;
+    this.currentY = (this.doc as any).lastAutoTable.finalY;
   }
 
   addEmptyLine(): void {
