@@ -32,7 +32,7 @@ export class AgendaPDFCreator {
     schnuppernTitle: string,
     schnuppernText: string,
     anschlagTitle: string,
-    anschlagText: string
+    anschlagText: string,
   ): Promise<void> {
     await this.addLogo();
     this.addEmptyLine();
@@ -50,7 +50,7 @@ export class AgendaPDFCreator {
     this.addBlock(anschlagTitle, anschlagText);
     this.addLink(
       "https://cevi-buro-aarau.ch/cevianer/agenda",
-      "https://cevi-buro-aarau.ch/cevianer/agenda"
+      "https://cevi-buro-aarau.ch/cevianer/agenda",
     );
     this.addEmptyLine();
     this.addRegularText(this.getCreatedText());
@@ -104,7 +104,7 @@ export class AgendaPDFCreator {
       170,
       logoHeight,
       undefined,
-      "MEDIUM"
+      "MEDIUM",
     );
     this.currentY = AgendaPDFCreator.PAGE_TOP_MARGIN + logoHeight;
   }
@@ -127,7 +127,7 @@ export class AgendaPDFCreator {
       this.currentY,
       {
         url: url,
-      }
+      },
     );
     this.currentY = this.currentY + AgendaPDFCreator.LINE_HEIGHT_MM;
   }
@@ -142,7 +142,7 @@ export class AgendaPDFCreator {
   addTable(
     header: Array<string[]>,
     data: Array<string[]>,
-    isDoubleMargin = false
+    isDoubleMargin = false,
   ): void {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (this.doc as any).autoTable({
@@ -174,7 +174,7 @@ export class AgendaPDFCreator {
   addText(text: string): void {
     const lines: string[] = this.doc.splitTextToSize(
       text,
-      AgendaPDFCreator.PAGE_AVAILABLE_WIDTH
+      AgendaPDFCreator.PAGE_AVAILABLE_WIDTH,
     );
     this.insertPageBreakIfNeeded(this.doc, lines.length);
     this.doc.text(lines, AgendaPDFCreator.PAGE_LEFT_MARGIN, this.currentY, {

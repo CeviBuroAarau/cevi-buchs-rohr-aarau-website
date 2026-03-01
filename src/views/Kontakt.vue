@@ -15,7 +15,7 @@ export default defineComponent({
       email: "",
       message: "",
       service: new KontaktService(
-        AxiosUtil.getCockpitInstance()
+        AxiosUtil.getCockpitInstance(),
       ) as KontaktService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };

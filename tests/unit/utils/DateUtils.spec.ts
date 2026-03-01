@@ -27,12 +27,12 @@ describe("DateUtil", () => {
   });
   test("parseDateWithoutTime iso", () => {
     expect(DateUtil.parseDateWithoutTime("2020-06-01").toISOString()).toBe(
-      "2020-06-01T00:00:00.000Z"
+      "2020-06-01T00:00:00.000Z",
     );
   });
   test("parseDateWithoutTime ch", () => {
     expect(DateUtil.parseDateWithoutTime("01.06.2020").toISOString()).toBe(
-      "2020-06-01T00:00:00.000Z"
+      "2020-06-01T00:00:00.000Z",
     );
   });
   test("parseDateWithoutTime invalid dates", () => {

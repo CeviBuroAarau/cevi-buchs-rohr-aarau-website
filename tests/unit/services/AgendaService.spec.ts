@@ -96,7 +96,7 @@ describe("AgendaService", () => {
   test("getEventsAfterDate", async () => {
     const service: AgendaService = new AgendaService(axiosInstance);
     const agendas: Agenda[] = await service.getEventsAfterDate(
-      new Date(Date.UTC(2020, 7, 20))
+      new Date(Date.UTC(2020, 7, 20)),
     );
     expect(agendas.length).toBe(4);
     expect(agendas[0].title).toBe("29. August 2020 14:00 - 17:00");

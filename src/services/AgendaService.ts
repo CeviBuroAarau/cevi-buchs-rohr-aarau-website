@@ -9,7 +9,7 @@ export class AgendaService {
   constructor(axios: AxiosInstance) {
     this.axios = axios;
     this.axios.interceptors.response.use((resp) =>
-      AxiosUtil.dateConversionInterceptor(resp, "date")
+      AxiosUtil.dateConversionInterceptor(resp, "date"),
     );
   }
 
@@ -20,7 +20,7 @@ export class AgendaService {
     currentDay.setHours(0, 0, 0, 0);
 
     let result: Agenda[] = resp.data.entries.filter(
-      (a) => a.date >= currentDay
+      (a) => a.date >= currentDay,
     );
 
     result = result.sort((a: Agenda, b: Agenda) => {
@@ -91,7 +91,7 @@ export class AgendaService {
       "Wollt ihr mal einem Gschpändli die Jungschi zeigen?:",
       "Kein Problem! Gebt uns doch kurz Bescheid, damit wir planen können. Wir freuen uns über jeden neuen Cevianer!",
       "Anschlag:",
-      "Jeweils ungefähr eine Woche vor den Jungschinachmittagen veröffentlichen wir einen Anschlag mit detaillierten Informationen (z. B. ob die Kinder Z'vieri mitnehmen müssen). Bei speziellen Anlässen erfolgt die Information in der Regel mehrere Wochen vorher."
+      "Jeweils ungefähr eine Woche vor den Jungschinachmittagen veröffentlichen wir einen Anschlag mit detaillierten Informationen (z. B. ob die Kinder Z'vieri mitnehmen müssen). Bei speziellen Anlässen erfolgt die Information in der Regel mehrere Wochen vorher.",
     );
   }
 }

@@ -17,7 +17,7 @@ export default defineComponent({
       isFull: false,
       events: [] as Agenda[],
       agendaService: new AgendaService(
-        AxiosUtil.getCockpitInstance()
+        AxiosUtil.getCockpitInstance(),
       ) as AgendaService,
       errorService: new ErrorReportingService() as ErrorReportingService,
       isEventDisplayed: false,
@@ -30,7 +30,7 @@ export default defineComponent({
     async loadAgenda(): Promise<void> {
       try {
         this.events = await this.agendaService.getEventsAfterDate(
-          new Date(Date.now())
+          new Date(Date.now()),
         );
         this.error = false;
         this.loading = false;

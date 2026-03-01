@@ -8,7 +8,7 @@ export class AlbumService {
   constructor(axios: AxiosInstance) {
     this.axios = axios;
     this.axios.interceptors.response.use((resp) =>
-      AxiosUtil.dateConversionInterceptor(resp, "date")
+      AxiosUtil.dateConversionInterceptor(resp, "date"),
     );
   }
 

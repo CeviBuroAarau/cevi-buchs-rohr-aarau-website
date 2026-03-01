@@ -22,7 +22,7 @@ const axiosInstance = axios as jest.Mocked<typeof axios>;
 describe("JsPdfUtil", () => {
   test("getPngImageData", async () => {
     expect(await JsPdfUtil.getPngImageData("logo.png", axiosInstance)).toBe(
-      "data:image/png;base64,YWJj"
+      "data:image/png;base64,YWJj",
     );
   });
 });

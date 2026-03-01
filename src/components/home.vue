@@ -172,7 +172,7 @@ export default defineComponent({
       interessierteLinkTo: "/interessierte",
       welcomeImages: [] as WelcomeImage[],
       service: new WelcomeImageService(
-        AxiosUtil.getCockpitInstance()
+        AxiosUtil.getCockpitInstance(),
       ) as WelcomeImageService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };

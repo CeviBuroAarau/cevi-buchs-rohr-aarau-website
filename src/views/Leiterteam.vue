@@ -25,7 +25,7 @@
             leiterList.filter(
               (item) =>
                 item.function.indexOf('Abteilungsleiter') > -1 ||
-                item.function.indexOf('Abteilungsleiterin') > -1
+                item.function.indexOf('Abteilungsleiterin') > -1,
             )
           "
           @onLeiterOpened="onALOpened()"
@@ -79,7 +79,7 @@ export default defineComponent({
       loading: true,
       error: false,
       service: new LeaderService(
-        AxiosUtil.getCockpitInstance()
+        AxiosUtil.getCockpitInstance(),
       ) as LeaderService,
       errorService: new ErrorReportingService() as ErrorReportingService,
       isALDisplayed: false,

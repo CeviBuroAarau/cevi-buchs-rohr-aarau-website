@@ -20,7 +20,7 @@ export default defineComponent({
       message: "",
       SchnuppernFormState: SchnuppernFormState,
       service: new SchnuppernService(
-        AxiosUtil.getCockpitInstance()
+        AxiosUtil.getCockpitInstance(),
       ) as SchnuppernService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };

@@ -56,7 +56,7 @@ describe("WelcomeImageService", () => {
     const images: WelcomeImage[] = await service.getImages();
     expect(images[0].url).toBe(
       process.env.VUE_APP_COCKPIT_FILES +
-        "/storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp"
+        "/storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp",
     );
   });
 });

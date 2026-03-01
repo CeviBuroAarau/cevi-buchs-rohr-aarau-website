@@ -5,7 +5,7 @@ export class JsPdfUtil {
   static async getPngImageData(
     assetFileName: string,
     /* eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types */
-    axiosInstance?: any // eslint-disable-line @typescript-eslint/no-explicit-any
+    axiosInstance?: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   ): Promise<string> {
     /* eslint-disable-next-line @typescript-eslint/no-var-requires */
     const uri = require("@/assets/" + assetFileName);
@@ -22,8 +22,8 @@ export class JsPdfUtil {
       btoa(
         new Uint8Array(response.data).reduce(
           (data, byte) => data + String.fromCharCode(byte),
-          ""
-        )
+          "",
+        ),
       );
 
     return imageData;

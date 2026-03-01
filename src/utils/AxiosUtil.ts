@@ -15,13 +15,13 @@ export class AxiosUtil {
 
   static dateConversionInterceptor(
     originalResponse: AxiosResponse<any>, // eslint-disable-line @typescript-eslint/no-explicit-any
-    fieldName: string
+    fieldName: string,
     // eslint-disable-next-line
   ): AxiosResponse<any, any> {
     if (originalResponse.data.entries) {
       // eslint-disable-next-line
       originalResponse.data.entries.forEach((entry: any) =>
-        this.handleDates(entry, fieldName)
+        this.handleDates(entry, fieldName),
       );
     }
     return originalResponse;

@@ -38,7 +38,7 @@ describe("AxiosUtil", () => {
     };
     const processed = AxiosUtil.dateConversionInterceptor(res, "date");
     expect(processed.data.entries[0].date).toEqual(
-      new Date(Date.UTC(2020, 7, 15, 0, 0, 0))
+      new Date(Date.UTC(2020, 7, 15, 0, 0, 0)),
     );
   });
 
