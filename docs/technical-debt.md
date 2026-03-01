@@ -33,30 +33,10 @@ Steps:
 
 ---
 
-## Jest / @vue/cli-plugin-unit-jest compatibility shims
+## ~~Jest / @vue/cli-plugin-unit-jest compatibility shims~~ (resolved)
 
-`@vue/cli-plugin-unit-jest@5.0.9` targets Jest 27 and is no longer maintained. Running
-Jest 29 requires several workarounds that are fragile against future dependency changes:
+**Resolved:** Migrated from `@vue/cli-service` / webpack / Jest to **Vite 7 + Vitest 4**.
+All shims, `resolutions` blocks, and `moduleNameMapper` overrides have been removed.
 
-1. **`resolutions` block in `package.json`** forces 8 Jest sub-packages to v29.7.0 to
-   prevent them being shadowed by the v27 versions hoisted by the CLI plugin. `jest-worker`
-   is deliberately excluded because webpack plugins (`terser-webpack-plugin`,
-   `css-minimizer-webpack-plugin`) require `jest-worker@^27.x`.
-
-2. **`moduleNameMapper` overrides in `jest.config.js`:**
-   - `@vue/test-utils` → `vue-test-utils.cjs.js` (prevents jsdom from loading the browser
-     bundle which references the Vue 2 global `window.Vue`)
-   - `jspdf` → `jspdf.umd.min.js` (jsPDF 4's conditional exports point to an ES module
-     under the `browser` condition and a Node bundle under the `node` condition; neither
-     works directly in Jest's CJS environment)
-   - `perfect-debounce` → `tests/unit/mocks/perfect-debounce.js` (transitive dep of
-     vue-router 5 via `@vue/devtools-kit`; ships only an ESM build; mock provides a
-     passthrough `debounce` function sufficient for the test environment)
-
-3. **`tests/unit/setup.js`** polyfills `TextEncoder`/`TextDecoder` into the jsdom global
-   scope (jsPDF 4's UMD bundle requires them; jsdom sandboxes globals so the Node.js
-   built-ins are not visible to module-level code).
-
-**Recommended path forward:** Migrate away from `@vue/cli-service` / `@vue/cli-plugin-*`
-to Vite + `vitest`. This removes the entire class of Jest-vs-webpack-plugin version
-conflicts and eliminates the need for all three shims above.
+The migration also eliminated the dependency on `@vue/cli-plugin-e2e-nightwatch` for
+Nightwatch configuration. Nightwatch is now configured directly via `nightwatch.conf.js`.

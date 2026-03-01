@@ -25,17 +25,21 @@ export default defineComponent({
     aria-describedby="medialist"
     v-if="media != null"
   >
-    <tr>
-      <th scope="col">Datum</th>
-      <th scope="col">Artikel</th>
-    </tr>
-    <tr v-for="(media, mediaIndex) in media" :key="mediaIndex">
-      <td>{{ formatDate(media.date) }}</td>
-      <td>
-        <div v-html="media.description"></div>
-        <br />
-        <a :href="media.file">Anschauen</a>
-      </td>
-    </tr>
+    <thead>
+      <tr>
+        <th scope="col">Datum</th>
+        <th scope="col">Artikel</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr v-for="(media, mediaIndex) in media" :key="mediaIndex">
+        <td>{{ formatDate(media.date) }}</td>
+        <td>
+          <div v-html="media.description"></div>
+          <br />
+          <a :href="media.file">Anschauen</a>
+        </td>
+      </tr>
+    </tbody>
   </table>
 </template>

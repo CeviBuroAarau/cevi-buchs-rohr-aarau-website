@@ -27,7 +27,7 @@ describe("Leiterteam Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Leiterteam, {
@@ -56,7 +56,7 @@ describe("Leiterteam Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Leiterteam, {

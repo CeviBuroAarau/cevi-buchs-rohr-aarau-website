@@ -27,7 +27,7 @@ describe("Aktivitaeten Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Album, {
@@ -56,7 +56,7 @@ describe("Aktivitaeten Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Album, {

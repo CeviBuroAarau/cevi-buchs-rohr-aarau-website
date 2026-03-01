@@ -18,7 +18,7 @@ describe("LeiterDetail Component", () => {
     inScoutsBecause: "es lustig ist mit Gleichgesinnten etwas zu machen",
     bestExperiences: "Pfila 2007, Leiteranl\\u00e4sse",
     file:
-      process.env.VUE_APP_COCKPIT_FILES +
+      import.meta.env.VITE_COCKPIT_FILES +
       "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
   };
 
@@ -46,7 +46,7 @@ describe("LeiterDetail Component", () => {
 
     const onLeiterOpenedEmitted = wrapper.emitted().onLeiterOpened;
     if (onLeiterOpenedEmitted === undefined) {
-      fail("onLeiterOpened mustn't be undefined");
+      expect.unreachable("onLeiterOpened mustn't be undefined");
     } else {
       expect(onLeiterOpenedEmitted.length).toBe(1);
     }
@@ -66,7 +66,7 @@ describe("LeiterDetail Component", () => {
 
     const onLeiterClosedEmitted = wrapper.emitted().onLeiterClosed;
     if (onLeiterClosedEmitted === undefined) {
-      fail("onLeiterClosed mustn't be undefined");
+      expect.unreachable("onLeiterClosed mustn't be undefined");
     } else {
       expect(onLeiterClosedEmitted.length).toBe(1);
     }

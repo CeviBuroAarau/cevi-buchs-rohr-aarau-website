@@ -10,7 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 dom.watch();
 
-require("./assets/main.scss");
+import "./assets/main.scss";
 
 library.add(faPhone, faEnvelope, faUser, faBars);
 

@@ -1,118 +1,187 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`LeiterDetail Component render leiter-detail with leiter 1`] = `
+exports[`LeiterDetail Component > render leiter-detail with leiter 1`] = `
 <div
   class="modal"
+  data-v-e3131478=""
 >
   <div
     class="modal-background"
+    data-v-e3131478=""
   />
   <div
     class="modal-card"
+    data-v-e3131478=""
   >
     <header
       class="modal-card-head"
+      data-v-e3131478=""
     >
       <p
         class="modal-card-title"
+        data-v-e3131478=""
       >
         Leah Dellenbach v/o Luna
       </p>
       <button
         aria-label="close"
         class="delete"
+        data-v-e3131478=""
       />
     </header>
     <section
       class="modal-card-body"
+      data-v-e3131478=""
     >
       <img
         alt="Luna"
+        data-v-e3131478=""
         src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
       />
       <table
         class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
+        data-v-e3131478=""
         role="presentation"
       >
-        <tr>
-          <td>
-            Funktion
-          </td>
-          <td>
-            Gruppenleiterin, Abteilungsleiterin
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Gruppe
-          </td>
-          <td>
-            Spartacus
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Jahrgang
-          </td>
-          <td>
-            1998
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Wohnort
-          </td>
-          <td>
-            Aarau
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Beruf/Schule
-          </td>
-          <td>
-            Neue Kantonsschule Aarau
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Hobbys
-          </td>
-          <td>
-            Lesen, Jungschi, mit Freunden treffen
-          </td>
-        </tr>
-        <tr>
-          <td>
-            In der Jungschi seit
-          </td>
-          <td>
-            ungef\\u00e4hr 2006
-          </td>
-        </tr>
-        <tr>
-          <td>
-            In der Jungschi weil
-          </td>
-          <td>
-            es lustig ist mit Gleichgesinnten etwas zu machen
-          </td>
-        </tr>
-        <tr>
-          <td>
-            Tollste Cevi Erlebnisse
-          </td>
-          <td>
-            Pfila 2007, Leiteranl\\u00e4sse
-          </td>
-        </tr>
+        <tbody
+          data-v-e3131478=""
+        >
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Funktion
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              Gruppenleiterin, Abteilungsleiterin
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Gruppe
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              Spartacus
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Jahrgang
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              1998
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Wohnort
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              Aarau
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Beruf/Schule
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              Neue Kantonsschule Aarau
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Hobbys
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              Lesen, Jungschi, mit Freunden treffen
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              In der Jungschi seit
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              ungef\\u00e4hr 2006
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              In der Jungschi weil
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              es lustig ist mit Gleichgesinnten etwas zu machen
+            </td>
+          </tr>
+          <tr
+            data-v-e3131478=""
+          >
+            <td
+              data-v-e3131478=""
+            >
+              Tollste Cevi Erlebnisse
+            </td>
+            <td
+              data-v-e3131478=""
+            >
+              Pfila 2007, Leiteranl\\u00e4sse
+            </td>
+          </tr>
+        </tbody>
       </table>
     </section>
     <footer
       class="modal-card-foot"
+      data-v-e3131478=""
     >
       <button
         class="button"
+        data-v-e3131478=""
       >
         Schliessen
       </button>

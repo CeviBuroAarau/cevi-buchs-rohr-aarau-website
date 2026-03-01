@@ -77,30 +77,36 @@ export default defineComponent({
       </p>
 
       <table>
-        <tr>
-          <th>Empfänger und Ort</th>
-          <th>Bemerkungen</th>
-        </tr>
-        <tr>
-          <td>Puzzle, Schweiz</td>
-          <td>Zentrale Mitgliederverwaltung von Cevi Schweiz</td>
-        </tr>
-        <tr>
-          <td>Cyon, Schweiz</td>
-          <td>Verwaltung der Domäne, Mailserver</td>
-        </tr>
-        <tr>
-          <td>Azure, Amsterdam Niederlande</td>
-          <td>Hosting der Webseite und weiterer Dienste wie z. B. Nextcloud</td>
-        </tr>
-        <tr>
-          <td>Openstreetmap, Amsterdam Niederlande</td>
-          <td>Kartenmaterial</td>
-        </tr>
-        <tr>
-          <td>Meta, auf der ganzen Welt</td>
-          <td>Facebook, Instagram, Whatsapp</td>
-        </tr>
+        <thead>
+          <tr>
+            <th>Empfänger und Ort</th>
+            <th>Bemerkungen</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Puzzle, Schweiz</td>
+            <td>Zentrale Mitgliederverwaltung von Cevi Schweiz</td>
+          </tr>
+          <tr>
+            <td>Cyon, Schweiz</td>
+            <td>Verwaltung der Domäne, Mailserver</td>
+          </tr>
+          <tr>
+            <td>Azure, Amsterdam Niederlande</td>
+            <td>
+              Hosting der Webseite und weiterer Dienste wie z. B. Nextcloud
+            </td>
+          </tr>
+          <tr>
+            <td>Openstreetmap, Amsterdam Niederlande</td>
+            <td>Kartenmaterial</td>
+          </tr>
+          <tr>
+            <td>Meta, auf der ganzen Welt</td>
+            <td>Facebook, Instagram, Whatsapp</td>
+          </tr>
+        </tbody>
       </table>
 
       <h2 class="title is-2">6. Datensicherheit</h2>

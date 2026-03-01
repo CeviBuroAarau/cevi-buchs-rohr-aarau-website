@@ -23,11 +23,11 @@ export class AlbumService {
         images: a.images.map((img) => {
           return {
             title: img.meta.title,
-            url: process.env.VUE_APP_COCKPIT_FILES + img.path,
+            url: import.meta.env.VITE_COCKPIT_FILES + img.path,
           };
         }),
         previewImage: {
-          url: process.env.VUE_APP_COCKPIT_FILES + a.previewImage.path,
+          url: import.meta.env.VITE_COCKPIT_FILES + a.previewImage.path,
         },
       };
     });

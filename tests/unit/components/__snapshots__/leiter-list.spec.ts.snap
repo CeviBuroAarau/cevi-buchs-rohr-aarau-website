@@ -1,35 +1,49 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`LeiterList Component render leiter-list 1`] = `
-<div>
-  <leiter-detail-stub />
+exports[`LeiterList Component > render leiter-list 1`] = `
+<div
+  data-v-5675dfe9=""
+>
+  <leiter-detail-stub
+    data-v-5675dfe9=""
+  />
   <ul
     class=""
+    data-v-5675dfe9=""
     style="display: flex; flex-wrap: wrap;"
   >
     
     <li
       class="leiterlist"
+      data-v-5675dfe9=""
     >
       <div
         class="card"
+        data-v-5675dfe9=""
         style="width: 180px;"
       >
         <div
           class="card-image is-centered"
+          data-v-5675dfe9=""
         >
           <img
             alt="Luna"
+            data-v-5675dfe9=""
             src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
             width="170"
           />
         </div>
         <div
           class="card-content is-centered"
+          data-v-5675dfe9=""
         >
-          <strong>
+          <strong
+            data-v-5675dfe9=""
+          >
             Leah Dellenbach
-            <br />
+            <br
+              data-v-5675dfe9=""
+            />
              v/o Luna
           </strong>
         </div>
@@ -37,26 +51,35 @@ exports[`LeiterList Component render leiter-list 1`] = `
     </li>
     <li
       class="leiterlist"
+      data-v-5675dfe9=""
     >
       <div
         class="card"
+        data-v-5675dfe9=""
         style="width: 180px;"
       >
         <div
           class="card-image is-centered"
+          data-v-5675dfe9=""
         >
           <img
             alt="Luna"
+            data-v-5675dfe9=""
             src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
             width="170"
           />
         </div>
         <div
           class="card-content is-centered"
+          data-v-5675dfe9=""
         >
-          <strong>
+          <strong
+            data-v-5675dfe9=""
+          >
             Leah Dellenbach
-            <br />
+            <br
+              data-v-5675dfe9=""
+            />
              v/o Luna
           </strong>
         </div>

@@ -64,7 +64,7 @@ describe("Medien Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Medien, {
@@ -97,7 +97,7 @@ describe("Medien Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Medien, {

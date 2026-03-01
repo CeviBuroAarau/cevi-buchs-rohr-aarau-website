@@ -18,7 +18,7 @@ export class MediaService {
 
     let result: Media[] = resp.data.entries;
     result.forEach((m) => {
-      m.file = process.env.VUE_APP_COCKPIT_FILES + m.file;
+      m.file = import.meta.env.VITE_COCKPIT_FILES + m.file;
     });
 
     result = result.sort((a: Media, b: Media) => {

@@ -23,8 +23,8 @@ module.exports = {
         "**/__tests__/*.{j,t}s?(x)",
         "**/tests/unit/**/*.spec.{j,t}s?(x)",
       ],
-      env: {
-        jest: true,
+      globals: {
+        vi: "readonly",
       },
       rules: {
         "@typescript-eslint/no-explicit-any": "off", // disable because any is required in the wrapper type definitions for the tests

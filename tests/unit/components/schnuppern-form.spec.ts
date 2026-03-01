@@ -5,11 +5,11 @@ import SchnuppernForm from "@/components/schnuppern-form.vue";
 describe("SchnuppernForm Component", () => {
   it("subscribe Success", async () => {
     const service = {
-      submitForm: jest.fn(),
+      submitForm: vi.fn(),
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(SchnuppernForm, {
@@ -22,8 +22,8 @@ describe("SchnuppernForm Component", () => {
     } as any);
 
     // Mock the modal refs on the internal instance
-    const openSuccessFunction = jest.fn();
-    const openErrorFunction = jest.fn();
+    const openSuccessFunction = vi.fn();
+    const openErrorFunction = vi.fn();
     (wrapper.vm.$ as any).refs = {
       successModal: { open: openSuccessFunction },
       errorModal: { open: openErrorFunction },
@@ -43,7 +43,7 @@ describe("SchnuppernForm Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(SchnuppernForm, {
@@ -55,8 +55,8 @@ describe("SchnuppernForm Component", () => {
       },
     } as any);
 
-    const openSuccessFunction = jest.fn();
-    const openErrorFunction = jest.fn();
+    const openSuccessFunction = vi.fn();
+    const openErrorFunction = vi.fn();
     (wrapper.vm.$ as any).refs = {
       successModal: { open: openSuccessFunction },
       errorModal: { open: openErrorFunction },
@@ -77,7 +77,7 @@ describe("SchnuppernForm Component", () => {
 
     const onFormOpenedEmitted = wrapper.emitted().onFormOpened;
     if (onFormOpenedEmitted === undefined) {
-      fail("onFormOpened mustn't be undefined");
+      expect.unreachable("onFormOpened mustn't be undefined");
     } else {
       expect(onFormOpenedEmitted.length).toBe(1);
     }
@@ -92,7 +92,7 @@ describe("SchnuppernForm Component", () => {
 
     const onFormClosedEmitted = wrapper.emitted().onFormClosed;
     if (onFormClosedEmitted === undefined) {
-      fail("onFormOpened mustn't be undefined");
+      expect.unreachable("onFormOpened mustn't be undefined");
     } else {
       expect(onFormClosedEmitted.length).toBe(1);
     }

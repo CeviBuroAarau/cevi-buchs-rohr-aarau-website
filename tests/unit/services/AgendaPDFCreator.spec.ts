@@ -39,7 +39,7 @@ describe("AgendaPDFCreator", () => {
   test("insertPageBreakIfNeeded adds page and resets Y when near bottom", () => {
     const creator = new AgendaPDFCreator();
     creator.currentY = 290;
-    const addPageSpy = jest.spyOn(creator.doc, "addPage");
+    const addPageSpy = vi.spyOn(creator.doc, "addPage");
 
     creator.insertPageBreakIfNeeded(creator.doc, 1);
 
@@ -50,7 +50,7 @@ describe("AgendaPDFCreator", () => {
   test("insertPageBreakIfNeeded does not add page when space is available", () => {
     const creator = new AgendaPDFCreator();
     creator.currentY = 50;
-    const addPageSpy = jest.spyOn(creator.doc, "addPage");
+    const addPageSpy = vi.spyOn(creator.doc, "addPage");
 
     creator.insertPageBreakIfNeeded(creator.doc, 1);
 

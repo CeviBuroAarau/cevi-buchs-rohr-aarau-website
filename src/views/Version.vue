@@ -22,9 +22,9 @@ export default defineComponent({
     return {
       mode: process.env.NODE_ENV,
       environment: process.env.NODE_ENV,
-      version: process.env.VUE_APP_VERSION,
-      creationDate: process.env.VUE_APP_DATE,
-      revision: process.env.VUE_APP_REVISION,
+      version: import.meta.env.VITE_VERSION,
+      creationDate: import.meta.env.VITE_DATE,
+      revision: import.meta.env.VITE_REVISION,
     };
   },
 });

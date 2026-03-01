@@ -4,7 +4,7 @@ import Schnuppern from "@/views/Schnuppern.vue";
 
 describe("Schnuppern Page", () => {
   it("show form", async () => {
-    const schnuppernFormFunction = jest.fn();
+    const schnuppernFormFunction = vi.fn();
 
     const wrapper = await shallowMount(Schnuppern, {
       global: {

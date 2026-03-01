@@ -2,12 +2,12 @@ import { AlbumService } from "@/services";
 import { Album } from "@/types";
 import axios from "axios";
 
-jest.mock("axios", () => {
-  return {
-    create: jest.fn(),
+vi.mock("axios", () => {
+  const mock = {
+    create: vi.fn(),
     interceptors: {
-      request: { use: jest.fn(), eject: jest.fn() },
-      response: { use: jest.fn(), eject: jest.fn() },
+      request: { use: vi.fn(), eject: vi.fn() },
+      response: { use: vi.fn(), eject: vi.fn() },
     },
     get: () =>
       Promise.resolve({
@@ -86,9 +86,10 @@ jest.mock("axios", () => {
         },
       }),
   };
+  return { default: mock, ...mock };
 });
 
-const axiosInstance = axios as jest.Mocked<typeof axios>;
+const axiosInstance = axios as vi.Mocked<typeof axios>;
 
 describe("AlbumService", () => {
   test("getAlbums", async () => {

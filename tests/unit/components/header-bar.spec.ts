@@ -13,7 +13,7 @@ describe("HeaderBar Component", () => {
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
     if (mobileOpenChangedEmitted === undefined) {
-      fail("mobileOpenChangedEmitted mustn't be undefined");
+      expect.unreachable("mobileOpenChangedEmitted mustn't be undefined");
     } else {
       expect(mobileOpenChangedEmitted.length).toBe(1);
       expect(mobileOpenChangedEmitted[0]).toEqual([true]);

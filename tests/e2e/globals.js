@@ -22,7 +22,7 @@ module.exports = {
   waitForConditionPollInterval: 500,
 
   // timeout value in milliseconds for waitFor commands and implicit waitFor value for expect assertions
-  waitForConditionTimeout: 2000,
+  waitForConditionTimeout: 8000,
 
   default: {
     /*

@@ -27,7 +27,7 @@ describe("Lädeli Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Laedeli, {
@@ -56,7 +56,7 @@ describe("Lädeli Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Laedeli, {
@@ -78,7 +78,7 @@ describe("Lädeli Page", () => {
   });
 
   it("show form", async () => {
-    const laedeliFormFunction = jest.fn();
+    const laedeliFormFunction = vi.fn();
 
     const wrapper = await shallowMount(Laedeli, {});
 

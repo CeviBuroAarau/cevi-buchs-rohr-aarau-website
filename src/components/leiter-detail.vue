@@ -51,42 +51,44 @@ export default defineComponent({
           class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
           role="presentation"
         >
-          <tr>
-            <td>Funktion</td>
-            <td>{{ leiter.function.join(", ") }}</td>
-          </tr>
-          <tr>
-            <td>Gruppe</td>
-            <td>{{ leiter.group }}</td>
-          </tr>
-          <tr>
-            <td>Jahrgang</td>
-            <td>{{ leiter.birthyear }}</td>
-          </tr>
-          <tr>
-            <td>Wohnort</td>
-            <td>{{ leiter.place }}</td>
-          </tr>
-          <tr>
-            <td>Beruf/Schule</td>
-            <td>{{ leiter.profession }}</td>
-          </tr>
-          <tr>
-            <td>Hobbys</td>
-            <td>{{ leiter.recreation }}</td>
-          </tr>
-          <tr>
-            <td>In der Jungschi seit</td>
-            <td>{{ leiter.inScoutsSince }}</td>
-          </tr>
-          <tr>
-            <td>In der Jungschi weil</td>
-            <td>{{ leiter.inScoutsBecause }}</td>
-          </tr>
-          <tr>
-            <td>Tollste Cevi Erlebnisse</td>
-            <td>{{ leiter.bestExperiences }}</td>
-          </tr>
+          <tbody>
+            <tr>
+              <td>Funktion</td>
+              <td>{{ leiter.function.join(", ") }}</td>
+            </tr>
+            <tr>
+              <td>Gruppe</td>
+              <td>{{ leiter.group }}</td>
+            </tr>
+            <tr>
+              <td>Jahrgang</td>
+              <td>{{ leiter.birthyear }}</td>
+            </tr>
+            <tr>
+              <td>Wohnort</td>
+              <td>{{ leiter.place }}</td>
+            </tr>
+            <tr>
+              <td>Beruf/Schule</td>
+              <td>{{ leiter.profession }}</td>
+            </tr>
+            <tr>
+              <td>Hobbys</td>
+              <td>{{ leiter.recreation }}</td>
+            </tr>
+            <tr>
+              <td>In der Jungschi seit</td>
+              <td>{{ leiter.inScoutsSince }}</td>
+            </tr>
+            <tr>
+              <td>In der Jungschi weil</td>
+              <td>{{ leiter.inScoutsBecause }}</td>
+            </tr>
+            <tr>
+              <td>Tollste Cevi Erlebnisse</td>
+              <td>{{ leiter.bestExperiences }}</td>
+            </tr>
+          </tbody>
         </table>
       </section>
       <footer class="modal-card-foot">

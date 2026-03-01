@@ -18,7 +18,7 @@ describe("LeiterList Component", () => {
     inScoutsBecause: "es lustig ist mit Gleichgesinnten etwas zu machen",
     bestExperiences: "Pfila 2007, Leiteranl\\u00e4sse",
     file:
-      process.env.VUE_APP_COCKPIT_FILES +
+      import.meta.env.VITE_COCKPIT_FILES +
       "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
   };
   const leiter: Leader[] = [luna, luna];

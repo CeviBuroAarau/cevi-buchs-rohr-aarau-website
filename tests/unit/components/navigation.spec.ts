@@ -13,7 +13,7 @@ describe("Navigation Component", () => {
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
     if (mobileOpenChangedEmitted === undefined) {
-      fail("mobileOpenChanged mustn't be undefined");
+      expect.unreachable("mobileOpenChanged mustn't be undefined");
     } else {
       expect(mobileOpenChangedEmitted.length).toBe(1);
       expect(mobileOpenChangedEmitted[0]).toEqual([false]);

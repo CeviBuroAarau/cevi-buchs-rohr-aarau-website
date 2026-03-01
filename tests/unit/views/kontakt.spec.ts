@@ -12,15 +12,15 @@ describe("Kontakt Page", () => {
 
   it("send Success", async () => {
     const service = {
-      submitForm: jest.fn(),
+      submitForm: vi.fn(),
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
-    const openErrorFunction = jest.fn();
-    const openSuccessFunction = jest.fn();
+    const openErrorFunction = vi.fn();
+    const openSuccessFunction = vi.fn();
 
     const wrapper = await shallowMount(Kontakt, {
       data: () => {
@@ -50,11 +50,11 @@ describe("Kontakt Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
-    const openErrorFunction = jest.fn();
-    const openSuccessFunction = jest.fn();
+    const openErrorFunction = vi.fn();
+    const openSuccessFunction = vi.fn();
 
     const wrapper = await shallowMount(Kontakt, {
       data: () => {

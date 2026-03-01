@@ -1,39 +1,43 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
 exports[`renders correctly 1`] = `
 <table
   aria-describedby="medialist"
   class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"
 >
-  <tr>
-    <th
-      scope="col"
-    >
-      Datum
-    </th>
-    <th
-      scope="col"
-    >
-      Artikel
-    </th>
-  </tr>
-  
-  <tr>
-    <td>
-      01.01.2021
-    </td>
-    <td>
-      <div>
-        Some text
-      </div>
-      <br />
-      <a
-        href="Some file"
+  <thead>
+    <tr>
+      <th
+        scope="col"
       >
-        Anschauen
-      </a>
-    </td>
-  </tr>
-  
+        Datum
+      </th>
+      <th
+        scope="col"
+      >
+        Artikel
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    
+    <tr>
+      <td>
+        01.01.2021
+      </td>
+      <td>
+        <div>
+          Some text
+        </div>
+        <br />
+        <a
+          href="Some file"
+        >
+          Anschauen
+        </a>
+      </td>
+    </tr>
+    
+  </tbody>
 </table>
 `;

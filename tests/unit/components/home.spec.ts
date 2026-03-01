@@ -13,7 +13,7 @@ describe("Home Component", () => {
 
     const mobileOpenChangedEmitted = wrapper.emitted().mobileOpenChanged;
     if (mobileOpenChangedEmitted === undefined) {
-      fail("mobileOpenChangedEmitted mustn't be undefined");
+      expect.unreachable("mobileOpenChangedEmitted mustn't be undefined");
     } else {
       expect(mobileOpenChangedEmitted.length).toBe(1);
       expect(mobileOpenChangedEmitted[0]).toEqual([false]);
@@ -30,7 +30,7 @@ describe("Home Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Home, {
@@ -57,7 +57,7 @@ describe("Home Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Home, {
@@ -86,7 +86,7 @@ describe("Home Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Home, {
@@ -123,7 +123,7 @@ describe("Home Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(Home, {

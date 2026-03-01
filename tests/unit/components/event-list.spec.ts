@@ -16,7 +16,7 @@ describe("EventList Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(EventList, {
@@ -49,7 +49,7 @@ describe("EventList Component", () => {
       },
     };
 
-    const reportFunction = jest.fn();
+    const reportFunction = vi.fn();
     const errorService = {
       report: () => reportFunction(),
     };
@@ -83,7 +83,7 @@ describe("EventList Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(EventList, {
@@ -110,7 +110,7 @@ describe("EventList Component", () => {
   });
 
   it("show event", async () => {
-    const eventDetailFunction = jest.fn();
+    const eventDetailFunction = vi.fn();
     const eventDetail = {
       /* eslint-disable @typescript-eslint/no-unused-vars */
       open: (info: EventInfo) => eventDetailFunction(),

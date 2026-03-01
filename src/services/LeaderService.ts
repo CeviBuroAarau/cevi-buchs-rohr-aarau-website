@@ -16,7 +16,7 @@ export class LeaderService {
       return {
         ...leader,
         group: leader.group.display,
-        file: process.env.VUE_APP_COCKPIT_FILES + leader.image.path,
+        file: import.meta.env.VITE_COCKPIT_FILES + leader.image.path,
       };
     });
 

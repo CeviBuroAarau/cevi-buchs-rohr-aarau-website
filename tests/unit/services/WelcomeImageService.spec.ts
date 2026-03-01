@@ -2,12 +2,12 @@ import { WelcomeImageService } from "@/services";
 import { WelcomeImage } from "@/types";
 import axios from "axios";
 
-jest.mock("axios", () => {
-  return {
-    create: jest.fn(),
+vi.mock("axios", () => {
+  const mock = {
+    create: vi.fn(),
     interceptors: {
-      request: { use: jest.fn(), eject: jest.fn() },
-      response: { use: jest.fn(), eject: jest.fn() },
+      request: { use: vi.fn(), eject: vi.fn() },
+      response: { use: vi.fn(), eject: vi.fn() },
     },
     get: () =>
       Promise.resolve({
@@ -46,16 +46,17 @@ jest.mock("axios", () => {
         },
       }),
   };
+  return { default: mock, ...mock };
 });
 
-const axiosInstance = axios as jest.Mocked<typeof axios>;
+const axiosInstance = axios as vi.Mocked<typeof axios>;
 
 describe("WelcomeImageService", () => {
   test("getWelcomeImages", async () => {
     const service: WelcomeImageService = new WelcomeImageService(axiosInstance);
     const images: WelcomeImage[] = await service.getImages();
     expect(images[0].url).toBe(
-      process.env.VUE_APP_COCKPIT_FILES +
+      import.meta.env.VITE_COCKPIT_FILES +
         "/storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp",
     );
   });

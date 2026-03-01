@@ -16,7 +16,7 @@ export class WelcomeImageService {
 
     return resp.data.entries.map((welcomeImage) => {
       return {
-        url: process.env.VUE_APP_COCKPIT_FILES + welcomeImage.image.path,
+        url: import.meta.env.VITE_COCKPIT_FILES + welcomeImage.image.path,
       };
     });
   }

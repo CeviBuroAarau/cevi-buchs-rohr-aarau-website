@@ -7,8 +7,7 @@ export class JsPdfUtil {
     /* eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types */
     axiosInstance?: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   ): Promise<string> {
-    /* eslint-disable-next-line @typescript-eslint/no-var-requires */
-    const uri = require("@/assets/" + assetFileName);
+    const uri = new URL(`../assets/${assetFileName}`, import.meta.url).href;
 
     if (axiosInstance == null) {
       axiosInstance = axios.create();

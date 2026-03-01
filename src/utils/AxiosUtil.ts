@@ -4,10 +4,10 @@ import { DateUtil } from "./DateUtil";
 export class AxiosUtil {
   static getCockpitInstance(): AxiosInstance {
     return axios.create({
-      baseURL: process.env.VUE_APP_COCKPIT_API,
+      baseURL: import.meta.env.VITE_COCKPIT_API,
       timeout: 10000,
       headers: {
-        Authorization: "Bearer " + process.env.VUE_APP_COCKPIT_AUTHORIZATION,
+        Authorization: "Bearer " + import.meta.env.VITE_COCKPIT_AUTHORIZATION,
         "Content-Type": "application/json",
       },
     });

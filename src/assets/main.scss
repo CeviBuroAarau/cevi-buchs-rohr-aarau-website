@@ -1,8 +1,8 @@
-// full: @import '~bulma/bulma';
+// full: @import 'bulma/bulma';
 // only reset and base style needed for the frontpage
-@import '~bulma/sass/themes/_index.scss';
-@import '~bulma/sass/utilities/_index.scss';
-@import '~bulma/sass/base/_index.scss';
+@import 'bulma/sass/themes/_index.scss';
+@import 'bulma/sass/utilities/_index.scss';
+@import 'bulma/sass/base/_index.scss';
 
 // "disable" animations for people that wish this
 @media screen and (prefers-reduced-motion: reduce) {  

@@ -50,11 +50,11 @@ describe("Agenda Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const realDateNow = Date.now.bind(global.Date);
-    const dateNowStub = jest.fn(() => 1593900000000); // 2020-07-05 00:00:00
+    const dateNowStub = vi.fn(() => 1593900000000); // 2020-07-05 00:00:00
     global.Date.now = dateNowStub;
 
     const wrapper = await mount(AgendaView, {
@@ -109,11 +109,11 @@ describe("Agenda Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const realDateNow = Date.now.bind(global.Date);
-    const dateNowStub = jest.fn(() => 1593900000000); // 2020-07-05 00:00:00
+    const dateNowStub = vi.fn(() => 1593900000000); // 2020-07-05 00:00:00
     global.Date.now = dateNowStub;
 
     const wrapper = await mount(AgendaView, {
@@ -151,7 +151,7 @@ describe("Agenda Page", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(AgendaView, {

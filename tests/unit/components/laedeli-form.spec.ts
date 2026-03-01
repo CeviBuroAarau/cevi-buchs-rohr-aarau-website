@@ -6,15 +6,15 @@ import { LaedeliFormState } from "@/types";
 describe("LaedeliForm Component", () => {
   it("send Success", async () => {
     const service = {
-      submitForm: jest.fn(),
+      submitForm: vi.fn(),
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
-    const openErrorFunction = jest.fn();
-    const openSuccessFunction = jest.fn();
+    const openErrorFunction = vi.fn();
+    const openSuccessFunction = vi.fn();
 
     const wrapper = await shallowMount(LaedeliForm, {
       data: () => {
@@ -44,11 +44,11 @@ describe("LaedeliForm Component", () => {
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
-    const openErrorFunction = jest.fn();
-    const openSuccessFunction = jest.fn();
+    const openErrorFunction = vi.fn();
+    const openSuccessFunction = vi.fn();
 
     const wrapper = await shallowMount(LaedeliForm, {
       data: () => {
@@ -72,11 +72,11 @@ describe("LaedeliForm Component", () => {
 
   it("show Form", async () => {
     const service = {
-      submitForm: jest.fn(),
+      submitForm: vi.fn(),
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(LaedeliForm, {
@@ -93,7 +93,7 @@ describe("LaedeliForm Component", () => {
 
     const onFormOpenedEmitted = wrapper.emitted().onFormOpened;
     if (onFormOpenedEmitted === undefined) {
-      fail("onFormOpened mustn't be undefined");
+      expect.unreachable("onFormOpened mustn't be undefined");
     } else {
       expect(onFormOpenedEmitted.length).toBe(1);
     }
@@ -101,11 +101,11 @@ describe("LaedeliForm Component", () => {
 
   it("close Form", async () => {
     const service = {
-      submitForm: jest.fn(),
+      submitForm: vi.fn(),
     };
 
     const errorService = {
-      report: jest.fn(),
+      report: vi.fn(),
     };
 
     const wrapper = await shallowMount(LaedeliForm, {
@@ -122,7 +122,7 @@ describe("LaedeliForm Component", () => {
 
     const onFormClosedEmitted = wrapper.emitted().onFormClosed;
     if (onFormClosedEmitted === undefined) {
-      fail("onFormClosed mustn't be undefined");
+      expect.unreachable("onFormClosed mustn't be undefined");
     } else {
       expect(onFormClosedEmitted.length).toBe(1);
     }

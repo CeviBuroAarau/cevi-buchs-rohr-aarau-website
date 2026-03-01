@@ -49,6 +49,12 @@ jobs:
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@latest
 
+    - name: "Start production server"
+      run: PORT=8080 yarn start &
+
+    - name: "Wait for server"
+      run: npx --yes wait-on http://localhost:8080 --timeout 30000
+
     - name: "E2E Tests"
       run: yarn test:e2e
 

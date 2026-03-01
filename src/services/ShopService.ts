@@ -24,7 +24,7 @@ export class ShopService {
     const result: Article[] = resp.data.entries.map((article) => {
       return {
         categories: article.category,
-        file: process.env.VUE_APP_COCKPIT_FILES + article.image.path,
+        file: import.meta.env.VITE_COCKPIT_FILES + article.image.path,
         ...article,
       };
     });

@@ -7,7 +7,7 @@ describe("ArticleList Component", () => {
     {
       name: "Jungscharhemd Kinder",
       file:
-        process.env.VUE_APP_COCKPIT_FILES +
+        import.meta.env.VITE_COCKPIT_FILES +
         "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp",
       price: "54.9",
       categories: ["Regul\\u00e4re Artikel"],
@@ -16,7 +16,7 @@ describe("ArticleList Component", () => {
     {
       name: "Jungscharhemd Erwachsene",
       file:
-        process.env.VUE_APP_COCKPIT_FILES +
+        import.meta.env.VITE_COCKPIT_FILES +
         "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp",
       price: "62.9",
       categories: ["Regul\\u00e4re Artikel"],

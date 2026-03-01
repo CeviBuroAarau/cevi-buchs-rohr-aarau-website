@@ -1,38 +1,47 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`Modal Component render success 1`] = `
+exports[`Modal Component > render success 1`] = `
 <div
   class="modal"
+  data-v-ecc9e0c3=""
 >
   <div
     class="modal-background"
+    data-v-ecc9e0c3=""
   />
   <div
     class="modal-card"
+    data-v-ecc9e0c3=""
   >
     <header
       class="modal-card-head"
+      data-v-ecc9e0c3=""
     >
       <p
         class="modal-card-title"
+        data-v-ecc9e0c3=""
       >
         Titel
       </p>
     </header>
     <section
       class="modal-card-body"
+      data-v-ecc9e0c3=""
     >
       <div
         class="notification"
+        data-v-ecc9e0c3=""
       >
         Message
       </div>
     </section>
     <footer
       class="modal-card-foot"
+      data-v-ecc9e0c3=""
     >
       <button
         class="button is-success"
+        data-v-ecc9e0c3=""
       >
         OK
       </button>
@@ -41,39 +50,48 @@ exports[`Modal Component render success 1`] = `
 </div>
 `;
 
-exports[`Modal Component renders error 1`] = `
+exports[`Modal Component > renders error 1`] = `
 <div
   class="modal"
+  data-v-ecc9e0c3=""
 >
   <div
     class="modal-background"
+    data-v-ecc9e0c3=""
   />
   <div
     class="modal-card"
+    data-v-ecc9e0c3=""
   >
     <header
       class="modal-card-head"
+      data-v-ecc9e0c3=""
     >
       <p
         class="modal-card-title"
+        data-v-ecc9e0c3=""
       >
         Titel
       </p>
     </header>
     <section
       class="modal-card-body"
+      data-v-ecc9e0c3=""
     >
       <div
         class="notification is-danger"
+        data-v-ecc9e0c3=""
       >
         Message
       </div>
     </section>
     <footer
       class="modal-card-foot"
+      data-v-ecc9e0c3=""
     >
       <button
         class="button is-success"
+        data-v-ecc9e0c3=""
       >
         OK
       </button>

@@ -15,8 +15,8 @@ export class ActivitiesService {
     const result: Activity[] = resp.data.entries.map((activity) => {
       return {
         title: activity.title,
-        url: process.env.VUE_APP_COCKPIT_FILES + activity.image.path,
-        thumb: process.env.VUE_APP_COCKPIT_FILES + activity.thumb.path,
+        url: import.meta.env.VITE_COCKPIT_FILES + activity.image.path,
+        thumb: import.meta.env.VITE_COCKPIT_FILES + activity.thumb.path,
       };
     });
 
