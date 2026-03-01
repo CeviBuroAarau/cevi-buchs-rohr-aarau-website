@@ -49,6 +49,9 @@ Jest 29 requires several workarounds that are fragile against future dependency 
    - `jspdf` → `jspdf.umd.min.js` (jsPDF 4's conditional exports point to an ES module
      under the `browser` condition and a Node bundle under the `node` condition; neither
      works directly in Jest's CJS environment)
+   - `perfect-debounce` → `tests/unit/mocks/perfect-debounce.js` (transitive dep of
+     vue-router 5 via `@vue/devtools-kit`; ships only an ESM build; mock provides a
+     passthrough `debounce` function sufficient for the test environment)
 
 3. **`tests/unit/setup.js`** polyfills `TextEncoder`/`TextDecoder` into the jsdom global
    scope (jsPDF 4's UMD bundle requires them; jsdom sandboxes globals so the Node.js

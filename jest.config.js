@@ -25,5 +25,6 @@ module.exports = {
     "^@vue/test-utils$":
       "<rootDir>/node_modules/@vue/test-utils/dist/vue-test-utils.cjs.js",
     "^jspdf$": "<rootDir>/node_modules/jspdf/dist/jspdf.umd.min.js",
+    "^perfect-debounce$": "<rootDir>/tests/unit/mocks/perfect-debounce.js",
   },
 };
