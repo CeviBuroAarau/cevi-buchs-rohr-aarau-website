@@ -68,7 +68,7 @@
     "prettier": "3.8.1",
     "sass": "1.97.3",
     "sass-loader": "16.0.7",
-    "typescript": "4.9.5"
+    "typescript": "5.9.3"
   },
   "bugs": {
     "url": "https://github.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/issues"
