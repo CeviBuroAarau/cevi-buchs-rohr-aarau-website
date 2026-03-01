@@ -41,28 +41,43 @@ export default defineComponent({
 </script>
 
 <style lang="scss">
-@import "~bulma/sass/utilities/_all.sass";
-@import "~bulma/sass/helpers/_all.sass";
-@import "~bulma/sass/base/_all.sass";
+@import "~bulma/sass/themes/_index.scss";
+@import "~bulma/sass/utilities/_index.scss";
+@import "~bulma/sass/helpers/_index.scss";
+@import "~bulma/sass/base/_index.scss";
 
-@import "~bulma/sass/components/card.sass";
-@import "~bulma/sass/components/modal.sass";
+@import "~bulma/sass/components/card.scss";
+@import "~bulma/sass/components/modal.scss";
 
-@import "~bulma/sass/elements/button.sass";
-@import "~bulma/sass/elements/container.sass";
-@import "~bulma/sass/elements/content.sass";
-@import "~bulma/sass/elements/icon.sass";
-@import "~bulma/sass/elements/notification.sass";
-@import "~bulma/sass/elements/other.sass"; // close cross of the modal
-@import "~bulma/sass/elements/table.sass";
-@import "~bulma/sass/elements/title.sass";
+@import "~bulma/sass/elements/button.scss";
+@import "~bulma/sass/layout/container.scss";
+@import "~bulma/sass/elements/content.scss";
+@import "~bulma/sass/elements/icon.scss";
+@import "~bulma/sass/elements/notification.scss";
+@import "~bulma/sass/elements/delete.scss"; // close cross of the modal
+@import "~bulma/sass/elements/table.scss";
+@import "~bulma/sass/elements/title.scss";
 
-@import "~bulma/sass/form/shared.sass";
-@import "~bulma/sass/form/checkbox-radio.sass";
-@import "~bulma/sass/form/input-textarea.sass";
-@import "~bulma/sass/form/tools.sass";
+@import "~bulma/sass/form/shared.scss";
+@import "~bulma/sass/form/checkbox-radio.scss";
+@import "~bulma/sass/form/input-textarea.scss";
+@import "~bulma/sass/form/tools.scss";
 
-@import "~bulma/sass/layout/section.sass";
+@import "~bulma/sass/layout/section.scss";
+
+// Bulma 1.0 changed .modal-background from position:fixed to position:absolute.
+// Additionally, the %overlay placeholder is emitted twice during webpack compilation,
+// so the second position:absolute occurrence overrides Bulma's own position:fixed on
+// .modal. Override both here to ensure the modal always covers the full viewport.
+.modal,
+.modal-background {
+  position: fixed;
+}
+
+// Bulma 1.0 removed the gap between buttons in .modal-card-foot.
+.modal-card-foot {
+  gap: 0.5em;
+}
 </style>
 
 <style scoped lang="scss">
