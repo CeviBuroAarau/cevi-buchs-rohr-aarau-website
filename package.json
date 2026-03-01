@@ -21,7 +21,7 @@
     "@types/leaflet": "1.9.21",
     "@vue-leaflet/vue-leaflet": "0.10.1",
     "@vue/vue3-jest": "27.0.0",
-    "axios": "0.30.3",
+    "axios": "1.13.6",
     "babel-jest": "27.5.1",
     "bulma": "0.9.4",
     "compression": "1.8.1",

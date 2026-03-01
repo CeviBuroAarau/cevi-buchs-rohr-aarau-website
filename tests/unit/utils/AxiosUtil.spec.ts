@@ -34,7 +34,7 @@ describe("AxiosUtil", () => {
       status: 200,
       statusText: "",
       headers: {} as Record<string, string>,
-      config: {},
+      config: { headers: {} as any },
     };
     const processed = AxiosUtil.dateConversionInterceptor(res, "date");
     expect(processed.data.entries[0].date).toEqual(
@@ -59,7 +59,7 @@ describe("AxiosUtil", () => {
       status: 200,
       statusText: "",
       headers: {} as Record<string, string>,
-      config: {},
+      config: { headers: {} as any },
     };
     const processed = AxiosUtil.dateConversionInterceptor(res, "date");
     expect(res).toEqual(processed);

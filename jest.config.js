@@ -15,4 +15,7 @@ module.exports = {
   transform: {
     "^.+\\.vue$": "@vue/vue3-jest",
   },
+  moduleNameMapper: {
+    "^axios$": "<rootDir>/node_modules/axios/dist/node/axios.cjs",
+  },
 };
