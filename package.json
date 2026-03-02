@@ -41,7 +41,7 @@
     "@vitest/coverage-v8": "^4.0.18",
     "@vue/cli-plugin-e2e-nightwatch": "5.0.9",
     "@vue/test-utils": "2.4.6",
-    "chromedriver": "144.0.1",
+    "chromedriver": "146.0.0",
     "eslint": "^10",
     "eslint-config-prettier": "^10",
     "globals": "^16",
