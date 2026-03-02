@@ -1,0 +1,112 @@
+name: Release
+
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version number (e.g. 1.2.3)'
+        required: true
+
+jobs:
+  release:
+    name: "Build, Test, Release & Docker"
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+      with:
+        fetch-depth: 0
+
+    - name: Use Node.js 24.x
+      uses: actions/setup-node@v6.2.0
+      with:
+        node-version: 24.x
+
+    - name: Get yarn cache directory path
+      id: yarn-cache-dir-path
+      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+    - uses: actions/cache@v5
+      with:
+        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-yarn-
+
+    - name: Install Dependencies
+      run: yarn --frozen-lockfile
+
+    - name: Set build metadata
+      id: meta
+      run: |
+        echo "revision=sha-${GITHUB_SHA::8}" >> $GITHUB_OUTPUT
+        echo "created=$(date -u +'%d.%m.%Y %H:%M:%S')" >> $GITHUB_OUTPUT
+        echo "created_iso=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+        IMAGE="ghcr.io/${{ github.repository }}"
+        echo "image=${IMAGE,,}" >> $GITHUB_OUTPUT
+
+    - name: Set env variables
+      run: |
+        sed -i 's#VITE_DATE=Not specified#VITE_DATE=${{ steps.meta.outputs.created }}#g' .env
+        sed -i 's#VITE_REVISION=Not specified#VITE_REVISION=${{ steps.meta.outputs.revision }}#g' .env
+
+    - name: Build
+      run: yarn build
+
+    - name: Unit Tests
+      run: yarn test:unit
+
+    - name: Archive unit test coverage report
+      uses: actions/upload-artifact@v7
+      with:
+        name: unit test coverage report
+        path: coverage
+
+    - name: Install Playwright browsers
+      run: npx playwright install chromium --with-deps
+
+    - name: E2E Tests
+      run: yarn test:e2e
+
+    - name: Archive E2E test report
+      uses: actions/upload-artifact@v7
+      with:
+        name: e2e test report
+        path: tests/e2e/reports
+
+    - name: Set up Docker Buildx
+      uses: docker/setup-buildx-action@v3.12.0
+
+    - name: Login to GitHub Container Registry
+      uses: docker/login-action@v3.7.0
+      with:
+        registry: ghcr.io
+        username: ${{ github.repository_owner }}
+        password: ${{ secrets.CR_PAT }}
+
+    - name: Copy dist for Docker build
+      run: cp -r dist docker/github/dist
+
+    - name: Build and push Docker image
+      uses: docker/build-push-action@v6.19.2
+      with:
+        context: docker/github
+        file: docker/github/Dockerfile
+        push: true
+        tags: |
+          ${{ steps.meta.outputs.image }}:latest
+          ${{ steps.meta.outputs.image }}:v${{ github.event.inputs.version }}
+        labels: |
+          org.opencontainers.image.source=${{ github.event.repository.html_url }}
+          org.opencontainers.image.created=${{ steps.meta.outputs.created_iso }}
+          org.opencontainers.image.revision=${{ github.sha }}
+
+    - name: Create GitHub Release
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create "v${{ github.event.inputs.version }}" \
+          --title "Release v${{ github.event.inputs.version }}" \
+          --generate-notes \
+          --latest

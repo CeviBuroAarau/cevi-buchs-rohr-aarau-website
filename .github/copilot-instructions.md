@@ -31,7 +31,7 @@ yarn start          # Run production server (serves dist/ via Express on port 50
 - **`tsconfig.json`**: TypeScript config, `@/` alias → `src/`
 - **`vite.config.ts`**: Vite + Vitest configuration (build, dev server, test settings)
 - **`playwright.config.ts`**: Playwright E2E config (Chromium, baseURL, webServer)
-- **`eslint.config.mjs`**: ESLint 9 flat config
+- **`eslint.config.mjs`**: ESLint 10 flat config
 - **`server.js`**: Express production server with compression and cache headers
 - **`.env`**: Environment variables (`VITE_COCKPIT_API`, `VITE_COCKPIT_AUTHORIZATION`, `VITE_COCKPIT_FILES`)
 
@@ -75,10 +75,13 @@ yarn start          # Run production server (serves dist/ via Express on port 50
 
 ## CI/CD
 
-GitHub Actions workflows (`build_branch.yml`, `build_main.yml`, `build_and_deploy_azure.yml`):
-1. Node 22.x setup with yarn cache
+GitHub Actions workflows:
+- **`build_branch.yml`**: CI on feature branches — build, unit tests, E2E tests
+- **`build_main.yml`**: CI on main — build, unit tests, E2E tests, SonarCloud scan
+- **`release.yml`**: Manual workflow (workflow_dispatch) — build, test, push Docker image to ghcr.io, create GitHub Release with auto-generated notes
+
+Common steps:
+1. Node 24.x setup with yarn cache
 2. `yarn --frozen-lockfile`
 3. `yarn build` + `yarn test:unit`
 4. `npx playwright install chromium --with-deps` + `yarn test:e2e`
-5. (main only) SonarCloud scan, Docker image push to ghcr.io
-6. (azure only) Deploy to Azure via SFTP

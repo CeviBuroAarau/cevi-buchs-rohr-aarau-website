@@ -7,8 +7,7 @@ yarn lint
 yarn yaml-validator .github/workflows/analyze.yml
 yarn yaml-validator .github/workflows/build_branch.yml
 yarn yaml-validator .github/workflows/build_main.yml
-yarn yaml-validator .github/workflows/issue-branch.yml
-yarn yaml-validator .github/workflows/build_and_deploy_azure.yml
+yarn yaml-validator .github/workflows/release.yml
 yarn yaml-validator .github/dependabot.yml
 sed -i -e "s#https://npm.uhlme.ch/#https://registry.yarnpkg.com/#g" yarn.lock
 yarn test:unit
