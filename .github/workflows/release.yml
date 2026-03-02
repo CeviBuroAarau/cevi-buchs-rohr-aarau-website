@@ -50,6 +50,7 @@ jobs:
       run: |
         sed -i 's#VITE_DATE=Not specified#VITE_DATE=${{ steps.meta.outputs.created }}#g' .env
         sed -i 's#VITE_REVISION=Not specified#VITE_REVISION=${{ steps.meta.outputs.revision }}#g' .env
+        sed -i 's#VITE_VERSION=Not specified#VITE_VERSION=${{ github.event.inputs.version }}#g' .env
 
     - name: Build
       run: yarn build
