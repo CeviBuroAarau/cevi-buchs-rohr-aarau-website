@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount } from "@vue/test-utils";
 import Medien from "@/views/Medien.vue";
 

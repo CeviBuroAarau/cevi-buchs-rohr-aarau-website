@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { shallowMount } from "@vue/test-utils";
 import LaedeliForm from "@/components/laedeli-form.vue";
 import { LaedeliFormState } from "@/types";

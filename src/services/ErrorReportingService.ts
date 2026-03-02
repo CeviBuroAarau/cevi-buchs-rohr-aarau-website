@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 export class ErrorReportingService {
   init(): void {}
 

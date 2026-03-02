@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import { mount, shallowMount } from "@vue/test-utils";
 import AgendaView from "@/views/Agenda.vue";
 

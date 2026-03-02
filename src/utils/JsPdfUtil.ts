@@ -1,10 +1,9 @@
 import axios from "axios";
 
 export class JsPdfUtil {
-  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
   static async getPngImageData(
     assetFileName: string,
-    /* eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types */
+
     axiosInstance?: any, // eslint-disable-line @typescript-eslint/no-explicit-any
   ): Promise<string> {
     const uri = new URL(`../assets/${assetFileName}`, import.meta.url).href;
