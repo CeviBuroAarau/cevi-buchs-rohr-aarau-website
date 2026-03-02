@@ -9,7 +9,7 @@ This is the official website for Cevi Buchs-Rohr Aarau (https://www.cevi-buro-aa
 - **Testing**: Vitest 4 (unit), Playwright (E2E with headless Chromium)
 - **Linting**: ESLint 10 flat config (`eslint.config.mjs`), Prettier
 - **Styling**: Bulma 1.x CSS, SASS/SCSS, FontAwesome 7
-- **Runtime**: Node.js 22.x
+- **Runtime**: Node.js 24.x
 
 ## Commands
 

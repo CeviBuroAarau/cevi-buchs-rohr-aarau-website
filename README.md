@@ -9,7 +9,7 @@ Metrics:
 
 ## Getting started
 ```
-nvm use 22
+nvm use 24
 yarn install
 yarn serve
 ```
