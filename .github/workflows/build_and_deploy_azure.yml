@@ -85,6 +85,9 @@ jobs:
     - name: Setup Chrome
       uses: browser-actions/setup-chrome@latest
 
+    - name: Setup ChromeDriver
+      uses: browser-actions/setup-chromedriver@latest
+
     - name: "E2E Tests"
       run: yarn test:e2e
 

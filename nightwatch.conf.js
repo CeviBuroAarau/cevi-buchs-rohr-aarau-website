@@ -4,7 +4,7 @@ let chromedriverPath;
 try {
   chromedriverPath = require("chromedriver").path;
 } catch (e) {
-  chromedriverPath = "";
+  chromedriverPath = "chromedriver"; // fall back to chromedriver in PATH (installed by CI)
 }
 
 module.exports = {
