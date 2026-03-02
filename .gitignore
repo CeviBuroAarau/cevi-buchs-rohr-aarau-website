@@ -4,9 +4,8 @@ node_modules
 /coverage
 
 /tests/e2e/reports/
-selenium-debug.log
-chromedriver.log
-geckodriver.log
+playwright-report/
+test-results/
 
 
 # local env files
@@ -28,3 +27,5 @@ logs/
 *.njsproj
 *.sln
 *.sw?
+
+.last-run.json

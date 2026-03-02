@@ -1,6 +1,5 @@
 import { createApp } from "vue";
 import App from "./App.vue";
-import "./registerServiceWorker";
 import router from "./router";
 import { library, dom } from "@fortawesome/fontawesome-svg-core";
 import { faPhone, faEnvelope } from "@fortawesome/free-solid-svg-icons";

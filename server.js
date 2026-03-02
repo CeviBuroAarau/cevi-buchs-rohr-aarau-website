@@ -33,8 +33,8 @@ app.use(compression());
 app.use(serveStatic(path.join(__dirname + "/dist"), {
     extensions: ["html"],
     setHeaders(res, reqpath) {
-        // html and service-worker are not cached at all
-        if (reqpath.match(/(\.html|\/service-worker\.js)$/)) {
+        // html is not cached
+        if (reqpath.match(/\.html$/)) {
             setNoCache(res);
             return;
         }

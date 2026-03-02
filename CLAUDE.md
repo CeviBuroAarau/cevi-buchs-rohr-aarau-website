@@ -10,7 +10,7 @@ Use `yarn` as the package manager (pinned to `yarn@1.22.19`).
 yarn serve          # Start dev server (Vite)
 yarn build          # Production build (outputs to /dist)
 yarn test:unit      # Run all unit tests (Vitest)
-yarn test:e2e       # Run e2e tests (headless, requires Chrome/geckodriver)
+yarn test:e2e       # Run e2e tests (Playwright/Chromium, requires dist/ to be built first)
 yarn lint           # Lint and auto-fix
 yarn start          # Run production server (serves /dist via Express)
 ```
@@ -32,7 +32,7 @@ yarn test:unit --reporter=verbose tests/unit/services/AgendaService.spec.ts
 - **jsPDF + jspdf-autotable** for PDF generation (Agenda feature)
 - **Leaflet / @vue-leaflet/vue-leaflet** for the map on Standort page
 - **Vite 7** as build tool and dev server (config: `vite.config.ts`)
-- **Vitest 4 + @vue/test-utils v2** for unit tests; **Nightwatch** for e2e
+- **Vitest 4 + @vue/test-utils v2** for unit tests; **Playwright** for e2e (config: `playwright.config.ts`)
 
 ### Application Structure
 
@@ -66,7 +66,7 @@ The backend is a **Cockpit CMS** instance. The API contract is documented in `ap
 
 Access env vars in source code via `import.meta.env.VITE_*`.
 
-The production static file server is `server.js` (Express): HTML and service-worker files are cache-busted; JS/CSS/images get a 1-year immutable cache (safe because Vite adds chunk hashes to filenames).
+The production static file server is `server.js` (Express): HTML is not cached; JS/CSS/images get a 1-year immutable cache (safe because Vite adds chunk hashes to filenames).
 
 ### Routing
 All routes are defined in `src/router/index.ts`. Most routes use `RegularLayout` as parent with the actual view as a child (empty `path: ""`). The router uses `createWebHistory` and calls `Shynet.newPageLoad()` on every navigation (privacy-friendly analytics).

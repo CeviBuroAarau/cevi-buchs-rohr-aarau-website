@@ -1,225 +1,84 @@
 # Copilot Instructions for Cevi Buchs-Rohr Aarau Website
 
 ## Project Overview
-This is the official website for Cevi Buchs-Rohr Aarau (https://www.cevi-buro-aarau.ch), a Vue.js 3 single-page application built with TypeScript. The project uses Vue CLI, Bulma CSS framework, and connects to a Cockpit CMS backend API for dynamic content.
+This is the official website for Cevi Buchs-Rohr Aarau (https://www.cevi-buro-aarau.ch), a Vue.js 3 single-page application built with TypeScript. It connects to a Cockpit CMS backend API for dynamic content.
 
 **Key Technologies:**
-- **Frontend**: Vue.js 3.2 with TypeScript 4.9, Vue Router 4, `defineComponent` Options API
-- **Build Tools**: Vue CLI 5.0, Webpack 5, Yarn 1.22
-- **Testing**: Jest 27 (unit, with `@vue/vue3-jest` transform), Nightwatch (E2E with headless Chrome)
-- **Styling**: Bulma CSS framework, SASS/SCSS, FontAwesome 6
-- **Runtime**: Node.js 22.x (versions > 22 NOT supported)
-- **Containerization**: Docker with nginx for production deployment
+- **Frontend**: Vue 3 with TypeScript 5, Vue Router 5, `defineComponent` Options API
+- **Build Tools**: Vite 7, Yarn 1.22
+- **Testing**: Vitest 4 (unit), Playwright (E2E with headless Chromium)
+- **Linting**: ESLint 10 flat config (`eslint.config.mjs`), Prettier
+- **Styling**: Bulma 1.x CSS, SASS/SCSS, FontAwesome 7
+- **Runtime**: Node.js 22.x
 
-## Build and Development Commands
+## Commands
 
-### Initial Setup
 ```bash
-nvm use 22              # Switch to Node.js 22 (REQUIRED)
-yarn install            # Install dependencies with frozen lockfile
+yarn serve          # Start dev server (Vite, http://localhost:8080)
+yarn build          # Production build → dist/
+yarn test:unit      # Run Vitest unit tests with coverage
+yarn test:e2e       # Run Playwright e2e tests (requires dist/ to be built first)
+yarn lint           # ESLint with auto-fix
+yarn start          # Run production server (serves dist/ via Express on port 5000)
 ```
 
-**Always run `yarn install` before any other command** if node_modules is missing or after pulling changes.
-
-### Development Server
-```bash
-yarn serve              # Starts dev server on http://localhost:8080
-```
-
-### Building
-```bash
-yarn build              # Production build → outputs to dist/ (takes ~25 seconds)
-```
-The build creates optimized chunks with webpack hashing for cache-busting.
-
-### Linting
-```bash
-yarn lint               # Run ESLint with auto-fix (takes ~5 seconds)
-```
-
-### Testing
-
-**Unit Tests:**
-```bash
-yarn test:unit          # Run Jest tests with coverage (takes ~30 seconds)
-```
-- Coverage reports generated in `coverage/` directory
-- Minimum coverage: branches 5%, functions 25%, lines 25%
-- Uses jest-sonar-reporter for SonarCloud integration
-
-**E2E Tests:**
-```bash
-yarn test:e2e           # Run Nightwatch tests in headless Chrome
-```
-- Chrome must be installed on the system
-- Test reports saved to `tests/e2e/reports/`
-- Dev server must NOT be running (or specify different port)
-
-### Pre-commit Hook
-The husky pre-commit hook automatically runs:
-1. `yarn lint` - ESLint validation
-2. YAML validation for all workflow files
-3. `yarn test:unit` - Full unit test suite
-4. Yarn lock file sanitization (replaces npm.uhlme.ch with registry.yarnpkg.com)
-
-**Note**: E2E tests are commented out in pre-commit due to Chrome version mismatch issues.
-
-## CI/CD Pipeline
-
-### GitHub Actions Workflows
-
-**Build Branch Workflow** (all branches except main):
-1. Setup Node.js 22.x with yarn cache
-2. `yarn --frozen-lockfile` (ALWAYS use frozen lockfile in CI)
-3. `yarn run build`
-4. `yarn test:unit` with coverage artifact upload
-5. Setup Chrome and run `yarn test:e2e`
-
-**Build Main Workflow** (main branch + monthly schedule):
-- All steps from branch workflow, PLUS:
-- SonarCloud code quality analysis
-- Docker image build and push to GitHub Container Registry (ghcr.io)
-- Version tracking via env variables (VUE_APP_DATE, VUE_APP_REVISION)
-
-**Key CI Requirements:**
-- Always use `yarn --frozen-lockfile` (never `yarn install` alone)
-- Coverage paths need sed replacement for SonarCloud compatibility
-- Chrome browser setup required for E2E tests
+**E2E tests**: `yarn build` must be run first. Playwright starts the production server automatically via `playwright.config.ts` `webServer` config. Install Playwright browser once with `yarn playwright install chromium`.
 
 ## Project Structure
 
 ### Root Configuration Files
-- **package.json**: Dependencies and scripts
-- **tsconfig.json**: TypeScript config, paths alias `@/` → `src/`
-- **vue.config.js**: Vue CLI config, dev server port 8080, source maps enabled
-- **jest.config.js**: Jest preset for TypeScript/Babel, coverage thresholds, uses `@vue/vue3-jest` for `.vue` file transforms
-- **babel.config.js**: Babel config with Vue preset
-- **nightwatch.json**: Nightwatch E2E config with headless Chrome
-- **.eslintrc.js**: ESLint with Vue 3 (`plugin:vue/vue3-essential`), TypeScript, Prettier integration
-- **.eslintignore**: Excludes server.js and tests/e2e/
-- **.editorconfig**: 2-space indentation, LF line endings
-- **.browserslistrc**: Browser support targets
-- **.env**: Environment variables (VUE_APP_COCKPIT_API, VUE_APP_COCKPIT_AUTHORIZATION)
-- **Dockerfile**: Multi-stage build (Node 22 alpine → nginx stable-alpine)
-- **server.js**: Express server for production with compression and cache headers
+- **`package.json`**: Dependencies and scripts
+- **`tsconfig.json`**: TypeScript config, `@/` alias → `src/`
+- **`vite.config.ts`**: Vite + Vitest configuration (build, dev server, test settings)
+- **`playwright.config.ts`**: Playwright E2E config (Chromium, baseURL, webServer)
+- **`eslint.config.mjs`**: ESLint 9 flat config
+- **`server.js`**: Express production server with compression and cache headers
+- **`.env`**: Environment variables (`VITE_COCKPIT_API`, `VITE_COCKPIT_AUTHORIZATION`, `VITE_COCKPIT_FILES`)
 
-### Source Directory Structure (`src/`)
-
-**Main Files:**
-- `main.ts`: App entry point, Vue 3 `createApp` initialization, FontAwesome setup
-- `App.vue`: Root component with print-specific CSS
-- `registerServiceWorker.ts`: PWA service worker registration
-
-**Directories:**
-- `assets/`: Images, SCSS styles (main.scss, home/, navigation/, standort/)
-- `components/`: Reusable Vue components (12 files including forms, lists, modals)
-- `filters/`: Date formatting filter (DateFilter.ts)
-- `layouts/`: Front.vue (homepage layout), Regular.vue (content pages)
-- `router/`: index.ts with Vue Router 4 configuration (`createRouter`/`createWebHistory`), lazy-loaded routes
-- `services/`: API service layer (9 services for Activities, Agenda, Album, Leaders, Media, Shop, etc.)
-- `types/`: TypeScript interfaces and type definitions (8 type files)
-- `utils/`: Helper utilities (ArrayBuffer, Axios, Date, HTML, JsPDF, Sorting)
-- `views/`: Page components (17 view files including Agenda, Album, Kontakt, etc.)
+### Source Directory (`src/`)
+- **`main.ts`**: App entry point — `createApp`, router, FontAwesome setup
+- **`App.vue`**: Root component
+- **`assets/`**: Images, SCSS styles (`main.scss`, per-feature subdirs)
+- **`components/`**: Reusable Vue components (forms, lists, modals, navigation)
+- **`filters/`**: Date formatting filter (`DateFilter.ts`)
+- **`layouts/`**: `Front.vue` (homepage), `Regular.vue` (all other pages)
+- **`router/index.ts`**: Vue Router 5 with lazy-loaded routes, `createWebHistory`
+- **`services/`**: One class per domain entity, each takes an `AxiosInstance`. Re-exported from `services/index.ts`
+- **`types/`**: TypeScript interfaces for CMS response shapes and domain models. Re-exported from `types/index.ts`
+- **`utils/`**: `AxiosUtil`, `DateUtil`, `HtmlUtil`, `JsPdfUtil`, `AgendaPDFCreator`, `SortingUtil`, `ArrayBufferUtil`
 
 ### Test Structure (`tests/`)
-- `unit/`: Jest unit tests (47 test suites, 103 tests)
-  - Mirror structure of src/ with `.spec.ts` files
-  - Use `@vue/test-utils` for component testing
-  - Tests include shallowMount with service mocks
-- `e2e/`: Nightwatch E2E tests
-  - `specs/router.js`: Tests navigation to all main routes
+- **`unit/`**: Vitest unit tests mirroring `src/` structure (48 files, 109 tests)
+- **`e2e/router.spec.ts`**: Playwright tests for all routes
 
-### API Integration
-- Backend API spec: `api/Backend.yaml` (OpenAPI 3.1)
-- Production API: https://cockpit.cevi-buro-aarau.ch/api/
-- Mock API for offline dev: `docker run --init --rm -v $(pwd):/tmp -p 4010:4010 stoplight/prism:4 mock -h 0.0.0.0 "/tmp/api/Backend.yaml"`
+## Common Patterns
 
-## Common Patterns and Conventions
+### Vue Components
+- Use `defineComponent` with Options API style
+- `@/` path alias for all internal imports
+- 2-space indentation
 
-### Vue Component Structure
-- Use `defineComponent` from Vue 3 with the Options API
-- Props defined via the `props` option object with type and default values
-- Events declared via the `emits` option
-- 2-space indentation (enforced by EditorConfig)
+### Services
+- All services receive an `AxiosInstance` in the constructor
+- Use `AxiosUtil` to create authenticated Cockpit instances
+- Cockpit API: `collections/get/<Name>` for reads, `forms/submit/<name>` for form submissions
 
-### Testing Patterns
-- Unit tests mock services and external dependencies
-- Use `@vue/test-utils` v2 (Vue 3 compatible) with `shallowMount` to isolate component testing
-- E2E tests use Nightwatch browser automation
-- Snapshot testing enabled for UI regression testing
+### Unit Testing
+- Vitest with `globals: true` — no need to import `describe`, `test`, `expect`, `vi`
+- Use `shallowMount` from `@vue/test-utils` for component tests
+- Mock axios in service tests with a factory returning `{ default: mock, ...mock }`
 
-### Code Style
-- ESLint enforces code quality (Vue, TypeScript, Prettier rules)
-- Prettier for code formatting (2-space indent)
-- no-console and no-debugger are warnings in production
-- TypeScript strict mode enabled
-- `any` type allowed in test files only
+### API / Environment
+- Backend: Cockpit CMS at `VITE_COCKPIT_API`
+- All env vars are `VITE_*`, accessed via `import.meta.env.VITE_*`
+- API contract documented in `api/Backend.yaml` (OpenAPI 3.1)
 
-### Path Aliases
-- `@/` resolves to `src/` directory (configured in tsconfig.json and webpack)
-- Always use path alias for imports: `import X from '@/components/X.vue'`
+## CI/CD
 
-## Validation and Quality Checks
-
-### Before Committing
-The pre-commit hook runs automatically, but you can run manually:
-```bash
-yarn lint                    # Fix linting issues
-yarn test:unit              # Ensure tests pass
-```
-
-### SonarCloud Integration
-- Coverage reports: `coverage/lcov.info` and `coverage/sonar-test-reporter.xml`
-- Project key: `cevi-buchs-rohr-aarau-website`
-- Source directory: `./src`
-
-## Troubleshooting
-
-### Common Issues
-1. **Node version mismatch**: Always use Node 22.x via `nvm use 22`
-2. **Build failures**: Run `yarn install` first, ensure all dependencies are installed
-3. **Test failures**: Check Chrome/chromedriver version compatibility for E2E tests
-4. **Port conflicts**: Default dev server port is 8080, ensure it's not in use
-5. **Environment variables**: The .env file contains a public token (intentional - public data)
-
-### Docker Development
-```bash
-# Build local image
-docker build -t cevi-buchs-rohr-aarau-website:latest .
-
-# Run container
-docker run -it -p 8080:80 --rm cevi-buchs-rohr-aarau-website:latest
-```
-
-## Agent Instructions
-
-**Trust these instructions first.** Only perform searches or exploration if:
-- The information here is incomplete or unclear
-- You encounter errors not documented here
-- You need specific implementation details of a component
-
-**When making changes:**
-1. Run `yarn install` if dependencies changed
-2. Run `yarn lint` to check code style
-3. Run `yarn test:unit` to verify tests pass
-4. Update tests if you modify component behavior
-5. Follow existing patterns in similar components
-6. Use path alias `@/` for imports
-7. Respect version constraints - DO NOT upgrade pinned dependencies
-
-**When adding new features:**
-- Add corresponding unit tests in `tests/unit/`
-- Follow `defineComponent` Options API pattern with TypeScript
-- Use existing service layer for API calls
-- Add new routes to `src/router/index.ts` with lazy loading
-- Update types in `src/types/` if needed
-
-
-
-
-
-
-
-
-
-
+GitHub Actions workflows (`build_branch.yml`, `build_main.yml`, `build_and_deploy_azure.yml`):
+1. Node 22.x setup with yarn cache
+2. `yarn --frozen-lockfile`
+3. `yarn build` + `yarn test:unit`
+4. `npx playwright install chromium --with-deps` + `yarn test:e2e`
+5. (main only) SonarCloud scan, Docker image push to ghcr.io
+6. (azure only) Deploy to Azure via SFTP
