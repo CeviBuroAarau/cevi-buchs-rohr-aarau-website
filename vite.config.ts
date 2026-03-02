@@ -46,6 +46,7 @@ export default defineConfig({
 
   test: {
     globals: true,
+    exclude: ['node_modules', 'tests/e2e/**'],
     alias: {
       // axios ships an ESM build that Vitest would resolve by default; the CJS
       // build behaves like a CommonJS module and works with vi.mock factories
