@@ -43,7 +43,7 @@
     "@vue/test-utils": "2.4.6",
     "eslint": "^10",
     "eslint-config-prettier": "^10",
-    "globals": "^16",
+    "globals": "^17",
     "eslint-plugin-prettier": "5.5.5",
     "eslint-plugin-vue": "^10",
     "typescript-eslint": "^8",

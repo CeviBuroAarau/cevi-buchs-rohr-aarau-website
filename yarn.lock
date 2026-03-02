@@ -2038,7 +2038,7 @@ ansi-styles@^4.0.0, ansi-styles@^4.1.0:
   dependencies:
     color-convert "^2.0.1"
 
-ansi-styles@^6.1.0, ansi-styles@^6.2.1:
+ansi-styles@^6.1.0, ansi-styles@^6.2.1, ansi-styles@^6.2.3:
   version "6.2.3"
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-6.2.3.tgz#c044d5dcc521a076413472597a1acb1f103c4041"
   integrity sha512-4Dj6M28JB+oAH8kFkTLUo+a2jwOFkuqb3yucU0CANcRRUbxS0cP0nZYCGjcc3BNXwRIsUVmDGgzawme7zvJHvg==
@@ -2491,9 +2491,9 @@ camelcase@^6.0.0, camelcase@^6.2.0:
   integrity sha512-Gmy6FhYlCY7uOElZUSbxo2UCDH8owEk996gkbrpsgGtrJLM3J7jGxl9Ic7Qwwj4ivOE5AWZWRMecDdF7hqGjFA==
 
 caniuse-lite@^1.0.30001759:
-  version "1.0.30001774"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001774.tgz#0e576b6f374063abcd499d202b9ba1301be29b70"
-  integrity sha512-DDdwPGz99nmIEv216hKSgLD+D4ikHQHjBC/seF98N9CPqRX4M5mSxT9eTV6oyisnJcuzxtZy4n17yKKQYmYQOA==
+  version "1.0.30001775"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30001775.tgz#9572266e3f7f77efee5deac1efeb4795879d1b7f"
+  integrity sha512-s3Qv7Lht9zbVKE9XoTyRG6wVDCKdtOFIjBGg3+Yhn6JaytuNKPIjBMTMIY1AnOH3seL5mvF+x33oGAyK3hVt3A==
 
 canvg@^3.0.11:
   version "3.0.11"
@@ -2641,12 +2641,12 @@ cli-table3@^0.6.3:
     "@colors/colors" "1.5.0"
 
 cli-truncate@^5.0.0:
-  version "5.1.1"
-  resolved "https://registry.yarnpkg.com/cli-truncate/-/cli-truncate-5.1.1.tgz#455476face9904d94b7d11e98d9adbca15292ea5"
-  integrity sha512-SroPvNHxUnk+vIW/dOSfNqdy1sPEFkrTk6TUtqLCnBlo3N7TNYYkzzN7uSD6+jVjrdO4+p8nH7JzH6cIvUem6A==
+  version "5.2.0"
+  resolved "https://registry.yarnpkg.com/cli-truncate/-/cli-truncate-5.2.0.tgz#c8e72aaca8339c773d128c36e0a17c6315b694eb"
+  integrity sha512-xRwvIOMGrfOAnM1JYtqQImuaNtDEv9v6oIYAs4LIHwTiKee8uwvIi363igssOC0O5U04i4AlENs79LQLu9tEMw==
   dependencies:
-    slice-ansi "^7.1.0"
-    string-width "^8.0.0"
+    slice-ansi "^8.0.0"
+    string-width "^8.2.0"
 
 cliui@^2.1.0:
   version "2.1.0"
@@ -3736,9 +3736,9 @@ flat@^5.0.2:
   integrity sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==
 
 flatted@^3.2.9:
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.3.tgz#67c8fad95454a7c7abebf74bb78ee74a44023358"
-  integrity sha512-GX+ysw4PBCz0PzosHDepZGANEuFCMLrnRTiEy9McGjmkCQYwRq4A/X786G/fjM/+OjsWSU1ZrY5qyARZmO/uwg==
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/flatted/-/flatted-3.3.4.tgz#0986e681008f0f13f58e18656c47967682db5ff6"
+  integrity sha512-3+mMldrTAPdta5kjX2G2J7iX4zxtnwpdA8Tr2ZSjkyPSanvbZAcy6flmtnXbEybHrDcU9641lxrMfFuUxVz9vA==
 
 follow-redirects@^1.15.11:
   version "1.15.11"
@@ -3981,10 +3981,10 @@ glob@^7.2.3:
     once "^1.3.0"
     path-is-absolute "^1.0.0"
 
-globals@^16:
-  version "16.5.0"
-  resolved "https://registry.yarnpkg.com/globals/-/globals-16.5.0.tgz#ccf1594a437b97653b2be13ed4d8f5c9f850cac1"
-  integrity sha512-c/c15i26VrJ4IRt5Z89DnIzCGDn9EcebibhAOjw5ibqEHsE1wLUgkPn9RDmNcUKyU87GeaL633nyJ+pplFR2ZQ==
+globals@^17:
+  version "17.4.0"
+  resolved "https://registry.yarnpkg.com/globals/-/globals-17.4.0.tgz#33d7d297ed1536b388a0e2f4bcd0ff19c8ff91b5"
+  integrity sha512-hjrNztw/VajQwOLsMNT1cbJiH2muO3OROCHnbehc8eY5JyD2gqz4AcMHPqgaOR59DjgUjYAYLeH699g/eWi2jw==
 
 globalthis@^1.0.4:
   version "1.0.4"
@@ -4402,7 +4402,7 @@ is-fullwidth-code-point@^3.0.0:
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-3.0.0.tgz#f116f8064fe90b3f7844a38997c0b75051269f1d"
   integrity sha512-zymm5+u+sCsSWyD9qNaejV3DFvhCKclKdizYaJUuHA83RLjb7nSuGnddCHGv0hk+KY7BMAlsWeK4Ueg6EV6XQg==
 
-is-fullwidth-code-point@^5.0.0:
+is-fullwidth-code-point@^5.0.0, is-fullwidth-code-point@^5.1.0:
   version "5.1.0"
   resolved "https://registry.yarnpkg.com/is-fullwidth-code-point/-/is-fullwidth-code-point-5.1.0.tgz#046b2a6d4f6b156b2233d3207d4b5a9783999b98"
   integrity sha512-5XHYaSyiqADb4RnZ1Bdad6cPp8Toise4TzEjcOYDHZkTCbKgiUl7WTUCpNWHuxmDt91wnsZBc9xinNzopv3JMQ==
@@ -6501,9 +6501,9 @@ sass@1.97.3:
     "@parcel/watcher" "^2.4.1"
 
 sax@>=0.6.0:
-  version "1.4.4"
-  resolved "https://registry.yarnpkg.com/sax/-/sax-1.4.4.tgz#f29c2bba80ce5b86f4343b4c2be9f2b96627cf8b"
-  integrity sha512-1n3r/tGXO6b6VXMdFT54SHzT9ytu9yr7TaELowdYpMqY/Ao7EnlQGmAQ1+RatX7Tkkdm6hONI2owqNx2aZj5Sw==
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/sax/-/sax-1.5.0.tgz#b5549b671069b7aa392df55ec7574cf411179eb8"
+  integrity sha512-21IYA3Q5cQf089Z6tgaUTr7lDAyzoTPx5HRtbhsME8Udispad8dC/+sziTNugOEx54ilvatQ9YCzl4KQLPcRHA==
 
 saxes@^5.0.1:
   version "5.0.1"
@@ -6737,6 +6737,14 @@ slice-ansi@^7.1.0:
     ansi-styles "^6.2.1"
     is-fullwidth-code-point "^5.0.0"
 
+slice-ansi@^8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/slice-ansi/-/slice-ansi-8.0.0.tgz#22d0b66d18bc5c57f488bfcf36cbde3bef731537"
+  integrity sha512-stxByr12oeeOyY2BlviTNQlYV5xOj47GirPr4yA1hE9JCtxfQN0+tVbkxwCtYDQWhEKWFHsEK48ORg5jrouCAg==
+  dependencies:
+    ansi-styles "^6.2.3"
+    is-fullwidth-code-point "^5.1.0"
+
 smob@^1.0.0:
   version "1.6.1"
   resolved "https://registry.yarnpkg.com/smob/-/smob-1.6.1.tgz#930607366738545aee542a93e03e47b54e0303e0"
@@ -6949,7 +6957,7 @@ string-width@^7.0.0:
     get-east-asian-width "^1.0.0"
     strip-ansi "^7.1.0"
 
-string-width@^8.0.0:
+string-width@^8.2.0:
   version "8.2.0"
   resolved "https://registry.yarnpkg.com/string-width/-/string-width-8.2.0.tgz#bdb6a9bd6d7800db635adae96cdb0443fec56c42"
   integrity sha512-6hJPQ8N0V0P3SNmP6h2J99RLuzrWz2gvT7VnK5tKvrNqJoyS9W4/Fb8mo31UiPvy00z7DQXkP2hnKBVav76thw==
