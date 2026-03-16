@@ -47,7 +47,7 @@
     "typescript-eslint": "^8",
     "vue-eslint-parser": "^10",
     "husky": "9.1.7",
-    "jsdom": "^28",
+    "jsdom": "^29",
     "jest-canvas-mock": "2.5.2",
     "prettier": "3.8.1",
     "sass": "1.97.3",
