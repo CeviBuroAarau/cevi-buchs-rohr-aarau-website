@@ -45,6 +45,9 @@ jobs:
         echo "created_iso=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
         IMAGE="ghcr.io/${{ github.repository }}"
         echo "image=${IMAGE,,}" >> $GITHUB_OUTPUT
+        VERSION="${{ github.event.inputs.version }}"
+        echo "version_minor=v${VERSION%.*}" >> $GITHUB_OUTPUT
+        echo "version_major=v${VERSION%%.*}" >> $GITHUB_OUTPUT
 
     - name: Set env variables
       run: |
@@ -96,8 +99,10 @@ jobs:
         file: docker/github/Dockerfile
         push: true
         tags: |
-          ${{ steps.meta.outputs.image }}:latest
+          ${{ steps.meta.outputs.image }}:stable
           ${{ steps.meta.outputs.image }}:v${{ github.event.inputs.version }}
+          ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.version_minor }}
+          ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.version_major }}
         labels: |
           org.opencontainers.image.source=${{ github.event.repository.html_url }}
           org.opencontainers.image.created=${{ steps.meta.outputs.created_iso }}

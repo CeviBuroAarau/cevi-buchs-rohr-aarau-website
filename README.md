@@ -50,10 +50,17 @@ Note: it will fail to load the images/files but it will be able to execute all a
 docker build -t cevi-buchs-rohr-aarau-website:latest .
 ```
 
-### Execute the last public docker image
+### Docker image tags
 
+| Tag | Description                                                    |
+|-----|----------------------------------------------------------------|
+| `stable` | Latest stable release (updated on every release)               |
+| `v1`, `v1.0`, `v1.0.2` | Specific stable release — major, major.minor, or exact version |
+| `edge` | Latest build from the main branch (may be unstable)            |
+
+To run the latest stable image:
 ```
-docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-aarau-website ghcr.io/ceviburoaarau/cevi-buchs-rohr-aarau-website:main
+docker run -it -p 8080:80 --rm --name cevi-buchs-rohr-aarau-website ghcr.io/ceviburoaarau/cevi-buchs-rohr-aarau-website:stable
 ```
 
 The webpage is then available under localhost:8080
