@@ -112,7 +112,13 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
+        PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+        if [ -n "$PREV_TAG" ]; then
+          NOTES=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s" --no-merges)
+        else
+          NOTES=$(git log --pretty=format:"- %s" --no-merges)
+        fi
         gh release create "v${{ github.event.inputs.version }}" \
           --title "Release v${{ github.event.inputs.version }}" \
-          --generate-notes \
+          --notes "$NOTES" \
           --latest
