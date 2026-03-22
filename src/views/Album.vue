@@ -32,6 +32,9 @@
               :src="activeAlbum[index].url"
               :alt="activeAlbum[index].title"
             />
+            <p class="lightbox-counter">
+              Bild {{ index + 1 }} von {{ activeAlbum.length }}
+            </p>
             <p class="lightbox-title">{{ activeAlbum[index].title }}</p>
             <div class="lightbox-nav">
               <button v-if="index > 0" @click="index = index - 1">
@@ -65,7 +68,11 @@
                 <div class="media">
                   <div class="media-content">
                     <p class="title is-4">{{ album.title }}</p>
-                    <p class="subtitle is-6">{{ album.dateString }}</p>
+                    <p class="subtitle is-6">
+                      {{ album.dateString }} &middot;
+                      {{ album.images.length }}
+                      {{ album.images.length === 1 ? "Bild" : "Bilder" }}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -123,9 +130,15 @@
   cursor: pointer;
 }
 
+.lightbox-counter {
+  color: rgba(255, 255, 255, 0.6);
+  margin-top: 10px;
+  font-size: 0.85em;
+}
+
 .lightbox-title {
   color: white;
-  margin-top: 10px;
+  margin-top: 4px;
 }
 
 .lightbox-nav {
