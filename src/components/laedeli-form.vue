@@ -18,7 +18,7 @@ export default defineComponent({
       email: "",
       articles: "",
       adress: "",
-      deliveryMethod: "",
+      deliveryMethod: "Abholung",
       LaedeliFormState: LaedeliFormState,
       service: new ShopService(AxiosUtil.getCockpitInstance()) as ShopService,
       errorService: new ErrorReportingService() as ErrorReportingService,
@@ -41,7 +41,7 @@ export default defineComponent({
         this.name = "";
         this.email = "";
         this.articles = "";
-        this.deliveryMethod = "";
+        this.deliveryMethod = "Abholung";
         this.adress = "";
       } catch (err) {
         this.state = LaedeliFormState.NotDisplayed;
@@ -167,10 +167,8 @@ export default defineComponent({
             </div>
           </div>
 
-          <div class="field">
-            <label for="adress" class="label"
-              >Wie lautet Ihre Adresse (notwendig bei Lieferung)?</label
-            >
+          <div class="field" v-if="deliveryMethod === 'Lieferung'">
+            <label for="adress" class="label">Lieferadresse</label>
             <div class="control">
               <textarea
                 id="adress"
