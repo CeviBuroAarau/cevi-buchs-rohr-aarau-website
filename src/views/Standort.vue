@@ -17,7 +17,19 @@
 
       <div style="height: 500px; width: 100%">
         <l-map :zoom="zoom" :minZoom="minZoom" :center="center">
-          <l-tile-layer :url="url" :attribution="attribution" />
+          <l-control-layers />
+          <l-tile-layer
+            url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg"
+            attribution='&copy; <a href="https://www.swisstopo.admin.ch">swisstopo</a>'
+            layer-type="base"
+            name="Strassenkarte"
+          />
+          <l-tile-layer
+            url="https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.swissimage/default/current/3857/{z}/{x}/{y}.jpeg"
+            attribution='&copy; <a href="https://www.swisstopo.admin.ch">swisstopo</a>'
+            layer-type="base"
+            name="Satellit"
+          />
           <l-marker :lat-lng="pfarrhaus">
             <l-tooltip>
               <p>Besammlungsort</p>
@@ -51,7 +63,13 @@
 <script lang="ts">
 import { defineComponent } from "vue";
 import { latLng } from "leaflet";
-import { LMap, LTileLayer, LMarker, LTooltip } from "@vue-leaflet/vue-leaflet";
+import {
+  LMap,
+  LTileLayer,
+  LMarker,
+  LTooltip,
+  LControlLayers,
+} from "@vue-leaflet/vue-leaflet";
 import "leaflet-defaulticon-compatibility";
 
 export default defineComponent({
@@ -61,15 +79,13 @@ export default defineComponent({
     LTileLayer,
     LMarker,
     LTooltip,
+    LControlLayers,
   },
   data() {
     return {
       zoom: 16,
       minZoom: 12,
       center: latLng(47.392085, 8.084783),
-      url: "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-      attribution:
-        '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       pfarrhaus: latLng(47.39246, 8.084986),
     };
   },
