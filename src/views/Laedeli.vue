@@ -37,16 +37,26 @@
         </div>
 
         <div v-else id="articles">
-          <h2 class="subtitle is-2">Reguläre Artikel</h2>
+          <div class="tabs is-boxed">
+            <ul>
+              <li :class="{ 'is-active': activeTab === 'regulaer' }">
+                <a @click="activeTab = 'regulaer'">Reguläre Artikel</a>
+              </li>
+              <li :class="{ 'is-active': activeTab === 'restposten' }">
+                <a @click="activeTab = 'restposten'">Restposten</a>
+              </li>
+            </ul>
+          </div>
 
           <article-list
+            v-if="activeTab === 'regulaer'"
             :articles="
               articleList.filter((item) => item.category == 'Reguläre Artikel')
             "
           ></article-list>
 
-          <h2 class="subtitle is-2">Restposten</h2>
           <article-list
+            v-if="activeTab === 'restposten'"
             :articles="
               articleList.filter((item) => item.category == 'Restposten')
             "
@@ -81,6 +91,7 @@ export default defineComponent({
       service: new ShopService(AxiosUtil.getCockpitInstance()) as ShopService,
       errorService: new ErrorReportingService() as ErrorReportingService,
       isFormOpen: false,
+      activeTab: "regulaer" as "regulaer" | "restposten",
     };
   },
   async mounted(): Promise<void> {

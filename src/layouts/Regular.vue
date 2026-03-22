@@ -48,6 +48,7 @@ export default defineComponent({
 
 @import "bulma/sass/components/card.scss";
 @import "bulma/sass/components/modal.scss";
+@import "bulma/sass/components/tabs.scss";
 
 @import "bulma/sass/elements/button.scss";
 @import "bulma/sass/layout/container.scss";
