@@ -75,6 +75,15 @@
                     </p>
                   </div>
                 </div>
+                <div class="content">
+                  <a
+                    :href="getDownloadUrl(album.title)"
+                    class="button is-small is-light"
+                    @click.stop
+                  >
+                    Album herunterladen
+                  </a>
+                </div>
               </div>
             </div>
           </li>
@@ -200,6 +209,13 @@ export default defineComponent({
         this.loading = false;
         this.errorService.report(err);
       }
+    },
+    getDownloadUrl(albumTitle: string): string {
+      return (
+        import.meta.env.VITE_PHP_BASE_URL +
+        "/download_album.php?album=" +
+        encodeURIComponent(albumTitle)
+      );
     },
     onKeydown(e: KeyboardEvent): void {
       if (this.index === null || this.activeAlbum === null) return;
