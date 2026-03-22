@@ -37,30 +37,55 @@
         </div>
 
         <div v-else id="articles">
-          <div class="tabs is-boxed">
-            <ul>
-              <li :class="{ 'is-active': activeTab === 'regulaer' }">
-                <a @click="activeTab = 'regulaer'">Reguläre Artikel</a>
-              </li>
-              <li :class="{ 'is-active': activeTab === 'restposten' }">
-                <a @click="activeTab = 'restposten'">Restposten</a>
-              </li>
-            </ul>
+          <div class="field">
+            <div class="control has-icons-left">
+              <input
+                class="input"
+                type="text"
+                placeholder="Artikel suchen…"
+                v-model="searchQuery"
+              />
+              <span class="icon is-left">
+                <font-awesome-icon icon="magnifying-glass" />
+              </span>
+            </div>
           </div>
 
-          <article-list
-            v-if="activeTab === 'regulaer'"
-            :articles="
-              articleList.filter((item) => item.category == 'Reguläre Artikel')
-            "
-          ></article-list>
+          <template v-if="searchQuery">
+            <p v-if="searchResults.length === 0" class="has-text-grey mt-3">
+              Keine Artikel gefunden.
+            </p>
+            <article-list v-else :articles="searchResults"></article-list>
+          </template>
 
-          <article-list
-            v-if="activeTab === 'restposten'"
-            :articles="
-              articleList.filter((item) => item.category == 'Restposten')
-            "
-          ></article-list>
+          <template v-else>
+            <div class="tabs is-boxed">
+              <ul>
+                <li :class="{ 'is-active': activeTab === 'regulaer' }">
+                  <a @click="activeTab = 'regulaer'">Reguläre Artikel</a>
+                </li>
+                <li :class="{ 'is-active': activeTab === 'restposten' }">
+                  <a @click="activeTab = 'restposten'">Restposten</a>
+                </li>
+              </ul>
+            </div>
+
+            <article-list
+              v-if="activeTab === 'regulaer'"
+              :articles="
+                articleList.filter(
+                  (item) => item.category == 'Reguläre Artikel',
+                )
+              "
+            ></article-list>
+
+            <article-list
+              v-if="activeTab === 'restposten'"
+              :articles="
+                articleList.filter((item) => item.category == 'Restposten')
+              "
+            ></article-list>
+          </template>
         </div>
       </div>
     </div>
@@ -92,7 +117,16 @@ export default defineComponent({
       errorService: new ErrorReportingService() as ErrorReportingService,
       isFormOpen: false,
       activeTab: "regulaer" as "regulaer" | "restposten",
+      searchQuery: "",
     };
+  },
+  computed: {
+    searchResults(): Article[] {
+      const q = this.searchQuery.toLowerCase();
+      return this.articleList.filter((item) =>
+        item.name.toLowerCase().includes(q),
+      );
+    },
   },
   async mounted(): Promise<void> {
     await this.loadArticles();
