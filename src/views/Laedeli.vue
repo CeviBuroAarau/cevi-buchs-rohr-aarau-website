@@ -62,10 +62,14 @@
             <div class="tabs is-boxed">
               <ul>
                 <li :class="{ 'is-active': activeTab === 'regulaer' }">
-                  <a @click="activeTab = 'regulaer'">Reguläre Artikel</a>
+                  <a @click="activeTab = 'regulaer'"
+                    >Reguläre Artikel ({{ regulaerCount }})</a
+                  >
                 </li>
                 <li :class="{ 'is-active': activeTab === 'restposten' }">
-                  <a @click="activeTab = 'restposten'">Restposten</a>
+                  <a @click="activeTab = 'restposten'"
+                    >Restposten ({{ restpostenCount }})</a
+                  >
                 </li>
               </ul>
             </div>
@@ -126,6 +130,15 @@ export default defineComponent({
       return this.articleList.filter((item) =>
         item.name.toLowerCase().includes(q),
       );
+    },
+    regulaerCount(): number {
+      return this.articleList.filter(
+        (item) => item.category == "Reguläre Artikel",
+      ).length;
+    },
+    restpostenCount(): number {
+      return this.articleList.filter((item) => item.category == "Restposten")
+        .length;
     },
   },
   async mounted(): Promise<void> {
