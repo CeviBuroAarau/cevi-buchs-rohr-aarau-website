@@ -2,11 +2,12 @@
 
 exports[`ArticleList Component > render article-list 1`] = `
 <ul
+  class="article-grid"
   data-v-893826b0=""
 >
   
   <li
-    class="vue-light-gallery-thumb"
+    class="article-item"
     data-v-893826b0=""
   >
     <div
@@ -29,7 +30,7 @@ exports[`ArticleList Component > render article-list 1`] = `
         data-v-893826b0=""
       >
         <img
-          alt=""
+          alt="Jungscharhemd Kinder"
           data-v-893826b0=""
           src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp"
         />
@@ -38,21 +39,23 @@ exports[`ArticleList Component > render article-list 1`] = `
         class="card-content"
         data-v-893826b0=""
       >
-        <div
-          class="content"
+        <p
+          class="price-tag"
           data-v-893826b0=""
         >
           54.9 CHF
-          <br
-            data-v-893826b0=""
-          />
-           Verf\\u00fcgbare Gr\\u00f6ssen 140, 152, 164
-        </div>
+        </p>
+        <p
+          class="description"
+          data-v-893826b0=""
+        >
+          Verf\\u00fcgbare Gr\\u00f6ssen 140, 152, 164
+        </p>
       </div>
     </div>
   </li>
   <li
-    class="vue-light-gallery-thumb"
+    class="article-item"
     data-v-893826b0=""
   >
     <div
@@ -75,7 +78,7 @@ exports[`ArticleList Component > render article-list 1`] = `
         data-v-893826b0=""
       >
         <img
-          alt=""
+          alt="Jungscharhemd Erwachsene"
           data-v-893826b0=""
           src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp"
         />
@@ -84,16 +87,18 @@ exports[`ArticleList Component > render article-list 1`] = `
         class="card-content"
         data-v-893826b0=""
       >
-        <div
-          class="content"
+        <p
+          class="price-tag"
           data-v-893826b0=""
         >
           62.9 CHF
-          <br
-            data-v-893826b0=""
-          />
-           Verf\\u00fcgbare Gr\\u00f6ssen S, M, L, XL, 2XL
-        </div>
+        </p>
+        <p
+          class="description"
+          data-v-893826b0=""
+        >
+          Verf\\u00fcgbare Gr\\u00f6ssen S, M, L, XL, 2XL
+        </p>
       </div>
     </div>
   </li>

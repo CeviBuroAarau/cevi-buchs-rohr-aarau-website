@@ -1,9 +1,16 @@
 import { shallowMount } from "@vue/test-utils";
 import Laedeli from "@/views/Laedeli.vue";
 
+const globalStubs = {
+  global: {
+    stubs: { FontAwesomeIcon: true },
+  },
+};
+
 describe("Lädeli Page", () => {
   it("check loading message", () => {
     const wrapper = shallowMount(Laedeli, {
+      ...globalStubs,
       data: () => {
         return {
           loading: true,
@@ -30,6 +37,7 @@ describe("Lädeli Page", () => {
     };
 
     const wrapper = await shallowMount(Laedeli, {
+      ...globalStubs,
       data: () => {
         return {
           service: service,
@@ -59,6 +67,7 @@ describe("Lädeli Page", () => {
     };
 
     const wrapper = await shallowMount(Laedeli, {
+      ...globalStubs,
       data: () => {
         return {
           service: service,
@@ -79,7 +88,7 @@ describe("Lädeli Page", () => {
   it("show form", async () => {
     const laedeliFormFunction = vi.fn();
 
-    const wrapper = await shallowMount(Laedeli, {});
+    const wrapper = await shallowMount(Laedeli, { ...globalStubs });
 
     (wrapper.vm.$ as any).refs = {
       laedeliForm: { showForm: laedeliFormFunction },
