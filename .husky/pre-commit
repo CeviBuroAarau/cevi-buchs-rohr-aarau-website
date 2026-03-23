@@ -1,14 +1,13 @@
 #!/bin/bash
 set -o pipefail
 IFS=$'\n\t'
-. "$(dirname "$0")/_/husky.sh"
 
 yarn lint
-yarn yaml-validator .github/workflows/analyze.yml
-yarn yaml-validator .github/workflows/build_branch.yml
-yarn yaml-validator .github/workflows/build_main.yml
-yarn yaml-validator .github/workflows/release.yml
-yarn yaml-validator .github/dependabot.yml
+yarn yaml-validate .github/workflows/analyze.yml
+yarn yaml-validate .github/workflows/build_branch.yml
+yarn yaml-validate .github/workflows/build_main.yml
+yarn yaml-validate .github/workflows/release.yml
+yarn yaml-validate .github/dependabot.yml
 sed -i -e "s#https://npm.uhlme.ch/#https://registry.yarnpkg.com/#g" yarn.lock
 yarn test:unit
 # The e2e Test often make problems when the chrome version is mismatching
