@@ -61,7 +61,7 @@ export class AgendaService {
     events.forEach((event) => {
       eventTableData.push([
         event.title,
-        HtmlUtil.decodeHTMLEntities(event.text.replace(/<\/?[^>]+>/gi, "")),
+        HtmlUtil.decodeHTMLEntities(HtmlUtil.stripTags(event.text)),
       ]);
     });
 

@@ -3,7 +3,6 @@ set -o pipefail
 IFS=$'\n\t'
 
 yarn lint
-yarn yaml-validate .github/workflows/analyze.yml
 yarn yaml-validate .github/workflows/build_branch.yml
 yarn yaml-validate .github/workflows/build_main.yml
 yarn yaml-validate .github/workflows/release.yml
