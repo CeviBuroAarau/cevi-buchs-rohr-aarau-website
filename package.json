@@ -30,7 +30,7 @@
     "leaflet-defaulticon-compatibility": "0.1.2",
     "lint-staged": "16.4.0",
     "vue": "3.5.29",
-    "vue-router": "5.0.3",
+    "vue-router": "5.0.4",
     "yaml-validator": "5.1.0"
   },
   "devDependencies": {
