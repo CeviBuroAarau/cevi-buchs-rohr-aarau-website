@@ -46,7 +46,7 @@
     "globals": "^17",
     "husky": "9.1.7",
     "jest-canvas-mock": "2.5.2",
-    "js-yaml": "^4.1.1",
+    "js-yaml": "^4.2.0",
     "jsdom": "^29",
     "prettier": "3.8.1",
     "sass": "1.99.0",
