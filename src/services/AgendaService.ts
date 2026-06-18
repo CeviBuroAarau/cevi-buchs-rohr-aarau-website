@@ -68,14 +68,13 @@ export class AgendaService {
     const contactHeader = [["Funktion", "Kontaktdaten"]];
     const contactData: Array<string[]> = [
       [
-        "Gruppenleiter Sprösslis",
-        "Elias Scheidegger v/o Asterix, 079 727 02 16 / asterix@cevimail.ch",
+        "Gruppenleiterin",
+        "Sira Hächler v/o Zippora, 075 424 67 11 / zippora@cevimail.ch",
       ],
       [
-        "Gruppenleiter Glühwürmli",
-        "Yannis Bontempi v/o Ayal, 079 932 44 85 / ayal@cevimail.ch",
+        "Abteilungsleiterin",
+        "Leah Dellenbach v/o Luna, 076 405 81 18 / luna@cevimail.ch",
       ],
-      ["Abteilungsleitung", "Leah Dellenbach v/o Luna, 076 405 81 18"],
     ];
 
     const creator: AgendaPDFCreator = new AgendaPDFCreator();
