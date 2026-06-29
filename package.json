@@ -14,7 +14,7 @@
     "yaml-validate": "node -e \"const yaml=require('js-yaml'),fs=require('fs');process.argv.slice(1).forEach(f=>{try{yaml.load(fs.readFileSync(f,'utf8'));console.log('OK:',f)}catch(e){console.error('FAIL:',f,e.message);process.exit(1)}})\""
   },
   "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "7.2.0",
+    "@fortawesome/fontawesome-svg-core": "7.3.0",
     "@fortawesome/free-brands-svg-icons": "7.2.0",
     "@fortawesome/free-solid-svg-icons": "7.2.0",
     "@fortawesome/vue-fontawesome": "3.2.0",
