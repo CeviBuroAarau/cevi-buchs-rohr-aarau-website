@@ -6,6 +6,46 @@ updates:
     interval: weekly
     time: "04:00"
   open-pull-requests-limit: 10
+  # Packages within a group are released in lockstep and have peer/runtime
+  # constraints on each other, so bumping one without the others breaks the
+  # build. Omitting update-types groups major, minor and patch alike.
+  groups:
+    vitest:
+      patterns:
+      - "vitest"
+      - "@vitest/*"
+      - "vitest-sonar-reporter"
+    vite:
+      patterns:
+      - "vite"
+      - "@vitejs/*"
+    vue:
+      patterns:
+      - "vue"
+      - "vue-router"
+      - "@vue/*"
+    eslint:
+      patterns:
+      - "eslint"
+      - "@eslint/*"
+      - "eslint-config-*"
+      - "eslint-plugin-*"
+      - "typescript-eslint"
+      - "vue-eslint-parser"
+      - "globals"
+    fortawesome:
+      patterns:
+      - "@fortawesome/*"
+    jspdf:
+      patterns:
+      - "jspdf"
+      - "jspdf-autotable"
+    leaflet:
+      patterns:
+      - "leaflet"
+      - "leaflet-*"
+      - "@types/leaflet"
+      - "@vue-leaflet/*"
 - package-ecosystem: github-actions
   directory: "/"
   schedule:
