@@ -9,9 +9,9 @@ Metrics:
 
 ## Getting started
 ```
-nvm use 24
-yarn install
-yarn serve
+nvm use 26
+npm install
+npm run serve
 ```
 
 The webpage is then available under localhost:8080
@@ -19,9 +19,9 @@ The webpage is then available under localhost:8080
 ### Create the build and run the tests
 
 ```
-yarn build
-yarn test:unit
-yarn test:e2e
+npm run build
+npm run test:unit
+npm run test:e2e
 ```
 
 A coverage report is generated in the folder coverage and tests/e2e/reports
@@ -35,9 +35,9 @@ docker run --init --rm -v $(pwd):/tmp -p 4010:4010 stoplight/prism:4 mock -h 0.0
 
 Run the webpage:
 ```
-sed -i 's#VUE_APP_COCKPIT_API=https://cockpit.cevi-buro-aarau.ch/api/#VUE_APP_COCKPIT_API=http://localhost:4010/#g' .env
-yarn install
-yarn serve
+sed -i 's#VITE_COCKPIT_API=https://cockpit.cevi-buro-aarau.ch/api/#VITE_COCKPIT_API=http://localhost:4010/#g' .env
+npm install
+npm run serve
 ```
 
 The webpage is then available under localhost:8080

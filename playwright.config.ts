@@ -8,7 +8,7 @@ export default defineConfig({
     screenshot: 'only-on-failure',
   },
   webServer: {
-    command: 'PORT=8080 yarn start',
+    command: 'PORT=8080 npm start',
     url: 'http://localhost:8080',
     reuseExistingServer: !process.env.CI,
   },
