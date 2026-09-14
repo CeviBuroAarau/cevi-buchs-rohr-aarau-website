@@ -1,9 +1,7 @@
-const express = require("express");
-const Response = require("express");
-const history = require('connect-history-api-fallback')
-const path = require('path');
-const serveStatic = require("serve-static");
-const compression = require("compression");
+import express from "express";
+import history from "connect-history-api-fallback";
+import path from "node:path";
+import compression from "compression";
 
 function setNoCache(res) {
     const date = new Date();
@@ -30,7 +28,7 @@ app.use(history({
 // use gzip compression
 app.use(compression());
 
-app.use(serveStatic(path.join(__dirname + "/dist"), {
+app.use(express.static(path.join(import.meta.dirname, "dist"), {
     extensions: ["html"],
     setHeaders(res, reqpath) {
         // html is not cached
