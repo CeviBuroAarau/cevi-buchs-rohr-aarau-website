@@ -2,6 +2,7 @@
   "name": "cevi-buro-aarau-website",
   "version": "0.0.0",
   "private": true,
+  "type": "module",
   "author": "Patrick Uhlmann",
   "scripts": {
     "serve": "vite",
@@ -11,7 +12,7 @@
     "lint": "eslint src tests --fix",
     "postinstall": "husky",
     "start": "node server.js",
-    "yaml-validate": "node -e \"const yaml=require('js-yaml'),fs=require('fs');process.argv.slice(1).forEach(f=>{try{yaml.load(fs.readFileSync(f,'utf8'));console.log('OK:',f)}catch(e){console.error('FAIL:',f,e.message);process.exit(1)}})\""
+    "yaml-validate": "node scripts/yaml-validate.js"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "7.3.1",
