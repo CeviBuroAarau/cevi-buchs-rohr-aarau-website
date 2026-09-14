@@ -1,0 +1,40 @@
+@startuml Use Cases Overview
+left to right direction
+
+actor "Visitor" as visitor
+actor "Member" as member
+actor "Content Backend" as cms
+actor "Album Download Service" as albumservice
+
+rectangle "Cevi Buchs-Rohr Aarau Website" {
+    usecase "UC-001\nExplore the Public Pages" as UC001
+    usecase "UC-002\nRegister for a Trial Visit" as UC002
+    usecase "UC-003\nContact the Section" as UC003
+    usecase "UC-004\nReview Press Coverage and Historic Documents" as UC004
+    usecase "UC-005\nConsult the Programme Agenda" as UC005
+    usecase "UC-006\nBrowse Photo Albums" as UC006
+    usecase "UC-007\nOrder Articles from the Shop" as UC007
+    usecase "UC-008\nLook Up the Leader Team" as UC008
+}
+
+visitor --> UC001
+visitor --> UC002
+visitor --> UC003
+visitor --> UC004
+
+member --> UC005
+member --> UC006
+member --> UC007
+member --> UC008
+
+UC001 --> cms
+UC002 --> cms
+UC003 --> cms
+UC004 --> cms
+UC005 --> cms
+UC006 --> cms
+UC006 --> albumservice
+UC007 --> cms
+UC008 --> cms
+
+@enduml
