@@ -22,21 +22,10 @@ jobs:
       uses: actions/setup-node@v7.0.0
       with:
         node-version: 26.x
-
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-    - uses: actions/cache@v6
-      id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+        cache: npm
 
     - name: "Install Dependencies"
-      run: yarn --frozen-lockfile
+      run: npm ci
 
     - name: get date and revision
       id: date_and_rev
@@ -50,7 +39,7 @@ jobs:
         sed -i 's#VITE_REVISION=Not specified#VITE_REVISION=${{ steps.date_and_rev.outputs.revision }}#g' .env
 
     - name: "Build"
-      run: yarn run build
+      run: npm run build
 
     - name: Archive dist
       uses: actions/upload-artifact@v7
@@ -67,7 +56,7 @@ jobs:
         path: dist/report.html
 
     - name: "Unit Tests"
-      run: yarn test:unit
+      run: npm run test:unit
 
     - name: Archive report
       uses: actions/upload-artifact@v7
@@ -79,7 +68,7 @@ jobs:
       run: npx playwright install chromium --with-deps
 
     - name: "E2E Tests"
-      run: yarn test:e2e
+      run: npm run test:e2e
 
     - name: Archive E2E test report
       uses: actions/upload-artifact@v7

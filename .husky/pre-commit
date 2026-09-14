@@ -2,14 +2,14 @@
 set -o pipefail
 IFS=$'\n\t'
 
-yarn lint
-yarn yaml-validate .github/workflows/build_branch.yml
-yarn yaml-validate .github/workflows/build_main.yml
-yarn yaml-validate .github/workflows/release.yml
-yarn yaml-validate .github/workflows/dependabot_automerge.yml
-yarn yaml-validate .github/dependabot.yml
-sed -i -e "s#https://npm.uhlme.ch/#https://registry.yarnpkg.com/#g" yarn.lock
-yarn test:unit
+npm run lint
+npm run yaml-validate .github/workflows/build_branch.yml
+npm run yaml-validate .github/workflows/build_main.yml
+npm run yaml-validate .github/workflows/release.yml
+npm run yaml-validate .github/workflows/dependabot_automerge.yml
+npm run yaml-validate .github/dependabot.yml
+sed -i -e "s#https://npm.uhlme.ch/#https://registry.npmjs.org/#g" package-lock.json
+npm run test:unit
 # The e2e Test often make problems when the chrome version is mismatching
-# yarn test:e2e
+# npm run test:e2e
 git diff --name-only --cached --diff-filter=d | xargs -l git add

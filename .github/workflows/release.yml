@@ -25,20 +25,10 @@ jobs:
       uses: actions/setup-node@v7.0.0
       with:
         node-version: 26.x
-
-    - name: Get yarn cache directory path
-      id: yarn-cache-dir-path
-      run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
-
-    - uses: actions/cache@v6
-      with:
-        path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
-        key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-yarn-
+        cache: npm
 
     - name: Install Dependencies
-      run: yarn --frozen-lockfile
+      run: npm ci
 
     - name: Set build metadata
       id: meta
@@ -59,10 +49,10 @@ jobs:
         sed -i 's#VITE_VERSION=Not specified#VITE_VERSION=${{ github.event.inputs.version }}#g' .env
 
     - name: Build
-      run: yarn build
+      run: npm run build
 
     - name: Unit Tests
-      run: yarn test:unit
+      run: npm run test:unit
 
     - name: Archive unit test coverage report
       uses: actions/upload-artifact@v7
@@ -74,7 +64,7 @@ jobs:
       run: npx playwright install chromium --with-deps
 
     - name: E2E Tests
-      run: yarn test:e2e
+      run: npm run test:e2e
 
     - name: Archive E2E test report
       uses: actions/upload-artifact@v7
