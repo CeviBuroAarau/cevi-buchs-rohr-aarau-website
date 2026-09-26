@@ -8,7 +8,7 @@ function setNoCache(res) {
     date.setFullYear(date.getFullYear() - 1);
     res.setHeader("Expires", date.toUTCString());
     res.setHeader("Pragma", "no-cache");
-    res.setHeader("Cache-Control", "public, no-cache");
+    res.setHeader("Cache-Control", "no-cache");
   }
   
   function setLongTermCache(res) {
@@ -37,9 +37,9 @@ app.use(express.static(path.join(import.meta.dirname, "dist"), {
             return;
         }
 
-        // js, css and images are cached for one year
-        // this works because webpack adds a chunk hash in the filename
-        if (reqpath.match(/\.(js|css|png|jpg|jpeg|gif|ico|json|webp|svg)$/)) {
+        // files in /assets are cached for one year
+        // this works because vite adds a content hash in the filename
+        if (reqpath.startsWith("/assets/")) {
             setLongTermCache(res);
         }
     },

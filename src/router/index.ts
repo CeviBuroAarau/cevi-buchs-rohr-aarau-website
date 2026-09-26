@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import FrontLayout from "@/layouts/Front.vue";
+import { isChunkLoadError, reloadForNewDeployment } from "./chunkReload";
 
 const LazyRegularLayout = () => import("@/layouts/Regular.vue");
 const LazyInteressierte = () => import("@/views/Interessierte.vue");
@@ -226,7 +227,16 @@ const router = createRouter({
 });
 
 router.afterEach(() => {
-  Shynet.newPageLoad();
+  // the statistics script may be blocked (e.g. by an ad blocker)
+  if (typeof Shynet !== "undefined") {
+    Shynet.newPageLoad();
+  }
+});
+
+router.onError((error, to) => {
+  if (isChunkLoadError(error)) {
+    reloadForNewDeployment(router.resolve(to.fullPath).href);
+  }
 });
 
 export default router;
