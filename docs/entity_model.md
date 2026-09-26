@@ -27,7 +27,7 @@ A picture that can be shown as the background of the welcome page.
 
 | Attribute  | Description                                    | Data Type | Length/Precision | Validation Rules |
 |------------|------------------------------------------------|-----------|------------------|------------------|
-| id         | Unique identifier                              | String    | 24               | Primary Key      |
+| id         | Unique identifier                              | Integer   | 10               | Primary Key      |
 | image_path | Storage location of the picture                | String    | 255              | Not Null         |
 | created    | Point in time at which the picture was added   | DateTime  | 19               | Not Null         |
 | modified   | Point in time of the last change               | DateTime  | 19               | Not Null         |
@@ -38,7 +38,7 @@ A typical activity of an afternoon, presented as a picture in the activity galle
 
 | Attribute  | Description                                          | Data Type | Length/Precision | Validation Rules |
 |------------|------------------------------------------------------|-----------|------------------|------------------|
-| id         | Unique identifier                                    | String    | 24               | Primary Key      |
+| id         | Unique identifier                                    | Integer   | 10               | Primary Key      |
 | title      | Designation of the activity                          | String    | 200              | Not Null         |
 | image_path | Storage location of the picture in full size         | String    | 255              | Not Null         |
 | thumb_path | Storage location of the picture in preview size      | String    | 255              | Not Null         |
@@ -52,7 +52,7 @@ A planned afternoon or special event of the section.
 
 | Attribute | Description                                                        | Data Type | Length/Precision | Validation Rules |
 |-----------|--------------------------------------------------------------------|-----------|------------------|------------------|
-| id        | Unique identifier                                                  | String    | 24               | Primary Key      |
+| id        | Unique identifier                                                  | Integer   | 10               | Primary Key      |
 | title     | Designation of the event including date and time as written text   | String    | 200              | Not Null         |
 | text      | Description of the event with formatting                           | String    | 4000             | Not Null         |
 | date      | Day on which the event takes place                                 | Date      | 10               | Not Null         |
@@ -65,9 +65,9 @@ An announcement with detailed information about an event, addressed to one group
 
 | Attribute  | Description                                                   | Data Type | Length/Precision | Validation Rules                  |
 |------------|---------------------------------------------------------------|-----------|------------------|-----------------------------------|
-| id         | Unique identifier                                             | String    | 24               | Primary Key                       |
+| id         | Unique identifier                                             | Integer   | 10               | Primary Key                       |
 | event_date | Day of the event the announcement belongs to                  | Date      | 10               | Not Null                          |
-| group_id   | Group the announcement is addressed to                        | String    | 24               | Not Null, Foreign Key (GROUP.id)  |
+| group_id   | Group the announcement is addressed to, none for everyone     | Integer   | 10               | Foreign Key (GROUP.id)            |
 | text       | Announcement with meeting point, equipment and end of the day | String    | 4000             | Not Null                          |
 | created    | Point in time at which the announcement was published         | DateTime  | 19               | Not Null                          |
 | modified   | Point in time of the last change                              | DateTime  | 19               | Not Null                          |
@@ -78,7 +78,7 @@ An age group of the section, or the section as a whole, to which leaders and ann
 
 | Attribute | Description                                     | Data Type | Length/Precision | Validation Rules |
 |-----------|-------------------------------------------------|-----------|------------------|------------------|
-| id        | Unique identifier                               | String    | 24               | Primary Key      |
+| id        | Unique identifier                               | Integer   | 10               | Primary Key      |
 | name      | Designation of the group as shown to the reader | String    | 100              | Not Null, Unique |
 
 ### ALBUM
@@ -87,7 +87,7 @@ A collection of pictures of one past afternoon or event.
 
 | Attribute          | Description                                              | Data Type | Length/Precision | Validation Rules |
 |--------------------|----------------------------------------------------------|-----------|------------------|------------------|
-| id                 | Unique identifier                                        | String    | 24               | Primary Key      |
+| id                 | Unique identifier                                        | Integer   | 10               | Primary Key      |
 | title              | Designation of the album                                 | String    | 200              | Not Null         |
 | date_text          | Date of the album as written text for the reader         | String    | 100              | Not Null         |
 | date               | Day the album belongs to, used for the ordering          | Date      | 10               | Not Null         |
@@ -102,8 +102,8 @@ A single picture within an album.
 
 | Attribute | Description                        | Data Type | Length/Precision | Validation Rules                 |
 |-----------|------------------------------------|-----------|------------------|----------------------------------|
-| asset_id  | Unique identifier of the picture   | String    | 24               | Primary Key                      |
-| album_id  | Album the picture belongs to       | String    | 24               | Not Null, Foreign Key (ALBUM.id) |
+| asset_id  | Unique identifier of the picture   | Integer   | 10               | Primary Key                      |
+| album_id  | Album the picture belongs to       | Integer   | 10               | Not Null, Foreign Key (ALBUM.id) |
 | title     | Caption shown with the picture     | String    | 200              | Optional                         |
 | path      | Storage location of the picture    | String    | 255              | Not Null                         |
 
@@ -113,7 +113,7 @@ A press article about the section or a document from its history.
 
 | Attribute   | Description                                                        | Data Type | Length/Precision | Validation Rules                  |
 |-------------|--------------------------------------------------------------------|-----------|------------------|-----------------------------------|
-| id          | Unique identifier                                                  | String    | 24               | Primary Key                       |
+| id          | Unique identifier                                                  | Integer   | 10               | Primary Key                       |
 | type        | Classification of the entry                                        | String    | 20               | Not Null, Values: news, historic  |
 | source      | Medium the entry originates from                                   | String    | 100              | Not Null                          |
 | date        | Day of publication                                                 | Date      | 10               | Not Null                          |
@@ -128,7 +128,7 @@ An article offered by the section in its shop.
 
 | Attribute   | Description                                              | Data Type | Length/Precision | Validation Rules                                       |
 |-------------|----------------------------------------------------------|-----------|------------------|--------------------------------------------------------|
-| id          | Unique identifier                                        | String    | 24               | Primary Key                                            |
+| id          | Unique identifier                                        | Integer   | 10               | Primary Key                                            |
 | sort_key    | Position of the article within its category              | String    | 10               | Not Null                                               |
 | name        | Designation of the article                               | String    | 200              | Not Null                                               |
 | description | Remarks such as available sizes or remaining quantity    | String    | 500              | Not Null                                               |
@@ -144,12 +144,12 @@ A person who leads a group of the section or the section as a whole.
 
 | Attribute         | Description                                                        | Data Type | Length/Precision | Validation Rules                                                     |
 |-------------------|--------------------------------------------------------------------|-----------|------------------|----------------------------------------------------------------------|
-| id                | Unique identifier                                                  | String    | 24               | Primary Key                                                          |
+| id                | Unique identifier                                                  | Integer   | 10               | Primary Key                                                          |
 | name              | Civil name of the leader                                           | String    | 100              | Not Null                                                             |
 | scout_name        | Name used within the section                                       | String    | 50               | Not Null                                                             |
 | is_active         | States whether the leader currently leads                          | Boolean   | 1                | Not Null                                                             |
 | function          | Functions held, several of them possible                           | String    | 200              | Not Null, Values: Hilfsleiter, Gruppenleiter, Abteilungsleiter       |
-| group_id          | Group the leader belongs to                                        | String    | 24               | Not Null, Foreign Key (GROUP.id)                                     |
+| group_id          | Group the leader belongs to                                        | Integer   | 10               | Not Null, Foreign Key (GROUP.id)                                     |
 | birth_year        | Year of birth                                                      | Integer   | 4                | Optional                                                             |
 | place             | Place of residence                                                 | String    | 100              | Optional                                                             |
 | profession        | Profession or school                                               | String    | 100              | Optional                                                             |

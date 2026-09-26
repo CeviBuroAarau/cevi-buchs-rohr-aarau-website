@@ -1,31 +1,28 @@
-import { CockpitMedia, Media } from "@/types";
+import { BackendMedia, Media } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, AxiosUtil } from "@/utils";
+import { PayloadUtil } from "@/utils";
 
 export class MediaService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {
     this.axios = axios;
-    this.axios.interceptors.response.use((resp) =>
-      AxiosUtil.dateConversionInterceptor(resp, "date"),
-    );
   }
 
   private async retrieveMedia(): Promise<Media[]> {
-    const resp: AxiosResponse<CockpitMedia> =
-      await this.axios.get<CockpitMedia>("collections/get/Media");
+    const resp: AxiosResponse<BackendMedia> =
+      await this.axios.get<BackendMedia>("press", {
+        params: PayloadUtil.listParams({ sort: "-date" }),
+      });
 
-    let result: Media[] = resp.data.entries;
-    result.forEach((m) => {
-      m.file = import.meta.env.VITE_COCKPIT_FILES + m.file;
+    return resp.data.docs.map((m) => {
+      return {
+        type: m.type,
+        date: new Date(m.date),
+        description: m.descriptionHtml,
+        file: m.file.url,
+      };
     });
-
-    result = result.sort((a: Media, b: Media) => {
-      return SortingUtil.sortDescending(a.date, b.date);
-    });
-
-    return result;
   }
 
   async getChronic(): Promise<Media[]> {

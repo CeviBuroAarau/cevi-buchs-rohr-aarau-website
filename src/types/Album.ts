@@ -1,3 +1,5 @@
+import { PayloadList, PayloadUpload } from "./Payload";
+
 export interface AlbumPreviewImage {
   url: string;
 }
@@ -9,34 +11,22 @@ export interface AlbumImage {
 
 export interface Album {
   title: string;
-  dateString: string;
+  dateLabel: string;
   date: Date;
-  year: number;
+  year: string;
   images: AlbumImage[];
   previewImage: AlbumPreviewImage;
+  downloadUrl: string;
 }
 
-export interface CockpitAlbumImage {
-  meta: {
-    title: string;
-    asset: string;
-  };
-  path: string;
-}
-
-export interface CockpitAlbumPreviewImage {
-  path: string;
-}
-
-export interface CockpitAlbumEntry {
+export interface AlbumRaw {
+  id: number;
   title: string;
-  dateString: string;
-  date: Date;
-  year: number;
-  images: CockpitAlbumImage[];
-  previewImage: CockpitAlbumPreviewImage;
+  dateLabel: string;
+  date: string;
+  year: string;
+  images: PayloadUpload[];
+  previewImage: PayloadUpload;
 }
 
-export interface CockpitAlbum {
-  entries: CockpitAlbumEntry[];
-}
+export type BackendAlbums = PayloadList<AlbumRaw>;

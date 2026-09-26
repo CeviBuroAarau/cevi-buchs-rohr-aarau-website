@@ -1,4 +1,4 @@
-import { SchnuppernFormRequest, SchnuppernFormResponse } from "@/types";
+import { SchnuppernFormRequest } from "@/types";
 import { AxiosInstance } from "axios";
 
 export class SchnuppernService {
@@ -9,6 +9,6 @@ export class SchnuppernService {
   }
 
   async submitForm(data: SchnuppernFormRequest): Promise<void> {
-    await this.axios.post<SchnuppernFormResponse>("forms/submit/join", data);
+    await this.axios.post("form-join", data);
   }
 }

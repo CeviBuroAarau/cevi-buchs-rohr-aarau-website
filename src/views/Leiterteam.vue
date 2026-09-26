@@ -79,7 +79,7 @@ export default defineComponent({
       loading: true,
       error: false,
       service: new LeaderService(
-        AxiosUtil.getCockpitInstance(),
+        AxiosUtil.getBackendInstance(),
       ) as LeaderService,
       errorService: new ErrorReportingService() as ErrorReportingService,
       isALDisplayed: false,

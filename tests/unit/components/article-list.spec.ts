@@ -6,18 +6,14 @@ describe("ArticleList Component", () => {
   const articles: Article[] = [
     {
       name: "Jungscharhemd Kinder",
-      file:
-        import.meta.env.VITE_COCKPIT_FILES +
-        "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp",
+      file: "https://cms.cevi-buro-aarau.ch/api/media/file/haupt_01_cevi_hemd.webp",
       price: "54.9",
       categories: ["Regul\\u00e4re Artikel"],
       description: "Verf\\u00fcgbare Gr\\u00f6ssen 140, 152, 164",
     },
     {
       name: "Jungscharhemd Erwachsene",
-      file:
-        import.meta.env.VITE_COCKPIT_FILES +
-        "\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp",
+      file: "https://cms.cevi-buro-aarau.ch/api/media/file/haupt_02_cevi_hemd_erwachsene.webp",
       price: "62.9",
       categories: ["Regul\\u00e4re Artikel"],
       description: "Verf\\u00fcgbare Gr\\u00f6ssen S, M, L, XL, 2XL",

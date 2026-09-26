@@ -1,6 +1,6 @@
-import { CockpitAgenda, Agenda, EventInfo, CockpitEventInfos } from "@/types";
+import { BackendAgenda, Agenda, EventInfo, BackendEventInfos } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, AxiosUtil, HtmlUtil } from "@/utils";
+import { HtmlUtil, PayloadUtil } from "@/utils";
 import { AgendaPDFCreator } from "./AgendaPDFCreator";
 
 export class AgendaService {
@@ -8,41 +8,47 @@ export class AgendaService {
 
   constructor(axios: AxiosInstance) {
     this.axios = axios;
-    this.axios.interceptors.response.use((resp) =>
-      AxiosUtil.dateConversionInterceptor(resp, "date"),
-    );
   }
 
   private async retrieveUpcomingEvents(currentDay: Date): Promise<Agenda[]> {
-    const resp: AxiosResponse<CockpitAgenda> =
-      await this.axios.get<CockpitAgenda>("collections/get/Agenda");
+    const resp: AxiosResponse<BackendAgenda> =
+      await this.axios.get<BackendAgenda>("agenda", {
+        params: PayloadUtil.listParams({
+          sort: "date",
+          where: {
+            date: { greater_than_equal: PayloadUtil.startOfDay(currentDay) },
+          },
+        }),
+      });
 
-    currentDay.setHours(0, 0, 0, 0);
-
-    let result: Agenda[] = resp.data.entries.filter(
-      (a) => a.date >= currentDay,
-    );
-
-    result = result.sort((a: Agenda, b: Agenda) => {
-      return SortingUtil.sortAscending(a.date, b.date);
+    return resp.data.docs.map((agenda) => {
+      return {
+        title: agenda.title,
+        text: agenda.textHtml,
+        date: new Date(agenda.date),
+      };
     });
-
-    return result;
   }
 
   private async retrieveEventInfo(): Promise<EventInfo[]> {
-    const resp: AxiosResponse<CockpitEventInfos> =
-      await this.axios.get<CockpitEventInfos>("collections/get/EventInfo");
-
-    const currentDay = new Date();
-    currentDay.setHours(0, 0, 0, 0);
-    const result: EventInfo[] = resp.data.entries
-      .filter((ei) => ei.date >= currentDay)
-      .map((info) => {
-        return { ...info, scope: info.scope.display };
+    const resp: AxiosResponse<BackendEventInfos> =
+      await this.axios.get<BackendEventInfos>("event-infos", {
+        params: PayloadUtil.listParams({
+          sort: "date",
+          where: {
+            date: { greater_than_equal: PayloadUtil.startOfDay(new Date()) },
+          },
+        }),
       });
 
-    return result;
+    return resp.data.docs.map((info) => {
+      return {
+        // an announcement without a group is meant for everyone
+        scope: info.group?.name ?? "Alle",
+        text: info.textHtml,
+        date: new Date(info.date),
+      };
+    });
   }
 
   async getEventsAfterDate(currentDate: Date): Promise<Agenda[]> {

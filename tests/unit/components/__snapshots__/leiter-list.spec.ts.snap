@@ -29,7 +29,7 @@ exports[`LeiterList Component > render leiter-list 1`] = `
           <img
             alt="Luna"
             data-v-5675dfe9=""
-            src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
+            src="https://cms.cevi-buro-aarau.ch/api/media/file/2017-12-Luna.webp"
             width="170"
           />
         </div>
@@ -65,7 +65,7 @@ exports[`LeiterList Component > render leiter-list 1`] = `
           <img
             alt="Luna"
             data-v-5675dfe9=""
-            src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
+            src="https://cms.cevi-buro-aarau.ch/api/media/file/2017-12-Luna.webp"
             width="170"
           />
         </div>

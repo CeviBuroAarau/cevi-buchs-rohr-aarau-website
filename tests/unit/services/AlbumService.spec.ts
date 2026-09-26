@@ -1,100 +1,41 @@
 import { AlbumService } from "@/services";
-import { Album } from "@/types";
-import axios from "axios";
-
-vi.mock("axios", () => {
-  const mock = {
-    create: vi.fn(),
-    interceptors: {
-      request: { use: vi.fn(), eject: vi.fn() },
-      response: { use: vi.fn(), eject: vi.fn() },
-    },
-    get: () =>
-      Promise.resolve({
-        data: {
-          fields: {
-            title: {
-              name: "title",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            dateString: {
-              name: "dateString",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            date: {
-              name: "date",
-              type: "date",
-              localize: false,
-              options: [],
-            },
-            year: {
-              name: "year",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            images: {
-              name: "images",
-              type: "gallery",
-              localize: false,
-              options: [],
-            },
-            previewImage: {
-              name: "previewImage",
-              type: "image",
-              localize: false,
-              options: [],
-            },
-          },
-          entries: [
-            {
-              title: "Diverse Bilder",
-              dateString: "2015",
-              date: "31.12.2015",
-              year: "2015",
-              images: [
-                {
-                  meta: {
-                    title: "21.02 - Kochen \u00fcber dem Feuer",
-                    asset: "5fb25628396661804a000350",
-                  },
-                  path: "/storage/uploads/2020/11/16/2015-02-21-1455-Waldlufer.jpg_uid_5fb25628437ec.webp",
-                },
-                {
-                  meta: {
-                    title: "21.02 - Schoggicreme mit Doppelrahm",
-                    asset: "5fb256283937362a5000009e",
-                  },
-                  path: "/storage/uploads/2020/11/16/2015-02-21-162824-Waldlufer.jpg_uid_5fb256289b73b.webp",
-                },
-              ],
-              _mby: "5e8c4a1f30656581770002f3",
-              _by: "5e8c4a1f30656581770002f3",
-              _modified: 1605731804,
-              _created: 1605474150,
-              _id: "5fb1976632643038e10002fe",
-              previewImage: {
-                path: "/storage/uploads/2020/11/18/2015-diverse.jpg_uid_5fb5827dbbd71.webp",
-              },
-            },
-          ],
-          total: 1,
-        },
-      }),
-  };
-  return { default: mock, ...mock };
-});
-
-const axiosInstance = axios as vi.Mocked<typeof axios>;
+import { fakeAxios, upload, FILE_URL } from "./fakeAxios";
 
 describe("AlbumService", () => {
   test("getAlbums", async () => {
-    const service: AlbumService = new AlbumService(axiosInstance);
-    const albums: Album[] = await service.getAlbums();
-    expect(albums[0].date).toBe("31.12.2015");
+    const { instance, get } = fakeAxios([
+      {
+        id: 41,
+        title: "Taufweekend 2025",
+        date: "2025-01-18T12:00:00.000Z",
+        dateLabel: "18 Januar 2025",
+        year: "2025",
+        previewImage: upload("2025Taufurkunde.jpg"),
+        images: [
+          { ...upload("a.jpg", "a-400x300.webp"), title: "Lagerfeuer" },
+          upload("b.jpg"),
+        ],
+      },
+    ]);
+
+    const albums = await new AlbumService(instance).getAlbums();
+
+    expect(get).toHaveBeenCalledWith("albums", {
+      params: { pagination: false, depth: 1, sort: "-date" },
+    });
+    expect(albums).toEqual([
+      {
+        title: "Taufweekend 2025",
+        dateLabel: "18 Januar 2025",
+        date: new Date("2025-01-18T12:00:00.000Z"),
+        year: "2025",
+        images: [
+          { title: "Lagerfeuer", url: FILE_URL + "a.jpg" },
+          { title: "", url: FILE_URL + "b.jpg" },
+        ],
+        previewImage: { url: FILE_URL + "2025Taufurkunde.jpg" },
+        downloadUrl: import.meta.env.VITE_BACKEND_URL + "/api/albums/41/zip",
+      },
+    ]);
   });
 });

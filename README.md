@@ -28,21 +28,28 @@ A coverage report is generated in the folder coverage and tests/e2e/reports
 
 ### Run offline
 
-Run a mock of the backend:
+Run a mock of the backend (`api/Backend.yaml` describes the parts of the Payload API the webpage uses, with real
+responses as examples):
 ```
 docker run --init --rm -v $(pwd):/tmp -p 4010:4010 stoplight/prism:4 mock -h 0.0.0.0 "/tmp/api/Backend.yaml"
-``` 
-
-Run the webpage:
 ```
-sed -i 's#VITE_COCKPIT_API=https://cockpit.cevi-buro-aarau.ch/api/#VITE_COCKPIT_API=http://localhost:4010/#g' .env
+
+Run the webpage against it:
+```
 npm install
-npm run serve
+VITE_BACKEND_URL=http://localhost:4010 npm run serve
 ```
 
 The webpage is then available under localhost:8080
 
-Note: it will fail to load the images/files but it will be able to execute all api calls.
+Note: images and files are still loaded from `cms.cevi-buro-aarau.ch`, and the mock ignores filters, so the agenda
+also shows past events.
+
+### Backend
+
+The content comes from a Payload backend (`VITE_BACKEND_URL`, default `https://cms.cevi-buro-aarau.ch`). It needs no
+token: anonymous requests may read the published content and submit the three forms. The backend only accepts
+requests from the origins configured in its `CORS_ORIGINS`, so a local backend has to allow `http://localhost:8080`.
 
 ### Build the docker image locally
 

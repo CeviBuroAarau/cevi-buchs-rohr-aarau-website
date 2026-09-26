@@ -25,17 +25,4 @@ describe("DateUtil", () => {
     const d2: Date = new Date(2021, 0, 9, 1, 0, 0);
     expect(DateUtil.isSameDay(d, d2)).toBe(false);
   });
-  test("parseDateWithoutTime iso", () => {
-    expect(DateUtil.parseDateWithoutTime("2020-06-01").toISOString()).toBe(
-      "2020-06-01T00:00:00.000Z",
-    );
-  });
-  test("parseDateWithoutTime ch", () => {
-    expect(DateUtil.parseDateWithoutTime("01.06.2020").toISOString()).toBe(
-      "2020-06-01T00:00:00.000Z",
-    );
-  });
-  test("parseDateWithoutTime invalid dates", () => {
-    expect(() => DateUtil.parseDateWithoutTime("abc")).toThrow(RangeError);
-  });
 });

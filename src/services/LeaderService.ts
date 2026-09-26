@@ -1,5 +1,6 @@
-import { CockpitLeaders, Leader } from "@/types";
+import { BackendLeaders, Leader } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
+import { PayloadUtil } from "@/utils";
 
 export class LeaderService {
   private axios: AxiosInstance;
@@ -9,17 +10,29 @@ export class LeaderService {
   }
 
   async getLeaders(): Promise<Leader[]> {
-    const resp: AxiosResponse<CockpitLeaders> =
-      await this.axios.get<CockpitLeaders>("collections/get/Leader");
+    const resp: AxiosResponse<BackendLeaders> =
+      await this.axios.get<BackendLeaders>("leaders", {
+        params: PayloadUtil.listParams({
+          where: { isActive: { equals: true } },
+        }),
+      });
 
-    const result: Leader[] = resp.data.entries.map((leader) => {
+    return resp.data.docs.map((leader) => {
       return {
-        ...leader,
-        group: leader.group.display,
-        file: import.meta.env.VITE_COCKPIT_FILES + leader.image.path,
+        name: leader.name,
+        isActive: leader.isActive,
+        scoutname: leader.scoutname,
+        function: leader.function,
+        group: leader.group?.name ?? "",
+        birthyear: leader.birthyear,
+        place: leader.place,
+        profession: leader.profession,
+        recreation: leader.recreation,
+        inScoutsSince: leader.inScoutsSince,
+        inScoutsBecause: leader.inScoutsBecause,
+        bestExperiences: leader.bestExperiences,
+        file: leader.image.url,
       };
     });
-
-    return result.filter((leader) => leader.isactive);
   }
 }

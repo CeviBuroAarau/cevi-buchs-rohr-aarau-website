@@ -20,7 +20,7 @@ export default defineComponent({
       message: "",
       SchnuppernFormState: SchnuppernFormState,
       service: new SchnuppernService(
-        AxiosUtil.getCockpitInstance(),
+        AxiosUtil.getBackendInstance(),
       ) as SchnuppernService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };
@@ -29,12 +29,10 @@ export default defineComponent({
     async subscribe(): Promise<void> {
       try {
         await this.service.submitForm({
-          form: {
-            name: this.name,
-            email: this.email,
-            phonenumber: this.phonenumber,
-            message: this.message,
-          },
+          name: this.name,
+          email: this.email,
+          phonenumber: this.phonenumber,
+          message: this.message,
         });
         this.state = SchnuppernFormState.NotDisplayed;
         (this.$refs.successModal as InstanceType<typeof Modal>).open();

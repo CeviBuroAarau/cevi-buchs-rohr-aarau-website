@@ -1,6 +1,8 @@
+import { PayloadGroup, PayloadList, PayloadUpload } from "./Payload";
+
 export interface Leader {
   name: string;
-  isactive: boolean;
+  isActive: boolean;
   scoutname: string;
   function: string[];
   group: string;
@@ -16,12 +18,10 @@ export interface Leader {
 
 export interface LeaderRaw {
   name: string;
-  isactive: boolean;
+  isActive: boolean;
   scoutname: string;
   function: string[];
-  group: {
-    display: string;
-  };
+  group: PayloadGroup | null;
   birthyear: string;
   place: string;
   profession: string;
@@ -29,11 +29,7 @@ export interface LeaderRaw {
   inScoutsSince: string;
   inScoutsBecause: string;
   bestExperiences: string;
-  image: {
-    path: string;
-  };
+  image: PayloadUpload;
 }
 
-export interface CockpitLeaders {
-  entries: LeaderRaw[];
-}
+export type BackendLeaders = PayloadList<LeaderRaw>;

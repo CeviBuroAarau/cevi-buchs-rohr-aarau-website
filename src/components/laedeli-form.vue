@@ -20,7 +20,7 @@ export default defineComponent({
       adress: "",
       deliveryMethod: "Abholung",
       LaedeliFormState: LaedeliFormState,
-      service: new ShopService(AxiosUtil.getCockpitInstance()) as ShopService,
+      service: new ShopService(AxiosUtil.getBackendInstance()) as ShopService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };
   },
@@ -28,13 +28,11 @@ export default defineComponent({
     async order(): Promise<void> {
       try {
         await this.service.submitForm({
-          form: {
-            name: this.name,
-            email: this.email,
-            articles: this.articles,
-            deliveryMethod: this.deliveryMethod,
-            adress: this.adress,
-          },
+          name: this.name,
+          email: this.email,
+          articles: this.articles,
+          deliveryMethod: this.deliveryMethod,
+          adress: this.adress,
         });
         this.state = LaedeliFormState.NotDisplayed;
         (this.$refs.successModal as InstanceType<typeof Modal>).open();

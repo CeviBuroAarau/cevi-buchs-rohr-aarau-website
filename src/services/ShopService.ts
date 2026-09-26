@@ -1,10 +1,6 @@
-import {
-  ShopFormRequest,
-  ShopFormResponse,
-  CockpitArticles,
-  Article,
-} from "@/types";
+import { ShopFormRequest, BackendArticles, Article } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
+import { PayloadUtil } from "@/utils";
 
 export class ShopService {
   private axios: AxiosInstance;
@@ -14,21 +10,23 @@ export class ShopService {
   }
 
   async submitForm(data: ShopFormRequest): Promise<void> {
-    await this.axios.post<ShopFormResponse>("forms/submit/shoporder", data);
+    await this.axios.post("form-shoporder", data);
   }
 
   async getArticles(): Promise<Article[]> {
-    const resp: AxiosResponse<CockpitArticles> =
-      await this.axios.get<CockpitArticles>("collections/get/Shop");
+    const resp: AxiosResponse<BackendArticles> =
+      await this.axios.get<BackendArticles>("shop-articles", {
+        params: PayloadUtil.listParams({ sort: "_order" }),
+      });
 
-    const result: Article[] = resp.data.entries.map((article) => {
+    return resp.data.docs.map((article) => {
       return {
         categories: article.category,
-        file: import.meta.env.VITE_COCKPIT_FILES + article.image.path,
-        ...article,
+        file: article.image.url,
+        name: article.name,
+        description: article.description,
+        price: article.price,
       };
     });
-
-    return result;
   }
 }

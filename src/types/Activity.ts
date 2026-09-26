@@ -1,3 +1,5 @@
+import { PayloadList, PayloadUpload } from "./Payload";
+
 export interface Activity {
   title: string;
   url: string;
@@ -6,14 +8,7 @@ export interface Activity {
 
 export interface ActivityRaw {
   title: string;
-  image: {
-    path: string;
-  };
-  thumb: {
-    path: string;
-  };
+  image: PayloadUpload;
 }
 
-export interface CockpitActivities {
-  entries: ActivityRaw[];
-}
+export type BackendActivities = PayloadList<ActivityRaw>;

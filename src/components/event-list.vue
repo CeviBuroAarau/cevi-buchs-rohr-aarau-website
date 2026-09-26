@@ -21,7 +21,7 @@ export default defineComponent({
     return {
       eventInfos: [] as EventInfo[],
       service: new AgendaService(
-        AxiosUtil.getCockpitInstance(),
+        AxiosUtil.getBackendInstance(),
       ) as AgendaService,
       errorService: new ErrorReportingService() as ErrorReportingService,
       isEventDisplayed: false,
