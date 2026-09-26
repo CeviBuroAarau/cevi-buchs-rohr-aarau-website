@@ -15,7 +15,11 @@ const leader = {
   inScoutsSince: "2006",
   inScoutsBecause: "es lustig ist",
   bestExperiences: "Pfila 2007",
-  image: upload("2017-12-Luna.webp"),
+  image: upload(
+    "2017-12-Luna.jpg",
+    "2017-12-Luna-400x533.webp",
+    "2017-12-Luna-1440x1920.webp",
+  ),
 };
 
 describe("LeaderService", () => {
@@ -44,7 +48,8 @@ describe("LeaderService", () => {
       inScoutsSince: "2006",
       inScoutsBecause: "es lustig ist",
       bestExperiences: "Pfila 2007",
-      file: FILE_URL + "2017-12-Luna.webp",
+      file: FILE_URL + "2017-12-Luna-1440x1920.webp",
+      thumb: FILE_URL + "2017-12-Luna-400x533.webp",
     });
     expect(leaders[1].group).toBe("");
   });

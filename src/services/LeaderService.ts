@@ -31,7 +31,8 @@ export class LeaderService {
         inScoutsSince: leader.inScoutsSince,
         inScoutsBecause: leader.inScoutsBecause,
         bestExperiences: leader.bestExperiences,
-        file: leader.image.url,
+        file: PayloadUtil.largeUrl(leader.image),
+        thumb: PayloadUtil.thumbnailUrl(leader.image),
       };
     });
   }

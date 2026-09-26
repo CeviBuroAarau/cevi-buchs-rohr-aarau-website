@@ -63,7 +63,7 @@ export default defineComponent({
       >
         <div class="card" style="width: 180px">
           <div class="card-image is-centered">
-            <img width="170" :src="item.file" :alt="item.scoutname" />
+            <img width="170" :src="item.thumb" :alt="item.scoutname" />
           </div>
           <div class="card-content is-centered">
             <strong

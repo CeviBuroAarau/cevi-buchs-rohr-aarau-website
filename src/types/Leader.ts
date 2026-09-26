@@ -14,6 +14,7 @@ export interface Leader {
   inScoutsBecause: string;
   bestExperiences: string;
   file: string;
+  thumb: string;
 }
 
 export interface LeaderRaw {

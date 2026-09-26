@@ -17,6 +17,8 @@ describe("LeiterDetail Component", () => {
     inScoutsBecause: "es lustig ist mit Gleichgesinnten etwas zu machen",
     bestExperiences: "Pfila 2007, Leiteranl\\u00e4sse",
     file: "https://cms.cevi-buro-aarau.ch/api/media/file/2017-12-Luna.webp",
+    thumb:
+      "https://cms.cevi-buro-aarau.ch/api/media/file/2017-12-Luna-400x533.webp",
   };
 
   test("render leiter-detail with leiter", () => {
