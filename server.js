@@ -31,8 +31,8 @@ app.use(compression());
 app.use(express.static(path.join(import.meta.dirname, "dist"), {
     extensions: ["html"],
     setHeaders(res, reqpath) {
-        // html is not cached
-        if (reqpath.match(/\.html$/)) {
+        // html and the service worker kill switch are not cached
+        if (reqpath.match(/(\.html|\/service-worker\.js|\/sw\.js)$/)) {
             setNoCache(res);
             return;
         }
