@@ -24,7 +24,7 @@ export class AlbumService {
         images: a.images.map((img) => {
           return {
             title: img.title ?? "",
-            url: img.url,
+            url: PayloadUtil.largeUrl(img),
           };
         }),
         previewImage: {

@@ -187,6 +187,7 @@ export default defineComponent({
     index(newVal: number | null) {
       if (newVal !== null) {
         window.addEventListener("keydown", this.onKeydown);
+        this.preloadNeighbours(newVal);
       } else {
         window.removeEventListener("keydown", this.onKeydown);
       }
@@ -208,6 +209,16 @@ export default defineComponent({
         this.error = true;
         this.loading = false;
         this.errorService.report(err);
+      }
+    },
+    // Loads the previous and next picture in the background so that stepping
+    // through the album shows them without waiting.
+    preloadNeighbours(index: number): void {
+      for (const i of [index - 1, index + 1]) {
+        const image = this.activeAlbum?.[i];
+        if (image) {
+          new Image().src = image.url;
+        }
       }
     },
     onKeydown(e: KeyboardEvent): void {

@@ -20,4 +20,10 @@ export class PayloadUtil {
   static thumbnailUrl(upload: PayloadUpload): string {
     return upload.sizes?.thumbnail?.url ?? upload.url;
   }
+
+  // Reduced version (longest side 1920 px) for enlarged views. The backend
+  // only creates it for bigger images, smaller ones are shown as they are.
+  static largeUrl(upload: PayloadUpload): string {
+    return upload.sizes?.large?.url ?? upload.url;
+  }
 }

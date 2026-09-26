@@ -9,6 +9,9 @@ export interface PayloadUpload {
     thumbnail?: {
       url: string | null;
     };
+    large?: {
+      url: string | null;
+    };
   };
 }
 

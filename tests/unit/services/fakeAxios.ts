@@ -9,10 +9,17 @@ export function fakeAxios(docs: unknown[] = []) {
 
 export const FILE_URL = "https://cms.cevi-buro-aarau.ch/api/media/file/";
 
-export function upload(filename: string, thumbnail: string | null = null) {
+export function upload(
+  filename: string,
+  thumbnail: string | null = null,
+  large: string | null = null,
+) {
   return {
     url: FILE_URL + filename,
     title: null,
-    sizes: { thumbnail: { url: thumbnail && FILE_URL + thumbnail } },
+    sizes: {
+      thumbnail: { url: thumbnail && FILE_URL + thumbnail },
+      large: { url: large && FILE_URL + large },
+    },
   };
 }

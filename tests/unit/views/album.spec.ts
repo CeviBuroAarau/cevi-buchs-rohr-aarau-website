@@ -75,4 +75,37 @@ describe("Aktivitaeten Page", () => {
     const data = wrapper.find("#album");
     expect(data.exists()).toBe(false);
   });
+
+  it("preloads the neighbouring pictures", async () => {
+    const loaded: string[] = [];
+    vi.stubGlobal(
+      "Image",
+      class {
+        set src(url: string) {
+          loaded.push(url);
+        }
+      },
+    );
+
+    const wrapper = shallowMount(Album, {
+      data: () => {
+        return {
+          loading: false,
+          activeAlbum: [
+            { title: "", url: "a.webp" },
+            { title: "", url: "b.webp" },
+            { title: "", url: "c.webp" },
+          ],
+          index: null,
+        };
+      },
+    } as any);
+
+    await wrapper.setData({ index: 0 });
+    expect(loaded).toEqual(["b.webp"]);
+    await wrapper.setData({ index: 1 });
+    expect(loaded).toEqual(["b.webp", "a.webp", "c.webp"]);
+
+    vi.unstubAllGlobals();
+  });
 });

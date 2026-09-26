@@ -12,7 +12,10 @@ describe("AlbumService", () => {
         year: "2025",
         previewImage: upload("2025Taufurkunde.jpg"),
         images: [
-          { ...upload("a.jpg", "a-400x300.webp"), title: "Lagerfeuer" },
+          {
+            ...upload("a.jpg", "a-400x300.webp", "a-1920x1440.webp"),
+            title: "Lagerfeuer",
+          },
           upload("b.jpg"),
         ],
       },
@@ -30,7 +33,7 @@ describe("AlbumService", () => {
         date: new Date("2025-01-18T12:00:00.000Z"),
         year: "2025",
         images: [
-          { title: "Lagerfeuer", url: FILE_URL + "a.jpg" },
+          { title: "Lagerfeuer", url: FILE_URL + "a-1920x1440.webp" },
           { title: "", url: FILE_URL + "b.jpg" },
         ],
         previewImage: { url: FILE_URL + "2025Taufurkunde.jpg" },

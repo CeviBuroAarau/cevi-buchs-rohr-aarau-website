@@ -33,4 +33,23 @@ describe("PayloadUtil", () => {
     ).toBe("small.jpg");
     expect(PayloadUtil.thumbnailUrl({ url: "file.pdf" })).toBe("file.pdf");
   });
+
+  test("largeUrl with large size", () => {
+    expect(
+      PayloadUtil.largeUrl({
+        url: "big.jpg",
+        sizes: { large: { url: "large.webp" } },
+      }),
+    ).toBe("large.webp");
+  });
+
+  test("largeUrl falls back to the original", () => {
+    expect(
+      PayloadUtil.largeUrl({
+        url: "small.jpg",
+        sizes: { large: { url: null } },
+      }),
+    ).toBe("small.jpg");
+    expect(PayloadUtil.largeUrl({ url: "small.jpg" })).toBe("small.jpg");
+  });
 });
