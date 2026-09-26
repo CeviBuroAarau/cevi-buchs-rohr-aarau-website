@@ -4,7 +4,6 @@ left to right direction
 actor "Visitor" as visitor
 actor "Member" as member
 actor "Content Backend" as cms
-actor "Album Download Service" as albumservice
 
 rectangle "Cevi Buchs-Rohr Aarau Website" {
     usecase "UC-001\nExplore the Public Pages" as UC001
@@ -33,7 +32,6 @@ UC003 --> cms
 UC004 --> cms
 UC005 --> cms
 UC006 --> cms
-UC006 --> albumservice
 UC007 --> cms
 UC008 --> cms
 

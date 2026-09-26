@@ -32,7 +32,7 @@ exports[`ArticleList Component > render article-list 1`] = `
         <img
           alt="Jungscharhemd Kinder"
           data-v-893826b0=""
-          src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp"
+          src="https://cms.cevi-buro-aarau.ch/api/media/file/haupt_01_cevi_hemd.webp"
         />
       </div>
       <div
@@ -80,7 +80,7 @@ exports[`ArticleList Component > render article-list 1`] = `
         <img
           alt="Jungscharhemd Erwachsene"
           data-v-893826b0=""
-          src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/01\\/28\\/haupt_02_cevi_hemd_erwachsene.jpg_uid_60132502b1bcf.webp"
+          src="https://cms.cevi-buro-aarau.ch/api/media/file/haupt_02_cevi_hemd_erwachsene.webp"
         />
       </div>
       <div

@@ -1,41 +1,38 @@
-import { CockpitAlbum, CockpitAlbumEntry, Album } from "@/types";
+import { BackendAlbums, Album } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
-import { SortingUtil, AxiosUtil } from "@/utils";
+import { PayloadUtil } from "@/utils";
 
 export class AlbumService {
   private axios: AxiosInstance;
 
   constructor(axios: AxiosInstance) {
     this.axios = axios;
-    this.axios.interceptors.response.use((resp) =>
-      AxiosUtil.dateConversionInterceptor(resp, "date"),
-    );
   }
 
   async getAlbums(): Promise<Album[]> {
-    const resp: AxiosResponse<CockpitAlbum> =
-      await this.axios.get<CockpitAlbum>("collections/get/Album");
+    const resp: AxiosResponse<BackendAlbums> =
+      await this.axios.get<BackendAlbums>("albums", {
+        params: PayloadUtil.listParams({ sort: "-date" }),
+      });
 
-    const tempResult: CockpitAlbumEntry[] = resp.data.entries;
-    let result: Album[] = tempResult.map((a) => {
+    return resp.data.docs.map((a) => {
       return {
-        ...a,
+        title: a.title,
+        dateLabel: a.dateLabel,
+        date: new Date(a.date),
+        year: a.year,
         images: a.images.map((img) => {
           return {
-            title: img.meta.title,
-            url: import.meta.env.VITE_COCKPIT_FILES + img.path,
+            title: img.title ?? "",
+            url: img.url,
           };
         }),
         previewImage: {
-          url: import.meta.env.VITE_COCKPIT_FILES + a.previewImage.path,
+          url: a.previewImage.url,
         },
+        downloadUrl:
+          import.meta.env.VITE_BACKEND_URL + `/api/albums/${a.id}/zip`,
       };
     });
-
-    result = result.sort((a: Album, b: Album) => {
-      return SortingUtil.sortDescending(a.date, b.date);
-    });
-
-    return result;
   }
 }

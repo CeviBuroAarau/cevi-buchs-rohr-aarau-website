@@ -148,7 +148,7 @@ export default defineComponent({
       activities: [] as ActivityView[],
       index: null as number | null,
       service: new ActivitiesService(
-        AxiosUtil.getCockpitInstance(),
+        AxiosUtil.getBackendInstance(),
       ) as ActivitiesService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };

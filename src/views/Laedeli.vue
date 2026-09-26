@@ -63,12 +63,12 @@
               <ul>
                 <li :class="{ 'is-active': activeTab === 'regulaer' }">
                   <a @click="activeTab = 'regulaer'"
-                    >Reguläre Artikel ({{ regulaerCount }})</a
+                    >Reguläre Artikel ({{ regulaerArticles.length }})</a
                   >
                 </li>
                 <li :class="{ 'is-active': activeTab === 'restposten' }">
                   <a @click="activeTab = 'restposten'"
-                    >Restposten ({{ restpostenCount }})</a
+                    >Restposten ({{ restpostenArticles.length }})</a
                   >
                 </li>
               </ul>
@@ -76,18 +76,12 @@
 
             <article-list
               v-if="activeTab === 'regulaer'"
-              :articles="
-                articleList.filter(
-                  (item) => item.category == 'Reguläre Artikel',
-                )
-              "
+              :articles="regulaerArticles"
             ></article-list>
 
             <article-list
               v-if="activeTab === 'restposten'"
-              :articles="
-                articleList.filter((item) => item.category == 'Restposten')
-              "
+              :articles="restpostenArticles"
             ></article-list>
           </template>
         </div>
@@ -117,7 +111,7 @@ export default defineComponent({
       error: false,
       loading: true,
       articleList: [] as Article[],
-      service: new ShopService(AxiosUtil.getCockpitInstance()) as ShopService,
+      service: new ShopService(AxiosUtil.getBackendInstance()) as ShopService,
       errorService: new ErrorReportingService() as ErrorReportingService,
       isFormOpen: false,
       activeTab: "regulaer" as "regulaer" | "restposten",
@@ -131,14 +125,15 @@ export default defineComponent({
         item.name.toLowerCase().includes(q),
       );
     },
-    regulaerCount(): number {
-      return this.articleList.filter(
-        (item) => item.category == "Reguläre Artikel",
-      ).length;
+    regulaerArticles(): Article[] {
+      return this.articleList.filter((item) =>
+        item.categories.includes("Reguläre Artikel"),
+      );
     },
-    restpostenCount(): number {
-      return this.articleList.filter((item) => item.category == "Restposten")
-        .length;
+    restpostenArticles(): Article[] {
+      return this.articleList.filter((item) =>
+        item.categories.includes("Restposten"),
+      );
     },
   },
   async mounted(): Promise<void> {

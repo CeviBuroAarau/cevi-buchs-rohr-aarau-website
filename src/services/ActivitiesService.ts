@@ -1,5 +1,6 @@
-import { CockpitActivities, Activity } from "@/types";
+import { BackendActivities, Activity } from "@/types";
 import { AxiosInstance, AxiosResponse } from "axios";
+import { PayloadUtil } from "@/utils";
 
 export class ActivitiesService {
   private axios: AxiosInstance;
@@ -9,18 +10,18 @@ export class ActivitiesService {
   }
 
   private async retrieveActivities(): Promise<Activity[]> {
-    const resp: AxiosResponse<CockpitActivities> =
-      await this.axios.get<CockpitActivities>("collections/get/Activities");
+    const resp: AxiosResponse<BackendActivities> =
+      await this.axios.get<BackendActivities>("activities", {
+        params: PayloadUtil.listParams({ sort: "_order" }),
+      });
 
-    const result: Activity[] = resp.data.entries.map((activity) => {
+    return resp.data.docs.map((activity) => {
       return {
         title: activity.title,
-        url: import.meta.env.VITE_COCKPIT_FILES + activity.image.path,
-        thumb: import.meta.env.VITE_COCKPIT_FILES + activity.thumb.path,
+        url: activity.image.url,
+        thumb: PayloadUtil.thumbnailUrl(activity.image),
       };
     });
-
-    return result;
   }
 
   async getActivities(): Promise<Activity[]> {

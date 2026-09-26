@@ -1,69 +1,33 @@
 import { ActivitiesService } from "@/services";
-import { Activity } from "@/types";
-import axios from "axios";
-
-vi.mock("axios", () => {
-  const mock = {
-    create: vi.fn(),
-    interceptors: {
-      request: { use: vi.fn(), eject: vi.fn() },
-      response: { use: vi.fn(), eject: vi.fn() },
-    },
-    get: () =>
-      Promise.resolve({
-        data: {
-          fields: {
-            title: {
-              name: "title",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            image: {
-              name: "image",
-              type: "image",
-              localize: false,
-              options: [],
-            },
-            thumb: {
-              name: "thumb",
-              type: "image",
-              localize: false,
-              options: [],
-            },
-          },
-          entries: [
-            {
-              title: "Kochen \u00fcber dem Feuer",
-              image: {
-                path: "/storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb2509f512be.webp",
-              },
-              thumb: {
-                path: "/storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb255d55ef95.webp",
-              },
-              _mby: "5e8c4a1f30656581770002f3",
-              _by: "5e8c4a1f30656581770002f3",
-              _o: 0,
-              _modified: 1605523173,
-              _created: 1605466600,
-              _id: "5fb179e86336632721000101",
-              _pid: null,
-              children: [],
-            },
-          ],
-          total: 1,
-        },
-      }),
-  };
-  return { default: mock, ...mock };
-});
-
-const axiosInstance = axios as vi.Mocked<typeof axios>;
+import { fakeAxios, upload, FILE_URL } from "./fakeAxios";
 
 describe("ActivitiesService", () => {
-  test("retrieveActivities", async () => {
-    const service: ActivitiesService = new ActivitiesService(axiosInstance);
-    const activities: Activity[] = await service.getActivities();
-    expect(activities[0].title).toBe("Kochen \u00fcber dem Feuer");
+  test("getActivities", async () => {
+    const { instance, get } = fakeAxios([
+      {
+        id: 1,
+        title: "Kochen über dem Feuer",
+        image: upload("01Kochen.webp", "01Kochen-400x300.webp"),
+      },
+      { id: 2, title: "Klein", image: upload("klein.webp") },
+    ]);
+
+    const activities = await new ActivitiesService(instance).getActivities();
+
+    expect(get).toHaveBeenCalledWith("activities", {
+      params: { pagination: false, depth: 1, sort: "_order" },
+    });
+    expect(activities).toEqual([
+      {
+        title: "Kochen über dem Feuer",
+        url: FILE_URL + "01Kochen.webp",
+        thumb: FILE_URL + "01Kochen-400x300.webp",
+      },
+      {
+        title: "Klein",
+        url: FILE_URL + "klein.webp",
+        thumb: FILE_URL + "klein.webp",
+      },
+    ]);
   });
 });

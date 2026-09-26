@@ -5,6 +5,7 @@ export * from "./Common";
 export * from "./Kontakt";
 export * from "./Leader";
 export * from "./Media";
+export * from "./Payload";
 export * from "./Schnuppern";
 export * from "./Shop";
 export * from "./WelcomeImage";

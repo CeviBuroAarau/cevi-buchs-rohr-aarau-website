@@ -1,89 +1,51 @@
 import { MediaService } from "@/services";
-import { Media } from "@/types";
-import axios from "axios";
+import { fakeAxios, upload, FILE_URL } from "./fakeAxios";
 
-vi.mock("axios", () => {
-  const mock = {
-    create: vi.fn(),
-    interceptors: {
-      request: { use: vi.fn(), eject: vi.fn() },
-      response: { use: vi.fn(), eject: vi.fn() },
-    },
-    get: () =>
-      Promise.resolve({
-        data: {
-          fields: {
-            media: {
-              name: "media",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            date: {
-              name: "date",
-              type: "date",
-              localize: false,
-              options: [],
-            },
-            description: {
-              name: "description",
-              type: "wysiwyg",
-              localize: false,
-              options: [],
-            },
-            file: {
-              name: "file",
-              type: "file",
-              localize: false,
-              options: [],
-            },
-          },
-          entries: [
-            {
-              type: "historic",
-              media: "intern",
-              date: "1982-03-27",
-              description:
-                "<p>Am 27. M&auml;rz 1982 wird die Cevi Jungschar Buchs-Rohr in den Cevi Regionalverband AG-SO-LU-ZG aufgenommen.<\\/p>",
-              file: "storage\\/uploads\\/2021\\/03\\/04\\/1982-03-27-Aufnahme-in-den-Regionalverband_uid_60416156a29fc.pdf",
-              _mby: "5e8c4a1f30656581770002f3",
-              _by: "5e8c4a1f30656581770002f3",
-              _modified: 1614897539,
-              _created: 1614897539,
-              _id: "604161833363653b380000fc",
-            },
-            {
-              type: "news",
-              media: "Zeitung",
-              date: "2019-04-11",
-              description:
-                "<p>Am vergangenen Samstag folgten 23 Erwachsene und 34 Kinder dem Aufruf der Gr&uuml;nen Buchs und machten w&auml;hrend zwei Stunden Buchs etwas sauberer. Insgesamt waren &uuml;ber 60 Freiwillige zugegen, dabei waren die Kinder vom BuMeiJo von der katholischen Kirche, die Jungschar der reformierten Kirche und ein Gemeinderat begr&uuml;sste undlobte die Helfer.<\\/p>",
-              file: "storage\\/uploads\\/2021\\/03\\/04\\/2019-04-11-Clean-up-day_uid_604162f2a8f9c.pdf",
-              _mby: "5e8c4a1f30656581770002f3",
-              _by: "5e8c4a1f30656581770002f3",
-              _modified: 1614897910,
-              _created: 1614897910,
-              _id: "604162f6326335d566000314",
-            },
-          ],
-          total: 2,
-        },
-      }),
-  };
-  return { default: mock, ...mock };
-});
-
-const axiosInstance = axios as vi.Mocked<typeof axios>;
+const docs = [
+  {
+    id: 2,
+    type: "news",
+    date: "2019-04-11T12:00:00.000Z",
+    source: "Aargauer Zeitung",
+    descriptionHtml: "<p>Artikel</p>",
+    file: upload("artikel.pdf"),
+  },
+  {
+    id: 1,
+    type: "historic",
+    date: "1982-03-27T12:00:00.000Z",
+    source: "Chronik",
+    descriptionHtml: "<p>Gründung</p>",
+    file: upload("chronik.pdf"),
+  },
+];
 
 describe("MediaService", () => {
   test("get chronic", async () => {
-    const service: MediaService = new MediaService(axiosInstance);
-    const news: Media[] = await service.getChronic();
-    expect(news[0].date).toBe("1982-03-27");
+    const { instance, get } = fakeAxios(docs);
+
+    const chronic = await new MediaService(instance).getChronic();
+
+    expect(get).toHaveBeenCalledWith("press", {
+      params: { pagination: false, depth: 1, sort: "-date" },
+    });
+    expect(chronic).toEqual([
+      {
+        type: "historic",
+        date: new Date("1982-03-27T12:00:00.000Z"),
+        description: "<p>Gründung</p>",
+        file: FILE_URL + "chronik.pdf",
+      },
+    ]);
   });
+
   test("get news", async () => {
-    const service: MediaService = new MediaService(axiosInstance);
-    const news: Media[] = await service.getNews();
-    expect(news[0].date).toBe("2019-04-11");
+    const { instance } = fakeAxios(docs);
+
+    const news = await new MediaService(instance).getNews();
+
+    expect(news.length).toBe(1);
+    expect(news[0].date).toEqual(new Date("2019-04-11T12:00:00.000Z"));
+    expect(news[0].file).toBe(FILE_URL + "artikel.pdf");
   });
 });

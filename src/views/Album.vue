@@ -69,7 +69,7 @@
                   <div class="media-content">
                     <p class="title is-4">{{ album.title }}</p>
                     <p class="subtitle is-6">
-                      {{ album.dateString }} &middot;
+                      {{ album.dateLabel }} &middot;
                       {{ album.images.length }}
                       {{ album.images.length === 1 ? "Bild" : "Bilder" }}
                     </p>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="content">
                   <a
-                    :href="getDownloadUrl(album.title)"
+                    :href="album.downloadUrl"
                     class="button is-small is-light"
                     @click.stop
                   >
@@ -179,7 +179,7 @@ export default defineComponent({
       activeAlbum: null as AlbumImage[] | null,
       albums: [] as Album[],
       index: null as number | null,
-      service: new AlbumService(AxiosUtil.getCockpitInstance()) as AlbumService,
+      service: new AlbumService(AxiosUtil.getBackendInstance()) as AlbumService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };
   },
@@ -209,13 +209,6 @@ export default defineComponent({
         this.loading = false;
         this.errorService.report(err);
       }
-    },
-    getDownloadUrl(albumTitle: string): string {
-      return (
-        import.meta.env.VITE_PHP_BASE_URL +
-        "/download_album.php?album=" +
-        encodeURIComponent(albumTitle)
-      );
     },
     onKeydown(e: KeyboardEvent): void {
       if (this.index === null || this.activeAlbum === null) return;

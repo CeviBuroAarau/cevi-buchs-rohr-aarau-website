@@ -15,7 +15,7 @@ export default defineComponent({
       email: "",
       message: "",
       service: new KontaktService(
-        AxiosUtil.getCockpitInstance(),
+        AxiosUtil.getBackendInstance(),
       ) as KontaktService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };
@@ -24,11 +24,9 @@ export default defineComponent({
     async send(): Promise<void> {
       try {
         await this.service.submitForm({
-          form: {
-            name: this.name,
-            email: this.email,
-            message: this.message,
-          },
+          name: this.name,
+          email: this.email,
+          message: this.message,
         });
         (this.$refs.successModal as InstanceType<typeof Modal>).open();
         this.name = "";

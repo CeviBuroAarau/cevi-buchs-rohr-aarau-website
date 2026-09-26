@@ -83,9 +83,9 @@ announcement never requires a software release.
 
 ## Assumptions and Dependencies
 
-- The content management system (Cockpit) is reachable and holds the published content; the website
-  reads it with a public, read-only token and posts the three forms to it.
-- A separate download service provides whole photo albums as an archive.
+- The content backend (Payload at `cms.cevi-buro-aarau.ch`) is reachable and holds the published content;
+  the website reads it without a token, posts the three forms to it and downloads whole photo albums from it
+  as an archive.
 - Leaders keep the content up to date — in particular the announcements, which are published about a
   week before a regular afternoon.
 - The site is delivered as a static single-page application in a container image; there is no own

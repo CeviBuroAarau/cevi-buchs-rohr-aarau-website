@@ -1,143 +1,51 @@
 import { LeaderService } from "@/services";
-import { Leader } from "@/types";
-import axios from "axios";
+import { fakeAxios, upload, FILE_URL } from "./fakeAxios";
 
-vi.mock("axios", () => {
-  const mock = {
-    create: vi.fn(),
-    interceptors: {
-      request: { use: vi.fn(), eject: vi.fn() },
-      response: { use: vi.fn(), eject: vi.fn() },
-    },
-    get: () =>
-      Promise.resolve({
-        data: {
-          fields: {
-            scoutname: {
-              name: "scoutname",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            name: { name: "name", type: "text", localize: false, options: [] },
-            isactive: {
-              name: "isactive",
-              type: "boolean",
-              localize: false,
-              options: [],
-            },
-            group: {
-              name: "group",
-              type: "collectionlinkselect",
-              localize: false,
-              options: {
-                link: "Groups",
-                display: "group_name",
-                multiple: false,
-                limit: false,
-              },
-            },
-            function: {
-              name: "function",
-              type: "multipleselect",
-              localize: false,
-              options: {
-                options:
-                  "Abteilungsleiter, Abteilungsleiterin, Gruppenleiter, Gruppenleiterin, Hilfsleiter, Hilfsleiterin, Materialverantwortlicher, L\u00e4deliverantwortliche, Homepagebetreuer, Koordination YMCA, Lagerleiter",
-              },
-            },
-            birthyear: {
-              name: "birthyear",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            place: {
-              name: "place",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            profession: {
-              name: "profession",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            recreation: {
-              name: "recreation",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            image: {
-              name: "image",
-              type: "image",
-              localize: false,
-              options: [],
-            },
-            inScoutsSince: {
-              name: "inScoutsSince",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            inScoutsBecause: {
-              name: "inScoutsBecause",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-            bestExperiences: {
-              name: "bestExperiences",
-              type: "text",
-              localize: false,
-              options: [],
-            },
-          },
-          entries: [
-            {
-              name: "Leah Dellenbach",
-              scoutname: "Luna",
-              function: ["Gruppenleiterin", "Abteilungsleiterin"],
-              group: {
-                _id: "617598493562642bd80000c3",
-                link: "Groups",
-                display: "Gruppe Gl\u00fchw\u00fcrmli",
-              },
-              birthyear: "1998",
-              place: "Aarau",
-              profession: "Studentin Universit\u00e4t Basel",
-              recreation: "Lesen, Jungschi, mit Freunden treffen",
-              _mby: "5e8c4a1f30656581770002f3",
-              _by: "5e8c4a1f30656581770002f3",
-              _modified: 1635102452,
-              _created: 1586261102,
-              _id: "5e8c6c6e633238ddad0002c5",
-              image: {
-                path: "/storage/uploads/2021/02/01/2017-12-Luna.jpg_uid_6018765b6b961.webp",
-              },
-              inScoutsSince: "ungef\u00e4hr 2006",
-              inScoutsBecause:
-                "es lustig ist mit Gleichgesinnten etwas zu machen",
-              bestExperiences: "Pfila 2007, Leiteranl\u00e4sse",
-              isactive: true,
-            },
-          ],
-          total: 1,
-        },
-      }),
-  };
-  return { default: mock, ...mock };
-});
-
-const axiosInstance = axios as vi.Mocked<typeof axios>;
+const leader = {
+  id: 1,
+  name: "Leah Dellenbach",
+  scoutname: "Luna",
+  isActive: true,
+  function: ["Abteilungsleiterin"],
+  group: { id: 1, name: "Abteilungsleitung" },
+  birthyear: "1998",
+  place: "Aarau",
+  profession: "Studentin",
+  recreation: "Lesen",
+  inScoutsSince: "2006",
+  inScoutsBecause: "es lustig ist",
+  bestExperiences: "Pfila 2007",
+  image: upload("2017-12-Luna.webp"),
+};
 
 describe("LeaderService", () => {
   test("getLeaders", async () => {
-    const service: LeaderService = new LeaderService(axiosInstance);
-    const leaders: Leader[] = await service.getLeaders();
-    expect(leaders[0].place).toBe("Aarau");
-    expect(leaders.length).toBe(1);
+    const { instance, get } = fakeAxios([leader, { ...leader, group: null }]);
+
+    const leaders = await new LeaderService(instance).getLeaders();
+
+    expect(get).toHaveBeenCalledWith("leaders", {
+      params: {
+        pagination: false,
+        depth: 1,
+        where: { isActive: { equals: true } },
+      },
+    });
+    expect(leaders[0]).toEqual({
+      name: "Leah Dellenbach",
+      scoutname: "Luna",
+      isActive: true,
+      function: ["Abteilungsleiterin"],
+      group: "Abteilungsleitung",
+      birthyear: "1998",
+      place: "Aarau",
+      profession: "Studentin",
+      recreation: "Lesen",
+      inScoutsSince: "2006",
+      inScoutsBecause: "es lustig ist",
+      bestExperiences: "Pfila 2007",
+      file: FILE_URL + "2017-12-Luna.webp",
+    });
+    expect(leaders[1].group).toBe("");
   });
 });

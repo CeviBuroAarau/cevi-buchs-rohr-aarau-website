@@ -1,4 +1,4 @@
-import { KontaktFormRequest, KontaktFormResponse } from "@/types";
+import { KontaktFormRequest } from "@/types";
 import { AxiosInstance } from "axios";
 
 export class KontaktService {
@@ -9,6 +9,6 @@ export class KontaktService {
   }
 
   async submitForm(data: KontaktFormRequest): Promise<void> {
-    await this.axios.post<KontaktFormResponse>("forms/submit/contact", data);
+    await this.axios.post("form-contact", data);
   }
 }

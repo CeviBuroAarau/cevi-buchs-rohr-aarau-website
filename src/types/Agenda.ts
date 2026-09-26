@@ -1,21 +1,23 @@
+import { PayloadGroup, PayloadList } from "./Payload";
+
 export interface Agenda {
   title: string;
   text: string;
   date: Date;
 }
 
-export interface CockpitAgenda {
-  entries: Agenda[];
+export interface AgendaRaw {
+  title: string;
+  textHtml: string;
+  date: string;
 }
 
-export interface CockpitScope {
-  display: string;
-}
+export type BackendAgenda = PayloadList<AgendaRaw>;
 
-export interface CockpitEventInfo {
-  scope: CockpitScope;
-  text: string;
-  date: Date;
+export interface EventInfoRaw {
+  group: PayloadGroup | null;
+  textHtml: string;
+  date: string;
 }
 
 export interface EventInfo {
@@ -24,6 +26,4 @@ export interface EventInfo {
   date: Date;
 }
 
-export interface CockpitEventInfos {
-  entries: CockpitEventInfo[];
-}
+export type BackendEventInfos = PayloadList<EventInfoRaw>;

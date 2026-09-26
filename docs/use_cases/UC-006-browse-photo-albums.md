@@ -7,7 +7,7 @@
 | ID | UC-006 |
 | Name | Browse Photo Albums |
 | Primary Actor | Member |
-| Supporting Actor | Content Backend, Album Download Service |
+| Supporting Actor | Content Backend |
 | Goal | Look at the pictures of past afternoons and keep them |
 | Status | Implemented |
 
@@ -62,4 +62,4 @@
 | BR-024 | Albums are ordered by their date, the most recent album first. |
 | BR-025 | Stepping backwards is offered only from the second picture onwards, stepping forwards only up to the second-last picture. |
 | BR-026 | Pictures can also be browsed and closed with the arrow keys and the escape key. |
-| BR-027 | An album is requested for download by its title. |
+| BR-027 | An album is requested for download by its identifier; the content backend packs all its pictures into one archive. |

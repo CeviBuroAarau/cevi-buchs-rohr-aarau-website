@@ -41,7 +41,7 @@ export default defineComponent({
       news: [] as Media[],
       loading: true,
       error: false,
-      service: new MediaService(AxiosUtil.getCockpitInstance()) as MediaService,
+      service: new MediaService(AxiosUtil.getBackendInstance()) as MediaService,
       errorService: new ErrorReportingService() as ErrorReportingService,
     };
   },

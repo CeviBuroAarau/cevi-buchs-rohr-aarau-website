@@ -1,22 +1,11 @@
-export interface ShopFormRequest {
-  form: {
-    name: string;
-    email: string;
-    articles: string;
-    deliveryMethod: string;
-    adress: string;
-  };
-}
+import { PayloadList, PayloadUpload } from "./Payload";
 
-export interface ShopFormResponse {
-  error: string;
-  data: {
-    name: string;
-    email: string;
-    articles: string;
-    deliveryMethod: string;
-    adress: string;
-  };
+export interface ShopFormRequest {
+  name: string;
+  email: string;
+  articles: string;
+  deliveryMethod: string;
+  adress: string;
 }
 
 export interface Article {
@@ -29,17 +18,13 @@ export interface Article {
 
 export interface ArticlesRaw {
   category: string[];
-  image: {
-    path: string;
-  };
+  image: PayloadUpload;
   name: string;
   description: string;
   price: string;
 }
 
-export interface CockpitArticles {
-  entries: ArticlesRaw[];
-}
+export type BackendArticles = PayloadList<ArticlesRaw>;
 
 export enum LaedeliFormState {
   NotDisplayed,

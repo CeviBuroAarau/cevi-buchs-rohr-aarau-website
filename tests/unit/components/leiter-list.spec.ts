@@ -5,7 +5,7 @@ import { Leader } from "@/types";
 describe("LeiterList Component", () => {
   const luna: Leader = {
     name: "Leah Dellenbach",
-    isactive: true,
+    isActive: true,
     scoutname: "Luna",
     function: ["Gruppenleiterin", "Abteilungsleiterin"],
     group: "Spartacus",
@@ -16,9 +16,7 @@ describe("LeiterList Component", () => {
     inScoutsSince: "ungef\\u00e4hr 2006",
     inScoutsBecause: "es lustig ist mit Gleichgesinnten etwas zu machen",
     bestExperiences: "Pfila 2007, Leiteranl\\u00e4sse",
-    file:
-      import.meta.env.VITE_COCKPIT_FILES +
-      "\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp",
+    file: "https://cms.cevi-buro-aarau.ch/api/media/file/2017-12-Luna.webp",
   };
   const leiter: Leader[] = [luna, luna];
 

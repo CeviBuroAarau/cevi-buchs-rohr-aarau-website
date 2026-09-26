@@ -1,13 +1,11 @@
+import { PayloadList, PayloadUpload } from "./Payload";
+
 export interface WelcomeImage {
   url: string;
 }
 
 export interface WelcomeImageRaw {
-  image: {
-    path: string;
-  };
+  image: PayloadUpload;
 }
 
-export interface CockpitWelcomeImage {
-  entries: WelcomeImageRaw[];
-}
+export type BackendWelcomeImages = PayloadList<WelcomeImageRaw>;

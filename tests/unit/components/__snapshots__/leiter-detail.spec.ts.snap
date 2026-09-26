@@ -36,7 +36,7 @@ exports[`LeiterDetail Component > render leiter-detail with leiter 1`] = `
       <img
         alt="Luna"
         data-v-e3131478=""
-        src="https://cockpit.cevi-buro-aarau.ch/\\/storage\\/uploads\\/2021\\/02\\/01\\/2017-12-Luna.jpg_uid_6018765b6b961.webp"
+        src="https://cms.cevi-buro-aarau.ch/api/media/file/2017-12-Luna.webp"
       />
       <table
         class="table is-bordered is-striped is-narrow is-hoverable is-fullwidth"

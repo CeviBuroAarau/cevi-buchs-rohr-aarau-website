@@ -1,5 +1,6 @@
 import { AxiosInstance, AxiosResponse } from "axios";
-import { WelcomeImage, CockpitWelcomeImage } from "@/types";
+import { WelcomeImage, BackendWelcomeImages } from "@/types";
+import { PayloadUtil } from "@/utils";
 
 export class WelcomeImageService {
   private axios: AxiosInstance;
@@ -9,14 +10,14 @@ export class WelcomeImageService {
   }
 
   async getImages(): Promise<WelcomeImage[]> {
-    const resp: AxiosResponse<CockpitWelcomeImage> =
-      await this.axios.get<CockpitWelcomeImage>(
-        "collections/get/WelcomeImages",
-      );
+    const resp: AxiosResponse<BackendWelcomeImages> =
+      await this.axios.get<BackendWelcomeImages>("welcome-images", {
+        params: PayloadUtil.listParams({ sort: "_order" }),
+      });
 
-    return resp.data.entries.map((welcomeImage) => {
+    return resp.data.docs.map((welcomeImage) => {
       return {
-        url: import.meta.env.VITE_COCKPIT_FILES + welcomeImage.image.path,
+        url: welcomeImage.image.url,
       };
     });
   }

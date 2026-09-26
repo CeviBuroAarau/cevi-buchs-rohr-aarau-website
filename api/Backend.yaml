@@ -1,2952 +1,1092 @@
 openapi: 3.1.0
 info:
   title: Backend
-  version: '1.0'
-  description: Backend for Cevi-Buchs-Rohr Webpage
+  version: '2.0'
+  description: >-
+    Payload backend for the Cevi Buchs-Rohr webpage. Only the parts used by the webpage are described. Examples follow
+    real (shortened) responses, with persons and their pictures replaced by made-up data; the Lexical JSON of rich text
+    fields is omitted.
   summary: Retrieve dynamic data for the Cevi Buchs-Rohr Webpage
   contact:
     name: Patrick Uhlmann
-    url: 'https://cevi-buro-aarau.ch'
+    url: https://cevi-buro-aarau.ch
     email: cevi-buro-api@cevimail.ch
   license:
     name: MIT
-    url: 'https://raw.githubusercontent.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/main/LICENSE'
+    url: https://raw.githubusercontent.com/patrickuhlmann/cevi-buchs-rohr-aarau-website/main/LICENSE
 servers:
-  - url: 'https://cockpit.cevi-buro-aarau.ch/api'
-  - url: 'http://localhost:3000/api'
-    description: ''
+  - url: https://cms.cevi-buro-aarau.ch
+  - url: http://localhost:3000
+    description: Local backend
 paths:
-  /collections/get/WelcomeImages:
+  /api/welcome-images:
     get:
-      summary: Get WelcomeImages
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/WelcomeImageList'
-              examples: {}
+      summary: Images displayed on the front page
       operationId: get-welcome-images
-      description: Retrieve the images that are displayed on the front page
-  /forms/submit/join:
-    post:
-      summary: Send Schnuppern Form
-      tags: []
-      operationId: send-join-form
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/JoinFormResponse'
-              examples: {}
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/JoinFormRequest'
-            examples: {}
-        description: Post the necessary fields for the API to create a new user.
-      description: Send the schnuppern form
-    parameters: []
-  /collections/get/Activities:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/WelcomeImage'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 1
+                        image:
+                          id: 1189
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/background1.webp
+                          width: 2048
+                          height: 1539
+                          sizes:
+                            thumbnail:
+                              url: https://cms.cevi-buro-aarau.ch/api/media/file/background1-400x301.webp
+                              width: 400
+                              height: 301
+                      - id: 2
+                        image:
+                          id: 1190
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/background2.webp
+                          width: 2048
+                          height: 1539
+                          sizes:
+                            thumbnail:
+                              url: https://cms.cevi-buro-aarau.ch/api/media/file/background2-400x301.webp
+                              width: 400
+                              height: 301
+  /api/activities:
     get:
-      summary: Get Activitylist
-      tags: []
+      summary: Activities shown to interested visitors
+      operationId: get-activities
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ActivityList'
-      operationId: get-activity-list
-      description: Get a list of activities
-  /collections/get/Media:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Activity'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 1
+                        title: Kochen über dem Feuer
+                        image:
+                          id: 1050
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen.webp
+                          width: 2048
+                          height: 1536
+                          sizes:
+                            thumbnail:
+                              url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen-400x300.webp
+                              width: 400
+                              height: 300
+                      - id: 2
+                        title: Brennesseltee
+                        image:
+                          id: 1051
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee.webp
+                          width: 2048
+                          height: 1536
+                          sizes:
+                            thumbnail:
+                              url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee-400x300.webp
+                              width: 400
+                              height: 300
+  /api/agenda:
     get:
-      summary: Get Medialist
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/MediaList'
-      operationId: get-media-list
-      description: Get a list of published medias
-  /collections/get/Agenda:
-    get:
-      summary: Get Agenda
-      tags: []
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Agenda'
+      summary: Planned events
       operationId: get-agenda
-      description: A list of all planned events
-  /collections/get/EventInfo:
-    get:
-      summary: Get Event Infos
-      tags: []
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/EventInfoList'
-      operationId: get-event-info
-      description: Get detailed information about all the planned events
-  /collections/get/Album:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Agenda'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 120
+                        title: 12. September 2026
+                        date: '2026-09-12T12:00:00.000Z'
+                        textHtml: <div class="payload-richtext"><p>Jungschi</p></div>
+                      - id: 121
+                        title: 28. September - 3. Oktober 2026
+                        date: '2026-09-28T12:00:00.000Z'
+                        textHtml: <div class="payload-richtext"><p>Herbstlager</p></div>
+  /api/event-infos:
     get:
-      summary: Get Albums
-      tags: []
+      summary: Announcements of single afternoons
+      operationId: get-event-infos
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/AlbumList'
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EventInfo'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 124
+                        date: '2026-09-12T12:00:00.000Z'
+                        group:
+                          id: 3
+                          name: Alle
+                        textHtml: >-
+                          <div class="payload-richtext"><p>Hoi zäme</p><p>Am Samstag 12. September 2026 ist wieder
+                          Cevi!</p><p>Treffpunkt: 14:00 Uhr beim Pfarrhaus Ausserdorf in Buchs</p><p>Mitnehmen:
+                          z&#39;Vieri, z&#39;Trinke und wettergerechte Kleidung</p><p>Schluss: 17:00 Uhr beim Pfarrhaus
+                          Ausserdorf in Buchs</p><p>Abmeldungen bitte an:</p><p>Max Muster v/o Fuchs,
+                          fuchs@example.com</p><p>Bis bald!</p></div>
+                      - id: 123
+                        date: '2026-08-22T12:00:00.000Z'
+                        group:
+                          id: 3
+                          name: Alle
+                        textHtml: >-
+                          <div class="payload-richtext"><p>Hoi zäme</p><p>Am Samstag 22.08.2026 ist wieder
+                          Cevi!</p><p>Treffpunkt: 14:00 Uhr beim Pfarrhaus Ausserdorf in Buchs</p><p>Mitnehmen:
+                          z&#39;Vieri, z&#39;Trinke und wettergerechte Kleidung</p><p>Schluss: 17:00 Uhr beim Pfarrhaus
+                          Ausserdorf in Buchs</p><p>Abmeldungen bitte an:</p><p>Lea Beispiel v/o Eule,
+                          eule@example.com</p><p>Bis Samstag!</p></div>
+  /api/albums:
+    get:
+      summary: Photo albums
       operationId: get-albums
-      description: Get all albums
-  /collections/get/Shop:
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Album'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 41
+                        title: Taufweekend 2025
+                        date: '2025-01-18T12:00:00.000Z'
+                        dateLabel: 18 Januar 2025
+                        year: '2025'
+                        previewImage:
+                          id: 3
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/haupt_01_cevi_hemd.webp
+                          width: 256
+                          height: 271
+                          sizes:
+                            thumbnail:
+                              url: null
+                              width: null
+                              height: null
+                        images:
+                          - id: 1
+                            title: null
+                            url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen.webp
+                            width: 2048
+                            height: 1536
+                            sizes:
+                              thumbnail:
+                                url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen-400x300.webp
+                                width: 400
+                                height: 300
+                          - id: 2
+                            title: null
+                            url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee.webp
+                            width: 2048
+                            height: 1536
+                            sizes:
+                              thumbnail:
+                                url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee-400x300.webp
+                                width: 400
+                                height: 300
+                      - id: 40
+                        title: PfiLa 2024
+                        date: '2024-05-18T12:00:00.000Z'
+                        dateLabel: 17.05-20.05.2024
+                        year: '2024'
+                        previewImage:
+                          id: 3
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/haupt_01_cevi_hemd.webp
+                          width: 256
+                          height: 271
+                          sizes:
+                            thumbnail:
+                              url: null
+                              width: null
+                              height: null
+                        images:
+                          - id: 1
+                            title: null
+                            url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen.webp
+                            width: 2048
+                            height: 1536
+                            sizes:
+                              thumbnail:
+                                url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen-400x300.webp
+                                width: 400
+                                height: 300
+                          - id: 2
+                            title: null
+                            url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee.webp
+                            width: 2048
+                            height: 1536
+                            sizes:
+                              thumbnail:
+                                url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee-400x300.webp
+                                width: 400
+                                height: 300
+  /api/albums/{id}/zip:
     get:
-      summary: Get Shop Items
-      tags: []
+      summary: Download a whole album as ZIP
+      operationId: get-album-zip
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: ZIP archive with all pictures
+          content:
+            application/zip:
+              schema:
+                type: string
+                format: binary
+        '404':
+          description: Unknown album
+  /api/leaders:
+    get:
+      summary: Leader team
+      operationId: get-leaders
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Itemlist'
-              examples: {}
-      operationId: get-shop
-      description: Get shop items
-  /forms/submit/shoporder:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Leader'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 17
+                        scoutname: Fuchs
+                        name: Max Muster
+                        group:
+                          id: 2
+                          name: Gruppe Glühwürmli
+                        function:
+                          - Hilfsleiter
+                        isActive: true
+                        image:
+                          id: 1
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen.webp
+                          width: 2048
+                          height: 1536
+                          sizes:
+                            thumbnail:
+                              url: https://cms.cevi-buro-aarau.ch/api/media/file/01Kochen-400x300.webp
+                              width: 400
+                              height: 300
+                        birthyear: '2008'
+                        place: Buchs
+                        profession: Lernender
+                        recreation: Cevi, Musik
+                        inScoutsSince: Seit der ersten Klasse
+                        inScoutsBecause: Es ist draussen und macht Spass
+                        bestExperiences: Die Lager
+                      - id: 15
+                        scoutname: Eule
+                        name: Lea Beispiel
+                        group:
+                          id: 1
+                          name: Gruppe Sprösslis
+                        function:
+                          - Hilfsleiterin
+                        isActive: true
+                        image:
+                          id: 2
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee.webp
+                          width: 2048
+                          height: 1536
+                          sizes:
+                            thumbnail:
+                              url: https://cms.cevi-buro-aarau.ch/api/media/file/02Brennesseltee-400x300.webp
+                              width: 400
+                              height: 300
+                        birthyear: '2006'
+                        place: Aarau Rohr
+                        profession: Schülerin
+                        recreation: Turnen, Lesen
+                        inScoutsSince: '2014'
+                        inScoutsBecause: Wegen der Freunde
+                        bestExperiences: Das Pfingstlager
+  /api/press:
+    get:
+      summary: Press coverage and historic documents
+      operationId: get-press
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Press'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 13
+                        type: news
+                        date: '2023-04-24T12:00:00.000Z'
+                        source: Jahresbericht
+                        descriptionHtml: >-
+                          <div class="payload-richtext"><p><strong>Jahresbericht 2022</strong></p><p>Mit der
+                          Waldweihnacht am 15. Januar hatten wir einen ungewöhnlichen Start ins Jahr. Gemütlich war es
+                          trotzdem und auch etwas wärmer als im Dezember. Gemeinsam mit Schönenwerd führten wir in
+                          Schafisheim das diesjährige Pfila durch...</p></div>
+                        file:
+                          id: 1126
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/2022-Jahresbericht.pdf
+                          width: null
+                          height: null
+                          sizes:
+                            thumbnail:
+                              url: null
+                              width: null
+                              height: null
+                      - id: 12
+                        type: news
+                        date: '2022-02-19T12:00:00.000Z'
+                        source: Jahresbericht
+                        descriptionHtml: >-
+                          <div class="payload-richtext"><p><strong>Jahresbericht 2021</strong></p><p>Leider mussten wir
+                          auch das Jahr 2021 etwas langsam angehen. Wegen Corona führten wir vorerst nur unbetreute
+                          Programme durch, welche von den Eltern mit Ihren Kindern einzeln oder in kleinen Gruppen
+                          selbstständig absolviert wurden. Es startete mit einem Postenlauf im Wald wo man einen König
+                          bastelte, ging dann weiter mit einem Postenlauf im Dorf (mit Action Bound).</p></div>
+                        file:
+                          id: 1125
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/2021-Jahresbericht.pdf
+                          width: null
+                          height: null
+                          sizes:
+                            thumbnail:
+                              url: null
+                              width: null
+                              height: null
+  /api/shop-articles:
+    get:
+      summary: Articles of the shop
+      operationId: get-shop-articles
+      parameters:
+        - name: pagination
+          in: query
+          schema:
+            type: boolean
+          description: false returns all documents
+        - name: depth
+          in: query
+          schema:
+            type: integer
+          description: 1 resolves uploads and relations to objects
+        - name: sort
+          in: query
+          schema:
+            type: string
+          description: Field to sort by, prefix with - for descending (e.g. -date, _order)
+        - name: where
+          in: query
+          style: deepObject
+          explode: true
+          schema:
+            type: object
+          description: Payload filter, e.g. where[date][greater_than_equal]=2026-09-26T00:00:00.000Z
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                required:
+                  - docs
+                properties:
+                  docs:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/ShopArticle'
+              examples:
+                default:
+                  value:
+                    docs:
+                      - id: 1
+                        name: Jungscharhemd Kinder
+                        price: '54.9'
+                        category:
+                          - Reguläre Artikel
+                        description: Verfügbare Grössen 140, 152, 164
+                        image:
+                          id: 1127
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/haupt_01_cevi_hemd.webp
+                          width: 256
+                          height: 271
+                          sizes:
+                            thumbnail:
+                              url: null
+                              width: null
+                              height: null
+                      - id: 2
+                        name: Jungscharhemd Erwachsene
+                        price: '62.9'
+                        category:
+                          - Reguläre Artikel
+                        description: Verfügbare Grössen S, M, L, XL, 2XL
+                        image:
+                          id: 1128
+                          title: null
+                          url: https://cms.cevi-buro-aarau.ch/api/media/file/haupt_02_cevi_hemd_erwachsene.webp
+                          width: 256
+                          height: 271
+                          sizes:
+                            thumbnail:
+                              url: null
+                              width: null
+                              height: null
+  /api/form-contact:
     post:
-      tags: []
-      summary: Send Shop Order
-      operationId: send-shoporder
-      responses:
-        '200':
-          description: OK
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/ShopOrderResponse'
-      description: Send an order
+      summary: Send the contact form
+      operationId: post-form-contact
+      description: Anonymous visitors may only create entries; the backend mails them to the section.
       requestBody:
+        required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ShopOrderRequest'
-  /collections/get/Leader:
-    get:
-      summary: Your GET endpoint
-      tags: []
+              $ref: '#/components/schemas/ContactForm'
+            examples:
+              default:
+                value:
+                  name: Me
+                  email: me@me.ch
+                  message: Wann ist der nächste Nachmittag?
       responses:
-        '200':
-          description: OK
+        '201':
+          description: Created
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/LeaderList'
-      operationId: get-leaders
-      description: Get the list of leaders
+                type: object
+                properties:
+                  message:
+                    type: string
+                  doc:
+                    type: object
+              examples:
+                default:
+                  value:
+                    message: Dokument erfolgreich erstellt.
+                    doc:
+                      id: 1
+                      name: Me
+                      email: me@me.ch
+                      message: Wann ist der nächste Nachmittag?
+        '400':
+          description: Validation error
+  /api/form-join:
+    post:
+      summary: Send the Schnuppern form
+      operationId: post-form-join
+      description: Anonymous visitors may only create entries; the backend mails them to the section.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/JoinForm'
+            examples:
+              default:
+                value:
+                  name: Me
+                  email: me@me.ch
+                  phonenumber: 079 111 22 33
+                  message: 5 Kinder zum Schnuppern.
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  doc:
+                    type: object
+              examples:
+                default:
+                  value:
+                    message: Dokument erfolgreich erstellt.
+                    doc:
+                      id: 1
+                      name: Me
+                      email: me@me.ch
+                      phonenumber: 079 111 22 33
+                      message: 5 Kinder zum Schnuppern.
+        '400':
+          description: Validation error
+  /api/form-shoporder:
+    post:
+      summary: Send the shop order form
+      operationId: post-form-shoporder
+      description: Anonymous visitors may only create entries; the backend mails them to the section.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ShopOrderForm'
+            examples:
+              default:
+                value:
+                  name: Me
+                  email: me@me.ch
+                  articles: 1x Jungscharhemd Kinder 152
+                  deliveryMethod: Abholen
+                  adress: ''
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  doc:
+                    type: object
+              examples:
+                default:
+                  value:
+                    message: Dokument erfolgreich erstellt.
+                    doc:
+                      id: 1
+                      name: Me
+                      email: me@me.ch
+                      articles: 1x Jungscharhemd Kinder 152
+                      deliveryMethod: Abholen
+                      adress: ''
+        '400':
+          description: Validation error
 components:
   schemas:
-    JoinFormRequest:
-      description: ''
+    Upload:
       type: object
-      properties:
-        form:
-          type: object
-          properties:
-            name:
-              type: string
-              minLength: 1
-            email:
-              type: string
-              minLength: 1
-            phonenumber:
-              type: string
-              minLength: 1
-            message:
-              type: string
-              minLength: 1
-          required:
-            - name
-            - email
-            - phonenumber
-            - message
       required:
-        - form
-      x-examples:
-        example-1:
-          form:
-            name: Me
-            email: me@me.ch
-            phonenumber: 079 111 22 33
-            message: 5 Kinder zum Schnuppern.
-      title: ''
-    JoinFormResponse:
-      description: Response after the Schnuppern Form has been sent
-      type: object
+        - url
       properties:
-        error:
+        id:
+          type: integer
+        url:
           type: string
-          minLength: 1
-        data:
+          description: Absolute URL of the original file
+        title:
+          type:
+            - string
+            - 'null'
+        width:
+          type:
+            - integer
+            - 'null'
+        height:
+          type:
+            - integer
+            - 'null'
+        sizes:
           type: object
           properties:
-            name:
-              type: string
-              minLength: 1
-            email:
-              type: string
-              minLength: 1
-            phonenumber:
-              type: string
-              minLength: 1
-            message:
-              type: string
-              minLength: 1
-          required:
-            - name
-            - email
-            - phonenumber
-            - message
-      required:
-        - error
-        - data
-      x-examples:
-        example-1:
-          error: 'Invalid address:  (From): root@localhost'
-          data:
-            name: Me
-            email: me@me.ch
-            phonenumber: 079 111 22 33
-            message: 5 Kinder zum Schnuppern.
-      examples:
-        - error: 'Invalid address:  (From): root@localhost'
-          data:
-            name: Me
-            email: me@me.ch
-            phonenumber: 079 111 22 33
-            message: 5 Kinder zum Schnuppern.
-      title: ''
-    WelcomeImageList:
-      description: Images to display on the front page
+            thumbnail:
+              type: object
+              description: 400 px WebP, url is null for images narrower than 400 px
+              properties:
+                url:
+                  type:
+                    - string
+                    - 'null'
+                width:
+                  type:
+                    - integer
+                    - 'null'
+                height:
+                  type:
+                    - integer
+                    - 'null'
+    Group:
       type: object
-      properties:
-        fields:
-          type: object
-          properties:
-            image:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - image
-        entries:
-          type: array
-          uniqueItems: true
-          minItems: 1
-          items:
-            required:
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-            properties:
-              image:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    minLength: 1
-                required:
-                  - path
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-        total:
-          type: number
       required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-          entries:
-            - image:
-                path: /storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1614446576
-              _created: 1614446576
-              _id: 603a7ff06631383966000367
-            - image:
-                path: /storage/uploads/2021/02/27/background2_uid_603a773ecd85d.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1614446588
-              _created: 1614446588
-              _id: 603a7ffc3837306e0600036f
-          total: 2
-      examples:
-        - fields:
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-          entries:
-            - image:
-                path: /storage/uploads/2021/02/27/background1_uid_603a773e640b4.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1614446576
-              _created: 1614446576
-              _id: 603a7ff06631383966000367
-            - image:
-                path: /storage/uploads/2021/02/27/background2_uid_603a773ecd85d.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1614446588
-              _created: 1614446588
-              _id: 603a7ffc3837306e0600036f
-          total: 2
-      title: ''
-    ActivityList:
-      description: ''
+        - name
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+    WelcomeImage:
       type: object
-      properties:
-        fields:
-          type: object
-          properties:
-            title:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            image:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            thumb:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - title
-            - image
-            - thumb
-        entries:
-          type: array
-          uniqueItems: true
-          minItems: 1
-          items:
-            required:
-              - title
-              - _mby
-              - _by
-              - _o
-              - _modified
-              - _created
-              - _id
-            properties:
-              title:
-                type: string
-                minLength: 1
-              image:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    minLength: 1
-                required:
-                  - path
-              thumb:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    minLength: 1
-                required:
-                  - path
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _o:
-                type: number
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-              _pid: {}
-              children:
-                type: array
-                items:
-                  required: []
-                  properties: {}
-        total:
-          type: number
       required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            title:
-              name: title
-              type: text
-              localize: false
-              options: []
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-            thumb:
-              name: thumb
-              type: image
-              localize: false
-              options: []
-          entries:
-            - title: Kochen über dem Feuer
-              image:
-                path: /storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb2509f512be.webp
-              thumb:
-                path: /storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb255d55ef95.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _o: 0
-              _modified: 1605523173
-              _created: 1605466600
-              _id: 5fb179e86336632721000101
-              _pid: null
-              children: []
-            - title: Brennesseltee
-              image:
-                path: /storage/uploads/2020/11/16/02Brennesseltee.jpg_uid_5fb2509fcb5f9.webp
-              thumb:
-                path: /storage/uploads/2020/11/16/02Brennesseltee.jpg_uid_5fb255d5b85a2.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _o: 1
-              _modified: 1605523193
-              _created: 1605466742
-              _id: 5fb17a76653465322100036f
-              _pid: null
-              children: []
-          total: 2
-      examples:
-        - fields:
-            title:
-              name: title
-              type: text
-              localize: false
-              options: []
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-            thumb:
-              name: thumb
-              type: image
-              localize: false
-              options: []
-          entries:
-            - title: Kochen über dem Feuer
-              image:
-                path: /storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb2509f512be.webp
-              thumb:
-                path: /storage/uploads/2020/11/16/01Kochen.jpg_uid_5fb255d55ef95.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _o: 0
-              _modified: 1605523173
-              _created: 1605466600
-              _id: 5fb179e86336632721000101
-              _pid: null
-              children: []
-            - title: Brennesseltee
-              image:
-                path: /storage/uploads/2020/11/16/02Brennesseltee.jpg_uid_5fb2509fcb5f9.webp
-              thumb:
-                path: /storage/uploads/2020/11/16/02Brennesseltee.jpg_uid_5fb255d5b85a2.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _o: 1
-              _modified: 1605523193
-              _created: 1605466742
-              _id: 5fb17a76653465322100036f
-              _pid: null
-              children: []
-          total: 2
-    MediaList:
-      description: ''
+        - image
+      properties:
+        id:
+          type: integer
+        image:
+          $ref: '#/components/schemas/Upload'
+    Activity:
       type: object
-      properties:
-        fields:
-          type: object
-          properties:
-            media:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            date:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            description:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            file:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            type:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: object
-                  properties:
-                    options:
-                      type: array
-                      uniqueItems: true
-                      minItems: 1
-                      items:
-                        required:
-                          - value
-                          - label
-                        properties:
-                          value:
-                            type: string
-                            minLength: 1
-                          label:
-                            type: string
-                            minLength: 1
-                  required:
-                    - options
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - media
-            - date
-            - description
-            - file
-            - type
-        entries:
-          type: array
-          uniqueItems: true
-          minItems: 1
-          items:
-            required:
-              - type
-              - media
-              - date
-              - description
-              - file
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-            properties:
-              type:
-                type: string
-                minLength: 1
-              media:
-                type: string
-                minLength: 1
-              date:
-                type: string
-                minLength: 1
-              description:
-                type: string
-                minLength: 1
-              file:
-                type: string
-                minLength: 1
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-        total:
-          type: number
       required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            media:
-              name: media
-              type: text
-              localize: false
-              options: []
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-            description:
-              name: description
-              type: wysiwyg
-              localize: false
-              options: []
-            file:
-              name: file
-              type: file
-              localize: false
-              options: []
-            type:
-              name: type
-              type: select
-              localize: false
-              options:
-                options:
-                  - value: news
-                    label: News
-                  - value: historic
-                    label: Historische Dokumente
-          entries:
-            - type: historic
-              media: intern
-              date: '1982-03-27'
-              description: <p>Am 27. M&auml;rz 1982 wird die Cevi Jungschar Buchs-Rohr in den Cevi Regionalverband AG-SO-LU-ZG aufgenommen.</p>
-              file: storage/uploads/2021/03/04/1982-03-27-Aufnahme-in-den-Regionalverband_uid_60416156a29fc.pdf
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1614897539
-              _created: 1614897539
-              _id: 604161833363653b380000fc
-            - type: news
-              media: Zeitung
-              date: '2019-04-11'
-              description: |-
-                <p><strong>Clean up day der Gr&uuml;nen Buchs</strong></p>
-                <p>Am vergangenen Samstag folgten 23 Erwachsene und 34 Kinder dem Aufruf der Gr&uuml;nen Buchs und machten w&auml;hrend zwei Stunden Buchs etwas sauberer. Insgesamt waren &uuml;ber 60 Freiwillige zugegen, dabei waren die Kinder vom BuMeiJo von der katholischen Kirche, die Jungschar der reformierten Kirche und ein Gemeinderat begr&uuml;sste undlobte die Helfer.</p>
-              file: storage/uploads/2021/03/04/2019-04-11-Clean-up-day_uid_604162f2a8f9c.pdf
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1619813740
-              _created: 1614897910
-              _id: 604162f6326335d566000314
-          total: 2
-      examples:
-        - fields:
-            media:
-              name: media
-              type: text
-              localize: false
-              options: []
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-            description:
-              name: description
-              type: wysiwyg
-              localize: false
-              options: []
-            file:
-              name: file
-              type: file
-              localize: false
-              options: []
-            type:
-              name: type
-              type: select
-              localize: false
-              options:
-                options:
-                  - value: news
-                    label: News
-                  - value: historic
-                    label: Historische Dokumente
-          entries:
-            - type: historic
-              media: intern
-              date: '1982-03-27'
-              description: <p>Am 27. M&auml;rz 1982 wird die Cevi Jungschar Buchs-Rohr in den Cevi Regionalverband AG-SO-LU-ZG aufgenommen.</p>
-              file: storage/uploads/2021/03/04/1982-03-27-Aufnahme-in-den-Regionalverband_uid_60416156a29fc.pdf
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1614897539
-              _created: 1614897539
-              _id: 604161833363653b380000fc
-            - type: news
-              media: Zeitung
-              date: '2019-04-11'
-              description: |-
-                <p><strong>Clean up day der Gr&uuml;nen Buchs</strong></p>
-                <p>Am vergangenen Samstag folgten 23 Erwachsene und 34 Kinder dem Aufruf der Gr&uuml;nen Buchs und machten w&auml;hrend zwei Stunden Buchs etwas sauberer. Insgesamt waren &uuml;ber 60 Freiwillige zugegen, dabei waren die Kinder vom BuMeiJo von der katholischen Kirche, die Jungschar der reformierten Kirche und ein Gemeinderat begr&uuml;sste undlobte die Helfer.</p>
-              file: storage/uploads/2021/03/04/2019-04-11-Clean-up-day_uid_604162f2a8f9c.pdf
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1619813740
-              _created: 1614897910
-              _id: 604162f6326335d566000314
-          total: 2
+        - title
+        - image
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        image:
+          $ref: '#/components/schemas/Upload'
     Agenda:
-      description: ''
       type: object
+      required:
+        - title
+        - date
+        - textHtml
       properties:
-        fields:
-          type: object
-          properties:
-            title:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            text:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            date:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - title
-            - text
-            - date
-        entries:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+          format: date-time
+          description: Date only, stored as 12:00 UTC
+        textHtml:
+          type: string
+          description: Rich text rendered as HTML
+    EventInfo:
+      type: object
+      required:
+        - date
+        - textHtml
+      properties:
+        id:
+          type: integer
+        date:
+          type: string
+          format: date-time
+          description: Date only, stored as 12:00 UTC
+        group:
+          anyOf:
+            - $ref: '#/components/schemas/Group'
+            - type: 'null'
+          description: null means the announcement is for everyone
+        textHtml:
+          type: string
+          description: Rich text rendered as HTML
+    Album:
+      type: object
+      required:
+        - id
+        - title
+        - date
+        - dateLabel
+        - images
+        - previewImage
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        date:
+          type: string
+          format: date-time
+          description: Date only, stored as 12:00 UTC
+        dateLabel:
+          type: string
+        year:
+          type: string
+        previewImage:
+          $ref: '#/components/schemas/Upload'
+        images:
           type: array
-          uniqueItems: true
-          minItems: 1
           items:
-            required:
-              - title
-              - text
-              - date
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-            properties:
-              title:
-                type: string
-                minLength: 1
-              text:
-                type: string
-                minLength: 1
-              date:
-                type: string
-                minLength: 1
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-        total:
-          type: number
-      required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            title:
-              name: title
-              type: text
-              localize: false
-              options: []
-            text:
-              name: text
-              type: wysiwyg
-              localize: false
-              options: []
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-          entries:
-            - title: '29. August 2020 14:00 - 17:00'
-              text: Regulärer Jungschinachmittag.
-              date: '2020-08-29'
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605462143
-              _created: 1605462020
-              _id: 5fb16804356432659000017e
-            - title: '12. September 2020 14:00 - 17:00'
-              text: Cevitag.
-              date: '2020-09-12'
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605462148
-              _created: 1605462041
-              _id: 5fb168196463307c6b00011f
-          total: 2
-      examples:
-        - fields:
-            title:
-              name: title
-              type: text
-              localize: false
-              options: []
-            text:
-              name: text
-              type: wysiwyg
-              localize: false
-              options: []
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-          entries:
-            - title: '29. August 2020 14:00 - 17:00'
-              text: Regulärer Jungschinachmittag.
-              date: '2020-08-29'
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605462143
-              _created: 1605462020
-              _id: 5fb16804356432659000017e
-            - title: '12. September 2020 14:00 - 17:00'
-              text: Cevitag.
-              date: '2020-09-12'
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605462148
-              _created: 1605462041
-              _id: 5fb168196463307c6b00011f
-          total: 2
-    EventInfoList:
-      description: ''
+            $ref: '#/components/schemas/Upload'
+    Leader:
       type: object
+      required:
+        - name
+        - scoutname
+        - isActive
+        - image
       properties:
-        fields:
-          type: object
-          properties:
-            date:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            scope:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: object
-                  properties:
-                    options:
-                      type: array
-                      uniqueItems: true
-                      minItems: 1
-                      items:
-                        required:
-                          - value
-                          - label
-                        properties:
-                          value:
-                            type: string
-                            minLength: 1
-                          label:
-                            type: string
-                            minLength: 1
-                  required:
-                    - options
-              required:
-                - name
-                - type
-                - localize
-                - options
-            text:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - date
-            - scope
-            - text
-        entries:
+        id:
+          type: integer
+        name:
+          type: string
+        scoutname:
+          type: string
+        isActive:
+          type: boolean
+        function:
           type: array
-          uniqueItems: true
-          minItems: 1
           items:
-            required:
-              - date
-              - scope
-              - text
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-            properties:
-              date:
-                type: string
-                minLength: 1
-              scope:
-                type: string
-                minLength: 1
-              text:
-                type: string
-                minLength: 1
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-        total:
-          type: number
-      required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-            scope:
-              name: scope
-              type: select
-              localize: false
-              options:
-                options:
-                  - value: section
-                    label: Abteilung
-                  - value: group_spartacus
-                    label: Gruppe Spartacus
-                  - value: group_schleckmaeuler
-                    label: Schleckmäuler
-            text:
-              name: text
-              type: wysiwyg
-              localize: false
-              options: []
-          entries:
-            - date: '2021-08-28'
-              scope: group_schleckmaeuler
-              text: "<p><strong>Hallo zusammen</strong>&nbsp;\U0001F60A</p>\n<p>&nbsp;</p>\n<p>Fogende Infos f&uuml;r den n&auml;chsten Jungscharnachmittag am 28.08.21</p>\n<p>Treffpunkt:&nbsp;&nbsp; 14:00 Uhr beim Pfarrhaus Ausserdorf in Buchs</p>\n<p>Mitnehmen:&nbsp; Wettergerechte Kleidung (Sonnen-, Zeckenschutz und lange Hosen sind von Vorteil), Z&rsquo;Trinke, und ein Z&rsquo;vieri (es darf gerne etwas zum Grillieren sein)</p>\n<p>Schluss:&nbsp; &nbsp; &nbsp; &nbsp; 17:00 Uhr beim Pfarrhaus</p>\n<p>&nbsp;</p>\n<p>Bitte meldet euch ab, wenn ihr nicht kommen k&ouml;nnt.</p>\n<p>Abmeldungen oder Sonstiges gerne an:</p>\n<p>Seraina Frei v/o Floh 079 952 70 84 oder floh@cevimail.ch</p>\n<p>&nbsp;</p>\n<p>Liebe Gr&uuml;sse</p>\n<p>Eures Leiterteam ;)&nbsp;</p>\n<p>&nbsp;</p>"
-              _mby: 603acb743038369757000336
-              _by: 603acb743038369757000336
-              _modified: 1629661099
-              _created: 1629661099
-              _id: 6122a7ab3436353ee50001f2
-            - date: '2021-08-28'
-              scope: group_spartacus
-              text: |-
-                <p>Hoi z&auml;me</p>
-                <p>Diesen Samstag 28.8.21 findet wieder Jungschi statt.&nbsp;</p>
-                <p>Treffpunkt: 14:00 Uhr beim Pfarrhaus Ausserdorf in Buchs</p>
-                <p>Mitnehmen: Wettergerechte Kleidung, z'Trinke, z'Vieri und nat&uuml;rlich gute Laune :)&nbsp;</p>
-                <p>Schluss: 17:00 Uhr beim Pfarrhaus</p>
-                <p>&nbsp;</p>
-                <p>Fals ihr nicht kommen k&ouml;nnt, meldet euch bitte bei Sira H&auml;chler v/o Zippora ab:</p>
-                <p>075 424 67 11&nbsp;</p>
-              _mby: 603acb743038369757000336
-              _by: 603acb743038369757000336
-              _modified: 1629915002
-              _created: 1629914153
-              _id: 61268429333631115500038a
-            - date: '2021-09-04'
-              scope: section
-              text: |-
-                <p>Hallo z&auml;me</p>
-                <p>Am 9.4. findet der Verbandstrefftag wie geplant statt.</p>
-                <p>F&uuml;r die die sich angemeldet haben:</p>
-                <p>Treffpunkt: Am Aarau Bahnhof, unter der grossen Uhr um 10:30<br />Entlassung: Am Aarau Bahnhof, unter der grossen Uhr um 18:10</p>
-                <p>&nbsp;</p>
-                <p>F&uuml;r alle die sich nicht angemeldet haben findet kein anderes Programm statt.</p>
-                <p>&nbsp;</p>
-                <p>Bis am Samstag und eine sch&ouml;ne Woche</p>
-                <p>&nbsp;</p>
-                <p>Ayal und das Leiterteam</p>
-              _mby: 603acb743038369757000336
-              _by: 603acb743038369757000336
-              _modified: 1630307149
-              _created: 1630307149
-              _id: 612c834d39613899f30002ab
-          total: 3
-      examples:
-        - fields:
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-            scope:
-              name: scope
-              type: select
-              localize: false
-              options:
-                options:
-                  - value: section
-                    label: Abteilung
-                  - value: group_spartacus
-                    label: Gruppe Spartacus
-                  - value: group_schleckmaeuler
-                    label: Schleckmäuler
-            text:
-              name: text
-              type: wysiwyg
-              localize: false
-              options: []
-          entries:
-            - date: '2021-08-28'
-              scope: group_schleckmaeuler
-              text: "<p><strong>Hallo zusammen</strong>&nbsp;\U0001F60A</p>\n<p>&nbsp;</p>\n<p>Fogende Infos f&uuml;r den n&auml;chsten Jungscharnachmittag am 28.08.21</p>\n<p>Treffpunkt:&nbsp;&nbsp; 14:00 Uhr beim Pfarrhaus Ausserdorf in Buchs</p>\n<p>Mitnehmen:&nbsp; Wettergerechte Kleidung (Sonnen-, Zeckenschutz und lange Hosen sind von Vorteil), Z&rsquo;Trinke, und ein Z&rsquo;vieri (es darf gerne etwas zum Grillieren sein)</p>\n<p>Schluss:&nbsp; &nbsp; &nbsp; &nbsp; 17:00 Uhr beim Pfarrhaus</p>\n<p>&nbsp;</p>\n<p>Bitte meldet euch ab, wenn ihr nicht kommen k&ouml;nnt.</p>\n<p>Abmeldungen oder Sonstiges gerne an:</p>\n<p>Seraina Frei v/o Floh 079 952 70 84 oder floh@cevimail.ch</p>\n<p>&nbsp;</p>\n<p>Liebe Gr&uuml;sse</p>\n<p>Eures Leiterteam ;)&nbsp;</p>\n<p>&nbsp;</p>"
-              _mby: 603acb743038369757000336
-              _by: 603acb743038369757000336
-              _modified: 1629661099
-              _created: 1629661099
-              _id: 6122a7ab3436353ee50001f2
-            - date: '2021-08-28'
-              scope: group_spartacus
-              text: |-
-                <p>Hoi z&auml;me</p>
-                <p>Diesen Samstag 28.8.21 findet wieder Jungschi statt.&nbsp;</p>
-                <p>Treffpunkt: 14:00 Uhr beim Pfarrhaus Ausserdorf in Buchs</p>
-                <p>Mitnehmen: Wettergerechte Kleidung, z'Trinke, z'Vieri und nat&uuml;rlich gute Laune :)&nbsp;</p>
-                <p>Schluss: 17:00 Uhr beim Pfarrhaus</p>
-                <p>&nbsp;</p>
-                <p>Fals ihr nicht kommen k&ouml;nnt, meldet euch bitte bei Sira H&auml;chler v/o Zippora ab:</p>
-                <p>075 424 67 11&nbsp;</p>
-              _mby: 603acb743038369757000336
-              _by: 603acb743038369757000336
-              _modified: 1629915002
-              _created: 1629914153
-              _id: 61268429333631115500038a
-            - date: '2021-09-04'
-              scope: section
-              text: |-
-                <p>Hallo z&auml;me</p>
-                <p>Am 9.4. findet der Verbandstrefftag wie geplant statt.</p>
-                <p>F&uuml;r die die sich angemeldet haben:</p>
-                <p>Treffpunkt: Am Aarau Bahnhof, unter der grossen Uhr um 10:30<br />Entlassung: Am Aarau Bahnhof, unter der grossen Uhr um 18:10</p>
-                <p>&nbsp;</p>
-                <p>F&uuml;r alle die sich nicht angemeldet haben findet kein anderes Programm statt.</p>
-                <p>&nbsp;</p>
-                <p>Bis am Samstag und eine sch&ouml;ne Woche</p>
-                <p>&nbsp;</p>
-                <p>Ayal und das Leiterteam</p>
-              _mby: 603acb743038369757000336
-              _by: 603acb743038369757000336
-              _modified: 1630307149
-              _created: 1630307149
-              _id: 612c834d39613899f30002ab
-          total: 3
-    AlbumList:
-      description: ''
+            type: string
+        group:
+          anyOf:
+            - $ref: '#/components/schemas/Group'
+            - type: 'null'
+        birthyear:
+          type: string
+        place:
+          type: string
+        profession:
+          type: string
+        recreation:
+          type: string
+        inScoutsSince:
+          type: string
+        inScoutsBecause:
+          type: string
+        bestExperiences:
+          type: string
+        image:
+          $ref: '#/components/schemas/Upload'
+    Press:
       type: object
+      required:
+        - type
+        - date
+        - descriptionHtml
+        - file
       properties:
-        fields:
-          type: object
-          properties:
-            title:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            dateString:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            date:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            year:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            images:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            previewImage:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - title
-            - dateString
-            - date
-            - year
-            - images
-            - previewImage
-        entries:
+        id:
+          type: integer
+        type:
+          type: string
+          enum:
+            - news
+            - historic
+        date:
+          type: string
+          format: date-time
+          description: Date only, stored as 12:00 UTC
+        source:
+          type: string
+        descriptionHtml:
+          type: string
+          description: Rich text rendered as HTML
+        file:
+          $ref: '#/components/schemas/Upload'
+    ShopArticle:
+      type: object
+      required:
+        - name
+        - price
+        - category
+        - image
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        price:
+          type: string
+        description:
+          type: string
+        category:
           type: array
-          uniqueItems: true
-          minItems: 1
           items:
-            required:
-              - title
-              - dateString
-              - date
-              - year
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-            properties:
-              title:
-                type: string
-                minLength: 1
-              dateString:
-                type: string
-                minLength: 1
-              date:
-                type: string
-                minLength: 1
-              year:
-                type: string
-                minLength: 1
-              images:
-                type: array
-                uniqueItems: true
-                minItems: 1
-                items:
-                  required:
-                    - path
-                  properties:
-                    meta:
-                      type: object
-                      properties:
-                        title:
-                          type: string
-                          minLength: 1
-                        asset:
-                          type: string
-                          minLength: 1
-                      required:
-                        - title
-                        - asset
-                    path:
-                      type: string
-                      minLength: 1
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-              thumb:
-                type: array
-                uniqueItems: true
-                minItems: 1
-                items:
-                  required:
-                    - path
-                  properties:
-                    meta:
-                      type: object
-                      properties:
-                        title:
-                          type: string
-                        asset:
-                          type: string
-                          minLength: 1
-                      required:
-                        - title
-                        - asset
-                    path:
-                      type: string
-                      minLength: 1
-              thumbs:
-                type: array
-                uniqueItems: true
-                minItems: 1
-                items:
-                  required:
-                    - path
-                  properties:
-                    meta:
-                      type: object
-                      properties:
-                        title:
-                          type: string
-                        asset:
-                          type: string
-                          minLength: 1
-                      required:
-                        - title
-                        - asset
-                    path:
-                      type: string
-                      minLength: 1
-              previewImage:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    minLength: 1
-                required:
-                  - path
-        total:
-          type: number
-      required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            title:
-              name: title
-              type: text
-              localize: false
-              options: []
-            dateString:
-              name: dateString
-              type: text
-              localize: false
-              options: []
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-            year:
-              name: year
-              type: text
-              localize: false
-              options: []
-            images:
-              name: images
-              type: gallery
-              localize: false
-              options: []
-            previewImage:
-              name: previewImage
-              type: image
-              localize: false
-              options: []
-          entries:
-            - title: Diverse Bilder
-              dateString: '2015'
-              date: 31.12.2015
-              year: '2015'
-              images:
-                - meta:
-                    title: 21.02 - Kochen über dem Feuer
-                    asset: 5fb25628396661804a000350
-                  path: /storage/uploads/2020/11/16/2015-02-21-1455-Waldlufer.jpg_uid_5fb25628437ec.webp
-                - meta:
-                    title: 21.02 - Schoggicreme mit Doppelrahm
-                    asset: 5fb256283937362a5000009e
-                  path: /storage/uploads/2020/11/16/2015-02-21-162824-Waldlufer.jpg_uid_5fb256289b73b.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605731804
-              _created: 1605474150
-              _id: 5fb1976632643038e10002fe
-              previewImage:
-                path: /storage/uploads/2020/11/18/2015-diverse.jpg_uid_5fb5827dbbd71.webp
-            - title: Schoggi Frey
-              dateString: 10. Januar 2015
-              date: 10.01.2015
-              year: '2015'
-              images:
-                - meta:
-                    title: Schoggi Frey
-                    asset: 5fb5866c6539353f25000153
-                  path: /storage/uploads/2020/11/18/2015-01-10-15200.jpg_uid_5fb5866c8b810.webp
-                - meta:
-                    title: Eingang
-                    asset: 5fb5866d616336e7ca00029d
-                  path: /storage/uploads/2020/11/18/2015-01-10-152034.jpg_uid_5fb5866d06ad5.webp
-              previewImage:
-                path: /storage/uploads/2020/11/18/2015-schoggi-frey.jpg_uid_5fb5827e5b449.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605732177
-              _created: 1605732156
-              _id: 5fb5873c32366228690001b4
-          total: 2
-      examples:
-        - fields:
-            title:
-              name: title
-              type: text
-              localize: false
-              options: []
-            dateString:
-              name: dateString
-              type: text
-              localize: false
-              options: []
-            date:
-              name: date
-              type: date
-              localize: false
-              options: []
-            year:
-              name: year
-              type: text
-              localize: false
-              options: []
-            images:
-              name: images
-              type: gallery
-              localize: false
-              options: []
-            previewImage:
-              name: previewImage
-              type: image
-              localize: false
-              options: []
-          entries:
-            - title: Diverse Bilder
-              dateString: '2015'
-              date: 31.12.2015
-              year: '2015'
-              images:
-                - meta:
-                    title: 21.02 - Kochen über dem Feuer
-                    asset: 5fb25628396661804a000350
-                  path: /storage/uploads/2020/11/16/2015-02-21-1455-Waldlufer.jpg_uid_5fb25628437ec.webp
-                - meta:
-                    title: 21.02 - Schoggicreme mit Doppelrahm
-                    asset: 5fb256283937362a5000009e
-                  path: /storage/uploads/2020/11/16/2015-02-21-162824-Waldlufer.jpg_uid_5fb256289b73b.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605731804
-              _created: 1605474150
-              _id: 5fb1976632643038e10002fe
-              thumb: null
-              previewImage:
-                path: /storage/uploads/2020/11/18/2015-diverse.jpg_uid_5fb5827dbbd71.webp
-            - title: Schoggi Frey
-              dateString: 10. Januar 2015
-              date: 10.01.2015
-              year: '2015'
-              images:
-                - meta:
-                    title: Schoggi Frey
-                    asset: 5fb5866c6539353f25000153
-                  path: /storage/uploads/2020/11/18/2015-01-10-15200.jpg_uid_5fb5866c8b810.webp
-                - meta:
-                    title: Eingang
-                    asset: 5fb5866d616336e7ca00029d
-                  path: /storage/uploads/2020/11/18/2015-01-10-152034.jpg_uid_5fb5866d06ad5.webp
-              previewImage:
-                path: /storage/uploads/2020/11/18/2015-schoggi-frey.jpg_uid_5fb5827e5b449.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1605732177
-              _created: 1605732156
-              _id: 5fb5873c32366228690001b4
-          total: 2
-    Itemlist:
-      description: ''
+            type: string
+            enum:
+              - Reguläre Artikel
+              - Restposten
+        image:
+          $ref: '#/components/schemas/Upload'
+    ContactForm:
       type: object
-      properties:
-        fields:
-          type: object
-          properties:
-            sortkey:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            name:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            image:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            price:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            category:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: object
-                  properties:
-                    options:
-                      type: string
-                      minLength: 1
-                  required:
-                    - options
-              required:
-                - name
-                - type
-                - localize
-                - options
-            description:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - sortkey
-            - name
-            - image
-            - price
-            - category
-            - description
-        entries:
-          type: array
-          uniqueItems: true
-          minItems: 1
-          items:
-            required:
-              - name
-              - price
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-              - sortkey
-              - description
-            properties:
-              name:
-                type: string
-                minLength: 1
-              image:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    minLength: 1
-                required:
-                  - path
-              price:
-                type: string
-                minLength: 1
-              category:
-                type: array
-                items:
-                  required: []
-                  properties: {}
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-              category_select:
-                type: array
-                items:
-                  required: []
-                  properties: {}
-              sortkey:
-                type: string
-                minLength: 1
-              description:
-                type: string
-                minLength: 1
-        total:
-          type: number
       required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            sortkey:
-              name: sortkey
-              type: text
-              localize: false
-              options: []
-            name:
-              name: name
-              type: text
-              localize: false
-              options: []
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-            price:
-              name: price
-              type: text
-              localize: false
-              options: []
-            category:
-              name: category
-              type: multipleselect
-              localize: false
-              options:
-                options: 'Reguläre Artikel, Restposten'
-            description:
-              name: description
-              type: text
-              localize: false
-              options: []
-          entries:
-            - name: 'Jungscharhemd Kinder '
-              image:
-                path: /storage/uploads/2021/01/28/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp
-              price: '54.9'
-              category:
-                - Reguläre Artikel
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1611867477
-              _created: 1586265967
-              _id: 5e8c7f6f356337fda20000f5
-              category_select:
-                - Reguläre Artikel
-              sortkey: '01'
-              description: 'Verfügbare Grössen 140, 152, 164'
-            - sortkey: '50'
-              name: Abzeichen J+S
-              image:
-                path: /storage/uploads/2021/01/28/rest_abzeichen_J_und_S.jpg_uid_601325052d53e.webp
-              price: '2.0'
-              category:
-                - Restposten
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1611868042
-              _created: 1586269078
-              _id: 5e8c8b96363062f869000339
-              description: Noch 27 Stück
-          total: 2
-      examples:
-        - fields:
-            sortkey:
-              name: sortkey
-              type: text
-              localize: false
-              options: []
-            name:
-              name: name
-              type: text
-              localize: false
-              options: []
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-            price:
-              name: price
-              type: text
-              localize: false
-              options: []
-            category:
-              name: category
-              type: multipleselect
-              localize: false
-              options:
-                options: 'Reguläre Artikel, Restposten'
-            description:
-              name: description
-              type: text
-              localize: false
-              options: []
-          entries:
-            - name: 'Jungscharhemd Kinder '
-              image:
-                path: /storage/uploads/2021/01/28/haupt_01_cevi_hemd.jpg_uid_6013250287435.webp
-              price: '54.9'
-              category:
-                - Reguläre Artikel
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1611867477
-              _created: 1586265967
-              _id: 5e8c7f6f356337fda20000f5
-              category_select:
-                - Reguläre Artikel
-              sortkey: '01'
-              description: 'Verfügbare Grössen 140, 152, 164'
-            - sortkey: '50'
-              name: Abzeichen J+S
-              image:
-                path: /storage/uploads/2021/01/28/rest_abzeichen_J_und_S.jpg_uid_601325052d53e.webp
-              price: '2.0'
-              category:
-                - Restposten
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1611868042
-              _created: 1586269078
-              _id: 5e8c8b96363062f869000339
-              description: Noch 27 Stück
-          total: 2
-    ShopOrderRequest:
-      description: ''
-      type: object
+        - name
+        - email
+        - message
       properties:
-        form:
-          type: object
-          properties:
-            name:
-              type: string
-              minLength: 1
-            email:
-              type: string
-              minLength: 1
-            articles:
-              type: string
-              minLength: 1
-            deliveryMethod:
-              type: string
-              minLength: 1
-            adress:
-              type: string
-              minLength: 1
-          required:
-            - name
-            - email
-            - articles
-            - deliveryMethod
-            - adress
-      required:
-        - form
-      x-examples:
-        example-1:
-          form:
-            name: Patrick
-            email: me@me.ch
-            articles: Diverse
-            deliveryMethod: Lieferung
-            adress: |-
-              Patrick
-              Tellstrasse 5
-              5033 Buchs AG
-      examples:
-        - form:
-            name: Patrick
-            email: me@me.ch
-            articles: Diverse
-            deliveryMethod: Lieferung
-            adress: |-
-              Patrick
-              Tellstrasse 5
-              5033 Buchs AG
-    ShopOrderResponse:
-      description: ''
-      type: object
-      properties:
-        error:
+        name:
           type: string
           minLength: 1
-        data:
-          type: object
-          properties:
-            name:
-              type: string
-              minLength: 1
-            email:
-              type: string
-              minLength: 1
-            articles:
-              type: string
-              minLength: 1
-            deliveryMethod:
-              type: string
-              minLength: 1
-            adress:
-              type: string
-              minLength: 1
-          required:
-            - name
-            - email
-            - articles
-            - deliveryMethod
-            - adress
-      required:
-        - error
-        - data
-      x-examples:
-        example-1:
-          error: 'Invalid address:  (From): root@localhost'
-          data:
-            name: Patrick
-            email: me@me.ch
-            articles: Diverse
-            deliveryMethod: Lieferung
-            adress: |-
-              Patrick
-              Tellstrasse 5
-              5033 Buchs AG
-      examples:
-        - error: 'Invalid address:  (From): root@localhost'
-          data:
-            name: Patrick
-            email: me@me.ch
-            articles: Diverse
-            deliveryMethod: Lieferung
-            adress: |-
-              Patrick
-              Tellstrasse 5
-              5033 Buchs AG
-    LeaderList:
-      description: ''
+        email:
+          type: string
+          format: email
+        message:
+          type: string
+          minLength: 1
+    JoinForm:
       type: object
-      properties:
-        fields:
-          type: object
-          properties:
-            scoutname:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            name:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            isactive:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            group:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            function:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: object
-                  properties:
-                    options:
-                      type: string
-                      minLength: 1
-                  required:
-                    - options
-              required:
-                - name
-                - type
-                - localize
-                - options
-            birthyear:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            place:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            profession:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            recreation:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            in_scounts_since:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            in_scouts_because:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            best_experiences:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            image:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            inScoutsSince:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            inScoutsBecause:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-            bestExperiences:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                type:
-                  type: string
-                  minLength: 1
-                localize:
-                  type: boolean
-                options:
-                  type: array
-                  items:
-                    required: []
-                    properties: {}
-              required:
-                - name
-                - type
-                - localize
-                - options
-          required:
-            - scoutname
-            - name
-            - isactive
-            - group
-            - function
-            - birthyear
-            - place
-            - profession
-            - recreation
-            - in_scounts_since
-            - in_scouts_because
-            - best_experiences
-            - image
-            - inScoutsSince
-            - inScoutsBecause
-            - bestExperiences
-        entries:
-          type: array
-          uniqueItems: true
-          minItems: 1
-          items:
-            required:
-              - name
-              - scoutname
-              - group
-              - birthyear
-              - place
-              - profession
-              - recreation
-              - in_scounts_since
-              - in_scouts_because
-              - best_experiences
-              - _mby
-              - _by
-              - _modified
-              - _created
-              - _id
-              - inScoutsSince
-              - inScoutsBecause
-              - bestExperiences
-              - is_inactive
-              - is_active
-              - isactive
-            properties:
-              name:
-                type: string
-                minLength: 1
-              scoutname:
-                type: string
-                minLength: 1
-              function:
-                type: array
-                items:
-                  required: []
-                  properties: {}
-              group:
-                type: string
-                minLength: 1
-              birthyear:
-                type: string
-                minLength: 1
-              place:
-                type: string
-                minLength: 1
-              profession:
-                type: string
-                minLength: 1
-              recreation:
-                type: string
-                minLength: 1
-              in_scounts_since:
-                type: string
-                minLength: 1
-              in_scouts_because:
-                type: string
-                minLength: 1
-              best_experiences:
-                type: string
-                minLength: 1
-              image:
-                type: object
-                properties:
-                  path:
-                    type: string
-                    minLength: 1
-                required:
-                  - path
-              _mby:
-                type: string
-                minLength: 1
-              _by:
-                type: string
-                minLength: 1
-              _modified:
-                type: number
-              _created:
-                type: number
-              _id:
-                type: string
-                minLength: 1
-              function_select:
-                type: array
-                items:
-                  required: []
-                  properties: {}
-              inScoutsSince:
-                type: string
-                minLength: 1
-              inScoutsBecause:
-                type: string
-                minLength: 1
-              bestExperiences:
-                type: string
-                minLength: 1
-              is_inactive:
-                type: boolean
-              is_active:
-                type: boolean
-              isactive:
-                type: boolean
-        total:
-          type: number
       required:
-        - fields
-        - entries
-        - total
-      x-examples:
-        example-1:
-          fields:
-            scoutname:
-              name: scoutname
-              type: text
-              localize: false
-              options: []
-            name:
-              name: name
-              type: text
-              localize: false
-              options: []
-            isactive:
-              name: isactive
-              type: boolean
-              localize: false
-              options: []
-            group:
-              name: group
-              type: text
-              localize: false
-              options: []
-            function:
-              name: function
-              type: multipleselect
-              localize: false
-              options:
-                options: 'Abteilungsleiter, Abteilungsleiterin, Gruppenleiter, Gruppenleiterin, Hilfsleiter, Hilfsleiterin, Materialverantwortlicher, Lädeliverantwortliche, Homepagebetreuer, Koordination YMCA, Lagerleiter'
-            birthyear:
-              name: birthyear
-              type: text
-              localize: false
-              options: []
-            place:
-              name: place
-              type: text
-              localize: false
-              options: []
-            profession:
-              name: profession
-              type: text
-              localize: false
-              options: []
-            recreation:
-              name: recreation
-              type: text
-              localize: false
-              options: []
-            in_scounts_since:
-              name: in_scounts_since
-              type: text
-              localize: false
-              options: []
-            in_scouts_because:
-              name: in_scouts_because
-              type: text
-              localize: false
-              options: []
-            best_experiences:
-              name: best_experiences
-              type: text
-              localize: false
-              options: []
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-            inScoutsSince:
-              name: inScoutsSince
-              type: text
-              localize: false
-              options: []
-            inScoutsBecause:
-              name: inScoutsBecause
-              type: text
-              localize: false
-              options: []
-            bestExperiences:
-              name: bestExperiences
-              type: text
-              localize: false
-              options: []
-          entries:
-            - name: Leah Dellenbach
-              scoutname: Luna
-              function:
-                - Gruppenleiterin
-                - Abteilungsleiterin
-              group: Spartacus
-              birthyear: '1998'
-              place: Aarau
-              profession: Studentin Universität Basel
-              recreation: 'Lesen, Jungschi, mit Freunden treffen'
-              in_scounts_since: ungefähr 2006
-              in_scouts_because: es lustig ist mit Gleichgesinnten etwas zu machen
-              best_experiences: 'Pfila 2007, Leiteranlässe, Lager'
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1622971726
-              _created: 1586261102
-              _id: 5e8c6c6e633238ddad0002c5
-              function_select:
-                - Abteilungsleiterin
-              image:
-                path: /storage/uploads/2021/02/01/2017-12-Luna.jpg_uid_6018765b6b961.webp
-              inScoutsSince: ungefähr 2006
-              inScoutsBecause: es lustig ist mit Gleichgesinnten etwas zu machen
-              bestExperiences: 'Pfila 2007, Leiteranlässe'
-              is_active: true
-              isactive: true
-            - name: Seraina Frei
-              scoutname: Floh
-              function:
-                - Gruppenleiter
-                - Lädeliverantwortliche
-              group: Schleckmäuler
-              birthyear: '1999'
-              place: Buchs
-              profession: Bäckerin in Ausbildung
-              recreation: Leichtathletik und Volleyball
-              in_scounts_since: Kindergarten
-              in_scouts_because: es immer ein tolles Erlebnis ist
-              best_experiences: Pfila's
-              image:
-                path: /storage/uploads/2021/02/01/2020-11-Floh.jpg_uid_6018765c104a1.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1622971689
-              _created: 1586262002
-              _id: 5e8c6ff23436309b750000c9
-              function_select:
-                - Gruppenleiter
-                - Lädeliverantwortliche
-              inScoutsSince: Kindergarten
-              inScoutsBecause: es immer ein tolles Erlebnis ist
-              bestExperiences: Pfila's
-              is_active: true
-              isactive: true
-          total: 2
-      examples:
-        - fields:
-            scoutname:
-              name: scoutname
-              type: text
-              localize: false
-              options: []
-            name:
-              name: name
-              type: text
-              localize: false
-              options: []
-            isactive:
-              name: isactive
-              type: boolean
-              localize: false
-              options: []
-            group:
-              name: group
-              type: text
-              localize: false
-              options: []
-            function:
-              name: function
-              type: multipleselect
-              localize: false
-              options:
-                options: 'Abteilungsleiter, Abteilungsleiterin, Gruppenleiter, Gruppenleiterin, Hilfsleiter, Hilfsleiterin, Materialverantwortlicher, Lädeliverantwortliche, Homepagebetreuer, Koordination YMCA, Lagerleiter'
-            birthyear:
-              name: birthyear
-              type: text
-              localize: false
-              options: []
-            place:
-              name: place
-              type: text
-              localize: false
-              options: []
-            profession:
-              name: profession
-              type: text
-              localize: false
-              options: []
-            recreation:
-              name: recreation
-              type: text
-              localize: false
-              options: []
-            in_scounts_since:
-              name: in_scounts_since
-              type: text
-              localize: false
-              options: []
-            in_scouts_because:
-              name: in_scouts_because
-              type: text
-              localize: false
-              options: []
-            best_experiences:
-              name: best_experiences
-              type: text
-              localize: false
-              options: []
-            image:
-              name: image
-              type: image
-              localize: false
-              options: []
-            inScoutsSince:
-              name: inScoutsSince
-              type: text
-              localize: false
-              options: []
-            inScoutsBecause:
-              name: inScoutsBecause
-              type: text
-              localize: false
-              options: []
-            bestExperiences:
-              name: bestExperiences
-              type: text
-              localize: false
-              options: []
-          entries:
-            - name: Leah Dellenbach
-              scoutname: Luna
-              function:
-                - Gruppenleiterin
-                - Abteilungsleiterin
-              group: Spartacus
-              birthyear: '1998'
-              place: Aarau
-              profession: Studentin Universität Basel
-              recreation: 'Lesen, Jungschi, mit Freunden treffen'
-              in_scounts_since: ungefähr 2006
-              in_scouts_because: es lustig ist mit Gleichgesinnten etwas zu machen
-              best_experiences: 'Pfila 2007, Leiteranlässe, Lager'
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1622971726
-              _created: 1586261102
-              _id: 5e8c6c6e633238ddad0002c5
-              function_select:
-                - Abteilungsleiterin
-              image:
-                path: /storage/uploads/2021/02/01/2017-12-Luna.jpg_uid_6018765b6b961.webp
-              inScoutsSince: ungefähr 2006
-              inScoutsBecause: es lustig ist mit Gleichgesinnten etwas zu machen
-              bestExperiences: 'Pfila 2007, Leiteranlässe'
-              is_active: true
-              isactive: true
-            - name: Seraina Frei
-              scoutname: Floh
-              function:
-                - Gruppenleiter
-                - Lädeliverantwortliche
-              group: Schleckmäuler
-              birthyear: '1999'
-              place: Buchs
-              profession: Bäckerin in Ausbildung
-              recreation: Leichtathletik und Volleyball
-              in_scounts_since: Kindergarten
-              in_scouts_because: es immer ein tolles Erlebnis ist
-              best_experiences: Pfila's
-              image:
-                path: /storage/uploads/2021/02/01/2020-11-Floh.jpg_uid_6018765c104a1.webp
-              _mby: 5e8c4a1f30656581770002f3
-              _by: 5e8c4a1f30656581770002f3
-              _modified: 1622971689
-              _created: 1586262002
-              _id: 5e8c6ff23436309b750000c9
-              function_select:
-                - Gruppenleiter
-                - Lädeliverantwortliche
-              inScoutsSince: Kindergarten
-              inScoutsBecause: es immer ein tolles Erlebnis ist
-              bestExperiences: Pfila's
-              is_active: true
-              isactive: true
-          total: 2
-  securitySchemes: {}
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        phonenumber:
+          type: string
+        message:
+          type: string
+    ShopOrderForm:
+      type: object
+      required:
+        - name
+        - email
+        - articles
+      properties:
+        name:
+          type: string
+          minLength: 1
+        email:
+          type: string
+          format: email
+        articles:
+          type: string
+          minLength: 1
+        deliveryMethod:
+          type: string
+        adress:
+          type: string
