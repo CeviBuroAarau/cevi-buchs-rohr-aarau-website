@@ -3,9 +3,15 @@ name: Release
 on:
   workflow_dispatch:
     inputs:
-      version:
-        description: 'Version number (e.g. 1.2.3)'
+      bump:
+        description: 'Version bump'
         required: true
+        type: choice
+        default: patch
+        options:
+          - patch
+          - minor
+          - major
 
 jobs:
   release:
@@ -38,7 +44,22 @@ jobs:
         echo "created_iso=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
         IMAGE="ghcr.io/${{ github.repository }}"
         echo "image=${IMAGE,,}" >> $GITHUB_OUTPUT
-        VERSION="${{ github.event.inputs.version }}"
+        # Only semver tags count; the legacy integer tags (v1 … v48) are ignored
+        PREV_TAG=$(git tag -l 'v[0-9]*.[0-9]*.[0-9]*' --sort=-v:refname | head -n1)
+        PREV="${PREV_TAG#v}"
+        IFS=. read -r MAJOR MINOR PATCH <<< "${PREV:-0.0.0}"
+        case "${{ inputs.bump }}" in
+          major) VERSION="$((MAJOR + 1)).0.0" ;;
+          minor) VERSION="${MAJOR}.$((MINOR + 1)).0" ;;
+          patch) VERSION="${MAJOR}.${MINOR}.$((PATCH + 1))" ;;
+        esac
+        if git rev-parse -q --verify "refs/tags/v${VERSION}" >/dev/null; then
+          echo "::error::Tag v${VERSION} already exists"
+          exit 1
+        fi
+        echo "Releasing v${VERSION} (previous: ${PREV_TAG:-none})"
+        echo "prev_tag=${PREV_TAG}" >> $GITHUB_OUTPUT
+        echo "version=${VERSION}" >> $GITHUB_OUTPUT
         echo "version_minor=v${VERSION%.*}" >> $GITHUB_OUTPUT
         echo "version_major=v${VERSION%%.*}" >> $GITHUB_OUTPUT
 
@@ -46,7 +67,7 @@ jobs:
       run: |
         sed -i 's#VITE_DATE=Not specified#VITE_DATE=${{ steps.meta.outputs.created }}#g' .env
         sed -i 's#VITE_REVISION=Not specified#VITE_REVISION=${{ steps.meta.outputs.revision }}#g' .env
-        sed -i 's#VITE_VERSION=Not specified#VITE_VERSION=${{ github.event.inputs.version }}#g' .env
+        sed -i 's#VITE_VERSION=Not specified#VITE_VERSION=${{ steps.meta.outputs.version }}#g' .env
 
     - name: Build
       run: npm run build
@@ -93,7 +114,7 @@ jobs:
         push: true
         tags: |
           ${{ steps.meta.outputs.image }}:stable
-          ${{ steps.meta.outputs.image }}:v${{ github.event.inputs.version }}
+          ${{ steps.meta.outputs.image }}:v${{ steps.meta.outputs.version }}
           ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.version_minor }}
           ${{ steps.meta.outputs.image }}:${{ steps.meta.outputs.version_major }}
         labels: |
@@ -105,13 +126,13 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: |
-        PREV_TAG=$(git describe --tags --abbrev=0 HEAD^ 2>/dev/null || echo "")
+        PREV_TAG="${{ steps.meta.outputs.prev_tag }}"
         if [ -n "$PREV_TAG" ]; then
           NOTES=$(git log ${PREV_TAG}..HEAD --pretty=format:"- %s" --no-merges)
         else
           NOTES=$(git log --pretty=format:"- %s" --no-merges)
         fi
-        gh release create "v${{ github.event.inputs.version }}" \
-          --title "Release v${{ github.event.inputs.version }}" \
+        gh release create "v${{ steps.meta.outputs.version }}" \
+          --title "Release v${{ steps.meta.outputs.version }}" \
           --notes "$NOTES" \
           --latest
